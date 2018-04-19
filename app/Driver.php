@@ -16,4 +16,9 @@ class Driver extends Model
     protected $fillable = [
         'name', 'surname', 'birth_date', 'is_online', 'phone', 'created_at','updated_at', 'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

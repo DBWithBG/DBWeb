@@ -17,4 +17,20 @@ class TakeOverDelivery extends Model
     protected $fillable = [
         'status', 'driver_id', 'delivery_id', 'actual_position_id', 'created_at', 'updated_at'
     ];
+
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Position', 'actual_position_id');
+    }
+
+    public function delivery()
+    {
+        return $this->belongsTo('App\delivery', 'delivery_id');
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo('App\Driver', 'driver_id');
+    }
 }

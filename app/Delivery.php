@@ -18,4 +18,19 @@ class Delivery extends Model
     protected $fillable = [
         'name', 'surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'end_position_id', 'customer_id'
     ];
+
+    public function startPosition()
+    {
+        return $this->belongsTo('App\Position', 'start_position_id');
+    }
+
+    public function endPosition()
+    {
+        return $this->belongsTo('App\Position', 'end_position_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer', 'customer_id');
+    }
 }

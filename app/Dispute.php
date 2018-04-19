@@ -17,4 +17,10 @@ class Dispute extends Model
     protected $fillable = [
         'title', 'author', 'reason', 'take_over_delivery_id', 'created_at', 'updated_at'
     ];
+
+
+    public function takeOverDelivery()
+    {
+        return $this->hasOne('App\TakeOverDelivery', 'take_over_delivery_id');
+    }
 }
