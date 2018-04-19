@@ -21,7 +21,7 @@ class CreateTakeOverDeliveriesTable extends Migration
 
 
             $table->integer('driver_id')->unsigned();
-            $table->integer('deliverie_id')->unsigned();
+            $table->integer('delivery_id')->unsigned();
             $table->integer('actual_position_id')->unsigned();
 
 
@@ -32,7 +32,7 @@ class CreateTakeOverDeliveriesTable extends Migration
         });
 
         Schema::table('take_over_deliveries', function(Blueprint $table){
-            $table->foreign('deliverie_id')->references('id')->on('deliveries');
+            $table->foreign('delivery_id')->references('id')->on('deliveries');
         });
 
         Schema::table('take_over_deliveries', function(Blueprint $table){

@@ -20,12 +20,12 @@ class CreateDisputesTable extends Migration
             $table->mediumText('reason')->nullable();
             $table->timestamps();
 
-            $table->integer('take_over_deliverie_id')->unsigned();
+            $table->integer('take_over_delivery_id')->unsigned();
 
         });
 
         Schema::table('disputes', function(Blueprint $table){
-            $table->foreign('take_over_deliverie_id')->references('id')->on('take_over_deliveries');
+            $table->foreign('take_over_delivery_id')->references('id')->on('take_over_deliveries');
         });
     }
 
