@@ -35,6 +35,13 @@ class HomeController extends Controller
             ->json($res)
             ->setCallback($request->input('callback'));
     }
+    //get delivery pour debloquer donovan en attendant
+    public function getDelivery(Request $request,$id){
+        $res=Delivery::where('id',$id)->with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
+    }
 
 
 }
