@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //TODO RELANCER LA SECURE WAY
+       // $this->middleware('auth');
     }
 
     /**
@@ -25,4 +27,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    //get deliveries pour debloquer donovan en attendant
+    public function getDeliveries(){
+        return(Delivery::with('customer')->with('startPosition')->with('endPosition')->get()->toJson());
+    }
+
+
 }
