@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/deliveries/{id}', 'HomeController@getDelivery');
 Route::get('/deliveries', 'HomeController@getDeliveries');
+
+Route::get('/customers/{id}', 'HomeController@getCustomer');
+Route::get('/customers', 'HomeController@getCustomers');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Delivery;
 use Illuminate\Http\Request;
 
@@ -43,5 +44,20 @@ class HomeController extends Controller
             ->setCallback($request->input('callback'));
     }
 
+
+    //get deliveries pour debloquer donovan en attendant
+    public function getCustomers(Request $request){
+        $res=Customer::with('deliveries')->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
+    }
+    //get delivery pour debloquer donovan en attendant
+    public function getCustomer(Request $request,$id){
+        $res=Customer::where('id',$id)->with('deliveries')->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
+    }
 
 }
