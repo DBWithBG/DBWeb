@@ -29,8 +29,11 @@ class HomeController extends Controller
     }
 
     //get deliveries pour debloquer donovan en attendant
-    public function getDeliveries(){
-        return(Delivery::with('customer')->with('startPosition')->with('endPosition')->get()->toJson());
+    public function getDeliveries(Request $request){
+        $res=Delivery::with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
     }
 
 
