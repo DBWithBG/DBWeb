@@ -177,6 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //provider CORS cross origin resource
+        Barryvdh\Cors\ServiceProvider::class,
+
     ],
 
     /*
