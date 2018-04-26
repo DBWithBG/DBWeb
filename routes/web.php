@@ -25,3 +25,6 @@ Route::get('/deliveries', 'HomeController@getDeliveries');
 
 Route::get('/customers/{id}', 'HomeController@getCustomer');
 Route::get('/customers', 'HomeController@getCustomers');
+
+Route::get('/drivers/{id}', 'HomeController@getDriver');
+Route::get('/drivers', 'HomeController@getDrivers');
