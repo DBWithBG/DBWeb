@@ -180,6 +180,9 @@ return [
         //provider CORS cross origin resource
         Barryvdh\Cors\ServiceProvider::class,
 
+        //notification push
+        'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider'
+
     ],
 
     /*
@@ -228,6 +231,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        //notification push
+
+        'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification'
 
     ],
 

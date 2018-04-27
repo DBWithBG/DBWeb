@@ -28,3 +28,7 @@ Route::get('/customers', 'HomeController@getCustomers');
 
 Route::get('/drivers/{id}', 'HomeController@getDriver');
 Route::get('/drivers', 'HomeController@getDrivers');
+
+
+
+Route::get('/test', 'phone\NotificationController@notify');
