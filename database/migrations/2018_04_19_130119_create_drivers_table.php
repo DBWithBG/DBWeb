@@ -21,6 +21,7 @@ class CreateDriversTable extends Migration
             $table->boolean('is_online');
             $table->string('phone');
             $table->timestamps();
+            $table->boolean('deleted')->default(0);
 
 
             $table->integer('user_id')->unsigned();

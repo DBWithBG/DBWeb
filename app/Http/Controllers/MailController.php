@@ -52,6 +52,6 @@ class MailController
                 $user->save();
             }
         }
-        return redirect('/login');
+        return redirect('backoffice/login');
     }
 }

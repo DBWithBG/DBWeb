@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top" color-on-scroll="500">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="{{url('/')}}"><img src="{{asset('/img/logogrand.png')}}" style="height: 71px; width: 300px"></a>
+                <a class="navbar-brand" href="{{url('/')}}"><span  style="color: #38b44f">DELIVERBAG</span></a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                     aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

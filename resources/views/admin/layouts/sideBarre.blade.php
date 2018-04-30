@@ -12,7 +12,7 @@
             </a>
 
             <a href="{{url('/')}}" class="simple-text logo-normal">
-                DELIVERBAG ADMIN
+                BACKOFFICE
             </a>
 
         </div>
@@ -28,52 +28,22 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link collapse" data-toggle="collapse" href="#groupesCollapse">
-                        <i class="material-icons">dashboard</i>
+                    <a class="nav-link"  href="{{url('backoffice/customers')}}">
+                        <i class="material-icons">people</i>
                         <p> Clients
-                            <b class="caret"></b>
+
                         </p>
                     </a>
-
-                    <div class="collapse" id="groupesCollapse">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{ url('/clients') }}">
-                                    <span class="sidebar-mini"> TS </span>
-                                    <span class="sidebar-normal"> Tous les clients </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
 
                 <li class="nav-item ">
-                    <a class="nav-link " data-toggle="collapse" href="#etablissementsCollapse">
+                    <a class="nav-link " href="{{url('backoffice/drivers')}}">
                         <i class="material-icons">grid_on</i>
                         <p> Chauffeurs
-                            <b class="caret"></b>
                         </p>
                     </a>
 
-                    <div class="collapse" id="etablissementsCollapse">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="{{ url('/dossiers/' . $groupe->id) }}">
-                                    <span class="sidebar-mini"> TS </span>
-                                    <span class="sidebar-normal"> Tous les établissements </span>
-                                </a>
-                            </li>
-                            @foreach($groupe->Etablissements as $etab)
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ url('/etablissements/' . $etab->id) }}">
-                                        <span class="sidebar-mini"> ET </span>
-                                        <span class="sidebar-normal"> {{ $etab->nom }} </span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#etablissementsCollapse">
@@ -86,19 +56,24 @@
                     <div class="collapse" id="etablissementsCollapse">
                         <ul class="nav">
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{ url('/dossiers/' . $etablissement->groupe->id) }}">
-                                    <span class="sidebar-mini"> TS </span>
-                                    <span class="sidebar-normal"> Tous les établissements </span>
+                                <a class="nav-link" href="{{url('backoffice/deliveries/inProgress')}}">
+                                    <span class="sidebar-mini">  EC </span>
+                                    <span class="sidebar-normal"> en cours</span>
                                 </a>
                             </li>
-                            @foreach($etablissement->groupe->Etablissements as $etab)
-                                <li class="nav-item ">
-                                    <a class="nav-link" href="{{ url('/etablissements/' . $etab->id) }}">
-                                        <span class="sidebar-mini"> ET </span>
-                                        <span class="sidebar-normal"> {{ $etab->nom }} </span>
-                                    </a>
-                                </li>
-                            @endforeach
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{url('backoffice/deliveries/past')}}">
+                                    <span class="sidebar-mini">  PA</span>
+                                    <span class="sidebar-normal"> passées</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{url('backoffice/deliveries/upComing')}}">
+                                    <span class="sidebar-mini">  AV </span>
+                                    <span class="sidebar-normal"> à venir</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
@@ -114,34 +89,28 @@
                         <ul class="nav">
                             <li class="nav-item ">
                                 <a class="nav-link" href="#informations_row">
-                                    <span class="sidebar-mini"> IN </span>
-                                    <span class="sidebar-normal"> Informations </span>
+                                    <span class="sidebar-mini"> NO </span>
+                                    <span class="sidebar-normal"> Notification </span>
                                 </a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#proprietaire_row">
-                                    <span class="sidebar-mini"> PR </span>
-                                    <span class="sidebar-normal"> Propriétaire </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#organisme_row">
-                                    <span class="sidebar-mini"> OR </span>
-                                    <span class="sidebar-normal"> Organisme </span>
+                                    <span class="sidebar-mini"> MA </span>
+                                    <span class="sidebar-normal"> Mails </span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#formulairesCollapse">
+                    <a class="nav-link" data-toggle="collapse" href="#facturationCollapse">
                         <i class="material-icons">content_paste</i>
                         <p> Facturation
                             <b class="caret"></b>
                         </p>
                     </a>
 
-                    <div class="collapse" id="formulairesCollapse">
+                    <div class="collapse" id="facturationCollapse">
                         <ul class="nav">
                             <li class="nav-item ">
                                 <a class="nav-link" href="#informations_row">
@@ -151,49 +120,20 @@
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#proprietaire_row">
-                                    <span class="sidebar-mini"> PR </span>
-                                    <span class="sidebar-normal"> Propriétaire </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#organisme_row">
-                                    <span class="sidebar-mini"> OR </span>
-                                    <span class="sidebar-normal"> Organisme </span>
+                                    <span class="sidebar-mini"> CH </span>
+                                    <span class="sidebar-normal"> Chauffeur </span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#formulairesCollapse">
-                        <i class="material-icons">content_paste</i>
+                    <a class="nav-link " href="{{url('backoffice/disputes')}}">
+                        <i class="material-icons">grid_on</i>
                         <p> Litiges
-                            <b class="caret"></b>
                         </p>
                     </a>
 
-                    <div class="collapse" id="formulairesCollapse">
-                        <ul class="nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#informations_row">
-                                    <span class="sidebar-mini"> IN </span>
-                                    <span class="sidebar-normal"> Informations </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#proprietaire_row">
-                                    <span class="sidebar-mini"> PR </span>
-                                    <span class="sidebar-normal"> Propriétaire </span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#organisme_row">
-                                    <span class="sidebar-mini"> OR </span>
-                                    <span class="sidebar-normal"> Organisme </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
             </ul>

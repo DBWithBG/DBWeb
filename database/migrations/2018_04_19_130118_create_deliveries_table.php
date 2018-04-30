@@ -15,15 +15,15 @@ class CreateDeliveriesTable extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->string('surname')->nullable();
             $table->text('comment')->nullable();
             $table->double('price', 10,2);
             $table->timestamps();
+            $table->string('status')->nullable();
 
             $table->integer('start_position_id')->unsigned();
             $table->integer('end_position_id')->unsigned();
             $table->integer('customer_id')->unsigned();
+            $table->boolean('deleted')->default(0);
         });
 
         Schema::table('deliveries', function(Blueprint $table){

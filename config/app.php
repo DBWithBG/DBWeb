@@ -177,6 +177,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //provider CORS cross origin resource
+        Barryvdh\Cors\ServiceProvider::class,
+
+        //notification push
+        LaravelFCM\FCMServiceProvider::class,
+
     ],
 
     /*
@@ -225,6 +231,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        //notification push
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+
 
     ],
 

@@ -35,4 +35,17 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+
+
+
+    //configuration firebase
+    'firebase' => [
+        'api_key' => 'AIzaSyBy-5ETkn-l3F1nmk9Iqjy6H3j_kEarHp0', // Only used for JS integration
+        'auth_domain' => 'dbag-202408.firebaseapp.com', // Only used for JS integration
+        'database_url' => 'https://your-database-at.firebaseio.com',
+        'secret' => 'https://dbag-202408.firebaseio.com',
+        'storage_bucket' => 'dbag-202408.appspot.com', // Only used for JS integration
+    ]
+
+
 ];

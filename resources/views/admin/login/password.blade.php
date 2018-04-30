@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="container">
         <div class="col-md-4 col-sm-6 ml-auto mr-auto" style="margin-left: auto;
 margin-right: auto; margin-top: 15%">
-            <form class="form" method="POST" action="{{url('password-send')}}">
+            <form class="form" method="POST" action="{{url('backoffice/password-send')}}">
                 {{ csrf_field() }}
 
                 <div class="card card-login card-hidden">
@@ -16,7 +16,7 @@ margin-right: auto; margin-top: 15%">
 
                     <div class="card-body ">
 
-                        <div class="text-center">ADMIN</div>
+                        <div class="text-center"><strong>BACKOFFICE</strong></div>
                         <div class="text-center" style="margin-left: 20px">Un nouveau mot de passe sera envoyé si l'email existe</div>
 
                         <span class="bmd-form-group has-error">
