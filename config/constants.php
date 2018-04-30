@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'GOOGLE_API_KEY' => 'AIzaSyAuaUtT93dycrAfBq3JGbkWGYbcBqM3Izo',
+
+    //TODO A CHANGER AVEC AUTRE COMPTE
+    'PUB_MAILJET' => 'fdc1ac15ccb15003a9909e920469e9fe',
+    'SEC_MAILJET' => '62cbd80c6479939641511964b2aeb56b'
+
+];
