@@ -181,6 +181,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
 
         //notification push
+        LaravelFCM\FCMServiceProvider::class,
 
     ],
 
@@ -231,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         //notification push
+        'FCM'      => LaravelFCM\Facades\FCM::class,
 
 
     ],
