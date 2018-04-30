@@ -21,7 +21,7 @@ class NotificationController extends Controller
 
     public function notify(){
         PushNotification::app('android')
-            ->to("testestokezjorjesiro")
+            ->to("d4kS9phcDYQ:APA91bEq6BOBrJv2sNER7Jbh-5ipTqWsQLnfpXbh4cYpW0g3-m-SBSUiQCzu0yyLgIR1LFYYQixIq2tdmJfKcTt8KZWv5UpZQtMNi4w00I-F0envS-wieht04hY8aLzoiodikBaSe4uq")
             ->send('Hello World, i`m a push message');
     }
 

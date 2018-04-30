@@ -181,7 +181,6 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
 
         //notification push
-        'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider'
 
     ],
 
@@ -233,7 +232,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //notification push
 
-        'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification'
 
     ],
 
