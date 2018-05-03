@@ -33,4 +33,9 @@ class Delivery extends Model
     {
         return $this->belongsTo('App\Customer', 'customer_id');
     }
+
+    public function takeOverDelivery(){
+        return $this->hasOne('App\TakeOverDelivery', 'deliverie_id');
+
+    }
 }

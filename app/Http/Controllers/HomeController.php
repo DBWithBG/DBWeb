@@ -27,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return redirect('backoffice/home');
+        //return view('home');
     }
 
     //get deliveries pour debloquer donovan en attendant
