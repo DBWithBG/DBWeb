@@ -16,11 +16,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+/******* LOGIN FB GOOGLE TWITTER **************/
+Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
+Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('provider', '(facebook|twitter|google)');
+
 Auth::routes();
+/************* FIN LOGIN ***************/
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/******************* BACKOFFICE ***********************************/
+/******************* BACKOFFICE ADMIN ***********************************/
 
 Route::get('backoffice/login', 'AdminController@login');
 
@@ -44,9 +52,13 @@ Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 Route::get('backoffice/disputes', 'AdminController@getDisputes');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 
-/******************* FIN BACKOFFICE ****************************************/
+/******************* FIN BACKOFFICE ADMIN****************************************/
 
+/******************* BACKOFFICE DRIVER *************************************/
 
+Route::get('drivers/register', 'DriverController@getRegister');
+
+/******************* FIN BACKOFFICE DRIVER****************************************/
 
 /************************** API MOBILE *******************************/
 Route::get('/deliveries/{id}', 'HomeController@getDelivery');
