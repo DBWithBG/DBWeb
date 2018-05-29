@@ -26,7 +26,7 @@ Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/old_home', 'HomeController@index')->name('old_home');
 
 /******************* BACKOFFICE ADMIN ***********************************/
 
@@ -60,6 +60,14 @@ Route::get('drivers/register', 'DriverController@getRegister');
 
 /******************* FIN BACKOFFICE DRIVER****************************************/
 
+
+/*************************** FRONT CUSTOMER **************************************/
+
+Route::get('/home', 'CustomerController@home');
+
+/************************** END FRONT CUSTOMER **********************************/
+
+
 /************************** API MOBILE *******************************/
 Route::get('/deliveries/{id}', 'HomeController@getDelivery');
 Route::get('/deliveries', 'HomeController@getDeliveries');
@@ -69,6 +77,8 @@ Route::get('/customers', 'HomeController@getCustomers');
 
 Route::get('/drivers/{id}', 'HomeController@getDriver');
 Route::get('/drivers', 'HomeController@getDrivers');
+
+Route::post('/test/delivery', 'DeliveryController@postDelivery');
 
 
 

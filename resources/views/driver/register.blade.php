@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-10 ml-auto mr-auto">
                         <div class="card card-signup">
-                            <h2 class="card-title text-center">Inscription chauffeur</h2>
+                            <h2 class="card-title text-center">Devenir chauffeur pour Deliverbag</h2>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-5 ml-auto">
@@ -16,9 +16,9 @@
                                                 <i class="material-icons">timeline</i>
                                             </div>
                                             <div class="description">
-                                                <h4 class="info-title">Marketing</h4>
+                                                <h4 class="info-title">Aucune obligation d'horaire</h4>
                                                 <p class="description">
-                                                    We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                                    Choississez quand vous voulez vous connecter et commencer les courses.
                                                 </p>
                                             </div>
                                         </div>
@@ -27,9 +27,9 @@
                                                 <i class="material-icons">code</i>
                                             </div>
                                             <div class="description">
-                                                <h4 class="info-title">Fully Coded in HTML5</h4>
+                                                <h4 class="info-title">Facilité d'utilisation</h4>
                                                 <p class="description">
-                                                    We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                                    En deux cliques prenez une course, transportez le bagage et finaliser la course.
                                                 </p>
                                             </div>
                                         </div>
@@ -38,25 +38,25 @@
                                                 <i class="material-icons">group</i>
                                             </div>
                                             <div class="description">
-                                                <h4 class="info-title">Built Audience</h4>
+                                                <h4 class="info-title">Multi-courses</h4>
                                                 <p class="description">
-                                                    There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                                    A vous d'optimiser et de prendre plusieurs courses à la fois pour encore plus de gains.
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 mr-auto">
                                         <div class="social text-center">
-                                            <button class="btn btn-just-icon btn-round btn-twitter" href="{{ url('/twitter') }}">
+                                            <a class="btn btn-just-icon btn-round btn-twitter" href="{{ url('/twitter') }}">
                                                 <i class="fa fa-twitter"></i>
-                                            </button>
-                                            <button class="btn btn-just-icon btn-round btn-google" href="{{ url('/google') }}">
+                                            </a>
+                                            <a class="btn btn-just-icon btn-round btn-google" href="{{ url('/google') }}">
                                                 <i class="fa fa-google-plus"></i>
-                                            </button>
-                                            <button class="btn btn-just-icon btn-round btn-facebook" href="{{ url('/facebook') }}">
+                                            </a>
+                                            <a class="btn btn-just-icon btn-round btn-facebook" href="{{ url('/facebook') }}">
                                                 <i class="fa fa-facebook"> </i>
-                                            </button>
-                                            <h4 class="mt-3"> Ou inscription classique </h4>
+                                            </a>
+                                            <h4 class="mt-3"> Ou plus classiquement : </h4>
                                         </div>
                                         <form class="form" method="" action="">
                                             <div class="form-group has-default">
@@ -66,7 +66,7 @@
                               <i class="material-icons">face</i>
                             </span>
                                                     </div>
-                                                    <input type="text" class="form-control" placeholder="First Name...">
+                                                    <input type="text" class="form-control" placeholder="Prenom - Nom...">
                                                 </div>
                                             </div>
                                             <div class="form-group has-default">
@@ -86,7 +86,7 @@
                               <i class="material-icons">lock_outline</i>
                             </span>
                                                     </div>
-                                                    <input type="password" placeholder="Password..." class="form-control">
+                                                    <input type="password" placeholder="Mot de passe..." class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-check">
@@ -95,8 +95,8 @@
                                                     <span class="form-check-sign">
                             <span class="check"></span>
                           </span>
-                                                    I agree to the
-                                                    <a href="#something">terms and conditions</a>.
+                                                    J'accepte les
+                                                    <a href="#something">termes et les conditions</a>.
                                                 </label>
                                             </div>
                                             <div class="text-center">
