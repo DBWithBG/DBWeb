@@ -10,7 +10,7 @@ class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
 
-
+        $request = $request->toArray();
         $start_position = Position::create($request['response']['start_position']);
         $end_position = Position::create($request['response']['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
