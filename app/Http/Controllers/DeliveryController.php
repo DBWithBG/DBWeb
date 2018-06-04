@@ -10,9 +10,9 @@ class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
 
-        dd($request);
-        $start_position = Position::create($request['start_position']);
-        $end_position = Position::create($request['end_position']);
+
+        $start_position = Position::create($request['response']['start_position']);
+        $end_position = Position::create($request['response']['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
         $request['response']['delivery']['status'] = 'En cours';
         //TODO Calcul du prix
