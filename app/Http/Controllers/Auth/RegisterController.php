@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
+use App\Driver;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -62,12 +64,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'admin' => true,
             'is_confirmed' => true
         ]);
+
+        if($data['type'] == 'Customer'){
+            $customer = new Customer();
+            $customer->name = $data['name'];
+            $customer->surname = $data['surname'];
+            $customer->user_id = $user->id;
+            $customer->save();
+        }elseif($data['type'] == 'Driver'){
+            $driver = new Driver();
+            $driver->name = $data['name'];
+            $driver->surname = $data['surname'];
+            $driver->user_id = $user->id;
+            $driver->save();
+        }
+        return $user;
     }
 }

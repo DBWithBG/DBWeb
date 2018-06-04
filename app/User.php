@@ -29,11 +29,11 @@ class User extends Authenticatable
 
     public function driver()
     {
-        return $this->hasOne('App\Driver', 'id_user');
+        return $this->hasOne('App\Driver', 'user_id');
     }//
 
     public function customer()
     {
-        return $this->hasOne('App\Customer', 'id_user');
+        return $this->hasOne('App\Customer', 'user_id');
     }//
 }

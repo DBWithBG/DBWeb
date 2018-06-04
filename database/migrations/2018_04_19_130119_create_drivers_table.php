@@ -17,9 +17,9 @@ class CreateDriversTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('surname')->prenom();
-            $table->date('birth_date');
+            $table->date('birth_date')->nullable();
             $table->boolean('is_online');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->timestamps();
             $table->boolean('deleted')->default(0);
 

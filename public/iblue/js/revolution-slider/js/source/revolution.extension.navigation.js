@@ -243,12 +243,12 @@ jQuery.extend(true,_R, {
 				});	
 				_a.right.j.html(inst);
 				
-				if (!_a.rtl) {				
+				if (!_a.rtl) {
 					punchgs.TweenLite.set(_a.left.j.find('.tp-arr-imgholder'),{backgroundImage:"url("+opt.thumbs[pi].src+")"});
-					punchgs.TweenLite.set(_a.right.j.find('.tp-arr-imgholder'),{backgroundImage:"url("+opt.thumbs[ni].src+")"});			
+					punchgs.TweenLite.set(_a.right.j.find('.tp-arr-imgholder'),{backgroundImage:"url("+opt.thumbs[ni].src+")"});
 				} else {
 					punchgs.TweenLite.set(_a.left.j.find('.tp-arr-imgholder'),{backgroundImage:"url("+opt.thumbs[ni].src+")"});
-					punchgs.TweenLite.set(_a.right.j.find('.tp-arr-imgholder'),{backgroundImage:"url("+opt.thumbs[pi].src+")"});			
+					punchgs.TweenLite.set(_a.right.j.find('.tp-arr-imgholder'),{backgroundImage:"url("+opt.thumbs[pi].src+")"});
 				}
 			}
 
@@ -270,7 +270,7 @@ jQuery.extend(true,_R, {
 				punchgs.TweenLite.killDelayedCallsTo(showHideNavElements);
 				
 				if (a && _a.hide_onleave) showHideNavElements(cp.find('.tparrows'),_a,"show");
-				if (b && _b.hide_onleave) showHideNavElements(cp.find('.tp-bullets'),_b,"show");		
+				if (b && _b.hide_onleave) showHideNavElements(cp.find('.tp-bullets'),_b,"show");
 				if (c && _c.hide_onleave) showHideNavElements(cp.find('.tp-thumbs'),_c,"show");
 				if (d && _d.hide_onleave) showHideNavElements(cp.find('.tp-tabs'),_d,"show");
 				

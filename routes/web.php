@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
+Route::get('/', 'CustomerController@home');
 
 
 /******* LOGIN FB GOOGLE TWITTER **************/
@@ -64,6 +61,11 @@ Route::get('drivers/register', 'DriverController@getRegister');
 /*************************** FRONT CUSTOMER **************************************/
 
 Route::get('/home', 'CustomerController@home');
+Route::get('inscription', 'CustomerController@inscription');
+
+Route::post('inscription', 'CustomerController@postInscription');
+
+Route::get('connexion', 'CustomerController@connexion');
 
 /************************** END FRONT CUSTOMER **********************************/
 
