@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
 {
-    public function postDelivery($request){
+    public function postDelivery(Request $request){
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
