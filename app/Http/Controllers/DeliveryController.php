@@ -12,11 +12,11 @@ class DeliveryController extends Controller
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
-        $request['delivery']['status'] = 'En cours';
+        $request['response']['delivery']['status'] = 'En cours';
         //TODO Calcul du prix
-        $request['delivery']['price'] = 10.00;
-        $request['delivery']['start_position_id'] = $start_position->id ;
-        $request['delivery']['start_position_id'] = $end_position->id ;
+        $request['response']['delivery']['price'] = 10.00;
+        $request['response']['delivery']['start_position_id'] = $start_position->id ;
+        $request['response']['delivery']['start_position_id'] = $end_position->id ;
         $delivery = Delivery::create($request['delivery']);
 
         return $delivery->id;
