@@ -19,7 +19,7 @@ class DeliveryController extends Controller
         $request['response']['delivery']['price'] = 10.00;
         $request['response']['delivery']['start_position_id'] = $start_position->id ;
         $request['response']['delivery']['start_position_id'] = $end_position->id ;
-        $delivery = Delivery::create($request['delivery']);
+        $delivery = Delivery::create($request['response']['delivery']);
 
         return $delivery->id;
 
