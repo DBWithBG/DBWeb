@@ -48,6 +48,7 @@ class AdminController extends Controller
             $customer->deleted = true;
             $customer->save();
         }
+        return $customer;
     }
 
     public function getDrivers(){

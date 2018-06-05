@@ -67,13 +67,9 @@
                                                 <td>{{ \Carbon\Carbon::parse($customer->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">
-                                                    <form id="delete_groupe_form_{{ $customer->id }}" method="post"
-                                                          action="{{url('/backoffice/customer/delete')}}">
-                                                        <input type="hidden" name="id" value="{{ $customer->id }}">
-                                                        {{ csrf_field() }}
-                                                    </form>
-                                                    <button id="delete" data-id="{{$customer->id}}" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) { document.getElementById('delete_groupe_form_{{ $customer->id }}').submit(); }"
-                                                            class="btn btn-link btn-danger btn-just-icon remove"><i
+
+                                                    <button data-idCustomer="{{$customer->id}}"
+                                                            class="delete btn btn-link btn-danger btn-just-icon remove"><i
                                                                 class="material-icons">close</i></button>
                                                 </td>
                                             </tr>
@@ -99,6 +95,7 @@
 
 @section('custom-scripts')
     <script type="text/javascript">
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function ($) {
             var $table4 = $("#datatables");
 
@@ -135,11 +132,31 @@
             });
         });
 
-        $('#delete').on('click', function(){
+        $('.delete').on('click', function(){
             if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')){
-                var id = $(this).dataset.id;
-                //TODO Envoi ajax
-                $('.customer-'+id).hide();
+                var id = $(this).attr("data-idCustomer");
+                $.ajax({
+                    type: "POST",
+                    url: '{{url('/backoffice/customer/delete')}}',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        id: id
+                    },
+                    success: function (response) {
+                        $('.customer-'+id).hide();
+                        swal({
+                            position: 'top-right',
+                            type: 'success',
+                            title: 'Suppression du client Ok',
+                            showConfirmButton: false,
+                            timer: 2500
+                        })
+
+
+                    }
+
+                });
+
             }
         });
 

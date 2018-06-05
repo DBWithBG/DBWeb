@@ -64,7 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        if(empty($data['surname'])) $data['surname'] ='';
+        if(empty($data['type'])) $data['type'] ='';
         $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
@@ -86,6 +87,9 @@ class RegisterController extends Controller
             $driver->surname = $data['surname'];
             $driver->user_id = $user->id;
             $driver->save();
+        }else{
+            $user->admin = true;
+            $user->save();
         }
         return $user;
     }
