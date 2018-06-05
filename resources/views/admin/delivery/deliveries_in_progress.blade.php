@@ -49,10 +49,10 @@
                                         <thead class="text-center">
                                         <tr>
                                             <th>Commentaire</th>
+                                            <th>Prix</th>
                                             <th>Position de départ</th>
                                             <th>Position d'arrivée</th>
                                             <th>Date de création</th>
-                                            <th>Prix</th>
                                             <th>Client</th>
                                             <th>Statut</th>
                                             <th class="disabled-sorting text-right">Actions</th>
@@ -68,7 +68,6 @@
                                                 <td>{{$delivery->startPosition->adress}}</td>
                                                 <td>{{$delivery->endPosition->adress}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
-                                                <td>0 €</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
                                                 </td>
