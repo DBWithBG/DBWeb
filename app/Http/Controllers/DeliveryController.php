@@ -37,7 +37,7 @@ class DeliveryController extends Controller
         //dd($distance->getRows()[0]->getElements()[0]->getDuration()->getText(),$distance->getRows()[0]->getElements()[0]->getDistance()->getText());
 
         /** FIN CALCUL PRIX */
-        //$request['response']['delivery']['price'] = $request['response']['delivery']['distance']*5.00;
+        $request['response']['delivery']['price'] = $request['response']['delivery']['distance']*5;
         $request['response']['delivery']['start_position_id'] = $start_position->id ;
         $request['response']['delivery']['end_position_id'] = $end_position->id ;
         $delivery = Delivery::create($request['response']['delivery']);
