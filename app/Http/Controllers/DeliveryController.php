@@ -35,7 +35,7 @@ class DeliveryController extends Controller
         }
         $request['response']['delivery']['estimated_time'] = $time;
         //dd($distance->getRows()[0]->getElements()[0]->getDuration()->getText(),$distance->getRows()[0]->getElements()[0]->getDistance()->getText());
-
+        return $request['response']['delivery']['distance'];
         /** FIN CALCUL PRIX */
         $request['response']['delivery']['price'] = $request['response']['delivery']['distance']*5;
         $request['response']['delivery']['start_position_id'] = $start_position->id ;
