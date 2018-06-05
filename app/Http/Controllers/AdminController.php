@@ -23,13 +23,7 @@ class AdminController extends Controller
 
 
     public function login(){
-        $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');
-        $distance = $distanceMatrix->setLanguage('fr')
-            ->addOrigin('49.950096, 14.668544')
-            ->addDestination('49.05317, 14.367880')
-            ->sendRequest();
 
-        dd($distance->getRows()[0]->getElements()[0]->getDuration()->getText(),$distance->getRows()[0]->getElements()[0]->getDistance()->getText());
         return view('admin.login.login');
     }
 

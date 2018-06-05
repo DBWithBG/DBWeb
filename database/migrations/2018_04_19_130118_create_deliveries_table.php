@@ -20,7 +20,7 @@ class CreateDeliveriesTable extends Migration
             $table->timestamps();
             $table->string('status')->nullable();
             $table->double('distance')->nullable();
-            $table->time('estimated_time')->nullable();
+            $table->integer('estimated_time')->nullable();
 
             $table->integer('start_position_id')->unsigned();
             $table->integer('end_position_id')->unsigned();
