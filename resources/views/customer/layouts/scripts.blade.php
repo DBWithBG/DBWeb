@@ -17,6 +17,8 @@
 <!-- REVOLUTION JS FILES -->
 <script type="text/javascript" src="{{asset('iblue/js/revolution-slider/js/jquery.themepunch.tools.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('iblue/js/revolution-slider/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCATTjk7-Kxr-Zzudmp-E9UXWnUVIgITpw&libraries=places" async defer></script>
+
 <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
 (Load Extensions only on Local File Systems !
 The following part can be removed on Server for On Demand Loading) -->
@@ -121,7 +123,7 @@ The following part can be removed on Server for On Demand Loading) -->
     });	/*ready*/
 </script>
 <script type="text/javascript">
-    var tpj = jQuery;
+
 
     var revapi280;
     tpj(document).ready(function() {

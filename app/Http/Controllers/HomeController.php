@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Driver;
@@ -75,6 +76,11 @@ class HomeController extends Controller
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
+    }
+
+    public function getAuthorizedDepartments(Request $request){
+        $departments = AuthorizedDepartment::all()->toJson();
+        return response()->json($departments)->setCallback($request->input('callback'));
     }
 
 }

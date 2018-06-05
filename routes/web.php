@@ -51,6 +51,10 @@ Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 Route::get('backoffice/disputes', 'AdminController@getDisputes');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 
+Route::get('backoffice/departments', 'AdminController@getDepartments');
+Route::post('backoffice/addDepartment', 'AdminController@addDepartment');
+Route::post('backoffice/deleteDepartment', 'AdminController@deleteDepartment');
+
 /******************* FIN BACKOFFICE ADMIN****************************************/
 
 /******************* BACKOFFICE DRIVER *************************************/
@@ -87,6 +91,8 @@ Route::get('/drivers/{id}', 'HomeController@getDriver');
 Route::get('/drivers', 'HomeController@getDrivers');
 
 Route::post('/test/delivery', 'DeliveryController@postDelivery');
+
+Route::get('/departments/authorized', 'HomeController@getAuthorizedDepartments');
 
 
 

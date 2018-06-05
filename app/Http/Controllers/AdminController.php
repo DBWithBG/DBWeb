@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Dispute;
@@ -108,6 +109,27 @@ class AdminController extends Controller
             $delivery->save();
         }
     }
+
+    public function getDepartments(){
+        $departments = AuthorizedDepartment::all();
+        return view('admin.config.departments')->with([
+            'departments' => $departments
+        ]);
+    }
+
+    public function addDepartment(Request $request){
+        AuthorizedDepartment::create($request->toArray());
+        return redirect()->back();
+    }
+
+    public function deleteDepartment(Request $request){
+        $department = AuthorizedDepartment::find($request->id);
+        AuthorizedDepartment::destroy($department->id);
+        return $department;
+    }
+
+
+
 
 
 }
