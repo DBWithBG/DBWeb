@@ -1,11 +1,11 @@
-@extends('admin.layouts.app')
+@extends('driver.layouts.app')
 
 @section('content')
 
-    @include('admin.layouts.sideBarre')
+    @include('driver.layouts.sideBarre')
     <div class="main-panel">
 
-        @include('admin.layouts.topBarre')
+        @include('driver.layouts.topBarre')
 
         <div class="content">
             <div class="container-fluid">
@@ -35,7 +35,7 @@
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
-                                    <h4 class="card-title">Clients</h4>
+                                    <h4 class="card-title">Courses en cours</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -48,31 +48,44 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Prénom - Nom</th>
-                                            <th>Date d'anniversaire</th>
-                                            <th>Téléphone</th>
-                                            <th>Inscrit le</th>
-
+                                            <th>Commentaire</th>
+                                            <th>Position de départ</th>
+                                            <th>Position d'arrivée</th>
+                                            <th>Date de création</th>
+                                            <th>Prix</th>
+                                            <th>Client</th>
+                                            <th>Statut</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        @foreach($customers as $customer)
-                                            <tr class="text-center customer-{{$customer->id}}" >
-                                                <td><a href="{{url('/backoffice/customer/'. $customer->id )}}">{{ $customer->surname .' - ' . $customer->name}}</a>
-                                                </td>
-                                                <td>{{ $customer->birth_date }}</td>
-                                                <td>{{$customer->phone}}</td>
-                                                <td>{{ \Carbon\Carbon::parse($customer->created_at)->format('d/m/Y') }}</td>
+                                        @foreach($take_over_deliveries as $delivery->delivery)
+                                            <tr class="text-center">
 
+                                                <td>{{ $delivery->comment }}</td>
+                                                <td>{{$delivery->price}}</td>
+                                                <td>{{$delivery->startPosition->adress}}</td>
+                                                <td>{{$delivery->endPosition->adress}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
+                                                <td>0 €</td>
+                                                <td>
+                                                    <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
+                                                </td>
+                                                <td>
+                                                    @if(empty($delivery->takeOverDelivery))
+                                                        En recherche de chauffeur
+                                                    @else
+                                                        {{$delivery->takeOverDelivery->status}}
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
-                                                    <form id="delete_groupe_form_{{ $customer->id }}" method="post"
-                                                          action="{{url('/backoffice/customer/delete')}}">
-                                                        <input type="hidden" name="id" value="{{ $customer->id }}">
+                                                    <form id="delete_groupe_form_{{ $delivery->id }}" method="post"
+                                                          action="{{url('/backoffice/driver/delete')}}">
+                                                        <input type="hidden" name="id" value="{{ $delivery->id }}">
                                                         {{ csrf_field() }}
                                                     </form>
-                                                    <button id="delete" data-id="{{$customer->id}}" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) { document.getElementById('delete_groupe_form_{{ $customer->id }}').submit(); }"
+                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette course ?')) { document.getElementById('delete_groupe_form_{{ $delivery->id }}').submit(); }"
                                                             class="btn btn-link btn-danger btn-just-icon remove"><i
                                                                 class="material-icons">close</i></button>
                                                 </td>
@@ -134,14 +147,5 @@
                 }
             });
         });
-
-        $('#delete').on('click', function(){
-            if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')){
-                var id = $(this).dataset.id;
-                //TODO Envoi ajax
-                $('.customer-'+id).hide();
-            }
-        });
-
     </script>
 @endsection

@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 class CustomerController extends Controller
 {
     public function home(){
+        if(Auth::check() && Auth::user()->admin){
+            return redirect('backoffice/home');
+        }
         if(!empty(Auth::user()->driver->id)){
             return redirect('driver/home');
         }

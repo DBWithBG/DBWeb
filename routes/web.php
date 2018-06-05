@@ -29,6 +29,8 @@ Route::get('/old_home', 'HomeController@index')->name('old_home');
 
 Route::get('backoffice/login', 'AdminController@login');
 
+
+
 Route::get('backoffice/password', 'AdminController@getForgotPassword');
 
 Route::post('backoffice/password-send', 'MailController@sendPassword');
@@ -54,6 +56,10 @@ Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 /******************* BACKOFFICE DRIVER *************************************/
 
 Route::get('drivers/register', 'DriverController@getRegister');
+
+Route::get('driver/home', 'DriverController@home');
+
+Route::get('driver/courses', 'DriverController@deliveries');
 
 /******************* FIN BACKOFFICE DRIVER****************************************/
 
