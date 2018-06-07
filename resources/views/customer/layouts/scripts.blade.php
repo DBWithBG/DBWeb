@@ -5,7 +5,7 @@
 <script src="{{asset('iblue/js/bootstrap/bootstrap.min.js')}}"></script>
 
 <script src="{{asset('iblue/js/less/less.min.js')}}" data-env="development"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Scripts END -->
 
 <!-- Template scripts -->

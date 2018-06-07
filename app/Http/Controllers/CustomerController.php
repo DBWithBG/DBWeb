@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AuthorizedDepartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,9 @@ class CustomerController extends Controller
         if(!empty(Auth::user()->driver->id)){
             return redirect('driver/home');
         }
-        return view('customer.home');
+        return view('customer.home')->with([
+
+        ]);
     }
 
     public function inscription(){
@@ -24,6 +27,10 @@ class CustomerController extends Controller
 
     public function connexion(){
         return view('customer.login');
+    }
+
+    public function ajaxDepartments(){
+        return AuthorizedDepartment::all();
     }
 
 }

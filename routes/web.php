@@ -77,6 +77,8 @@ Route::post('inscription', 'CustomerController@postInscription');
 
 Route::get('connexion', 'CustomerController@connexion');
 
+Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
+
 /************************** END FRONT CUSTOMER **********************************/
 
 

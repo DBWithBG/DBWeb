@@ -76,7 +76,7 @@
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
-                                    <h4 class="card-title">Départements authorisés pour les demandes</h4>
+                                    <h4 class="card-title">Départements autorisés pour les demandes</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -134,6 +134,7 @@
 
 @section('custom-scripts')
     <script type="text/javascript">
+
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function ($) {
             var $table4 = $("#datatables");
