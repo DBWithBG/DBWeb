@@ -457,7 +457,7 @@
             console.log("FIN FOR");
 
             $.when(...geocoders_promises).then(function(values) {
-                console.log("A");
+                console.log(tabGeocSNCF);
                 for(var key in tabGeocSNCF){
                     console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
                 }
