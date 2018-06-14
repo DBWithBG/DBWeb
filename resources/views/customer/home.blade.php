@@ -314,6 +314,7 @@
 
         //Récupération des departements autorisés
         $(document).ready(function () {
+
             initAutocomplete();
             $.ajax({
                 type: "POST",
@@ -454,13 +455,45 @@
                 //var returna = geocode(pos);
                 //alert(returna);
             }
-            console.log("FIN FOR");
 
             $.when(...geocoders_promises).then(function(values) {
-                console.log(tabGeocSNCF);
+                var tabButtons = [];
                 for(var key in tabGeocSNCF){
+                    tabButtons[key] = {
+                        'text': key,
+                        'value': key
+                    };
                     console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
                 }
+                console.log();
+                swal("A wild Pikachu appeared! What do you want to do?", {
+                    buttons: {
+                        cancel: "Run away!",
+                        catch: {
+                            text: "Throw Pokéball!",
+                            value: "catch",
+                        },
+                        defeat: true,
+                    },
+                })
+                    .then((value) => {
+                        switch (value) {
+
+                            case "defeat":
+                                swal("Pikachu fainted! You gained 500 XP!");
+                                break;
+
+                            case "catch":
+                                swal("Gotcha!", "Pikachu was caught!", "success");
+                                break;
+
+                            default:
+                                swal("Got away safely!");
+                        }
+                    });
+
+
+
             });
 
             /*Promise.all(geocoders_promises).then(function(values) {
