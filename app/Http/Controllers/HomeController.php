@@ -87,7 +87,7 @@ class HomeController extends Controller
     public function mobileLogin(Request $request){
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return "ok";
+            return $request->mobile_token;
         }else{
             return "pas ok";
         }
