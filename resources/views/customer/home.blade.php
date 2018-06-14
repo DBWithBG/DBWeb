@@ -454,10 +454,10 @@
                 //var returna = geocode(pos);
                 //alert(returna);
             }
-            console.log("FIN FOR"); 
+            console.log("FIN FOR");
 
             $.when(...geocoders_promises).then(function(values) {
-
+                console.log("A");
                 for(var key in tabGeocSNCF){
                     console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
                 }
