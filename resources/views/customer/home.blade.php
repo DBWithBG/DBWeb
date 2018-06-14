@@ -398,7 +398,7 @@
             var found = false;
             for (var i = 0; i < res.length; i++) {
                 for (var j = 0; j < res[i].types.length; j++) {
-                    if (res[i].types[j] == "postal_code") {
+                    if (res[i].types[j] == "postal_code" || res[i].types[j] == "administrative_area_level_2") {
                         // We use FOUND to know if there is a postal code for the place
                         // For exemple, there is no postal code for Paris
                         var dep = res[i].long_name;
