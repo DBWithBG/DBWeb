@@ -458,7 +458,6 @@
             $.when(...geocoders_promises).then(function(values) {
                 console.log(values);
                 for(var key in tabGeocSNCF){
-                    alert('coucou');
                     console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
                 }
             });

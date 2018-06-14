@@ -97,5 +97,8 @@ Route::post('/test/delivery', 'DeliveryController@postDelivery');
 Route::get('/departments/authorized', 'HomeController@getAuthorizedDepartments');
 
 
+Route::post('mobile/login', 'HomeController@mobileLogin');
+
+
 
 Route::get('/test', 'phone\NotificationController@notify');
