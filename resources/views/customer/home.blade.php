@@ -488,7 +488,10 @@
 
                     }
                     if (status == google.maps.GeocoderStatus.OK) {
-                        if(verifyDepartment(results[1])) tabGeocSNCF[name] = results[1];
+                        if(verifyDepartment(results[1])){
+                            tabGeocSNCF[name] = results[1];
+                            console.log(name);
+                        }
                         console.log("==================================");
                     }
                      deferred.resolve(results);
