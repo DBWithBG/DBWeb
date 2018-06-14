@@ -23,7 +23,7 @@
                                             </a>
                                             <h4 class="mt-3"> Connexion : </h4>
                                         </div>
-                                        <form class="form js-form-login" method="POST" action="{{"login"}}">
+                                        <form class="form" id="js-form-login" method="POST" action="{{"login"}}">
                                             {{csrf_field()}}
                                             <div class="form-group has-default">
                                                 <div class="input-group">
