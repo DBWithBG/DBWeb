@@ -342,7 +342,7 @@
 
                     types: ['address'],
                     language: 'fr',
-                    componentRestrictions: {country : 'fr'}
+                    componentRestrictions: {country: 'fr'}
                 });
 
             autocompleteArrivee = new google.maps.places.Autocomplete(
@@ -350,30 +350,30 @@
                 {
                     types: ['address'],
                     language: 'fr',
-                    componentRestrictions: {country : 'fr'}
+                    componentRestrictions: {country: 'fr'}
                 });
 
             /****************** LISTENERS *********************************/
-            autocompleteDepart.addListener('place_changed', function() {
-                if (this.getPlace().geometry.location){
+            autocompleteDepart.addListener('place_changed', function () {
+                if (this.getPlace().geometry.location) {
                     start_pos = this.getPlace().geometry.location;
-                    if(verifyDepartment(this.getPlace())){
+                    if (verifyDepartment(this.getPlace())) {
                         pos_depart_ok = true;
                         place_depart = this.getPlace();
                         swal("L'adresse de départ est OK");
-                    }else{
+                    } else {
                         printErrorDepartments(true);
                     }
                 }
             });
 
-            autocompleteArrivee.addListener('place_changed', function() {
+            autocompleteArrivee.addListener('place_changed', function () {
                 end_pos = this.getPlace().geometry.location;
-                if(verifyDepartment(this.getPlace())){
+                if (verifyDepartment(this.getPlace())) {
                     pos_arrivee_ok = true;
                     place_arrivee = this.getPlace();
                     swal("L'adresse d'arrivée est OK");
-                }else{
+                } else {
                     printErrorDepartments(false);
                 }
             });
@@ -381,19 +381,19 @@
 
         }
 
-        function printErrorDepartments(depart){
-            var dep_string ="";
-            for(var k = 0; k<departments.length; k++) {
-                dep_string += departments[k].name+ " ("+departments[k].number+") "
+        function printErrorDepartments(depart) {
+            var dep_string = "";
+            for (var k = 0; k < departments.length; k++) {
+                dep_string += departments[k].name + " (" + departments[k].number + ") "
             }
-            if(depart) swal("Départ : Le service n'est disponible que dans les départements suivants : "+dep_string);
-            else swal("Arrivée : Le service n'est disponible que dans les départements suivants : "+dep_string);
+            if (depart) swal("Départ : Le service n'est disponible que dans les départements suivants : " + dep_string);
+            else swal("Arrivée : Le service n'est disponible que dans les départements suivants : " + dep_string);
         }
 
         /**
          * Vérifie si l'adresse est dans les départements valide [TRUE] si ok [FALSE] sinon
          **/
-        function verifyDepartment(place){
+        function verifyDepartment(place) {
             //var bdx_metropole = {33130, 33370 ,33110,33170,33700,33185,33530,33127,33400,33810,33290,33150,33520,33160,33310,33440,33270,33140,33560,33600,33320,33800,33100,33000,33200,33300};
             var res = place.address_components;
             var found = false;
@@ -403,9 +403,9 @@
                         // We use FOUND to know if there is a postal code for the place
                         // For exemple, there is no postal code for Paris
                         var dep = res[i].long_name;
-                        for(var k = 0; k<departments.length; k++){
+                        for (var k = 0; k < departments.length; k++) {
                             //console.log(departments[k].number);
-                            if(dep.substr(0,2) == departments[k].number){
+                            if (dep.substr(0, 2) == departments[k].number) {
                                 found = true;//On a trouvé une correspondance
                                 break;
                             }
@@ -432,7 +432,7 @@
                     dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
                     if (val.length >= 4) {
 
-                        $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign='+val+'&since='+dateVoyage+'&key=7308cd76-a20f-4f01-9cc3-59d4742bba24 ', function (data) {
+                        $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=7308cd76-a20f-4f01-9cc3-59d4742bba24 ', function (data) {
                             traitement_gares(data);
                         });
                     }
@@ -443,12 +443,15 @@
             });
         });
 
-        function traitement_gares(data){
+        function traitement_gares(data) {
             $('.choix_gare').remove();
             var stops = data.vehicle_journeys[0].stop_times;
             var geocoders_promises = [];
-            for (var i=0 ;i<stops.length; i++){
-                var pos = {  lat : parseFloat(stops[i].stop_point.coord.lat), lng : parseFloat(stops[i].stop_point.coord.lon) } ;
+            for (var i = 0; i < stops.length; i++) {
+                var pos = {
+                    lat: parseFloat(stops[i].stop_point.coord.lat),
+                    lng: parseFloat(stops[i].stop_point.coord.lon)
+                };
                 console.log(stops[i].stop_point.name);
                 console.log('*************');
                 geocoders_promises.push(geocode(pos, stops[i].stop_point.name));
@@ -456,84 +459,62 @@
                 //alert(returna);
             }
 
-            $.when(...geocoders_promises).then(function(values) {
-                var tabButtons = [];
-                for(var key in tabGeocSNCF){
+            $.when(...geocoders_promises).then(function (values) {
+                var tabButtons = {};
+                for (var key in tabGeocSNCF) {
                     tabButtons[key] = {
-                        'text': key,
-                        'value': key
+                        'text':key,
+                        'value':key
                     };
-                    console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
+                    //console.log('OK pour : ' + key + " object" + tabGeocSNCF[key]);
                 }
-                console.log();
-                swal("A wild Pikachu appeared! What do you want to do?", {
-                    buttons: {
-                        cancel: "Run away!",
-                        catch: {
-                            text: "Throw Pokéball!",
-                            value: "catch",
-                        },
-                        defeat: true,
-                    },
-                })
-                    .then((value) => {
-                        switch (value) {
 
-                            case "defeat":
-                                swal("Pikachu fainted! You gained 500 XP!");
-                                break;
-
-                            case "catch":
-                                swal("Gotcha!", "Pikachu was caught!", "success");
-                                break;
-
-                            default:
-                                swal("Got away safely!");
-                        }
-                    });
-
+                swal("Dans quelle gare arrivez-vous ?", {
+                    buttons:tabButtons
+                }).then((value)=>{
+                    swal(value);
+                });
 
 
             });
 
             /*Promise.all(geocoders_promises).then(function(values) {
-                console.log(tabGeocSNCF.length);
-                console.log(values);
-                for(var key in tabGeocSNCF){
-                    alert('coucou');
-                    console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
+             console.log(tabGeocSNCF.length);
+             console.log(values);
+             for(var key in tabGeocSNCF){
+             alert('coucou');
+             console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
 
-                }
-            });*/
+             }
+             });*/
 
         }
 
-        function geocode(pos, name, place){
+        function geocode(pos, name, place) {
             var geocoder = new google.maps.Geocoder();
 
             var deferred = $.Deferred();
 
             geocoder.geocode({
-                    'latLng': pos},
-                 function(results,status){
+                    'latLng': pos
+                },
+                function (results, status) {
                     // c'est un appel asynchrone donc on doit vérifier que le retour est correct
                     if (status !== google.maps.GeocoderStatus.OK) {
 
                     }
                     if (status == google.maps.GeocoderStatus.OK) {
-                        if(verifyDepartment(results[1])){
+                        if (verifyDepartment(results[1])) {
                             tabGeocSNCF[name] = results[1];
                             console.log(name);
                         }
                         console.log("==================================");
                     }
-                     deferred.resolve(results);
+                    deferred.resolve(results);
                 });
 
             return deferred.promise();
         }
-
-
 
 
         /************** Fin API SNCF *********************/
@@ -545,22 +526,20 @@
         var app_key = '84cb52736b8c4db53b753b8f87be34a8';
 
 
-
-
-        function flightStats(){
+        function flightStats() {
 
             var vol = $('#input_flight').val();
             var airport = $('#input_airport').val();
             var dateVoyage = $('#date').val();
 
-            var compagny = vol.substring(0,2);
-            var flight_number = vol.substring(2,6);
-            var year = dateVoyage.substring(0,4);
-            var month = dateVoyage.substring(5,7);
-            var day = dateVoyage.substring(8,10);
+            var compagny = vol.substring(0, 2);
+            var flight_number = vol.substring(2, 6);
+            var year = dateVoyage.substring(0, 4);
+            var month = dateVoyage.substring(5, 7);
+            var day = dateVoyage.substring(8, 10);
 
 
-            if (vol && dateVoyage){
+            if (vol && dateVoyage) {
                 //$.get(`https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/${compagny}/${flight_number}/arr/${year}/${month}/${day}?appId=${app_id}&appKey=${app_key}&utc=false`, function(data){
                 //  console.log(data);
                 /*
@@ -570,12 +549,12 @@
                 $.ajax({
                     url: 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/${compagny}/${flight_number}/arr/${year}/${month}/${day}?appId=${app_id}&appKey=${app_key}&utc=false',
                     dataType: 'jsonp',
-                    success: function(data){
+                    success: function (data) {
                         var res = data.flightStatuses[0];
                         //var dateRunway = new Date(res.operationalTimes.estimatedRunwayArrival.dateLocal) ; //NOT ALWAYS DFINED !!!!!
-                        var dateGate = new Date(res.operationalTimes.scheduledGateArrival.dateLocal) ;
-                        if (res.operationalTimes.estimatedGateArrival){
-                            dateGate = new Date(res.operationalTimes.estimatedGateArrival.dateLocal) ; //RUNWAY OR GATE
+                        var dateGate = new Date(res.operationalTimes.scheduledGateArrival.dateLocal);
+                        if (res.operationalTimes.estimatedGateArrival) {
+                            dateGate = new Date(res.operationalTimes.estimatedGateArrival.dateLocal); //RUNWAY OR GATE
                         }
 
                         /* var minRunway = dateRunway.getMinutes();
@@ -585,50 +564,48 @@
                          */
                         console.log(data);
                         var minGate = dateGate.getMinutes();
-                        if (minGate<10){
-                            minGate='0'+minGate;
+                        if (minGate < 10) {
+                            minGate = '0' + minGate;
                         }
                         var departure_airport = res.departureAirportFsCode;
                         var arrival_airport = res.arrivalAirportFsCode;
-                        var arrivee,city;
-                        data.appendix.airports.forEach( function(element){
-                            if (element.fs == arrival_airport){
+                        var arrivee, city;
+                        data.appendix.airports.forEach(function (element) {
+                            if (element.fs == arrival_airport) {
                                 console.log(element);
-                                arrivee = element.name ;
-                                city = element.city ;
+                                arrivee = element.name;
+                                city = element.city;
                             }
                         });
 
 
-
-                        if (res.delays){
-                            var delay = res.delays.arrivalGateDelayMinutes ;
-                            if (delay){
+                        if (res.delays) {
+                            var delay = res.delays.arrivalGateDelayMinutes;
+                            if (delay) {
                                 console.log('Il y\'a un retard de ${delay} minute(s) sur ce vol.');
                             }
                         }
                         console.log('Le client sera à la sortie de ${arrivee} (${city}) le ${dateGate.getDate()}/${dateGate.getMonth()+1}/${dateGate.getFullYear()} à ${dateGate.getHours()}h${minGate}');
                         //  console.log(`Le client sera à la porte à ${dateGate.getHours()}h${minGate}`);
                     },
-                    error:function(e){
+                    error: function (e) {
                         console.log(e);
                     }
                 });
             }
-            else{
-                if (!vol){
+            else {
+                if (!vol) {
                     console.log("Vous devez spécifier un numéro de vol");
                 }
-                if (!airport){
+                if (!airport) {
                     console.log("Vous devez spécifier un aéroport d'arrivée (code à 3 chiffres)");
                 }
-                if (!dateVoyage){
+                if (!dateVoyage) {
                     console.log("Vous devez spécifier une date de voyage");
                 }
             }
 
         }
-
 
 
     </script>
