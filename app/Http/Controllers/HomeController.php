@@ -9,6 +9,7 @@ use App\Driver;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 class HomeController extends Controller
 {
@@ -102,7 +103,7 @@ class HomeController extends Controller
 
         if(Input::get('mobile_token')){
             $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
-            $deliveries=Delivery::where('customer_id','=',$u->customer->id)->groupBy('status')->get();
+            $deliveries=DB::table('deliveries')->where('customer_id','=',$u->customer->id)->groupBy('status')->get();
             return response()
                 ->json($deliveries)
                 ->setCallback(Input::get('callback'));
