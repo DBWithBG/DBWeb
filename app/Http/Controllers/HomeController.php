@@ -8,6 +8,8 @@ use App\Delivery;
 use App\Driver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Laravel\Socialite\One\User;
 
 class HomeController extends Controller
 {
@@ -79,17 +81,34 @@ class HomeController extends Controller
             ->setCallback($request->input('callback'));
     }
 
+    //get departement autorises
     public function getAuthorizedDepartments(Request $request){
         $departments = AuthorizedDepartment::all()->toJson();
         return response()->json($departments)->setCallback($request->input('callback'));
     }
 
+    //get page de login mobile
     public function mobileLogin(Request $request){
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             return $request->mobile_token;
         }else{
             return "pas ok";
+        }
+
+    }
+
+    //get deliveries par client
+    public function getDeliveriesByCustomers($id){
+
+        if(Input::get('mobile_token')){
+            $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+            $deliveries=Delivery::where('customer_id','=',$u->customer->id)->get();
+            return response()
+                ->json($deliveries)
+                ->setCallback(Input::get('callback'));
+        }else{
+            throw new \Error('Pas de token fourni :( ! ');
         }
 
     }
