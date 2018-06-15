@@ -6,11 +6,10 @@ use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Driver;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Laravel\Socialite\One\User;
-
 class HomeController extends Controller
 {
     /**
