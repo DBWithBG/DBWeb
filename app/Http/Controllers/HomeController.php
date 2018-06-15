@@ -99,7 +99,7 @@ class HomeController extends Controller
     }
 
     //get deliveries par client
-    public function getDeliveriesByCustomers($id){
+    public function getDeliveriesByCustomers(){
 
         if(Input::get('mobile_token')){
             $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
