@@ -411,7 +411,7 @@ body.mdbootstrap .partner.creativetim {
     font-weight: 500;
     color: #495057; }
     .bd-footer a:hover, .bd-footer a:focus {
-      color: #9c27b0; }
+      color: #38b44f; }
   .bd-footer p {
     margin-bottom: 0; }
   @media (min-width: 576px) {
@@ -925,7 +925,7 @@ body.mdbootstrap .partner.creativetim {
   color: #fff; }
 
 .swatch-purple {
-  background-color: #9c27b0;
+  background-color: #38b44f;
   color: #fff; }
 
 .swatch-pink {
@@ -1264,7 +1264,7 @@ body.mdbootstrap .partner.creativetim {
   color: rgba(156, 39, 176, 0.5);
   transition: color .16s linear; }
   .anchorjs-link:hover {
-    color: #9c27b0;
+    color: #38b44f;
     text-decoration: none; }
 
 .algolia-autocomplete {

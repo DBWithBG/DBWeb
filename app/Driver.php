@@ -21,4 +21,9 @@ class Driver extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    public function takeOverDeliveries()
+    {
+        return $this->hasMany('App\TakeOverDelivery', 'driver_id');
+    }
 }

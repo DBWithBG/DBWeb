@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Driver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -75,6 +77,21 @@ class HomeController extends Controller
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
+    }
+
+    public function getAuthorizedDepartments(Request $request){
+        $departments = AuthorizedDepartment::all()->toJson();
+        return response()->json($departments)->setCallback($request->input('callback'));
+    }
+
+    public function mobileLogin(Request $request){
+
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return $request->mobile_token;
+        }else{
+            return "pas ok";
+        }
+
     }
 
 }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Dispute;
 use App\Driver;
+use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,6 +24,7 @@ class AdminController extends Controller
 
 
     public function login(){
+
         return view('admin.login.login');
     }
 
@@ -34,7 +37,7 @@ class AdminController extends Controller
     }
 
     public function getCustomers(){
-        $customers = Customer::where('deleted', '0');
+        $customers = Customer::where('deleted', '0')->get();
         return view('admin.customer.customers')->with([
             'customers' => $customers
         ]);
@@ -46,10 +49,11 @@ class AdminController extends Controller
             $customer->deleted = true;
             $customer->save();
         }
+        return $customer;
     }
 
     public function getDrivers(){
-        $drivers = Driver::where('deleted', '0');
+        $drivers = Driver::where('deleted', '0')->get();
         return view('admin.driver.drivers')->with([
             'drivers' => $drivers
         ]);
@@ -105,6 +109,27 @@ class AdminController extends Controller
             $delivery->save();
         }
     }
+
+    public function getDepartments(){
+        $departments = AuthorizedDepartment::all();
+        return view('admin.config.departments')->with([
+            'departments' => $departments
+        ]);
+    }
+
+    public function addDepartment(Request $request){
+        AuthorizedDepartment::create($request->toArray());
+        return redirect()->back();
+    }
+
+    public function deleteDepartment(Request $request){
+        $department = AuthorizedDepartment::find($request->id);
+        AuthorizedDepartment::destroy($department->id);
+        return $department;
+    }
+
+
+
 
 
 }

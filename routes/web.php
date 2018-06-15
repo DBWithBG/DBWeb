@@ -11,18 +11,25 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'CustomerController@home');
 
-    return view('welcome');
-});
+
+/******* LOGIN FB GOOGLE TWITTER **************/
+Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
+Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('provider', '(facebook|twitter|google)');
 
 Auth::routes();
+/************* FIN LOGIN ***************/
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-/******************* BACKOFFICE ***********************************/
+
+Route::get('/old_home', 'HomeController@index')->name('old_home');
+
+/******************* BACKOFFICE ADMIN ***********************************/
 
 Route::get('backoffice/login', 'AdminController@login');
+
+
 
 Route::get('backoffice/password', 'AdminController@getForgotPassword');
 
@@ -44,8 +51,35 @@ Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 Route::get('backoffice/disputes', 'AdminController@getDisputes');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 
-/******************* FIN BACKOFFICE ****************************************/
+Route::get('backoffice/departments', 'AdminController@getDepartments');
+Route::post('backoffice/addDepartment', 'AdminController@addDepartment');
+Route::post('backoffice/deleteDepartment', 'AdminController@deleteDepartment');
 
+/******************* FIN BACKOFFICE ADMIN****************************************/
+
+/******************* BACKOFFICE DRIVER *************************************/
+
+Route::get('drivers/register', 'DriverController@getRegister');
+
+Route::get('driver/home', 'DriverController@home');
+
+Route::get('driver/courses', 'DriverController@deliveries');
+
+/******************* FIN BACKOFFICE DRIVER****************************************/
+
+
+/*************************** FRONT CUSTOMER **************************************/
+
+Route::get('/home', 'CustomerController@home');
+Route::get('inscription', 'CustomerController@inscription');
+
+Route::post('inscription', 'CustomerController@postInscription');
+
+Route::get('connexion', 'CustomerController@connexion');
+
+Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
+
+/************************** END FRONT CUSTOMER **********************************/
 
 
 /************************** API MOBILE *******************************/
@@ -57,6 +91,13 @@ Route::get('/customers', 'HomeController@getCustomers');
 
 Route::get('/drivers/{id}', 'HomeController@getDriver');
 Route::get('/drivers', 'HomeController@getDrivers');
+
+Route::post('/test/delivery', 'DeliveryController@postDelivery');
+
+Route::get('/departments/authorized', 'HomeController@getAuthorizedDepartments');
+
+
+Route::post('mobile/login', 'HomeController@mobileLogin');
 
 
 

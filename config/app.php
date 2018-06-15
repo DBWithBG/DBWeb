@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //notification push
         'FCM'      => LaravelFCM\Facades\FCM::class,
+        //Connexion FB, twitter, google+
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 
     ],

@@ -17,8 +17,8 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
-            $table->date('birth_date');
-            $table->string('phone');
+            $table->date('birth_date')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
             $table->boolean('deleted')->default(0);
 

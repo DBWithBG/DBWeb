@@ -135,6 +135,14 @@
                     </a>
 
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="{{url('backoffice/departments')}}">
+                        <i class="material-icons">grid_on</i>
+                        <p> Départements autorisés
+                        </p>
+                    </a>
+
+                </li>
 
             </ul>
         </div>
