@@ -102,7 +102,7 @@ class HomeController extends Controller
 
         if(Input::get('mobile_token')){
             $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
-            $deliveries=Delivery::where('customer_id','=',$u->customer->id)->get();
+            $deliveries=Delivery::where('customer_id','=',$u->customer->id)->groupBy('status')->get();
             return response()
                 ->json($deliveries)
                 ->setCallback(Input::get('callback'));
