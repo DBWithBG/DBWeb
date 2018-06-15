@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin')->except(['login', 'getForgotPassword']);
+       //$this->middleware('admin')->except(['login', 'getForgotPassword']);
     }
 
 
