@@ -9,6 +9,7 @@
         "barryvdh/laravel-cors": "^0.11.0",
         "brozot/laravel-fcm": "^1.2",
         "cirovargas/google-distance-matrix": "^0.0.8",
+        "devpark/laravel-paybox-gateway": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",

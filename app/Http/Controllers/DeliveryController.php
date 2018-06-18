@@ -17,7 +17,7 @@ class DeliveryController extends Controller
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
-        $request['delivery']['status'] = 'En cours';
+        $request['delivery']['status'] = 'Non payé';
         //TODO Calcul du prix
         /******* CALCUL DU PRIX ************/
         $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');
@@ -42,7 +42,23 @@ class DeliveryController extends Controller
         $request['delivery']['end_position_id'] = $end_position->id ;
         $delivery = Delivery::create($request['delivery']);
 
-        return $delivery->id;
+        return $delivery;
+
+    }
+
+
+    public function getPaiement($id){
+        $delivery = Delivery::find($id);
+        if($delivery->status == 'non payé'){
+            /*$authorizationRequest = \App::make(\Devpark\PayboxGateway\Requests\AuthorizationWithCapture::class);
+
+            return $authorizationRequest->setAmount(10)->setCustomerEmail('simon@sup.sarl')
+                ->setPaymentNumber(1)->send('paybox.send');
+
+            */
+            //TODO A REMPLACER AVEC CI-DESSUS
+            return view('');
+        }
 
     }
 

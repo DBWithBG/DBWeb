@@ -38,5 +38,9 @@ class Delivery extends Model
         return $this->hasOne('App\TakeOverDelivery', 'delivery_id');
 
     }
+
+    public function paiement(){
+        return $this->hasOne('App\PayboxPayment', 'delivery_id');
+    }
 }
 

@@ -52,6 +52,7 @@
                                             <th>Prix</th>
                                             <th>Position de départ</th>
                                             <th>Position d'arrivée</th>
+                                            <th>Distance (en km)</th>
                                             <th>Date de création</th>
                                             <th>Client</th>
                                             <th>Statut</th>
@@ -67,6 +68,7 @@
                                                 <td>{{$delivery->price}} €</td>
                                                 <td>{{$delivery->startPosition->address}}</td>
                                                 <td>{{$delivery->endPosition->address}}</td>
+                                                <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>

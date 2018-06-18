@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3eb6f3b8d225c217facd0035149d086d",
+    "content-hash": "b72ee833b3a7e525a6e601024a3c5ae7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -219,6 +219,43 @@
                 "google maps"
             ],
             "time": "2017-07-12T03:58:18+00:00"
+        },
+        {
+            "name": "devpark/laravel-paybox-gateway",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devpark/laravel-paybox-gateway.git",
+                "reference": "b6c6791eaec0a0a145106890b203d955eb95331c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devpark/laravel-paybox-gateway/zipball/b6c6791eaec0a0a145106890b203d955eb95331c",
+                "reference": "b6c6791eaec0a0a145106890b203d955eb95331c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-iconv": "*",
+                "ext-openssl": "*",
+                "guzzlehttp/guzzle": "^6.2",
+                "laravel/framework": "5.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Devpark\\PayboxGateway\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Paybox gateway",
+            "time": "2016-10-03T12:58:15+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2799,7 +2836,7 @@
             ],
             "authors": [
                 {
-                    "name": "Pádraic Brady",
+                    "name": "Padraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
