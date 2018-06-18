@@ -138,7 +138,6 @@ class MobileController extends Controller
 
     //prise en charge d'une delivery par chauffeur
     public function priseEnChargeDelivery(){
-
         if(!Input::get('mobile_token'))
             throw new \Error('Pas de token fourni :( ! ');
         $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
@@ -163,12 +162,7 @@ class MobileController extends Controller
             $res_id=$take->id;
         }
         return json_encode($res_id);
-
-
-
-
     }
-
 
 
 
