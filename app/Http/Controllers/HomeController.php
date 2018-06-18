@@ -104,9 +104,20 @@ class HomeController extends Controller
         if(Input::get('mobile_token')){
             $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
             $deliveries=Delivery::where('customer_id','=',$u->customer->id)
+                ->orderBy('created_at','DESC')
+                ->with('takeOverDelivery')
                 ->get();
+            $tab=[];
+            foreach($deliveries as $d){
+
+                if(!isset($tab[$d->status])){
+                    $tab[$d->status]=[];
+
+                }
+                array_push($tab[$d->status],$d);
+            }
             return response()
-                ->json($deliveries)
+                ->json($tab)
                 ->setCallback(Input::get('callback'));
         }else{
             throw new \Error('Pas de token fourni :( ! ');
