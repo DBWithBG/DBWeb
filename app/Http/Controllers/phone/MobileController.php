@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\phone;
 
 use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Driver;
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,16 +87,29 @@ class MobileController extends Controller
     //get deliveries par client
     public function getDeliveriesByCustomers(){
 
-        if(Input::get('mobile_token')){
-            $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
-            $deliveries=Delivery::where('customer_id','=',$u->customer->id)
-                ->get();
-            return response()
-                ->json($deliveries)
-                ->setCallback(Input::get('callback'));
-        }else{
+        if(!Input::get('mobile_token'))
             throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        $deliveries=Delivery::where('customer_id','=',$u->customer->id)
+            ->orderBy('created_at','DESC')
+            ->with('takeOverDelivery')
+            ->get();
+        $tab=[];
+        foreach($deliveries as $d){
+
+            if(!isset($tab[$d->status])){
+                $tab[$d->status]=[];
+
+            }
+            array_push($tab[$d->status],$d);
         }
+        return response()
+            ->json($tab)
+            ->setCallback(Input::get('callback'));
+
 
     }
 }
