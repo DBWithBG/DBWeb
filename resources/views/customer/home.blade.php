@@ -524,7 +524,7 @@
         }
 
         function traitement_gares(data) {
-            $('.choix_gare').remove();
+            console.log(data);
             var stops = data.vehicle_journeys[0].stop_times;
             var geocoders_promises = [];
             for (var i = 0; i < stops.length; i++) {
