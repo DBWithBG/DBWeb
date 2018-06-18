@@ -79,6 +79,8 @@ Route::get('connexion', 'CustomerController@connexion');
 
 Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
 
+Route::post('create/delivery', 'DeliveryController@postDelivery');
+
 /************************** END FRONT CUSTOMER **********************************/
 
 

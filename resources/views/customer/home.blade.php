@@ -212,7 +212,7 @@
                                         {{csrf_field()}}
                                         <input id="adresse_input_depart" type="search" placeholder="Adresse de départ">
                                         <input id="adresse_input_arrivee" type="search" placeholder="Adresse d'arrivée">
-                                        <a class="depart">Go</a>
+                                        <a class="js_valid_deliver">Valider</a>
                                     </form>
                                 </div>
                                 <div class="sp-feature-box-4 " style="margin-top: 20px">
@@ -220,7 +220,6 @@
                                         {{csrf_field()}}
                                         <input id="input_train" type="search" placeholder="Numéro de train">
                                         <input id="input_train_date" type="date" placeholder="Date du voyage">
-                                        <a class="arrivee">Go</a>
                                     </form>
                                 </div>
                                 <div class="sp-feature-box-4 " style="margin-top: 20px">
@@ -228,7 +227,6 @@
                                         {{csrf_field()}}
                                         <input id="input_fly" type="search" placeholder="Numéro d'avion">
                                         <input id="input_fly_date" type="date" placeholder="Date du voyage">
-                                        <a class="arrivee">Go</a>
                                     </form>
                                 </div>
                             </div>
@@ -297,7 +295,13 @@
 
 
 
+    <?php if (\Illuminate\Support\Facades\Auth::check()) {
+        $customer = \Illuminate\Support\Facades\Auth::user()->customer->id;
+    } else {
+        $customer = "";
+    }
 
+    ?>
 
 @endsection
 
@@ -314,7 +318,6 @@
 
         //Récupération des departements autorisés
         $(document).ready(function () {
-
             initAutocomplete();
             $.ajax({
                 type: "POST",
@@ -327,6 +330,47 @@
 
                 }
 
+            });
+
+            $('.js_valid_deliver').on('click', function () {
+                if (pos_depart_ok && pos_arrivee_ok) {
+                    if("{{$customer}}" == ""){
+                        swal("connexion requiered");
+                    }else {
+                        delivery = {
+                            customer_id: "{{$customer}}"
+                        };
+                        start_position = {
+                            lat: place_depart.geometry.location.lat(),
+                            lng: place_depart.geometry.location.lng(),
+                            address: place_depart.formatted_address
+                        };
+                        end_position = {
+                            lat: place_arrivee.geometry.location.lat(),
+                            lng: place_arrivee.geometry.location.lng(),
+                            address: place_arrivee.formatted_address
+                        };
+
+
+                        $.ajax({
+                            type: "POST",
+                            url: '{{url('create/delivery')}}',
+                            data: {
+                                start_position: start_position,
+                                end_position: end_position,
+                                delivery: delivery,
+                                _token: CSRF_TOKEN
+
+                            },
+                            success: function (response) {
+                                swal(response);
+
+                            }
+
+                        });
+                    }
+
+                }
             });
         });
         /****************** Autocomplete google *********************/
@@ -425,23 +469,33 @@
             initAutocomplete();
             $('#input_train').on('input paste', function () {
 
-                var val = $('#input_train').val();
-                var dateVoyage = $('#input_train_date').val();
-                //  since=20170407T120000&until=20170407T120100
-                if (dateVoyage != '') {
-                    dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
-                    if (val.length >= 4) {
+                call_sncf();
+            });
 
-                        $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=7308cd76-a20f-4f01-9cc3-59d4742bba24 ', function (data) {
-                            traitement_gares(data);
-                        });
-                    }
-                }
-                else {
-                    console.log("date de voyage non spécifiée");
-                }
+            $('#input_train_date').on('change', function () {
+                call_sncf();
             });
         });
+
+        function call_sncf() {
+            var val = $('#input_train').val();
+            var dateVoyage = $('#input_train_date').val();
+            //  since=20170407T120000&until=20170407T120100
+            if (dateVoyage != '') {
+                dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
+                if (val.length >= 4) {
+
+                    $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=7308cd76-a20f-4f01-9cc3-59d4742bba24 ', function (data) {
+                        traitement_gares(data);
+                    });
+                } else {
+                    swal("Numéro de billet invalide");
+                }
+            }
+            else {
+                //swal("date de voyage non spécifiée");
+            }
+        }
 
         function traitement_gares(data) {
             $('.choix_gare').remove();
@@ -452,8 +506,6 @@
                     lat: parseFloat(stops[i].stop_point.coord.lat),
                     lng: parseFloat(stops[i].stop_point.coord.lon)
                 };
-                console.log(stops[i].stop_point.name);
-                console.log('*************');
                 geocoders_promises.push(geocode(pos, stops[i].stop_point.name));
                 //var returna = geocode(pos);
                 //alert(returna);
@@ -463,31 +515,26 @@
                 var tabButtons = {};
                 for (var key in tabGeocSNCF) {
                     tabButtons[key] = {
-                        'text':key,
-                        'value':key
+                        'text': key,
+                        'value': key
                     };
                     //console.log('OK pour : ' + key + " object" + tabGeocSNCF[key]);
                 }
 
                 swal("Dans quelle gare arrivez-vous ?", {
-                    buttons:tabButtons
-                }).then((value)=>{
-                    swal(value);
+                    buttons: tabButtons
+                }).then((value) => {
+                    $('#adresse_input_depart').val(value);
+                    if (value == null) {
+                        swal("Aucune gare choisie");
+                    }
+                    pos_depart_ok = true;
+                    place_depart = tabGeocSNCF[value];
+                    console.log(place_depart);
                 });
 
 
             });
-
-            /*Promise.all(geocoders_promises).then(function(values) {
-             console.log(tabGeocSNCF.length);
-             console.log(values);
-             for(var key in tabGeocSNCF){
-             alert('coucou');
-             console.log('OK pour : '+key + " object"+ tabGeocSNCF[key]);
-
-             }
-             });*/
-
         }
 
         function geocode(pos, name, place) {
