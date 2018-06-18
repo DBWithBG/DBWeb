@@ -83,22 +83,23 @@ Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
 
 
 /************************** API MOBILE *******************************/
-Route::get('/deliveries/{id}', 'HomeController@getDelivery');
-Route::get('/deliveries', 'HomeController@getDeliveries');
-Route::post('/mobile/deliveries/customers', 'HomeController@getDeliveriesByCustomers');
 
-Route::get('/customers/{id}', 'HomeController@getCustomer');
-Route::get('/customers', 'HomeController@getCustomers');
+Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
+Route::get('/deliveries', 'phone\MobileController@getDeliveries');
+Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
 
-Route::get('/drivers/{id}', 'HomeController@getDriver');
-Route::get('/drivers', 'HomeController@getDrivers');
+Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
+Route::get('/customers', 'phone\MobileController@getCustomers');
 
-Route::post('/test/delivery', 'DeliveryController@postDelivery');
+Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
+Route::get('/drivers', 'phone\MobileController@getDrivers');
 
-Route::get('/departments/authorized', 'HomeController@getAuthorizedDepartments');
+Route::post('/test/delivery', 'phone\MobileController@postDelivery');
+
+Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 
 
-Route::post('mobile/login', 'HomeController@mobileLogin');
+Route::post('mobile/login', 'phone\MobileController@mobileLogin');
 
 
 
