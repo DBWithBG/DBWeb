@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\phone;
 
 use App\AuthorizedDepartment;
 use App\Customer;
 use App\Delivery;
 use App\Driver;
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
