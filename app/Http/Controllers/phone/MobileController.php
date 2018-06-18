@@ -7,10 +7,12 @@ use App\Customer;
 use App\Delivery;
 use App\Driver;
 use App\Http\Controllers\Controller;
+use App\TakeOverDelivery;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use function MongoDB\BSON\toJSON;
 
 class MobileController extends Controller
 {
@@ -109,7 +111,66 @@ class MobileController extends Controller
         return response()
             ->json($tab)
             ->setCallback(Input::get('callback'));
+    }
+
+
+    //modification d'une delivery
+    public function modificationDelivery($id){
+
+        if(!Input::get('mobile_token'))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if($id==null || !$del=Delivery::find($id))
+            throw new \Error('Pas de commande fournie ou trouvee  :( !');
+
+        if(User::find($del->customer_id)!=$u)
+            throw new \Error('Utilisateur non authorise a modifier la delivery');
+
+
+        if(!$infos=Input::get('delivery'))
+            $infos=[];
+
+        return json_encode(Delivery::find($id)->update($infos));
+    }
+
+    //prise en charge d'une delivery par chauffeur
+    public function priseEnChargeDelivery(){
+
+        if(!Input::get('mobile_token'))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$u->driver)
+            throw new \Error('L\'utilisateur n\'est pas chauffeur');
+
+        if(!Input::get('delivery_id') || !$del=Delivery::find(Input::get('delivery_id')))
+            throw new \Error('Pas de commande fournie ou trouvee  :( !');
+
+        $res_id=null;
+        if($del->status==1){
+            $take=new TakeOverDelivery;
+            $take->driver_id=$u->driver->id;
+            $take->status=0;
+            $take->delivery_id=$del->id;
+            $take->actual_position_id=null;
+            $take->save();
+            $del->update(['status'=>2]);
+            $res_id=$take->id;
+        }
+        return json_encode($res_id);
+
+
 
 
     }
+
+
+
+
+
 }
