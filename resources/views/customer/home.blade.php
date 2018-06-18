@@ -227,6 +227,7 @@
                                         {{csrf_field()}}
                                         <input id="input_fly" type="search" placeholder="Numéro d'avion">
                                         <input id="input_fly_date" type="date" placeholder="Date du voyage">
+                                        <a id="js-avion">Valider n° avion</a>
                                     </form>
                                 </div>
                             </div>
@@ -363,7 +364,33 @@
 
                             },
                             success: function (response) {
-                                swal(response);
+                                swal({
+                                    title: 'Confirmer vous la demande de prise en charge ?',
+                                    text: "Le coût est de "+response.price+" €",
+                                    icon: 'success',
+                                    buttons: {
+                                        cancel: false,
+                                        canceled: {
+                                            text:"Annuler",
+                                            value: "cancel"
+                                        },
+                                        roll: {
+                                            text: "Procéder au paiement!",
+                                            value: "confirm",
+                                        },
+                                    },
+                                }).then((result) => {
+
+                                    if (result == 'confirm') {
+                                        document.location.href="{{url('delivery')}}"+'/'+response.id+'/paiement'
+                                    }else if(result == 'cancel'){
+                                        swal(
+                                            'Annulation!',
+                                            '.',
+                                            'success'
+                                        )
+                                    }
+                                })
 
                             }
 
@@ -375,7 +402,6 @@
         });
         /****************** Autocomplete google *********************/
 
-        var autocompleteKey = 'AIzaSyCATTjk7-Kxr-Zzudmp-E9UXWnUVIgITpw';
 
         function initAutocomplete() {
             // Create the autocomplete object, restricting the search to geographical
@@ -463,7 +489,7 @@
 
         /*********** API SNCF ***************************/
         var domain = 'https://data.sncf.com/';
-        var key = '7308cd76-a20f-4f01-9cc3-59d4742bba24';
+        var key_sncf = '{{config('constants.SNCF_API_KEY')}}';
 
         $(function () { // this will be called when the DOM is ready
             initAutocomplete();
@@ -485,7 +511,7 @@
                 dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
                 if (val.length >= 4) {
 
-                    $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=7308cd76-a20f-4f01-9cc3-59d4742bba24 ', function (data) {
+                    $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key='+key_sncf+' ', function (data) {
                         traitement_gares(data);
                     });
                 } else {
@@ -569,9 +595,13 @@
 
         /**************** API FLIGHT STATS  EN SUSPEND ***************/
 
-        var app_id = '95a4eb71';
-        var app_key = '84cb52736b8c4db53b753b8f87be34a8';
+        var app_id = '{{config('constants.APP_ID_FLIGHT')}}';
+        var app_key = '{{config('constants.APP_KEY_FLIGHT')}}';
 
+
+        $('#js-avion').on('click', function(){
+            flightStats();
+        });
 
         function flightStats() {
 
@@ -594,7 +624,7 @@
                  * there is no need, destination can be checked by a comparaison with an array of destination (from the database)
                  */
                 $.ajax({
-                    url: 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/${compagny}/${flight_number}/arr/${year}/${month}/${day}?appId=${app_id}&appKey=${app_key}&utc=false',
+                    url: 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/'+compagny+'/'+flight_number+'/arr/'+year+'/'+month+'/'+day+'?appId='+app_id+'&appKey='+app_key+'&utc=false',
                     dataType: 'jsonp',
                     success: function (data) {
                         var res = data.flightStatuses[0];
@@ -616,6 +646,7 @@
                         }
                         var departure_airport = res.departureAirportFsCode;
                         var arrival_airport = res.arrivalAirportFsCode;
+                        console.log(arrival_airport);
                         var arrivee, city;
                         data.appendix.airports.forEach(function (element) {
                             if (element.fs == arrival_airport) {

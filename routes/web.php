@@ -81,6 +81,8 @@ Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
 
 Route::post('create/delivery', 'DeliveryController@postDelivery');
 
+Route::get('delivery/{id}/paiement', 'DeliveryController@getPaiement');
+
 /************************** END FRONT CUSTOMER **********************************/
 
 
@@ -106,3 +108,21 @@ Route::post('mobile/login', 'phone\MobileController@mobileLogin');
 
 
 Route::get('/test', 'phone\NotificationController@notify');
+
+/***************************** FIN API MOBILE **************************/
+
+/******************************PAYBOX***************************************************/
+
+Route::get('paybox/paiment_accepted','PayboxController@accepted')->name('paybox.accepted');
+Route::get('paybox/paiment_refused','PayboxController@refused')->name('paybox.refused');
+Route::get('paybox/paiment_waiting','PayboxController@waiting')->name('paybox.waiting');
+Route::get('paybox/paiment_aborted','PayboxController@aborted')->name('paybox.aborted');
+Route::get('paybox/paiment_process','PayboxController@process')->name('paybox.process');
+
+//affichage utilisateur
+Route::get('paybox/confirmation/','PayboxController@confirmation_paiement_paybox');
+Route::get('paybox/attente/','PayboxController@attente_paiement_paybox');
+Route::get('paybox/abandon','PayboxController@annule_paiement_paybox');
+Route::get('paybox/refus/','PayboxController@refus_paybox');
+
+/***************************** FIN PAYBOX ************************************/
