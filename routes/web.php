@@ -85,6 +85,7 @@ Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
 /************************** API MOBILE *******************************/
 Route::get('/deliveries/{id}', 'HomeController@getDelivery');
 Route::get('/deliveries', 'HomeController@getDeliveries');
+Route::post('/mobile/deliveries/customers', 'HomeController@getDeliveriesByCustomers');
 
 Route::get('/customers/{id}', 'HomeController@getCustomer');
 Route::get('/customers', 'HomeController@getCustomers');

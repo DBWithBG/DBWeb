@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'test/*',
-        '/test/delivery'
+        '/test/delivery',
+        'mobile/*'
     ];
 }
