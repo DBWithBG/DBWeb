@@ -7,7 +7,6 @@ $("#js-form-login").on('submit',function(e){
 	"mobile_token" : $("#deviceId").val()
 	};
 
-	alert(param);
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/mobile/login',
 		type : 'POST',

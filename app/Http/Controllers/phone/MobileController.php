@@ -71,7 +71,6 @@ class MobileController extends Controller
     //POST connexion mobile
     public function mobileLogin(Request $request){
 
-        return json_encode(Input::get());
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
             if(empty($user->mobile_token)){//Première connexion depuis le mobile
