@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-    <div class="clearfix"></div>
-
     <!-- START REVOLUTION SLIDER 5.0 -->
     <div class="slide-tmargin">
         <div class="slidermaxwidth">
@@ -224,81 +221,79 @@
 
             });
 
-            $('.show-train').on('click', function(){
+            $('.show-train').on('click', function () {
                 $('.js-show-train').show();
                 $(this).hide();
             });
 
-            $('.show-flight').on('click', function(){
+            $('.show-flight').on('click', function () {
                 $('.js-show-flight').show();
-                $(this).hide();
+                $(this).hide()
             });
 
             $('.js_valid_deliver').on('click', function () {
                 if (pos_depart_ok && pos_arrivee_ok) {
-                    if("{{$customer}}" == ""){
-                        swal("connexion requiered");
-                    }else {
-                        delivery = {
-                            customer_id: "{{$customer}}"
-                        };
-                        start_position = {
-                            lat: place_depart.geometry.location.lat(),
-                            lng: place_depart.geometry.location.lng(),
-                            address: place_depart.formatted_address
-                        };
-                        end_position = {
-                            lat: place_arrivee.geometry.location.lat(),
-                            lng: place_arrivee.geometry.location.lng(),
-                            address: place_arrivee.formatted_address
-                        };
+
+                    delivery = {
+                        customer_id: "{{$customer}}"
+                    };
+                    start_position = {
+                        lat: place_depart.geometry.location.lat(),
+                        lng: place_depart.geometry.location.lng(),
+                        address: place_depart.formatted_address
+                    };
+                    end_position = {
+                        lat: place_arrivee.geometry.location.lat(),
+                        lng: place_arrivee.geometry.location.lng(),
+                        address: place_arrivee.formatted_address
+                    };
 
 
-                        $.ajax({
-                            type: "POST",
-                            url: '{{url('create/delivery')}}',
-                            data: {
-                                start_position: start_position,
-                                end_position: end_position,
-                                delivery: delivery,
-                                _token: CSRF_TOKEN
+                    $.ajax({
+                        type: "POST",
+                        url: '{{url('create/delivery')}}',
+                        data: {
+                            start_position: start_position,
+                            end_position: end_position,
+                            delivery: delivery,
+                            _token: CSRF_TOKEN
 
-                            },
-                            success: function (response) {
-                                swal({
-                                    title: 'Confirmer vous la demande de prise en charge ?',
-                                    text: "Le coût est de "+response.price+" €",
-                                    icon: 'success',
-                                    buttons: {
-                                        cancel: false,
-                                        canceled: {
-                                            text:"Annuler",
-                                            value: "cancel"
-                                        },
-                                        roll: {
-                                            text: "Procéder au paiement!",
-                                            value: "confirm",
-                                        },
+                        },
+                        success: function (response) {
+                            swal({
+                                title: 'Confirmer vous la demande de prise en charge ?',
+                                text: "Le coût est de " + response.price + " €",
+                                icon: 'success',
+                                buttons: {
+                                    cancel: false,
+                                    canceled: {
+                                        text: "Annuler",
+                                        value: "cancel"
                                     },
-                                }).then((result) => {
+                                    roll: {
+                                        text: "Procéder au paiement!",
+                                        value: "confirm",
+                                    },
+                                },
+                            }).then((result) => {
 
-                                    if (result == 'confirm') {
-                                        document.location.href="{{url('delivery')}}"+'/'+response.id+'/paiement'
-                                    }else if(result == 'cancel'){
-                                        swal(
-                                            'Annulation!',
-                                            '.',
-                                            'success'
-                                        )
-                                    }
-                                })
+                                if (result == 'confirm') {
+                                    document.location.href = "{{url('delivery')}}" + '/' + response.id + '/paiement'
+                                } else if (result == 'cancel') {
+                                    swal(
+                                        'Annulation!',
+                                        '.',
+                                        'success'
+                                    )
+                                }
+                            })
 
-                            }
+                        }
 
-                        });
-                    }
-
+                    });
                 }
+
+
             });
         });
         /****************** Autocomplete google *********************/
@@ -412,7 +407,7 @@
                 dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
                 if (val.length >= 4) {
 
-                    $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key='+key_sncf+' ', function (data) {
+                    $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=' + key_sncf + ' ', function (data) {
                         traitement_gares(data);
                     });
                 } else {
@@ -500,7 +495,7 @@
         var app_key = '{{config('constants.APP_KEY_FLIGHT')}}';
 
 
-        $('#js-avion').on('click', function(){
+        $('#js-avion').on('click', function () {
             flightStats();
         });
 
@@ -525,7 +520,7 @@
                  * there is no need, destination can be checked by a comparaison with an array of destination (from the database)
                  */
                 $.ajax({
-                    url: 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/'+compagny+'/'+flight_number+'/arr/'+year+'/'+month+'/'+day+'?appId='+app_id+'&appKey='+app_key+'&utc=false',
+                    url: 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/' + compagny + '/' + flight_number + '/arr/' + year + '/' + month + '/' + day + '?appId=' + app_id + '&appKey=' + app_key + '&utc=false',
                     dataType: 'jsonp',
                     success: function (data) {
                         var res = data.flightStatuses[0];

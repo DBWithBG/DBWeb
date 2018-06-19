@@ -24,7 +24,7 @@ class CreateDeliveriesTable extends Migration
 
             $table->integer('start_position_id')->unsigned();
             $table->integer('end_position_id')->unsigned();
-            $table->integer('customer_id')->unsigned();
+            $table->integer('customer_id')->unsigned()->nullable();
             $table->boolean('deleted')->default(0);
         });
 
