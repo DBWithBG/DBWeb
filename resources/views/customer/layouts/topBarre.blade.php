@@ -12,6 +12,7 @@
                             <div id="menu" class="collapse" >
                                 <ul class="nav navbar-nav">
                                     @if(\Illuminate\Support\Facades\Auth::check())
+                                        <li class="right "><a href="{{url('/')}}">Accueil</a>
                                         <li class="right active"><a
                                                     href="#">{{\Illuminate\Support\Facades\Auth::user()->customer->surname}}</a>
                                             <span
