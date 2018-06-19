@@ -81,7 +81,7 @@ class MobileController extends Controller
             }
             return response()->json($user)->setCallback($request->input('callback'));
         }else{
-            return "authentification failed";
+            return "authentification failed"." ".$request->email." ".$request->password;
         }
 
     }
