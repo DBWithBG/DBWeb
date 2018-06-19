@@ -29,7 +29,7 @@ class CreatePayboxPaymentsTable extends Migration
         });
 
         Schema::table('paybox_payments', function(Blueprint $table){
-            $table->foreign('id_app')->references('id')->on('apps');
+            $table->foreign('delivery_id')->references('id')->on('deliveries');
         });
     }
 
