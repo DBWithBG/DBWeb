@@ -60,10 +60,15 @@ Route::post('backoffice/deleteDepartment', 'AdminController@deleteDepartment');
 /******************* BACKOFFICE DRIVER *************************************/
 
 Route::get('drivers/register', 'DriverController@getRegister');
-
 Route::get('driver/home', 'DriverController@home');
+Route::post('driver/update', 'DriverController@update');
+
+Route::get('driver/viewJustificatif/{id}', 'DriverController@viewJustificatif');
+Route::post('driver/addJustificatif', 'DriverController@addJustificatif');
+Route::post('driver/deleteJustificatif/{id}', 'DriverController@deleteJustificatif');
 
 Route::get('driver/courses', 'DriverController@deliveries');
+
 
 /******************* FIN BACKOFFICE DRIVER****************************************/
 
@@ -94,13 +99,14 @@ Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliverie
 Route::post('/mobile/deliveries/takeovers/start', 'phone\MobileController@priseEnChargeDelivery');
 Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDelivery');
 
+
+Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDelivery');
+
 Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 Route::get('/customers', 'phone\MobileController@getCustomers');
 
 Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
-
-Route::post('/test/delivery', 'phone\MobileController@postDelivery');
 
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 

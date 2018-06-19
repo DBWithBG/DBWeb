@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Bag;
 use App\Delivery;
+use App\InfoBag;
 use App\Position;
 use App\TakeOverDelivery;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
@@ -14,6 +16,7 @@ class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
         $request = $request->toArray();
+        dd($request);
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
@@ -42,6 +45,23 @@ class DeliveryController extends Controller
         $request['delivery']['end_position_id'] = $end_position->id ;
         $delivery = Delivery::create($request['delivery']);
 
+        //ajout des bagages
+
+        foreach($request['bagages'] as $k=>$bags){
+            foreach($bags as $b){
+                $bnew=new Bag;
+                $bnew->customer_id=$delivery->customer_id;
+                $bnew->name=$b->nom;
+                $bnew->type_id=$k;
+                $bnew->details=$b->details;
+                $bnew->save();
+
+                //ajout des bages a la course
+                $i=new InfoBag;
+                $i->details_start_driver=$b->descr;
+                $i->save();
+            }
+        }
         return $delivery;
 
     }
