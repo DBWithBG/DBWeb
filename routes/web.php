@@ -91,6 +91,8 @@ Route::get('delivery/{id}/paiement', 'DeliveryController@getPaiement');
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
 Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
+Route::post('/mobile/deliveries/takeovers/start', 'phone\MobileController@priseEnChargeDelivery');
+Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDelivery');
 
 Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 Route::get('/customers', 'phone\MobileController@getCustomers');
@@ -124,5 +126,7 @@ Route::get('paybox/confirmation/','PayboxController@confirmation_paiement_paybox
 Route::get('paybox/attente/','PayboxController@attente_paiement_paybox');
 Route::get('paybox/abandon','PayboxController@annule_paiement_paybox');
 Route::get('paybox/refus/','PayboxController@refus_paybox');
+
+Route::get('mobile/user/{token}','phone\MobileController@getUser');
 
 /***************************** FIN PAYBOX ************************************/
