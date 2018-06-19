@@ -41,7 +41,7 @@ class CreatePayboxPaymentsTable extends Migration
     public function down()
     {
         Schema::table('paybox_payments', function(Blueprint $table) {
-            $table->dropForeign('paybox_payments_id_app_foreign');
+            $table->dropForeign('paybox_payments_delivery_id_foreign');
         });
 
         Schema::dropIfExists('paybox_payments');
