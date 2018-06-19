@@ -28,4 +28,7 @@
 <link href="{!! asset('iblue/js/accordion/css/smk-accordion.css') !!}" rel="stylesheet">
 <link rel="stylesheet" href="{!! asset('iblue/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css') !!}">
 
+<link rel="stylesheet" href="{!! asset('iblue/fonts/et-line-font/et-line-font.css')!!}">
+<link rel="stylesheet" type="text/css" href="{!! asset('iblue/js/smart-forms/smart-forms.css') !!}">
+
 <link rel="stylesheet/less" type="text/css" href="{!! asset('iblue/less/skin.less') !!}">

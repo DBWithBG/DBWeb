@@ -2,117 +2,6 @@
 
 @section('content')
 
-    <div class="col-md-12 nopadding">
-        <div class="header-section style1 pin-style">
-            <div class="container">
-                <div class="mod-menu">
-                    <div class="row">
-                        <div class="col-sm-2"><a href="{{url("/")}}" title="" class="logo style-2 mar-4"> <img
-                                        src="{{asset('img/logo.png')}}" alt=""> </a></div>
-                        <div class="col-sm-10">
-                            <div class="main-nav">
-                                <ul class="nav navbar-nav top-nav">
-                                    <li class="search-parent"><a href="javascript:void(0)" title=""><i
-                                                    aria-hidden="true" class="fa fa-search"></i></a>
-                                        <div class="search-box ">
-                                            <div class="content">
-                                                <div class="form-control">
-                                                    <input type="text" placeholder="Type to search"/>
-                                                    <a href="#" class="search-btn mar-1"><i aria-hidden="true"
-                                                                                            class="fa fa-search"></i></a>
-                                                </div>
-                                                <a href="#" class="close-btn mar-1">x</a></div>
-                                        </div>
-                                    </li>
-                                    <li class="cart-parent"><a href="javascript:void(0)" title=""> <i aria-hidden="true"
-                                                                                                      class="fa fa-shopping-cart"></i>
-                                            <span class="number mar2"> 4 </span> </a>
-                                        <div class="cart-box">
-                                            <div class="content">
-                                                <div class="row">
-                                                    <div class="col-xs-8"> 2 item(s)</div>
-                                                    <div class="col-xs-4 text-right"><span>$99</span></div>
-                                                </div>
-                                                <ul>
-                                                    <li><img src="http://via.placeholder.com/80x80" alt=""> Jean &
-                                                        Teashirt <span>$30</span> <a href="#" title=""
-                                                                                     class="close-btn">x</a></li>
-                                                    <li><img src="http://via.placeholder.com/80x80" alt=""> Jean &
-                                                        Teashirt <span>$30</span> <a href="#" title=""
-                                                                                     class="close-btn">x</a></li>
-                                                </ul>
-                                                <div class="row">
-                                                    <div class="col-xs-6"><a href="#" title="View Cart"
-                                                                             class="btn btn-block btn-warning">View
-                                                            Cart</a></div>
-                                                    <div class="col-xs-6"><a href="#" title="Check out"
-                                                                             class="btn btn-block btn-primary">Check
-                                                            out</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="visible-xs menu-icon"><a href="javascript:void(0)"
-                                                                        class="navbar-toggle collapsed"
-                                                                        data-toggle="collapse" data-target="#menu"
-                                                                        aria-expanded="false"> <i aria-hidden="true"
-                                                                                                  class="fa fa-bars"></i>
-                                        </a></li>
-                                </ul>
-                                <div id="menu" class="collapse">
-                                    <ul class="nav navbar-nav">
-                                        @if(\Illuminate\Support\Facades\Auth::check())
-                                            <li class="right active"><a
-                                                        href="#">{{\Illuminate\Support\Facades\Auth::user()->customer->surname}}</a>
-                                                <span
-                                                        class="arrow"></span>
-                                                <ul class="dm-align-2">
-                                                    <li><a href="index2.html">Mon profil</a></li>
-                                                    <li><a href="{{url("logout")}}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit()">Se déconnecter</a>
-                                                    </li>
-
-                                                </ul>
-                                            </li>
-                                        @else
-                                            <li class="right active"><a href="#">Accueil</a>
-
-                                            </li>
-                                            <li class="right"><a href="#">Inscription</a> <span
-                                                        class="arrow"></span>
-                                                <ul class="dm-align-2">
-                                                    <li><a href="{{url("inscription")}}">Client</a></li>
-                                                    <li><a href="{{url("drivers/register")}}">Chauffeur</a></li>
-
-                                                </ul>
-                                            </li>
-                                            <li class="right"><a href="#">Connexion</a> <span
-                                                        class="arrow"></span>
-                                                <ul class="dm-align-2">
-                                                    <li><a href="{{url("connexion")}}">Client</a></li>
-                                                    <li><a href="{{url("driver/login")}}">Chauffeur</a></li>
-
-                                                </ul>
-                                            </li>
-                                        @endif
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              style="display: none;">
-                                            {{ csrf_field() }}
-                                            <input type="submit" value="deconnexion">
-                                        </form>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end menu-->
-
-    </div>
-    <!--end menu-->
 
     <div class="clearfix"></div>
 
@@ -215,14 +104,16 @@
                                         <a class="js_valid_deliver">Valider</a>
                                     </form>
                                 </div>
-                                <div class="sp-feature-box-4 " style="margin-top: 20px">
+                                <button href="#" class="show-train">Train</button>
+                                <button href="#" class="show-flight">Avion</button>
+                                <div class="sp-feature-box-4 js-show-train" style="margin-top: 20px" hidden>
                                     <form method="POST" action="{{url("")}}">
                                         {{csrf_field()}}
                                         <input id="input_train" type="search" placeholder="Numéro de train">
                                         <input id="input_train_date" type="date" placeholder="Date du voyage">
                                     </form>
                                 </div>
-                                <div class="sp-feature-box-4 " style="margin-top: 20px">
+                                <div class="sp-feature-box-4 js-show-flight" style="margin-top: 20px" hidden>
                                     <form method="POST" action="{{url("")}}">
                                         {{csrf_field()}}
                                         <input id="input_fly" type="search" placeholder="Numéro d'avion">
@@ -331,6 +222,16 @@
 
                 }
 
+            });
+
+            $('.show-train').on('click', function(){
+                $('.js-show-train').show();
+                $(this).hide();
+            });
+
+            $('.show-flight').on('click', function(){
+                $('.js-show-flight').show();
+                $(this).hide();
             });
 
             $('.js_valid_deliver').on('click', function () {

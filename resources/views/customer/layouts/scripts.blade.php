@@ -5,14 +5,13 @@
 <script src="{{asset('iblue/js/bootstrap/bootstrap.min.js')}}"></script>
 
 <script src="{{asset('iblue/js/less/less.min.js')}}" data-env="development"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <!-- Scripts END -->
 
 <!-- Template scripts -->
 <script src="{{asset('iblue/js/megamenu/js/main.js')}}"></script>
-<script type="text/javascript" src="{{asset('iblue/js/ytplayer/jquery.mb.YTPlayer.js')}}"></script>
-<script type="text/javascript" src="{{asset('iblue/js/ytplayer/elementvideo-custom.js')}}"></script>
-<script type="text/javascript" src="{{asset('iblue/js/ytplayer/play-pause-btn.js')}}"></script>
+<script src="{{asset('iblue/js/owl-carousel/owl.carousel.js') }}"></script>
+<script src="{{asset('iblue/js/owl-carousel/custom.js') }}"></script>
 
 <!-- REVOLUTION JS FILES -->
 <script type="text/javascript" src="{{asset('iblue/js/revolution-slider/js/jquery.themepunch.tools.min.js')}}"></script>
