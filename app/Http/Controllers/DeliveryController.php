@@ -62,11 +62,7 @@ class DeliveryController extends Controller
                 $i->save();
             }
         }
-        //return $delivery;
-
-        return response()
-            ->json($delivery)
-            ->setCallback(Input::get('callback'));
+        return $delivery;
 
     }
 
