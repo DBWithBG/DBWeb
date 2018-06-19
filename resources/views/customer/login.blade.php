@@ -49,8 +49,9 @@
                                     </label>
                                 </div><!-- end section -->
                             </div><!-- end .form-body section -->
+
+                            <p id="infos"></p>
                             <div class="form-footer">
-                                <p id="infos"></p>
                                 <button type="submit" class="button btn-primary">Connexion</button>
 
                                 <a>Mot de passe oublié</a>
