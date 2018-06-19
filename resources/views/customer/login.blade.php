@@ -8,7 +8,7 @@
                 <div class="smart-wrap">
                     <div class="smart-forms smart-container wrap-3">
 
-                        <form method="post" action="{{"login"}}" id="contact">
+                        <form method="post" action="{{"login"}}" id="js-form-login">
                             {{csrf_field()}}
 
                             <div class="form-body">
