@@ -29,7 +29,7 @@ class CreatePayboxPaymentsTable extends Migration
         });
 
         Schema::table('paybox_payments', function(Blueprint $table){
-            $table->foreign('id_app')->references('id')->on('apps');
+            $table->foreign('delivery_id')->references('id')->on('deliveries');
         });
     }
 
@@ -41,7 +41,7 @@ class CreatePayboxPaymentsTable extends Migration
     public function down()
     {
         Schema::table('paybox_payments', function(Blueprint $table) {
-            $table->dropForeign('paybox_payments_id_app_foreign');
+            $table->dropForeign('paybox_payments_delivery_id_foreign');
         });
 
         Schema::dropIfExists('paybox_payments');

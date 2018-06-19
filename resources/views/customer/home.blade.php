@@ -215,14 +215,16 @@
                                         <a class="js_valid_deliver">Valider</a>
                                     </form>
                                 </div>
-                                <div class="sp-feature-box-4 " style="margin-top: 20px">
+                                <button href="#" class="show-train">Train</button>
+                                <button href="#" class="show-flight">Avion</button>
+                                <div class="sp-feature-box-4 js-show-train" style="margin-top: 20px" hidden>
                                     <form method="POST" action="{{url("")}}">
                                         {{csrf_field()}}
                                         <input id="input_train" type="search" placeholder="Numéro de train">
                                         <input id="input_train_date" type="date" placeholder="Date du voyage">
                                     </form>
                                 </div>
-                                <div class="sp-feature-box-4 " style="margin-top: 20px">
+                                <div class="sp-feature-box-4 js-show-flight" style="margin-top: 20px" hidden>
                                     <form method="POST" action="{{url("")}}">
                                         {{csrf_field()}}
                                         <input id="input_fly" type="search" placeholder="Numéro d'avion">
@@ -331,6 +333,16 @@
 
                 }
 
+            });
+
+            $('.show-train').on('click', function(){
+                $('.js-show-train').show();
+                $(this).hide();
+            });
+
+            $('.show-flight').on('click', function(){
+                $('.js-show-flight').show();
+                $(this).hide();
             });
 
             $('.js_valid_deliver').on('click', function () {

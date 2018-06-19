@@ -18,8 +18,10 @@ class CreateDriversTable extends Migration
             $table->string('name')->nullable();
             $table->string('surname')->prenom();
             $table->date('birth_date')->nullable();
-            $table->boolean('is_online');
+            $table->boolean('is_online')->default(0);
             $table->string('phone')->nullable();
+            $table->string('siret')->nullable();
+            $table->boolean('is_op')->default(0);//Si le siret && et les différentes pièces sont OK
             $table->timestamps();
             $table->boolean('deleted')->default(0);
 
