@@ -100,8 +100,6 @@ Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 
-Route::post('/test/delivery', 'phone\MobileController@postDelivery');
-
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 
 
