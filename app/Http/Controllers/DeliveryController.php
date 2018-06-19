@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Input;
 class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
+        
         $request = $request->toArray();
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
