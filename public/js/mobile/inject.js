@@ -2,9 +2,9 @@ $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
 	var param = {
-	"email" : $("#email").val(),
-	"password":$("#password").val(),
-	"mobile_token" : $("#deviceId").val()
+		email : $("#email").val(),
+		password:$("#password").val(),
+		mobile_token : $("#deviceId").val()
 	};
 
 	$.ajax({
