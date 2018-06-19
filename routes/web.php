@@ -65,6 +65,7 @@ Route::get('driver/home', 'DriverController@home');
 
 Route::get('driver/courses', 'DriverController@deliveries');
 
+
 /******************* FIN BACKOFFICE DRIVER****************************************/
 
 
