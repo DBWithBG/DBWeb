@@ -45,11 +45,12 @@
                                     <label class="switch block">
                                         <input type="checkbox" name="remember" id="remember" checked>
                                         <span class="switch-label" for="remember" data-on="OUI" data-off="NON"></span>
-                                        <span> Rester connecter ?</span>
+                                        <span> Rester connecté ?</span>
                                     </label>
                                 </div><!-- end section -->
                             </div><!-- end .form-body section -->
                             <div class="form-footer">
+                                <p id="infos"></p>
                                 <button type="submit" class="button btn-primary">Connexion</button>
 
                                 <a>Mot de passe oublié</a>

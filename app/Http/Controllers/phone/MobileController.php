@@ -80,7 +80,7 @@ class MobileController extends Controller
             $user['driver']=Driver::where('user_id','=',$user->id)->first();
             return response()->json($user)->setCallback($request->input('callback'));
         }else{
-            return "authentification failed : "." ".Input::get('email')." ".$request->email." ".$request->password;
+            return null;
         }
 
     }
