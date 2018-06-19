@@ -73,12 +73,10 @@ class MobileController extends Controller
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
-            if(empty($user->mobile_token)){//Première connexion depuis le mobile
-                $user->mobile_token = $request->mobile_token;
-                if(!empty($user->driver)) $user['driver'] = $user->driver;
-                else $user['customer'] = $user->customer;
-                $user->save();
-            }
+            $user->mobile_token = $request->mobile_token;
+            if(!empty($user->driver)) $user['driver'] = $user->driver;
+            else $user['customer'] = $user->customer;
+            $user->save();
             return response()->json($user)->setCallback($request->input('callback'));
         }else{
             return "authentification failed : "." ".Input::get('email')." ".$request->email." ".$request->password;
