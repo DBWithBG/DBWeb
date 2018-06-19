@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Input;
 class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
-        
+
         $request = $request->toArray();
+        return json_encode($request);
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
