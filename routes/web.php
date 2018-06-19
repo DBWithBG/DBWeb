@@ -127,4 +127,6 @@ Route::get('paybox/attente/','PayboxController@attente_paiement_paybox');
 Route::get('paybox/abandon','PayboxController@annule_paiement_paybox');
 Route::get('paybox/refus/','PayboxController@refus_paybox');
 
+Route::get('mobile/user/{token}','phone\MobileController@getUser');
+
 /***************************** FIN PAYBOX ************************************/
