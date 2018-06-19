@@ -25,6 +25,7 @@
 </div>
 <div class="wrapper-boxed">
     <div class="site-wrapper">
+        @include('customer.layouts.topBarre')
 
         <!--end loading-->
         @yield('content')
