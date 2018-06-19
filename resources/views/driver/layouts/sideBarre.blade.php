@@ -20,8 +20,8 @@
         <div class="sidebar-wrapper">
 
             <ul class="nav">
-                <li class="nav-item " href="{{url('driver/profil')}}">
-                    <a class="nav-link">
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{url('driver/home')}}">
                         <i class="material-icons">class</i>
                         <p> Mon profil</p>
                     </a>
