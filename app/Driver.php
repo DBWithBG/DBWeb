@@ -26,4 +26,8 @@ class Driver extends Model
     {
         return $this->hasMany('App\TakeOverDelivery', 'driver_id');
     }
+
+    public function justificatifs() {
+        return $this->hasMany('App\Justificatif', 'driver_id');
+    }
 }

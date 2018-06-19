@@ -10,6 +10,17 @@
         <div class="content">
             <div class="container-fluid">
 
+                @if(isset($errors))
+                    @foreach ($errors->all() as $error)
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="alert alert-danger">{{$error}}</div>
+
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
                 @if(Session::has('success'))
                     <div class="row">
                         <div class="  col-md-10">
@@ -30,6 +41,61 @@
                     </div>
                 @endif
 
+                @if(!$driver->is_op)
+                    <div class="row">
+                        <div class="  col-md-10">
+                            <div class="card">
+                                <div class="card-header card-header-danger card-header-icon">
+                                    <div class="card-text">
+                                        <h4 class="card-title">Important</h4>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5>Veuillez compléter votre dossier</h5>
+                                            <p>Avant de commencer, nous avons besoin des pièces justificatives suivantes
+                                                :</p>
+                                            <ul>
+                                                <li>Une photocopie de votre permis de conduire</li>
+                                                <li>Une photocopie de votre carte d'identité</li>
+                                                <li>Votre numéro de SIRET</li>
+                                            </ul>
+                                            <p>Une fois ces pièces justificatives transmises, elles seront validées par
+                                                nos services et votre profil sera opérationnel.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                @else
+
+                        <div class="row">
+                            <div class="  col-md-10">
+                                <div class="card">
+                                    <div class="card-header card-header-success card-header-icon">
+                                        <div class="card-text">
+                                            <h4 class="card-title">Important</h4>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h5>Votre profil est validé</h5>
+                                                <p>Vous pouvez dès maintenant accepter des courses depuis le menu xxx</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                @endif
+
                 <div class="row">
                     <div class="  col-md-10">
                         <div class="card">
@@ -39,19 +105,183 @@
                                 </div>
 
                             </div>
-                            <div class="card-body">
+                            <form method="post" action="{{url('/driver/update')}}">
+                                <div class="card-body">
 
-                            </div>
-                            <div class="card-footer ">
-                                <button onclick="document.getElementById('update_groupe_form').submit()" type="submit"
-                                        class="btn btn-fill btn-primary">Sauvegarder
-                                </button>
-                            </div>
+                                    {{csrf_field()}}
+
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Nom</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="text" name="name" class="form-control"
+                                                       value="{{$driver->name}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Prénom</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="text" name="surname" class="form-control"
+                                                       value="{{$driver->surname}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Adresse mail</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="email" name="email" class="form-control"
+                                                       value="{{$driver->user->email}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Téléphone</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input type="tel" name="phone" class="form-control"
+                                                       value="{{$driver->phone}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">SIRET</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input type="text" name="siret" class="form-control"
+                                                       value="{{$driver->siret}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary">Sauvegarder</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <!-- end row (title) -->
+                <!-- end row (Informations) -->
 
+                <div class="row">
+                    <div class="  col-md-10">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <div class="card-text">
+                                    <h4 class="card-title">Pièces justificatives</h4>
+                                </div>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                @if($driver->justificatifs->count() > 0)
+                                    <div class="material-datatables">
+                                        <table class="table table-striped table-no-bordered table-hover"
+                                               cellspacing="0" width="100%" style="width:100%">
+                                            <thead class="text-center">
+                                            <tr>
+                                                <th class="text-left">Nom</th>
+                                                <th class="text-left">Statut</th>
+                                                <th class="disabled-sorting"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @foreach($driver->justificatifs as $justificatif)
+                                                <tr class="text-center">
+                                                    <td class="text-left"><a
+                                                                href="{{url('/driver/viewJustificatif/' . $justificatif->id)}}">{{ $justificatif->name }}</a>
+                                                    </td>
+                                                    <td class="text-left {{$justificatif->is_valide ? 'text-success' : ''}}">{{ $justificatif->is_valide ? 'Vérifiée' : 'En attente de vérification' }}</td>
+                                                    <td class="text-right">
+                                                        @if (!$justificatif->is_valide)
+                                                            <form id="delete_justificatif_{{ $justificatif->id }}"
+                                                                  method="post"
+                                                                  action="{{url('/driver/deleteJustificatif/' . $justificatif->id)}}">
+                                                                {{ csrf_field() }}
+                                                            </form>
+                                                            <button onclick="document.getElementById('delete_justificatif_{{ $justificatif->id }}').submit()"
+                                                                    class="btn btn-link btn-warning btn-just-icon remove"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Supprimer"><i
+                                                                        class="material-icons">close</i></button>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <h5>Aucune pièce justificative</h5>
+                                @endif
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end row (Liste justificatifs) -->
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <div class="card-text">
+                                    <h4 class="card-title">Ajouter une pièce justificative</h4>
+                                </div>
+
+                            </div>
+                            <form enctype="multipart/form-data" action="{{url('/driver/addJustificatif')}}"
+                                  method="post" class="form-horizontal">
+                                <div class="card-body">
+
+                                    {{ csrf_field() }}
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Nom de la pièce</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="text" name="name" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Fichier</label>
+
+                                        <p style="padding-left: 10px" id="upload-file-info"
+                                           class="text-left col-sm-5 col-form-label"></p>
+                                    </div>
+
+
+                                </div>
+                                <div class="card-footer ">
+                                    <label class="col-sm-3 btn btn-primary btn-link btn-success" for="my-file-selector">
+                                        <input name="justificatif" id="my-file-selector" type="file"
+                                               style="display:none"
+                                               onchange="$('#upload-file-info').html(this.files[0].name)">
+                                        Choisir un fichier
+                                    </label>
+                                    <button type="submit" class="btn btn-fill btn-primary">Envoyer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row (Upload justi) -->
 
 
             </div>
@@ -59,30 +289,4 @@
     </div>
 
 
-@endsection
-
-@section('custom-scripts')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.form-check-input').click(function () {
-                $('#veuillez_preciser_input').prop('disabled', true);
-            });
-
-            $('#autre_input').click(function () {
-                $('#veuillez_preciser_input').prop('disabled', false);
-            });
-
-            initAutocomplete();
-        });
-
-        // Gestion de l'api maps
-
-        function initAutocomplete() {
-            // Create the autocomplete object, restricting the search to geographical
-            // location types.
-            autocomplete = new google.maps.places.Autocomplete(
-                /** @type {!HTMLInputElement} */(document.getElementById('adresse_input')),
-                {types: ['geocode']});
-        }
-    </script>
 @endsection

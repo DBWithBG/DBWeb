@@ -60,8 +60,12 @@ Route::post('backoffice/deleteDepartment', 'AdminController@deleteDepartment');
 /******************* BACKOFFICE DRIVER *************************************/
 
 Route::get('drivers/register', 'DriverController@getRegister');
-
 Route::get('driver/home', 'DriverController@home');
+Route::post('driver/update', 'DriverController@update');
+
+Route::get('driver/viewJustificatif/{id}', 'DriverController@viewJustificatif');
+Route::post('driver/addJustificatif', 'DriverController@addJustificatif');
+Route::post('driver/deleteJustificatif/{id}', 'DriverController@deleteJustificatif');
 
 Route::get('driver/courses', 'DriverController@deliveries');
 
