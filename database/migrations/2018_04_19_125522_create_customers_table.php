@@ -21,7 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone')->nullable();
             $table->timestamps();
             $table->boolean('deleted')->default(0);
-
+            $table->string('mobile_token')->nullable();
             $table->integer('user_id')->unsigned();
         });
 
