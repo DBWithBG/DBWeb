@@ -47,6 +47,7 @@ class DeliveryController extends Controller
 
         //ajout des bagages
 
+
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
                 $bnew=new Bag;

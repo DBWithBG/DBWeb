@@ -59,6 +59,25 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getDriver($id) {
+        $driver = Driver::findOrFail($id);
+        return view('admin.driver.driver')->with(['driver' => $driver]);
+    }
+
+    public function validateDriver($id) {
+        $driver = Driver::findOrFail($id);
+        $driver->is_op = true;
+        $driver->save();
+        return redirect()->back()->with(['success' => 'Le chauffeur a été validé']);
+    }
+
+    public function revokeDriver($id) {
+        $driver = Driver::findOrFail($id);
+        $driver->is_op = false;
+        $driver->save();
+        return redirect()->back()->with(['success' => 'Le chauffeur a été invalidé']);
+    }
+
     public function deleteDriver(Request $request){
         $driver = Driver::find($request->id);
         if($driver){

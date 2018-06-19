@@ -41,6 +41,9 @@ Route::get('backoffice/customers', 'AdminController@getCustomers');
 Route::post('backoffice/customer/delete', 'AdminController@deleteCustomer');
 
 Route::get('backoffice/drivers', 'AdminController@getDrivers');
+Route::get('backoffice/driver/{id}', 'AdminController@getDriver');
+Route::post('backoffice/driver/{id}/validate', 'AdminController@validateDriver');
+Route::post('backoffice/driver/{id}/revoke', 'AdminController@revokeDriver');
 Route::post('backoffice/driver/delete', 'AdminController@deleteDriver');
 
 Route::get('backoffice/deliveries/inProgress', 'AdminController@getDeliveriesInProgress');
@@ -60,6 +63,8 @@ Route::post('backoffice/deleteDepartment', 'AdminController@deleteDepartment');
 /******************* BACKOFFICE DRIVER *************************************/
 
 Route::get('drivers/register', 'DriverController@getRegister');
+Route::get('drivers/login', 'DriverController@login');
+
 Route::get('driver/home', 'DriverController@home');
 Route::post('driver/update', 'DriverController@update');
 

@@ -8,7 +8,7 @@
                 <div class="smart-wrap">
                     <div class="smart-forms smart-container wrap-3">
 
-                        <form method="post" action="{{"login"}}" id="js-form-login">
+                        <form method="post" action="{{url('/login')}}" id="js-form-login">
                             {{csrf_field()}}
 
                             <div class="form-body">
@@ -45,12 +45,10 @@
                                     <label class="switch block">
                                         <input type="checkbox" name="remember" id="remember" checked>
                                         <span class="switch-label" for="remember" data-on="OUI" data-off="NON"></span>
-                                        <span> Rester connecté ?</span>
+                                        <span> Rester connecter ?</span>
                                     </label>
                                 </div><!-- end section -->
                             </div><!-- end .form-body section -->
-
-                            <p id="infos"></p>
                             <div class="form-footer">
                                 <button type="submit" class="button btn-primary">Connexion</button>
 

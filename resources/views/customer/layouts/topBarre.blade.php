@@ -41,7 +41,7 @@
                                                     class="arrow"></span>
                                             <ul class="dm-align-2">
                                                 <li><a href="{{url("connexion")}}">Client</a></li>
-                                                <li><a href="{{url("driver/login")}}">Chauffeur</a></li>
+                                                <li><a href="{{url("drivers/login")}}">Chauffeur</a></li>
 
                                             </ul>
                                         </li>

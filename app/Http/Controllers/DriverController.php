@@ -17,6 +17,10 @@ class DriverController extends Controller
         return view('driver.register');
     }
 
+    public function login() {
+        return view('driver.login');
+    }
+
     public function home(){
         $driver = Auth::user()->driver;
         return view('driver.home', ['driver' => $driver]);

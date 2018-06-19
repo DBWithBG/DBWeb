@@ -15,7 +15,7 @@ $("#js-form-login").on('submit',function(e){
 			$("#test").val("ok");
 		},
 		error:function(e){
-			alert('erreur de connexion');
+            $("#infos").html('Informations incorrectes');
 		}
 	});
 	return false;
