@@ -165,6 +165,19 @@ class MobileController extends Controller
     }
 
 
+    public function getUser($mobile_token){
+        $user=User::where('mobile_token','=',$mobile_token)->first();
+        if(!$user)
+            return 'null';
+        else
+        {
+            $user['customer']=Customer::where('user_id','=',$user->id)->first();
+            $user['driver']=Driver::where('user_id','=',$user->id)->first();
+            return json_encode($user);
+        }
+    }
+
+
 
 
 }
