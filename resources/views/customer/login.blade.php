@@ -49,14 +49,15 @@
                                     </label>
                                 </div><!-- end section -->
                             </div><!-- end .form-body section -->
-
-                            <p id="infos"></p>
                             <div class="form-footer">
+
                                 <button type="submit" class="button btn-primary">Connexion</button>
 
                                 <a>Mot de passe oublié</a>
                             </div><!-- end .form-footer section -->
                             <input type="hidden" id="test">
+
+                            <p id="infos"></p>
                         </form>
                         <div class="spacer-t30 spacer-b30">
                             <div class="tagline"><span> Pas encore inscrit ? </span></div><!-- .tagline -->
