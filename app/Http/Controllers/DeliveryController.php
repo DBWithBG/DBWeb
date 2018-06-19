@@ -47,7 +47,7 @@ class DeliveryController extends Controller
         $delivery = Delivery::create($request['delivery']);
 
         //ajout des bagages
-
+        if(empty($request['bagages'])) $request['bagages'] = [];
 
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
