@@ -24,6 +24,7 @@
                                             <h4 class="mt-3"> Connexion : </h4>
                                         </div>
                                         <form class="form" id="js-form-login" name="js-form-login" method="POST" action="{{"login"}}">
+                                            <input type="hidden" id="test" value="">
                                             {{csrf_field()}}
                                             <div class="form-group has-default">
                                                 <div class="input-group">
