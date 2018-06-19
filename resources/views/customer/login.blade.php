@@ -54,6 +54,7 @@
 
                                 <a>Mot de passe oublié</a>
                             </div><!-- end .form-footer section -->
+                            <input type="hidden" nid="test">
                         </form>
                         <div class="spacer-t30 spacer-b30">
                             <div class="tagline"><span> Pas encore inscrit ? </span></div><!-- .tagline -->

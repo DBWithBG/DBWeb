@@ -93,9 +93,13 @@
                             </div><!-- end .form-body section -->
                             <div class="form-footer">
                                 <button type="submit" class="button btn-primary">Créer mon compte</button>
-                                <a href="{{url('connexion')}}">J'ai déjà un compte</a>
+                                <div class="spacer-t30 spacer-b30">
+                                    <div class="tagline" style="padding-bottom: 15px"><span> J'ai déjà un compte </span></div><!-- .tagline -->
+                                    <a href="{{url('connexion')}}" class="button btn-primary">Se connecter</a>
+                                </div>
                             </div><!-- end .form-footer section -->
                             <input type="hidden" name="type" value="Customer">
+
 
                             {{csrf_field()}}
                         </form>
