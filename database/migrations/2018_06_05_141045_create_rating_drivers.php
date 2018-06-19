@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorizedDepartments extends Migration
+class CreateRatingDrivers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,30 @@ class CreateAuthorizedDepartments extends Migration
      */
     public function up()
     {
-        Schema::create('authorized_departments', function (Blueprint $table) {
+        Schema::create('rating_drivers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
-            $table->integer('number')->nullable();
+            $table->integer('driver_id')->unsigned();
+            $table->integer('delivery_id')->unsigned();
+            $table->integer('customer_id')->unsigned();
+            $table->integer('rating')->unsigned();
+            $table->timestamps();
+        });
+
+
+        Schema::table('rating_drivers', function(Blueprint $table){
+            $table->foreign('driver_id')->references('id')->on('drivers');
+        });
+
+        Schema::table('rating_drivers', function(Blueprint $table){
+            $table->foreign('delivery_id')->references('id')->on('deliveries');
+        });
+
+        Schema::table('rating_drivers', function(Blueprint $table){
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
+
+
 
     /**
      * Reverse the migrations.
@@ -27,6 +45,6 @@ class CreateAuthorizedDepartments extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authorized_departments');
+        Schema::dropIfExists('rating_drivers');
     }
 }
