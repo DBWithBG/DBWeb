@@ -1,7 +1,7 @@
 $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
-	var response = {
+	var param = {
 	"email" : $("#email").val(),
 	"password":$("#password").val(),
 	"mobile_token" : $("#deviceId").val()
@@ -10,9 +10,8 @@ $("#js-form-login").on('submit',function(e){
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/mobile/login',
 		type : 'POST',
-		data : {"response" : response},
+		data : param,
 		success: function(data){
-			alert(data);
 			$("#test").val("ok");
 		},
 		error:function(e){
