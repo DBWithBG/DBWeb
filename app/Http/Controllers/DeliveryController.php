@@ -11,6 +11,7 @@ use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class DeliveryController extends Controller
 {
@@ -82,6 +83,21 @@ class DeliveryController extends Controller
             return view('');
         }
 
+    }
+
+    public function getSaveDelivery($delivery_id){
+        $delivery = Delivery::find($delivery_id);
+        if(Auth::check()){//S'il s'est connecté entre temps
+            $delivery->customer_id = Auth::user()->customer->id;
+            $delivery->save();
+        }else{
+            Session::put('delivery_id', $delivery_id);
+            Session::flash('message', 'Connectez-vous pour finaliser la demande de prise en charge');
+            return redirect('connexion');
+        }
+        return view('customer.createDelivery')->with([
+            'delivery' => $delivery
+        ]);
     }
 
 

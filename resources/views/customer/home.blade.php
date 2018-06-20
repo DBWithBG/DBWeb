@@ -278,7 +278,7 @@
                             }).then((result) => {
 
                                 if (result == 'confirm') {
-                                    document.location.href = "{{url('delivery')}}" + '/' + response.id + '/paiement'
+                                    document.location.href = "{{url('delivery')}}" + '/' + response.id + '/save'
                                 } else if (result == 'cancel') {
                                     swal(
                                         'Annulation!',
