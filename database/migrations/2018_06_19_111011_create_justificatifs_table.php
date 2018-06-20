@@ -18,7 +18,7 @@ class CreateJustificatifsTable extends Migration
             $table->string('name')->nullable();
             $table->string('file_path')->nullable();
             $table->unsignedInteger('driver_id');
-            $table->boolean('is_valide')->default(0);
+            $table->boolean('is_valide')->nullable();
             $table->timestamps();
         });
 

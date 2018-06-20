@@ -18,7 +18,7 @@ class DriverController extends Controller
     }
 
     public function login() {
-        return view('driver.login');
+        return view('customer.login');
     }
 
     public function home(){
@@ -49,6 +49,8 @@ class DriverController extends Controller
             $driver->update($request->all());
             // Le siret passe passe dans le update...
             $driver->siret = $request->siret;
+            $driver->user->email = $request->email;
+            $driver->user->save();
             $driver->save();
             return redirect()->back()->with(['success' => 'Vos informations ont été mises à jour']);
         }
@@ -94,7 +96,6 @@ class DriverController extends Controller
         $justificatif->driver_id = $driver->id;
         $justificatif->name = $request->name;
         $justificatif->file_path = $path;
-        $justificatif->is_valide = false;
         $justificatif->save();
 
         return redirect()->back()->with(['success' => 'Pièce justificative ajoutée']);
@@ -102,12 +103,26 @@ class DriverController extends Controller
     }
 
     public function deleteJustificatif($id) {
-        $driver = Auth::user()->driver;
+        $user = Auth::user();
+        $driver = $user->driver;
         $justificatif = Justificatif::findOrFail($id);
 
-        if ($driver->id != $justificatif->driver_id) {
+        // Si le user est un driver, il faut que le justi lui appartienne et que le justi n'est pas été validé
+        if ($driver !== null) {
+            if ($driver->id != $justificatif->driver_id) {
+                return abort(404);
+            }
+
+            if ($justificatif->is_valide) {
+                return abort(400);
+            }
+        }
+
+        else {
             return abort(404);
         }
+
+
 
         Storage::delete($justificatif->file_path);
         $justificatif->delete();
@@ -115,10 +130,19 @@ class DriverController extends Controller
     }
 
     public function viewJustificatif($id) {
-        $driver = Auth::user()->driver;
+        $user = Auth::user();
+        $driver = $user->driver;
         $justificatif = Justificatif::findOrFail($id);
 
-        if ($driver->id != $justificatif->driver_id) {
+        // Si le user est un driver, il faut que le justi lui appartienne
+        if ($driver !== null) {
+            if ($driver->id != $justificatif->driver_id) {
+                return abort(404);
+            }
+        }
+
+        // Si user n'est pas un admin
+        else if (!$user->admin) {
             return abort(404);
         }
 
