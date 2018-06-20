@@ -15,7 +15,7 @@
                             @if(sizeof($errors->all())>0)
                                 <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
                             @endif
-                            
+
                             <div>
                                 <label for="email" class="field-label">Lieu de prise en charge</label>
                                 <label class="field prepend-icon">

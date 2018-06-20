@@ -148,3 +148,5 @@ Route::get('paybox/refus/','PayboxController@refus_paybox');
 Route::get('mobile/user/{token}','phone\MobileController@getUser');
 
 /***************************** FIN PAYBOX ************************************/
+
+Route::get('test', 'MailController@confirm_register_customer');
