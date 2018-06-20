@@ -8,6 +8,7 @@ use App\Delivery;
 use App\Dispute;
 use App\Driver;
 use App\Justificatif;
+use App\TypeBag;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
 use Validator;
@@ -35,7 +36,7 @@ class AdminController extends Controller
     }
 
     public function home(){
-        return view('admin.home');
+        return redirect('backoffice/deliveries/inProgress');
     }
 
     /*************** Customers ***************/
@@ -228,6 +229,7 @@ class AdminController extends Controller
         }
     }
 
+    /***************** DEPARTMENTS ************************/
     public function getDepartments(){
         $departments = AuthorizedDepartment::all();
         return view('admin.config.departments')->with([
@@ -244,6 +246,25 @@ class AdminController extends Controller
         $department = AuthorizedDepartment::find($request->id);
         AuthorizedDepartment::destroy($department->id);
         return $department;
+    }
+    /************************ END DEPARTMENTS *******************/
+
+    public function getTypeBagages(){
+        $typeBags = TypeBag::all();
+        return view('admin.config.type_bagages')->with([
+            'typeBags' => $typeBags
+        ]);
+    }
+
+    public function addTypeBagages(Request $request){
+        TypeBag::create($request->toArray());
+        return redirect()->back();
+    }
+
+    public function deleteTypeBagages(Request $request){
+        $typebag = TypeBag::find($request->id);
+        TypeBag::destroy($typebag->id);
+        return $typebag;
     }
 
 

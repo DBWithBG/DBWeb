@@ -26,7 +26,9 @@
                                 <div class="spacer-t30 spacer-b30">
                                     <div class="tagline"><span> OU classiquement </span></div><!-- .tagline -->
                                 </div>
-
+                                @if(sizeof($errors->all())>0)
+                                    <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
+                                @endif
                                 <div class="">
                                     <label class="field prepend-icon">
                                         <input type="text" name="email" id="email" class="gui-input" placeholder="Email">

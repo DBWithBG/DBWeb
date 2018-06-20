@@ -32,3 +32,9 @@
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/js/smart-forms/smart-forms.css') !!}">
 
 <link rel="stylesheet/less" type="text/css" href="{!! asset('iblue/less/skin.less') !!}">
+
+<style>
+    .active{
+        background-color: #00aa88;
+    }
+</style>

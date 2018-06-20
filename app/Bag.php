@@ -16,13 +16,18 @@ class Bag extends Model
      * @var array
      */
     protected $fillable = [
-        'name','details','customer_id'
+        'name','details','customer_id', 'type_id'
     ];
 
 
     public function customer()
     {
         return $this->belongsTo('App\Customer', 'customer_id');
+    }
+
+    public function typeBag()
+    {
+        return $this->belongsTo('App\TypeBag', 'type_id');
     }
 }
 

@@ -33,19 +33,19 @@
                     <div class="col-md-10">
                         <div class="card">
                             <form id="add_salle_form"
-                                  action="{{ url('/backoffice/configuration/addDepartment') }}"
+                                  action="{{ url('/backoffice/configuration/addTypeBagages') }}"
                                   method="post" class="form-horizontal">
                                 <div class="card-header card-header-primary card-header-icon">
                                     <div class="card-text">
-                                        <h4 class="card-title">Ajouter un département</h4>
+                                        <h4 class="card-title">Ajouter un nouveau type de bagages</h4>
                                     </div>
 
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body ">
 
 
                                     <div class="row">
-                                        <label class="col-sm-5 col-form-label">Nom du département :</label>
+                                        <label class="col-sm-5 col-form-label">Nom :</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <input required type="text" name="name" class="form-control">
@@ -53,14 +53,29 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-5 col-form-label">Numéro du département :</label>
+                                        <label class="col-sm-5 col-form-label">Longueur :</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <input required type="text" name="number" class="form-control">
+                                                <input required type="text" name="length" class="form-control">
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Hauteur :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input required type="text" name="width" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Poids :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input required type="text" name="height" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
                                     {{ csrf_field() }}
 
                                 </div>
@@ -89,24 +104,28 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Numéro</th>
                                             <th>Nom</th>
-                                            <th>Ajouté le</th>
+                                            <th>Longueur</th>
+                                            <th>Hauteur</th>
+                                            <th>Poids</th>
+                                            <th>Créé le</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        @foreach($departments as $department)
-                                            <tr class="text-center department-{{$department->id}}">
-                                                <td>{{ $department->number}}
+                                        @foreach($typeBags as $typeBag)
+                                            <tr class="text-center department-{{$typeBag->id}}">
+                                                <td>{{ $typeBag->name}}
                                                 </td>
-                                                <td>{{ $department->name }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($department->created_at)->format('d/m/Y') }}</td>
+                                                <td>{{ $typeBag->length }}</td>
+                                                <td>{{ $typeBag->width }}</td>
+                                                <td> {{ $typeBag->height }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($typeBag->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">
 
-                                                    <button data-idDepartment="{{$department->id}}"
+                                                    <button data-idDepartment="{{$typeBag->id}}"
                                                             class="delete btn btn-link btn-danger btn-just-icon remove">
                                                         <i
                                                                 class="material-icons">close</i></button>
@@ -177,7 +196,7 @@
             var id = $(this).attr("data-idDepartment");
             $.ajax({
                 type: "POST",
-                url: '{{url('/backoffice/configuration/deleteDepartment')}}',
+                url: '{{url('/backoffice/configuration/deleteTypeBagages')}}',
                 data: {
                     _token: CSRF_TOKEN,
                     id: id
@@ -187,7 +206,7 @@
                     swal({
                         position: 'top-right',
                         type: 'success',
-                        title: 'Suppression du département ' + response.name + ' Ok',
+                        title: 'Suppression du type de bagages ' + response.name + ' Ok',
                         showConfirmButton: false,
                         timer: 2500
                     })

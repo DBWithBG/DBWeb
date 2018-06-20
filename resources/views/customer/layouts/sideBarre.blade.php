@@ -17,6 +17,7 @@
 
         </div>
 
+
         <div class="sidebar-wrapper">
 
             <ul class="nav">
@@ -27,7 +28,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item ">
+                <li class="nav-item">
                     <a class="nav-link"  href="{{url('backoffice/customers')}}">
                         <i class="material-icons">people</i>
                         <p> Clients
@@ -37,7 +38,7 @@
                 </li>
 
 
-                <li class="nav-item ">
+                <li class="nav-item">
                     <a class="nav-link " href="{{url('backoffice/drivers')}}">
                         <i class="material-icons">grid_on</i>
                         <p> Chauffeurs
@@ -135,7 +136,14 @@
                     </a>
 
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="{{url('backoffice/disputes')}}">
+                        <i class="material-icons">grid_on</i>
+                        <p> Litiges
+                        </p>
+                    </a>
 
+                </li>
             </ul>
         </div>
     </div>

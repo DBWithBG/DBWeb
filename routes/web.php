@@ -59,9 +59,16 @@ Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 Route::get('backoffice/disputes', 'AdminController@getDisputes');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 
-Route::get('backoffice/departments', 'AdminController@getDepartments');
-Route::post('backoffice/addDepartment', 'AdminController@addDepartment');
-Route::post('backoffice/deleteDepartment', 'AdminController@deleteDepartment');
+//Departments
+Route::get('backoffice/configuration/departments', 'AdminController@getDepartments');
+Route::post('backoffice/configuration/addDepartment', 'AdminController@addDepartment');
+Route::post('backoffice/configuration/deleteDepartment', 'AdminController@deleteDepartment');
+
+//Bags
+Route::get('backoffice/configuration/typeBagages', 'AdminController@getTypeBagages');
+Route::post('backoffice/configuration/addTypeBagages', 'AdminController@addTypeBagages');
+Route::post('/backoffice/configuration/deleteTypeBagages','AdminController@deleteTypeBagage');
+
 
 /******************* FIN BACKOFFICE ADMIN****************************************/
 
