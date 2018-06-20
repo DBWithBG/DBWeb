@@ -57,6 +57,7 @@ class MailController
     }
 
     public function confirm_register_customer(){
+        //TODO On peut remplacer par n'importe quelle vue, n'importe quel css
         $client = new Client();
         $body = [
             'FromEmail' =>
