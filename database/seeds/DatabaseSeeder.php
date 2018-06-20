@@ -54,7 +54,12 @@ class DatabaseSeeder extends Seeder
             'user_id' => $customer->id
         ]);
 
-        
+        \App\AuthorizedDepartment::create([
+            'name' => 'Gironde',
+            'number' => '33'
+        ]);
+
+
 
 
     }

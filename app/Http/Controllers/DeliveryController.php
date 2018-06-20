@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Input;
 class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
+
+
         $request = $request->toArray();
-        dd($request);
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
@@ -46,6 +47,7 @@ class DeliveryController extends Controller
         $delivery = Delivery::create($request['delivery']);
 
         //ajout des bagages
+        if(empty($request['bagages'])) $request['bagages'] = [];
 
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
