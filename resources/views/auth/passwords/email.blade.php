@@ -1,47 +1,60 @@
-@extends('layouts.app')
+@extends('customer.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+    <section class="padding-top-3">
+        <div class="container">
+            <div class="row">
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="smart-wrap">
+                    <div class="smart-forms smart-container wrap-3">
 
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <form method="POST" action="{{ route('password.email') }}">
+                            {{csrf_field()}}
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                            <div class="form-body">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                <div class="spacer-t30 spacer-b30">
+                                    <div class="tagline"><span> Mot de passe oublié </span></div><!-- .tagline -->
+                                </div>
+
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input type="text" name="email" id="email" class="gui-input"
+                                               placeholder="Email">
+                                        <span class="field-icon"><i class="fa fa-user"></i></span>
+                                    </label>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                        <strong>Adresse mail non valide</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                                    @endif
+                                    @if (session('status'))
+                                        <span class="help-block">
+                                        <strong>Un lien vient de vous être envoyé par mail</strong>
+                                    @endif
+                                </div><!-- end section -->
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
+                            </div><!-- end .form-body section -->
+                            <div class="form-footer">
+
+                                <button type="submit" class="button btn-primary">Réinitialiser</button>
+
+
+                            </div><!-- end .form-footer section -->
+                            <input type="hidden" id="test">
+
+                            <p id="infos"></p>
+                        </form>
+
+
+                    </div><!-- end .smart-forms section -->
+                </div><!-- end .smart-wrap section -->
+
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <!--end item -->
+    <div class="clearfix"></div>
 @endsection
