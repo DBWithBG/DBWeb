@@ -7,8 +7,10 @@ use App\Customer;
 use App\Delivery;
 use App\Dispute;
 use App\Driver;
+use App\Justificatif;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -36,11 +38,45 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
+    /*************** Customers ***************/
+
     public function getCustomers(){
         $customers = Customer::where('deleted', '0')->get();
         return view('admin.customer.customers')->with([
             'customers' => $customers
         ]);
+    }
+
+    public function getCustomer($id) {
+        $customer = Customer::findOrFail($id);
+        return view('admin.customer.customer')->with(['customer' => $customer]);
+    }
+
+    public function updateCustomer(Request $request, $id) {
+        $customer = Customer::findOrFail($id);
+
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'nullable|numeric'
+        ], [
+            'name.required' => 'Le champ nom est requis',
+            'surname.required' => 'Le champ prénom est requis',
+            'email.required' => 'Le champ email est requis',
+            'email.email' => 'L\'adresse mail est invalide'
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        } else {
+            $customer->update($request->all());
+            // Le siret passe passe dans le update...
+            $customer->user->email = $request->email;
+            $customer->user->save();
+            $customer->save();
+            return redirect()->back()->with(['success' => 'Les informations ont été mises à jour']);
+        }
     }
 
     public function deleteCustomer(Request $request){
@@ -51,6 +87,9 @@ class AdminController extends Controller
         }
         return $customer;
     }
+
+
+    /*************** DRIVERS ***************/
 
     public function getDrivers(){
         $drivers = Driver::where('deleted', '0')->get();
@@ -71,11 +110,39 @@ class AdminController extends Controller
         return redirect()->back()->with(['success' => 'Le chauffeur a été validé']);
     }
 
+    public function validateDriverJustificatif($idDriver, $idJustificatif) {
+        $driver = Driver::findOrFail($idDriver);
+        $justificatif = Justificatif::findOrFail($idJustificatif);
+
+        if ($justificatif->driver_id != $driver->id) {
+            return abort(400);
+        }
+
+        $justificatif->is_valide = true;
+        $justificatif->save();
+
+        return redirect()->back()->with(['success' => 'La pièce justificative a été validée']);
+    }
+
     public function revokeDriver($id) {
         $driver = Driver::findOrFail($id);
         $driver->is_op = false;
         $driver->save();
         return redirect()->back()->with(['success' => 'Le chauffeur a été invalidé']);
+    }
+
+    public function revokeDriverJustificatif($idDriver, $idJustificatif) {
+        $driver = Driver::findOrFail($idDriver);
+        $justificatif = Justificatif::findOrFail($idJustificatif);
+
+        if ($justificatif->driver_id != $driver->id) {
+            return abort(400);
+        }
+
+        $justificatif->is_valide = false;
+        $justificatif->save();
+
+        return redirect()->back()->with(['success' => 'La pièce justificative a été invalidée']);
     }
 
     public function deleteDriver(Request $request){
@@ -85,6 +152,38 @@ class AdminController extends Controller
             $driver->save();
         }
     }
+
+    public function updateDriver(Request $request, $id) {
+        $driver = Driver::findOrFail($id);
+
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'siret' => 'nullable|digits_between:14,14',
+            'phone' => 'nullable|numeric'
+        ], [
+            'name.required' => 'Le champ nom est requis',
+            'surname.required' => 'Le champ prénom est requis',
+            'email.required' => 'Le champ email est requis',
+            'email.email' => 'L\'adresse mail est invalide',
+            'siret.digits_between' => 'Le numéro de SIRET est invalide. Celui-ci doit être composé de 14 chiffres'
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        } else {
+            $driver->update($request->all());
+            // Le siret passe passe dans le update...
+            $driver->siret = $request->siret;
+            $driver->user->email = $request->email;
+            $driver->user->save();
+            $driver->save();
+            return redirect()->back()->with(['success' => 'Les informations ont été mises à jour']);
+        }
+    }
+
+    /*************** DISPUTES ***************/
 
 
     public function getDisputes(){

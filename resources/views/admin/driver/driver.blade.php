@@ -9,9 +9,21 @@
 
         <div class="content">
             <div class="container-fluid">
+
+                @if(isset($errors))
+                    @foreach ($errors->all() as $error)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">{{$error}}</div>
+
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
                 @if(Session::has('success'))
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="alert alert-success">
                                 {{ Session::get('success') }}
                             </div>
@@ -21,7 +33,7 @@
 
                 @if(Session::has('error'))
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="alert alert-danger">
                                 {{ Session::get('error') }}
                             </div>
@@ -37,58 +49,178 @@
                                 <div class="card-text">
                                     <h4 class="card-title">Informations</h4>
                                 </div>
+
                             </div>
-                            <div class="card-body">
-                                @if($driver->is_op)
+                            <form method="post" action="{{url('/backoffice/driver/' . $driver->id . '/update')}}">
+                                <div class="card-body">
+                                    @if($driver->is_op)
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Statut</label>
+                                            <div style="padding-top: 14px" class="text-success col-sm-10">
+                                                Ce chauffeur est validé.
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Statut</label>
+                                            <div style="padding-top: 14px" class="text-danger col-sm-10">
+                                                Ce chauffeur n'est pas validé.
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    {{csrf_field()}}
+
+
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <h5 class="text-success">Ce chauffeur est validé.</h5>
+                                        <label class="col-sm-2 col-form-label">Nom</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="text" name="name" class="form-control"
+                                                       value="{{$driver->name}}">
+                                            </div>
                                         </div>
                                     </div>
-                                @else
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <h5 class="text-danger">Ce chauffeur n'est pas validé.</h5>
+                                        <label class="col-sm-2 col-form-label">Prénom</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="text" name="surname" class="form-control"
+                                                       value="{{$driver->surname}}">
+                                            </div>
                                         </div>
                                     </div>
-                                @endif
-                                <div style="margin-top: 15px" class="row">
-                                    <div class="col-md-2"><strong>Nom</strong></div>
-                                    <div class="col-md-3">{{$driver->name}}</div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-1"><strong>Prénom</strong></div>
-                                    <div class="col-md-3">{{$driver->surname}}</div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Adresse mail</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input required type="email" name="email" class="form-control"
+                                                       value="{{$driver->user->email}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Téléphone</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input type="tel" name="phone" class="form-control"
+                                                       value="{{$driver->phone}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">SIRET</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <input type="text" name="siret" class="form-control"
+                                                       value="{{$driver->siret}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                 </div>
-                                <div style="margin-top: 20px" class="row">
-                                    <div class="col-md-2"><strong>Adresse email</strong></div>
-                                    <div class="col-md-3">{{$driver->user->email}}</div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-1"><strong>SIRET</strong></div>
-                                    <div class="col-md-3">{{$driver->siret}}</div>
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary">Sauvegarder</button>
+                                    @if(!$driver->is_op)
+                                        <button onclick="event.preventDefault(); document.getElementById('validate_driver').submit()" class="btn btn-success">Valider ce chauffeur</button>
+                                    @else
+                                        <button onclick="event.preventDefault(); document.getElementById('revoke_driver').submit()" type="submit" class="btn btn-danger">Invalider ce chauffeur</button>
+                                    @endif
                                 </div>
-                                <div style="margin-top: 20px" class="row">
-                                    <div class="col-md-2"><strong>Téléphone</strong></div>
-                                    <div class="col-md-3">{{$driver->phone}}</div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                @if(!$driver->is_op)
-                                    <form method="post" action="{{url('http://localhost:8888/backoffice/driver/3/validate')}}">
-                                        {{csrf_field()}}
-                                        <button type="submit" class="btn btn-success">Valider ce chauffeur</button>
-                                    </form>
-                                @else
-                                    <form method="post" action="{{url('http://localhost:8888/backoffice/driver/3/revoke')}}">
-                                        {{csrf_field()}}
-                                        <button type="submit" class="btn btn-danger">Invalider ce chauffeur</button>
-                                    </form>
-                                @endif
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <!-- end row (Informations) -->
+                <form style="display: none;" id="validate_driver" method="post"
+                      action="{{url('http://localhost:8888/backoffice/driver/'. $driver->id .'/validate')}}">
+                    {{csrf_field()}}
 
+                </form>
+                <form style="display: none;" id="revoke_driver" method="post"
+                      action="{{url('http://localhost:8888/backoffice/driver/'. $driver->id .'/revoke')}}">
+                    {{csrf_field()}}
+
+                </form>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <div class="card-text">
+                                    <h4 class="card-title">Pièces justificatives</h4>
+                                </div>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                @if($driver->justificatifs->count() > 0)
+                                    <div class="material-datatables">
+                                        <table class="table table-striped table-no-bordered table-hover"
+                                               cellspacing="0" width="100%" style="width:100%">
+                                            <thead class="text-center">
+                                            <tr>
+                                                <th class="text-left">Nom</th>
+                                                <th class="text-left">Statut</th>
+                                                <th class="disabled-sorting"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @foreach($driver->justificatifs as $justificatif)
+                                                <tr class="text-center">
+                                                    <td class="text-left"><a
+                                                                href="{{url('/driver/viewJustificatif/' . $justificatif->id)}}">{{ $justificatif->name }}</a>
+                                                    </td>
+                                                    <td class="text-left {{$justificatif->is_valide !== null && !$justificatif->is_valide ? 'text-danger' : ''}} {{$justificatif->is_valide !== null && $justificatif->is_valide ? 'text-success' : ''}}">{{ $justificatif->is_valide === null ? 'En attente de vérification' : ($justificatif->is_valide ? 'Vérifiée' : 'Non valide') }}</td>
+                                                    <td class="text-right">
+
+                                                        <form style="display: inline" method="post"
+                                                              action="{{url('/backoffice/driver/' . $driver->id . '/validateJustificatif/' . $justificatif->id)}}">
+                                                            {{ csrf_field() }}
+                                                            <button type="submit"
+                                                                    class="btn btn-link btn-success btn-just-icon remove"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Marquer comme valide"><i
+                                                                        class="material-icons">done</i></button>
+                                                        </form>
+
+
+                                                        <form style="display: inline" method="post"
+                                                              action="{{url('/backoffice/driver/' . $driver->id . '/revokeJustificatif/' . $justificatif->id)}}">
+                                                            {{ csrf_field() }}
+                                                            <button type="submit"
+                                                                    class="btn btn-link btn-warning btn-just-icon remove"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Marquer comme non valide"><i
+                                                                        class="material-icons">close</i></button>
+                                                        </form>
+
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <h5>Aucune pièce justificative</h5>
+                                @endif
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end row (Liste justificatifs) -->
 
             </div>
         </div>

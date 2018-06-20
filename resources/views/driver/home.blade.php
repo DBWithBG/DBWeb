@@ -13,7 +13,7 @@
                 @if(isset($errors))
                     @foreach ($errors->all() as $error)
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div class="alert alert-danger">{{$error}}</div>
 
                             </div>
@@ -23,7 +23,7 @@
 
                 @if(Session::has('success'))
                     <div class="row">
-                        <div class="  col-md-10">
+                        <div class="col-md-12">
                             <div class="alert alert-success">
                                 {{ Session::get('success') }}
                             </div>
@@ -33,7 +33,7 @@
 
                 @if(Session::has('error'))
                     <div class="row">
-                        <div class="  col-md-10">
+                        <div class="col-md-12">
                             <div class="alert alert-danger">
                                 {{ Session::get('error') }}
                             </div>
@@ -43,7 +43,7 @@
 
                 @if(!$driver->is_op)
                     <div class="row">
-                        <div class="  col-md-10">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-danger card-header-icon">
                                     <div class="card-text">
@@ -74,7 +74,7 @@
                 @else
 
                         <div class="row">
-                            <div class="  col-md-10">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-header-success card-header-icon">
                                         <div class="card-text">
@@ -97,7 +97,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="  col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
@@ -172,7 +172,7 @@
                 <!-- end row (Informations) -->
 
                 <div class="row">
-                    <div class="  col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
@@ -201,7 +201,7 @@
                                                     <td class="text-left"><a
                                                                 href="{{url('/driver/viewJustificatif/' . $justificatif->id)}}">{{ $justificatif->name }}</a>
                                                     </td>
-                                                    <td class="text-left {{$justificatif->is_valide ? 'text-success' : ''}}">{{ $justificatif->is_valide ? 'Vérifiée' : 'En attente de vérification' }}</td>
+                                                    <td class="text-left {{$justificatif->is_valide !== null && !$justificatif->is_valide ? 'text-danger' : ''}} {{$justificatif->is_valide !== null && $justificatif->is_valide ? 'text-success' : ''}}">{{ $justificatif->is_valide === null ? 'En attente de vérification' : ($justificatif->is_valide ? 'Vérifiée' : 'Non valide') }}</td>
                                                     <td class="text-right">
                                                         @if (!$justificatif->is_valide)
                                                             <form id="delete_justificatif_{{ $justificatif->id }}"
@@ -236,7 +236,7 @@
                 <!-- end row (Liste justificatifs) -->
 
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
