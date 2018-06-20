@@ -18,7 +18,7 @@ class DriverController extends Controller
     }
 
     public function login() {
-        return view('driver.login');
+        return view('customer.login');
     }
 
     public function home(){
