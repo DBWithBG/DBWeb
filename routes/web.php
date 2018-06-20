@@ -98,6 +98,8 @@ Route::post('create/delivery', 'DeliveryController@postDelivery');
 
 Route::get('delivery/{id}/paiement', 'DeliveryController@getPaiement');
 
+
+Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 /************************** END FRONT CUSTOMER **********************************/
 
 
