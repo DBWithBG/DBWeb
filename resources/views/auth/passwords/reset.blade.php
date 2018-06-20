@@ -1,70 +1,80 @@
-@extends('layouts.app')
+@extends('customer.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+    <section class="padding-top-3">
+        <div class="container">
+            <div class="row">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
-                        {{ csrf_field() }}
+                <div class="smart-wrap">
+                    <div class="smart-forms smart-container wrap-3">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
+                            {{ csrf_field() }}
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
+                            <input type="hidden" name="token" value="{{ $token }}">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                            <div class="form-body">
+
+                                <div class="spacer-t30 spacer-b30">
+                                    <div class="tagline"><span> Réinitialisation du mot de passe </span></div><!-- .tagline -->
+                                </div>
+
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input type="text" name="email" id="email" class="gui-input"
+                                               placeholder="Email">
+                                        <span class="field-icon"><i class="fa fa-user"></i></span>
+                                    </label>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                        <strong>Adresse mail non valide</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                    @endif
+                                </div><!-- end section -->
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input type="password" name="password" id="password" class="gui-input" placeholder="Mot de passe">
+                                        <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                    </label>
+                                    @if ($errors->has('password') && strpos($errors->first('password'), 'confirmation') != false)
+                                        <span class="help-block">
+                                        <strong>Les mots de passe ne correspondent pas</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                                    @endif
+                                </div>
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input type="password" name="password_confirmation" id="password-confirm" class="gui-input" placeholder="Confirmation du mot de passe">
+                                        <span class="field-icon"><i class="fa fa-lock"></i></span>
+                                    </label>
+                                </div>
 
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
+                                @if (session('status'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
+                                        <strong>{{session('status')}}</strong>
                                 @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Reset Password
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
+                            </div><!-- end .form-body section -->
+                            <div class="form-footer">
+
+                                <button type="submit" class="button btn-primary">Réinitialiser</button>
+
+
+                            </div><!-- end .form-footer section -->
+                            <input type="hidden" id="test">
+
+                            <p id="infos"></p>
+                        </form>
+
+
+                    </div><!-- end .smart-forms section -->
+                </div><!-- end .smart-wrap section -->
+
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <!--end item -->
+    <div class="clearfix"></div>
 @endsection
