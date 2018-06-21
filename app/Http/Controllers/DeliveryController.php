@@ -72,6 +72,8 @@ class DeliveryController extends Controller
                 //ajout des bages a la course
                 $i=new InfoBag;
                 $i->details_start_driver=$b['descr'];
+                $i->delivery_id=$delivery->id;
+                $i->bag_id=$bnew->id;
                 $i->save();
             }
         }
