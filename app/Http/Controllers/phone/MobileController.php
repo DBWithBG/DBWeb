@@ -213,9 +213,18 @@ class MobileController extends Controller
 
         Bag::where('customer_id','=',$u->customer->id)->delete();
         $request=$request->toArray();
-        foreach($request['bagages'] as $b){
-            if(isset($b->id)){
-                Bag::find($b->id)->update($b)->restore();
+        foreach($request['bagages'] as $cate=>$bs){
+            foreach($bs as $b){
+                if(isset($b->id)){
+                    Bag::find($b->id)->update($b)->restore();
+                }else{
+                    $b=new Bag;
+                    $b->name=$b->name;
+                    if(isset($b->descr))
+                        $b->details=$b->descr;
+                    else
+                        $b->details="";
+                }
             }
         }
     }
