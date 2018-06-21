@@ -12,12 +12,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use League\OAuth1\Client\Server\User;
 
 class DeliveryController extends Controller
 {
     public function postDelivery(Request $request){
 
 
+        if(isset($request->mobile_token)){
+            $u=User::where('mobile_token','=',$request->mobile_token)->first();
+            if(!$u)
+                throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+            if(!$u->customer)
+                throw new \Error('Utilisateur non customer');
+            $request->customer_id=$u->customer->id;
+        }
         $request = $request->toArray();
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
