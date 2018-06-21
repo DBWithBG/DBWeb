@@ -22,8 +22,10 @@ class DeliveryController extends Controller
 
         $request=HomeController::checkCustomerMobile($request);
         $request = $request->toArray();
+        return json_encode($request);
         if(isset($request['customer_id']))
             $request['delivery']['customer_id']=$request['customer_id'];
+
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
