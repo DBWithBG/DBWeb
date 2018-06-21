@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\phone;
 
 use App\AuthorizedDepartment;
+use App\Bag;
 use App\Customer;
 use App\Delivery;
 use App\Driver;
@@ -174,6 +175,20 @@ class MobileController extends Controller
             $user['driver']=Driver::where('user_id','=',$user->id)->first();
             return json_encode($user);
         }
+    }
+
+
+    public function getBagsUsers($id=null){
+        if(!$id)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$id)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$u->customer)
+            throw new \Error('Utilisateur non customer');
+
+        return json_encode(Bag::where('customer_id','=',$u->customer_id)->get());
     }
 
 

@@ -127,6 +127,8 @@ Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 
+Route::get('mobile/user/{token}','phone\MobileController@getUser');
+Route::get('mobile/bags/users/{token}','phone\MobileController@getBagsUsers');
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 
 
@@ -152,7 +154,6 @@ Route::get('paybox/attente/','PayboxController@attente_paiement_paybox');
 Route::get('paybox/abandon','PayboxController@annule_paiement_paybox');
 Route::get('paybox/refus/','PayboxController@refus_paybox');
 
-Route::get('mobile/user/{token}','phone\MobileController@getUser');
 
 /***************************** FIN PAYBOX ************************************/
 
