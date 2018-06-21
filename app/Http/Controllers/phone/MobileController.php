@@ -217,8 +217,11 @@ class MobileController extends Controller
             foreach($request['bagages'] as $cate=>$bs){
                 foreach($bs as $b){
                     if(isset($b['id'])){
-                        Bag::find($b['id'])->restore();
-                        Bag::find($b['id'])->update($b);
+                        $obj=Bag::find($b['id']);
+                        if($obj){
+                            $obj->restore();
+                            $obj->update($b);
+                        }
                     }else{
                         $bnew=new Bag;
                         if($b['name'])
