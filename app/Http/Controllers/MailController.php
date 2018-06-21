@@ -90,7 +90,7 @@ class MailController
             "html-part" => view('emails.confirmation_email_driver')->with(['token' => $token, 'driver' => $driver])->render()
         ];
 
-        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+        $client->post('https://api.mailjet.com/v3/send', ['headers' => [
             'Content-type' => 'application/json',
 
         ],
@@ -98,6 +98,26 @@ class MailController
 
             'body' => json_encode($body)
         ]);
-        Log::debug('Result : ' . json_encode($result));
+    }
+
+    public static function reset_password_email($token) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                'simonhajek88@gmail.com',
+
+            'to' => 'testdeliver@yopmail.com',
+            'Subject' => "Réinitialisation de votre mot de passe",
+            "html-part" => view('emails.password_reset_email')->with(['token' => $token])->render()
+        ];
+
+        $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
     }
 }
