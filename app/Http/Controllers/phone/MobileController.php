@@ -188,7 +188,7 @@ class MobileController extends Controller
         if(!$u->customer)
             throw new \Error('Utilisateur non customer');
 
-        return json_encode(Bag::where('customer_id','=',$u->customer->id)->get());
+        return json_encode(Bag::where('customer_id','=',$u->customer->id)->where('saved','=',true)->get());
     }
 
 
@@ -234,6 +234,7 @@ class MobileController extends Controller
                             $bnew->details="";
                         $bnew->type_id=$cate;
                         $bnew->customer_id=$u->customer->id;
+                        $bnew->saved=true;
                         $bnew->save();
                     }
                 }
