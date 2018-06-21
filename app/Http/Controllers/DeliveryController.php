@@ -19,8 +19,12 @@ class DeliveryController extends Controller
     public function postDelivery(Request $request){
 
 
+
         $request=HomeController::checkCustomerMobile($request);
         $request = $request->toArray();
+        if(isset($request['customer_id']))
+            $request['delivery']['customer_id']=$request['customer_id'];
+
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
@@ -55,15 +59,15 @@ class DeliveryController extends Controller
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
                 $bnew=new Bag;
-                $bnew->customer_id=$delivery->customer_id;
-                $bnew->name=$b->nom;
+                $bnew->customer_id=$request['delivery']['customer_id'];
+                $bnew->name=$b['nom'];
                 $bnew->type_id=$k;
-                $bnew->details=$b->details;
+                $bnew->details=$b['descr'];
                 $bnew->save();
 
                 //ajout des bages a la course
                 $i=new InfoBag;
-                $i->details_start_driver=$b->descr;
+                $i->details_start_driver=$b['descr'];
                 $i->save();
             }
         }
