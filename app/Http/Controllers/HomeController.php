@@ -52,7 +52,6 @@ class HomeController extends Controller
     public static function checkCustomerMobile(Request $request){
         if(isset($request->mobile_token)){
             $u=User::where('mobile_token','=',$request->mobile_token)->first();
-            return json_encode($u->customer);
             if(!$u)
                 throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -60,6 +59,7 @@ class HomeController extends Controller
                 throw new \Error('Utilisateur non customer');
 
             $request->input('customer_id', $u->customer->id);
+            return json_encode($request->customer_id);
         }
         return $request;
     }
