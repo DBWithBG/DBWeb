@@ -202,7 +202,6 @@ class MobileController extends Controller
 
 
     public function editBagsUsers(Request $request){
-        foreach($)
     }
 
 
