@@ -59,9 +59,6 @@ class HomeController extends Controller
                 throw new \Error('Utilisateur non customer');
 
             $request->customer_id=$u->customer_id;
-            if(isset($request->delivery)){
-                $request->delivery->customer_id=$request->customer_id;
-            }
         }
         return $request;
     }
