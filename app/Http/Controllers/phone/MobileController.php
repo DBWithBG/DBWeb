@@ -211,19 +211,25 @@ class MobileController extends Controller
         if(!$u->customer)
             throw new \Error('Utilisateur non customer');
 
-        Bag::where('customer_id','=',$u->customer->id)->delete();
+        //Bag::where('customer_id','=',$u->customer->id)->delete();
         $request=$request->toArray();
         foreach($request['bagages'] as $cate=>$bs){
             foreach($bs as $b){
                 if(isset($b->id)){
                     Bag::find($b->id)->update($b)->restore();
                 }else{
-                    $b=new Bag;
-                    $b->name=$b->name;
-                    if(isset($b->descr))
-                        $b->details=$b->descr;
+                    $bnew=new Bag;
+                    if($b['name'])
+                        $bnew->name=$b['name'];
                     else
-                        $b->details="";
+                        $bnew->name="";
+                    if(isset($b['descr']))
+                        $bnew->details=$b['descr'];
+                    else
+                        $bnew->details="";
+                    $bnew->type_id=$cate;
+                    $bnew->customer_id=$u->customer->id;
+                    $bnew->save();
                 }
             }
         }
