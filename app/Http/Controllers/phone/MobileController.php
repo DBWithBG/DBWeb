@@ -188,9 +188,59 @@ class MobileController extends Controller
         if(!$u->customer)
             throw new \Error('Utilisateur non customer');
 
-        return json_encode(Bag::where('customer_id','=',$u->customer_id)->get());
+        return json_encode(Bag::where('customer_id','=',$u->customer->id)->where('saved','=',true)->get());
     }
 
+
+    //methode permettant de verifier que le token fournit correspond au token utilisateur (methode amenee a devenir plus complexe)
+    public static function checkToken($t1,Request $request){
+        if(isset($request->chk_mobile_token))
+            return $t1==$request->chk_mobile_token;
+        else
+            return true;
+    }
+
+
+    public function editBagsUsers(Request $request){
+        if(!isset($request->mobile_token))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$u->customer)
+            throw new \Error('Utilisateur non customer');
+
+        Bag::where('customer_id','=',$u->customer->id)->delete();
+        $request=$request->toArray();
+        if(isset($request['bagages'])){
+            foreach($request['bagages'] as $cate=>$bs){
+                foreach($bs as $b){
+                    if(isset($b['id'])){
+                        $obj=Bag::withTrashed()->find($b['id']);
+                        if($obj){
+                            $obj->restore();
+                            $obj->update($b);
+                        }
+                    }else{
+                        $bnew=new Bag;
+                        if($b['name'])
+                            $bnew->name=$b['name'];
+                        else
+                            $bnew->name="";
+                        if(isset($b['descr']))
+                            $bnew->details=$b['descr'];
+                        else
+                            $bnew->details="";
+                        $bnew->type_id=$cate;
+                        $bnew->customer_id=$u->customer->id;
+                        $bnew->saved=true;
+                        $bnew->save();
+                    }
+                }
+            }
+        }
+    }
 
 
 
