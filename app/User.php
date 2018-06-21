@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\MailController;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -36,5 +37,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Customer', 'user_id');
     }//
+
+    public function sendPasswordResetNotification($token)
+    {
+        MailController::reset_password_email($token);
+    }
 
 }
