@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile_token')->nullable();
             $table->boolean('admin')->default(0);
             $table->boolean('is_confirmed');
+            $table->string('email_confirmation_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

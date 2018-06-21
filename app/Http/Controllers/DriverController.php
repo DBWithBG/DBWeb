@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Justificatif;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -149,5 +150,30 @@ class DriverController extends Controller
         $file = Storage::get($justificatif->file_path);
         $mimetype = \GuzzleHttp\Psr7\mimetype_from_filename($justificatif->file_path);
         return response($file, 200)->header('Content-Type', $mimetype);
+    }
+
+    public function confirmEmail(Request $request) {
+        $email = $request->email;
+        $token = $request->token;
+        $user = User::where('email', $email)->first();
+        if ($user->email_confirmation_token == $token) {
+            $user->is_confirmed = true;
+            $user->save();
+            return redirect('/')->with(['success' => 'Votre adresse mail a été confirmée']);
+        }
+        return abort(400);
+    }
+
+    public function resendConfirmationEmail() {
+        $user = Auth::user();
+        $driver = $user->driver;
+
+        // Envoyer le mail de confirmation
+        $token = bin2hex(random_bytes(78));
+        $driver->user->email_confirmation_token = $token;
+        $driver->user->save();
+        MailController::confirm_driver_email_adresse($driver, $token);
+
+        return redirect()->back()->with(['success' => 'Un mail de confirmation vient de vous être envoyé']);
     }
 }
