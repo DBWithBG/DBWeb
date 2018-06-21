@@ -48,6 +48,7 @@ class HomeController extends Controller
     }
 
 
+
     //methode permettant de recuperer le customer id d'un customer a partir de son mobile token et de le mettre dans la requete
     public static function checkCustomerMobile(Request $request){
         if(isset($request->mobile_token)){

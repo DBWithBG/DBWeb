@@ -7,6 +7,7 @@ use App\Customer;
 use App\Delivery;
 use App\Dispute;
 use App\Driver;
+use App\Http\Controllers\phone\MobileController;
 use App\Justificatif;
 use App\TypeBag;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
@@ -54,7 +55,12 @@ class AdminController extends Controller
     }
 
     public function updateCustomer(Request $request, $id) {
+
+
         $customer = Customer::findOrFail($id);
+        //on verifie que la requete fournie contient le mobile_token du customer
+        if(!MobileController::checkToken($customer->user->mobile_token,$request))
+            throw new \Error('Vous n\'avez pas le droit de modifier cet utilisateur');
 
         $v = Validator::make($request->all(), [
             'name' => 'required',

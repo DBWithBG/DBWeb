@@ -192,6 +192,14 @@ class MobileController extends Controller
     }
 
 
+    //methode permettant de verifier que le token fournit correspond au token utilisateur (methode amenee a devenir plus complexe)
+    public static function checkToken($t1,Request $request){
+        if(isset($request->chk_mobile_token))
+            return $t1==$request->chk_mobile_token;
+        else
+            return true;
+    }
+
 
 
 }
