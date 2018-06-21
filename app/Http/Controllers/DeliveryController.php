@@ -56,14 +56,14 @@ class DeliveryController extends Controller
             foreach($bags as $b){
                 $bnew=new Bag;
                 $bnew->customer_id=$delivery->customer_id;
-                $bnew->name=$b->nom;
+                $bnew->name=$b['nom'];
                 $bnew->type_id=$k;
-                $bnew->details=$b->details;
+                $bnew->details=$b['details'];
                 $bnew->save();
 
                 //ajout des bages a la course
                 $i=new InfoBag;
-                $i->details_start_driver=$b->descr;
+                $i->details_start_driver=$b['descr'];
                 $i->save();
             }
         }
