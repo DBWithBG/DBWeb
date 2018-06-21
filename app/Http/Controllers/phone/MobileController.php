@@ -218,7 +218,6 @@ class MobileController extends Controller
                 foreach($bs as $b){
                     if(isset($b['id'])){
                         $obj=Bag::withTrashed()->find($b['id']);
-                        dd($obj);
                         if($obj){
                             $obj->restore();
                             $obj->update($b);
