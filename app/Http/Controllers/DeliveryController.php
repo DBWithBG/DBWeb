@@ -20,6 +20,7 @@ class DeliveryController extends Controller
 
 
         $request=HomeController::checkCustomerMobile($request);
+        return json_encode($request);
         $request = $request->toArray();
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
