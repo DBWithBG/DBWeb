@@ -27,4 +27,9 @@ class Customer extends Model
     {
         return $this->hasMany('App\Delivery', 'customer_id');
     }
+
+
+    public function bags(){
+        return $this->hasMany('App\Bag','customer_id');
+    }
 }

@@ -36,4 +36,5 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Customer', 'user_id');
     }//
+
 }

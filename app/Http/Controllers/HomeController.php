@@ -35,4 +35,31 @@ class HomeController extends Controller
         //return view('home');
     }
 
+
+    public function getProfile(Request $request){
+        $request=self::checkCustomerMobile($request);
+
+
+        $customer=Customer::find($request->customer_id);
+
+        if(!$customer)
+            throw new \Error('Customer non trouve');
+        return view('customer.profile')->with(compact('customer'));
+    }
+
+
+    //methode permettant de recuperer le customer id d'un customer a partir de son mobile token et de le mettre dans la requete
+    public static function checkCustomerMobile(Request $request){
+        if(isset($request->mobile_token)){
+            $u=User::where('mobile_token','=',$request->mobile_token)->first();
+            if(!$u)
+                throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+            if(!$u->customer)
+                throw new \Error('Utilisateur non customer');
+            $request->customer_id=$u->customer->id;
+        }
+        return $request;
+    }
+
 }

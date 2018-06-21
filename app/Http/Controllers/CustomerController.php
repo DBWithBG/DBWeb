@@ -33,4 +33,6 @@ class CustomerController extends Controller
         return AuthorizedDepartment::all();
     }
 
+
+
 }
