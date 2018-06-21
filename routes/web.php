@@ -121,8 +121,9 @@ Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDel
 
 Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDelivery');
 
-Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
+Route::get('customers/profile','HomeController@getProfile');
 Route::get('/customers', 'phone\MobileController@getCustomers');
+Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 
 Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
