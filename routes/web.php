@@ -133,6 +133,7 @@ Route::get('/drivers', 'phone\MobileController@getDrivers');
 
 Route::get('mobile/user/{token}','phone\MobileController@getUser');
 Route::get('mobile/bags/users/{token}','phone\MobileController@getBagsUsers');
+Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 
 

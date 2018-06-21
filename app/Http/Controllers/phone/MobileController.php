@@ -188,7 +188,7 @@ class MobileController extends Controller
         if(!$u->customer)
             throw new \Error('Utilisateur non customer');
 
-        return json_encode(Bag::where('customer_id','=',$u->customer_id)->get());
+        return json_encode(Bag::where('customer_id','=',$u->customer->id)->get());
     }
 
 
@@ -198,6 +198,11 @@ class MobileController extends Controller
             return $t1==$request->chk_mobile_token;
         else
             return true;
+    }
+
+
+    public function editBagsUsers(Request $request){
+        foreach($)
     }
 
 
