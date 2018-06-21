@@ -58,7 +58,7 @@ class DeliveryController extends Controller
                 $bnew->customer_id=$delivery->customer_id;
                 $bnew->name=$b['nom'];
                 $bnew->type_id=$k;
-                $bnew->details=$b['details'];
+                $bnew->details=$b['descr'];
                 $bnew->save();
 
                 //ajout des bages a la course
