@@ -21,7 +21,6 @@ class DeliveryController extends Controller
 
 
         $request=HomeController::checkCustomerMobile($request);
-        return(json_encode($request));
         $request = $request->toArray();
         if(isset($request['customer_id']))
             $request['delivery']['customer_id']=$request['customer_id'];

@@ -58,8 +58,7 @@ class HomeController extends Controller
             if(!$u->customer)
                 throw new \Error('Utilisateur non customer');
 
-            $request->input('customer_id', $u->customer->id);
-            return json_encode($u->customer->id);
+            $request->request->add(['customer_id' => $u->customer->id]);
         }
         return $request;
     }
