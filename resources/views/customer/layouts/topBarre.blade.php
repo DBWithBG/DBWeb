@@ -13,7 +13,7 @@
                                 <ul class="nav navbar-nav">
                                     @if(\Illuminate\Support\Facades\Auth::check())
                                         <li class="right "><a href="{{url('/')}}">Accueil</a>
-                                        <li class="right active"><a
+                                        <li class="right "><a
                                                     href="#">{{\Illuminate\Support\Facades\Auth::user()->customer->surname}}</a>
                                             <span
                                                     class="arrow"></span>
@@ -26,7 +26,7 @@
                                             </ul>
                                         </li>
                                     @else
-                                        <li class="right active"><a href="{{url('/')}}">Accueil</a>
+                                        <li class="right "><a href="{{url('/')}}">Accueil</a>
 
                                         </li>
                                         <li class="right"><a href="#">Inscription</a> <span
