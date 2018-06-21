@@ -20,6 +20,7 @@ class CreateBag extends Migration
             $table->integer('type_id')->unsigned();
             $table->integer('customer_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
 
 

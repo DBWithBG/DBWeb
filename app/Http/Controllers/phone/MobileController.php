@@ -202,6 +202,22 @@ class MobileController extends Controller
 
 
     public function editBagsUsers(Request $request){
+        if(!isset($request->mobile_token))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$u->customer)
+            throw new \Error('Utilisateur non customer');
+
+        Bag::where('customer_id','=',$u->customer->id)->delete();
+        $request=$request->toArray();
+        foreach($request['bagages'] as $b){
+            if(isset($b->id)){
+                Bag::find($b->id)->update($b)->restore();
+            }
+        }
     }
 
 
