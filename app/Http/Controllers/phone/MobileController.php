@@ -244,6 +244,26 @@ class MobileController extends Controller
         }
     }
 
+    //get delivery pour consulter les informations d'une delivery
+    public function showDelivery(Request $request,$delivery_id){
+        if(!isset($request->mobile_token))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Utilisateur non customer');
+        $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        if($delivery->customer_id!=$u->customer->id){
+            throw new \Error('L\'utilisateur n\'a pas accès à cette course.');
+        }
+
+
+        return view('customer.showDelivery')->with(compact('delivery'));
+
+    }
+
+
 
 
 }
