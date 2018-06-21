@@ -98,6 +98,8 @@ class MobileController extends Controller
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
             ->orderBy('created_at','DESC')
             ->with('takeOverDelivery')
+            ->with('startPosition')
+            ->with('endPosition')
             ->get();
         $tab=[];
         foreach($deliveries as $d){
