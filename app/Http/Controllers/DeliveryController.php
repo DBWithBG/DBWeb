@@ -58,6 +58,10 @@ class DeliveryController extends Controller
 
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
+                if(!isset($b['nom']))
+                    $b['nom']="";
+                if(!isset($b['descr']))
+                    $b['descr']="";
                 $bnew=new Bag;
                 $bnew->customer_id=$request['delivery']['customer_id'];
                 $bnew->name=$b['nom'];
