@@ -59,7 +59,7 @@ class HomeController extends Controller
                 throw new \Error('Utilisateur non customer');
 
             $request->input('customer_id', $u->customer->id);
-            return json_encode($request->customer_id);
+            return json_encode($u->customer->id);
         }
         return $request;
     }
