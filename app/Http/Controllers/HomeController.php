@@ -58,7 +58,7 @@ class HomeController extends Controller
             if(!$u->customer)
                 throw new \Error('Utilisateur non customer');
 
-            $request->request->add(['customer_id', $u->customer_id]);
+            $request->merge(['customer_id', $u->customer_id]);
             return json_encode($request->customer_id);
         }
         return $request;
