@@ -78,6 +78,7 @@ Route::get('drivers/register', 'DriverController@getRegister');
 Route::get('drivers/login', 'DriverController@login');
 
 Route::get('driver/home', 'DriverController@home');
+Route::get('driver/resendConfirmationEmail', 'DriverController@resendConfirmationEmail');
 Route::post('driver/update', 'DriverController@update');
 
 Route::get('driver/viewJustificatif/{id}', 'DriverController@viewJustificatif');
@@ -85,6 +86,8 @@ Route::post('driver/addJustificatif', 'DriverController@addJustificatif');
 Route::post('driver/deleteJustificatif/{id}', 'DriverController@deleteJustificatif');
 
 Route::get('driver/courses', 'DriverController@deliveries');
+
+Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 
 
 /******************* FIN BACKOFFICE DRIVER****************************************/

@@ -41,6 +41,29 @@
                     </div>
                 @endif
 
+                @if(!$driver->user->is_confirmed)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-danger card-header-icon">
+                                    <div class="card-text">
+                                        <h4 class="card-title">Confirmation de votre adresse mail</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p>Un mail vient de vous être envoyé pour vous permettre de confirmer votre adresse. Cela est nécessaire pour la suite de votre inscription.</p>
+                                            <p>Si vous n'avez pas reçu ce mail, cliquez <a href="{{url('/driver/resendConfirmationEmail')}}">ici</a>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 @if(!$driver->is_op)
                     <div class="row">
                         <div class="col-md-12">
@@ -73,26 +96,26 @@
 
                 @else
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header card-header-success card-header-icon">
-                                        <div class="card-text">
-                                            <h4 class="card-title">Important</h4>
-                                        </div>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-success card-header-icon">
+                                    <div class="card-text">
+                                        <h4 class="card-title">Important</h4>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h5>Votre profil est validé</h5>
-                                                <p>Vous pouvez dès maintenant accepter des courses depuis le menu xxx</p>
-                                            </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5>Votre profil est validé</h5>
+                                            <p>Vous pouvez dès maintenant accepter des courses depuis le menu xxx</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                 @endif
 

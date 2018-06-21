@@ -93,11 +93,18 @@
 
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Adresse mail</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-8">
                                             <div class="form-group">
                                                 <input required type="email" name="email" class="form-control"
                                                        value="{{$driver->user->email}}">
                                             </div>
+                                        </div>
+                                        <div style="padding-top: 22px" class="col-sm-2">
+                                            @if($driver->user->is_confirmed)
+                                                <span class="text-success">Vérifiée</span>
+                                            @else
+                                                <span class="text-danger">Non vérifiée</span>
+                                            @endif
                                         </div>
                                     </div>
 

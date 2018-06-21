@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Customer;
 use App\Driver;
+use App\Http\Controllers\MailController;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -72,7 +74,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'admin' => false,
-            'is_confirmed' => true
+            'is_confirmed' => false
         ]);
 
         if($data['type'] == 'Customer'){
@@ -87,6 +89,12 @@ class RegisterController extends Controller
             $driver->surname = $data['surname'];
             $driver->user_id = $user->id;
             $driver->save();
+
+            // Envoyer le mail de confirmation
+            $token = bin2hex(random_bytes(78));
+            $driver->user->email_confirmation_token = $token;
+            $driver->user->save();
+            MailController::confirm_driver_email_adresse($driver, $token);
         }else{
             $user->admin = true;
             $user->save();
