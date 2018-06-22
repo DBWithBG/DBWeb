@@ -184,6 +184,9 @@ return [
         //notification push
         LaravelFCM\FCMServiceProvider::class,
 
+        //agent
+        Jenssegers\Agent\AgentServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +239,8 @@ return [
         'FCM'      => LaravelFCM\Facades\FCM::class,
         //Connexion FB, twitter, google+
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        //agent
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
 
     ],

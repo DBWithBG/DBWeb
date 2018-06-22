@@ -319,7 +319,7 @@ class MobileController extends Controller
         if(!$delivery->takeOverDelivery)
             throw new \Error('Prise en charge non trouvée :( !');
         $d=new Dispute;
-        $d->take_over_deliveries=$delivery->takeOverDelivery->id;
+        $d->take_over_delivery_id=$delivery->takeOverDelivery->id;
         $d->reason=$request->reason;
         $d->save();
         return $d;
