@@ -92,6 +92,15 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    public function historique() {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $deliveries = $customer->deliveries;
+
+        return view('customer.historique')->with(['deliveries' => $deliveries]);
+    }
+
 
 
 }

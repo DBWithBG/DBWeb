@@ -96,14 +96,17 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 /*************************** FRONT CUSTOMER **************************************/
 
 Route::get('/home', 'CustomerController@home');
+
 Route::get('/contact', 'CustomerController@contact');
 Route::post('/contact', 'CustomerController@postContact');
+
+Route::get('/historique', 'CustomerController@historique');
+
 Route::get('/confirmEmail', 'CustomerController@confirmEmail');
 Route::get('/resendConfirmationEmail', 'CustomerController@resendConfirmationEmail');
+
 Route::get('inscription', 'CustomerController@inscription');
-
 Route::post('inscription', 'CustomerController@postInscription');
-
 Route::get('connexion', 'CustomerController@connexion');
 
 Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
