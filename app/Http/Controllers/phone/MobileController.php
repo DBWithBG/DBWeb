@@ -253,7 +253,9 @@ class MobileController extends Controller
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
         if(!$u->customer)
             throw new \Error('Utilisateur non customer');
-        $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
+        if(!$delivery)
+            throw new \Error('Delivery non trouvée :( !');
         if($delivery->customer_id!=$u->customer->id){
             throw new \Error('L\'utilisateur n\'a pas accès à cette course.');
         }
