@@ -33,6 +33,10 @@
 
 <link rel="stylesheet/less" type="text/css" href="{!! asset('iblue/less/skin.less') !!}">
 
+<script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
 <style>
     .active{
         background-color: #00aa88;

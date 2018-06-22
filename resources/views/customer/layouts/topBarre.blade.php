@@ -1,4 +1,6 @@
 <div class=" clearfix"></div>
+
+@if(!\Jenssegers\Agent\Facades\Agent::isMobile())
 <div class="col-md-12 nopadding">
     <div class="header-section style6 pin-style">
         <div class="container">
@@ -18,7 +20,9 @@
                                             <span
                                                     class="arrow"></span>
                                             <ul class="dm-align-2">
-                                                <li><a href="index2.html">Mon profil</a></li>
+                                                <li>
+                                                    <a href="{{url("customers/profile?customer_id=".\Illuminate\Support\Facades\Auth::user()->customer->id)}}">Mon profil</a>
+                                                </li>
                                                 <li><a href="{{url("logout")}}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit()">Se déconnecter</a>
                                                 </li>
@@ -63,4 +67,7 @@
     <!--end menu-->
 
 </div>
+
+@endif
+
 <!--end menu-->

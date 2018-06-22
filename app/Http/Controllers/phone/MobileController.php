@@ -262,8 +262,9 @@ class MobileController extends Controller
             throw new \Error('L\'utilisateur n\'a pas accès à cette course.');
         }
 
+        $deliveries=Delivery::where('customer_id','=',$u->customer->id)->orderBy('created_at','DESC')->with('customer')->with('startPosition')->with('endPosition')->get();
 
-        return view('customer.showDelivery')->with(compact('delivery'));
+        return view('customer.showDelivery')->with(compact('delivery','deliveries'));
 
     }
 

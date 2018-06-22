@@ -15,7 +15,7 @@
                         <li data-index="rs-1" data-transition="">
 
                             <!-- MAIN IMAGE -->
-                            <img src="http://via.placeholder.com/2000x1300" alt="" width="1920" height="1280">
+                            <img style="z-index:9;" src="{{asset('img/banner.jpg')}}" alt="" width="1920" height="1280" style="height:auto;">
 
                             <!-- LAYER NR. 3 -->
                             <div class="tp-caption raleway white uppercase text-white tp-resizeme"
@@ -56,7 +56,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap;">Vos bagages Notre mission
+                                 style="z-index: 7; white-space: nowrap;text-shadow: 4px 4px #343434;">Vos bagages : notre mission
                             </div>
 
                             <!-- LAYER NR. 2 -->
@@ -77,7 +77,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap;">Deliverbag
+                                 style="z-index: 7; white-space: nowrap;text-shadow: 4px 4px #343434;">Deliverbag
                             </div>
 
                             <!-- LAYER NR. 3 -->
