@@ -172,7 +172,7 @@ class DriverController extends Controller
         $token = bin2hex(random_bytes(78));
         $driver->user->email_confirmation_token = $token;
         $driver->user->save();
-        MailController::confirm_driver_email_adresse($driver, $token);
+        MailController::confirm_driver_email_address($driver, $token);
 
         return redirect()->back()->with(['success' => 'Un mail de confirmation vient de vous être envoyé']);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AuthorizedDepartment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -62,6 +63,19 @@ class CustomerController extends Controller
 
     public function ajaxDepartments(){
         return AuthorizedDepartment::all();
+    }
+
+    public function confirmEmail(Request $request) {
+        $email = $request->email;
+        $token = $request->token;
+        $user = User::where('email', $email)->first();
+        if ($user->email_confirmation_token == $token) {
+            $user->is_confirmed = true;
+            $user->save();
+            Session::flash('success', 'Votre adresse mail a été confirmée');
+            return redirect('/');
+        }
+        return abort(400);
     }
 
 

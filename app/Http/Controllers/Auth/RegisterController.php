@@ -83,6 +83,12 @@ class RegisterController extends Controller
             $customer->surname = $data['surname'];
             $customer->user_id = $user->id;
             $customer->save();
+
+            // Envoie du mail de confirmation
+            $token = bin2hex(random_bytes(78));
+            $customer->user->email_confirmation_token = $token;
+            $customer->user->save();
+            MailController::confirm_customer_email_address($customer, $token);
         }elseif($data['type'] == 'Driver'){
             $driver = new Driver();
             $driver->name = $data['name'];
@@ -90,11 +96,11 @@ class RegisterController extends Controller
             $driver->user_id = $user->id;
             $driver->save();
 
-            // Envoyer le mail de confirmation
+            // Envoie du mail de confirmation
             $token = bin2hex(random_bytes(78));
             $driver->user->email_confirmation_token = $token;
             $driver->user->save();
-            MailController::confirm_driver_email_adresse($driver, $token);
+            MailController::confirm_driver_email_address($driver, $token);
         }else{
             $user->admin = true;
             $user->save();

@@ -98,6 +98,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 Route::get('/home', 'CustomerController@home');
 Route::get('/contact', 'CustomerController@contact');
 Route::post('/contact', 'CustomerController@postContact');
+Route::get('/confirmEmail', 'CustomerController@confirmEmail');
 Route::get('inscription', 'CustomerController@inscription');
 
 Route::post('inscription', 'CustomerController@postInscription');
