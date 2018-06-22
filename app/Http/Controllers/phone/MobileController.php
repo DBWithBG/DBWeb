@@ -6,6 +6,7 @@ use App\AuthorizedDepartment;
 use App\Bag;
 use App\Customer;
 use App\Delivery;
+use App\Dispute;
 use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Rating;
@@ -154,7 +155,7 @@ class MobileController extends Controller
             throw new \Error('Pas de commande fournie ou trouvee  :( !');
 
         $res_id=null;
-        if($del->status==1){
+        if($del->status=="Payé"){
             $take=new TakeOverDelivery;
             $take->driver_id=$u->driver->id;
             $take->status=0;
@@ -301,6 +302,28 @@ class MobileController extends Controller
         return($r);
     }
 
+
+    //envoie d'une dispute delivery
+    public function disputeDelivery(Request $request){
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Utilisateur non customer');
+
+        $delivery=Delivery::where('id',$request->delivery_id)->first();
+        if(!$delivery)
+            throw new \Error('Delivery non trouvée :( !');
+        if($delivery->customer_id!=$u->customer->id)
+            throw new \Error('User n\'a pas les droits de dispute sur cette delivery :( !');
+        if(!$delivery->takeOverDelivery)
+            throw new \Error('Prise en charge non trouvée :( !');
+        $d=new Dispute;
+        $d->take_over_deliveries=$delivery->takeOverDelivery->id;
+        $d->reason=$request->reason;
+        $d->save();
+        return $d;
+    }
 
 
 
