@@ -160,7 +160,7 @@ class MobileController extends Controller
             $take->driver_id=$u->driver->id;
             $take->status=0;
             $take->delivery_id=$del->id;
-            $take->actual_position_id=null;
+            $take->actual_position_id=$del->startPosition->id;
             $take->save();
             $del->update(['status'=>2]);
             $res_id=$take->id;
