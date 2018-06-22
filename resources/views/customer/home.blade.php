@@ -96,7 +96,7 @@
 
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                        <div class="col-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                                             <div class="row">
 
                                                 <div class="smart-wrap">
@@ -128,7 +128,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-footer">
-                                                                <label class="depart button btn-primary">
+                                                                <label class="js_valid_deliver button btn-primary">
                                                                     Valider
                                                                 </label>
                                                                 <label data-toggle="modal"
@@ -443,6 +443,9 @@
 
                             $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=' + key_sncf + ' ', function (data) {
                                 traitement_gares(data);
+                            }).fail(function () {
+                                swal("Ce numéro de train n'est pas valide");
+                                $('#input_train_date').val(null);
                             });
                         } else {
                             swal("Numéro de billet invalide");
@@ -478,6 +481,9 @@
                         }
 
                         $('#trainModal').modal('hide');
+                        if (tabButtons.length == 0) {
+                            swal('Aucune gare trouvée pour ce numéro de train');
+                        }
                         swal("Dans quelle gare arrivez-vous ?", {
                             buttons: tabButtons
                         }).then((value) => {
