@@ -121,6 +121,7 @@ Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliverie
 Route::post('/mobile/deliveries/takeovers/start', 'phone\MobileController@priseEnChargeDelivery');
 Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDelivery');
 
+Route::post('/mobile/deliveries/ratings', 'phone\MobileController@ratingDelivery');
 
 Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDelivery');
 

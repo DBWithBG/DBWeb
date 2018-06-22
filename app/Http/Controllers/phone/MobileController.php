@@ -8,6 +8,7 @@ use App\Customer;
 use App\Delivery;
 use App\Driver;
 use App\Http\Controllers\Controller;
+use App\Rating;
 use App\TakeOverDelivery;
 use App\User;
 use Illuminate\Http\Request;
@@ -263,6 +264,41 @@ class MobileController extends Controller
 
         return view('customer.showDelivery')->with(compact('delivery'));
 
+    }
+
+    //TODO methode de check des params
+    //post d'un rating de delivery
+    public function ratingDelivery(Request $request){
+        if(!isset($request->mobile_token))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Utilisateur non customer');
+
+        $delivery=Delivery::where('id',$request->delivery_id)->first();
+        if(!$delivery)
+            throw new \Error('Delivery non trouvée :( !');
+
+        if(!$delivery->takeOverDelivery)
+            throw new \Error('Prise en charge non trouvée :( !');
+        $driver=Driver::find($delivery->takeOverDelivery->driver->id);
+
+        if(!$driver)
+            throw new \Error('Driver non retrouvé :( !');
+        $r=new Rating;
+        $r->driver_id=$driver->id;
+        $r->delivery_id=$delivery->id;
+        $r->rating=$request->rating;
+        if(!$request->details)
+            $request->details="";
+        $r->details=$request->details;
+        $r->customer_id=$u->customer->id;
+        $r->save();
+
+
+        return($r);
     }
 
 
