@@ -162,7 +162,7 @@ class MobileController extends Controller
             $take->delivery_id=$del->id;
             $take->actual_position_id=$del->startPosition->id;
             $take->save();
-            $del->update(['status'=>2]);
+            $del->update(['status'=>"Pris en charge"]);
             $res_id=$take->id;
         }
         return json_encode($res_id);
