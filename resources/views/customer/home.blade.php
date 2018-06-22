@@ -85,7 +85,7 @@
                             <div class="tp-caption sbut2 btn-round"
                                  data-x="['center','center','center','center']"
                                  data-hoffset="['0','0','0','0']"
-                                 data-y="['top','top','top','top']" data-voffset="['550','350','370','300']"
+                                 data-y="['top','top','top','top']" data-voffset="['460','350','370','300']"
                                  data-speed="800"
                                  data-start="2500"
                                  data-transform_in="y:bottom;s:1500;e:Power3.easeOut;"
@@ -93,31 +93,65 @@
                                  data-endspeed="300"
                                  data-captionhidden="off"
                                  style="z-index: 6">
-                                <div class="sp-feature-box-4 ">
-                                    <form method="POST" action="{{url("")}}">
-                                        {{csrf_field()}}
-                                        <input id="adresse_input_depart" type="search" placeholder="Adresse de départ">
-                                        <input id="adresse_input_arrivee" type="search" placeholder="Adresse d'arrivée">
-                                        <a class="js_valid_deliver">Valider</a>
-                                    </form>
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                            <div class="row">
+
+                                                <div class="smart-wrap">
+                                                    <div style="border-radius: 2px"
+                                                         class="smart-forms smart-container wrap-3">
+
+
+                                                        <form method="POST" action="#">
+                                                            {{csrf_field()}}
+
+                                                            <div class="form-body">
+                                                                <div class="">
+                                                                    <label class="field prepend-icon">
+                                                                        <input id="adresse_input_depart" type="search"
+                                                                               class="gui-input"
+                                                                               placeholder="Adresse de départ">
+                                                                        <span class="field-icon"><i
+                                                                                    class="fa fa-arrow-right"></i></span>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="field prepend-icon">
+                                                                        <input id="adresse_input_arrivee" type="search"
+                                                                               class="gui-input"
+                                                                               placeholder="Adresse d'arrivée">
+                                                                        <span class="field-icon"><i
+                                                                                    class="fa fa-arrow-left"></i></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-footer">
+                                                                <label class="depart button btn-primary">
+                                                                    Valider
+                                                                </label>
+                                                                <label data-toggle="modal"
+                                                                        data-target="#trainModal"
+                                                                        class="button btn-primary"><i
+                                                                            class="fa fa-train"></i></label>
+                                                                <label data-toggle="modal"
+                                                                        data-target="#planeModal"
+                                                                        class="button btn-primary"><i
+                                                                            class="fa fa-plane"></i></label>
+                                                            </div>
+                                                            <p id="infos"></p>
+                                                        </form>
+
+
+                                                    </div><!-- end .smart-forms section -->
+                                                </div><!-- end .smart-wrap section -->
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button href="#" class="show-train">Train</button>
-                                <button href="#" class="show-flight">Avion</button>
-                                <div class="sp-feature-box-4 js-show-train" style="margin-top: 20px" hidden>
-                                    <form method="POST" action="{{url("")}}">
-                                        {{csrf_field()}}
-                                        <input id="input_train" type="search" placeholder="Numéro de train">
-                                        <input id="input_train_date" type="date" placeholder="Date du voyage">
-                                    </form>
-                                </div>
-                                <div class="sp-feature-box-4 js-show-flight" style="margin-top: 20px" hidden>
-                                    <form method="POST" action="{{url("")}}">
-                                        {{csrf_field()}}
-                                        <input id="input_fly" type="search" placeholder="Numéro d'avion">
-                                        <input id="input_fly_date" type="date" placeholder="Date du voyage">
-                                        <a id="js-avion">Valider n° avion</a>
-                                    </form>
-                                </div>
+
                             </div>
 
                             <!-- LAYER NR. 3 -->
@@ -182,6 +216,93 @@
     <div class="clearfix"></div>
     <!-- end section -->
 
+
+
+    <!-- Modal train -->
+    <div class="modal fade" id="trainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vous voyagez en train</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="smart-wrap">
+                        <div class="smart-forms">
+
+
+                            <div class="form-body">
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input id="input_train" type="search" class="gui-input"
+                                               placeholder="Numéro de train">
+                                        <span class="field-icon"><i class="fa fa-train"></i></span>
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input id="input_train_date" type="date" class="gui-input"
+                                               placeholder="Date de départ">
+                                        <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p id="infos"></p>
+
+
+                        </div><!-- end .smart-forms section -->
+                    </div><!-- end .smart-wrap section -->
+                </div>
+                <div class="modal-footer smart-forms">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="button btn-primary">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal avion -->
+    <div class="modal fade" id="planeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vous voyagez en avion</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="smart-wrap">
+                        <div class="smart-forms">
+
+
+                            <div class="form-body">
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input id="input_fly" type="search" class="gui-input"
+                                               placeholder="Numéro de votre avion">
+                                        <span class="field-icon"><i class="fa fa-plane"></i></span>
+                                    </label>
+                                </div>
+                                <div class="">
+                                    <label class="field prepend-icon">
+                                        <input id="input_fly_date" type="date" class="gui-input"
+                                               placeholder="Date de départ">
+                                        <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <p id="infos"></p>
+
+
+                        </div><!-- end .smart-forms section -->
+                    </div><!-- end .smart-wrap section -->
+                </div>
+                <div class="modal-footer smart-forms">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="button btn-primary">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <?php if (\Illuminate\Support\Facades\Auth::check()) {
@@ -296,6 +417,7 @@
 
             });
         });
+
         /****************** Autocomplete google *********************/
 
 
