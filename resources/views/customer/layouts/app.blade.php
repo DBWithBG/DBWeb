@@ -13,6 +13,7 @@
     <!-- Styles -->
     @include('customer.layouts.head')
 
+
 </head>
 <body>
 <div class="over-loader loader-live">

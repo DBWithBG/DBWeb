@@ -35,8 +35,13 @@
                                         <span class="field-icon"><i class="fa fa-phone"></i></span>
                                     </label>
                                 </div>
-                                <div class="form-footer">
+                                <div class="form-footer" style="text-align:center;">
+
+                                    @if(\Jenssegers\Agent\Facades\Agent::isMobile())
+                                        <button type="button" class="button btn-danger" id="back" value="">Annuler</button>
+                                    @endif
                                     <button type="submit" class="button btn-primary">Valider</button>
+
                                 </div>
                             </div>
                         </form>
