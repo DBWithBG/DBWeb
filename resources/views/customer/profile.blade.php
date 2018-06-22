@@ -7,6 +7,17 @@
 
                 <div class="smart-wrap">
                     <div class="smart-forms smart-container wrap-3">
+                        <div class="col-divider-margin-2"></div>
+
+                        @if(!$customer->user->is_confirmed)
+                            <div class="col-md-12 nopadding">
+                                <div class="alert-box warning">
+                                    <span class="alert-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                    Merci de confirmer votre adresse mail à l'aide du lien qui vous a été envoyé. Si vous n'avez pas reçu ce mail, cliquez <a href="/resendConfirmationEmail">ici</a> pour le recevoir.
+                                </div>
+                            </div>
+                        @endif
+
 
                         <form method="post" action="{{url('/backoffice/customer/'.$customer->id.'/update')}}" id="js-form-login">
                             <input type="hidden" name="chk_mobile_token" id="chk_mobile_token">

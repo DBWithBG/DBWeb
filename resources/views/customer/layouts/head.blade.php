@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/js/bootstrap/bootstrap.min.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/js/megamenu/stylesheets/screen.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/css/theme-default.css" type="text/css') !!}">
+<link rel="stylesheet" href="{!! asset('iblue/css/shortcodes.css" type="text/css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/js/loaders/stylesheets/screen.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/css/corporate.css" type="text/css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/fonts/font-awesome/css/font-awesome.min.css')!!}" type="text/css">

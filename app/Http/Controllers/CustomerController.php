@@ -78,6 +78,20 @@ class CustomerController extends Controller
         return abort(400);
     }
 
+    public function resendConfirmationEmail() {
+        $user = Auth::user();
+        $driver = $user->customer;
+
+        // Envoyer le mail de confirmation
+        $token = bin2hex(random_bytes(78));
+        $driver->user->email_confirmation_token = $token;
+        $driver->user->save();
+        MailController::confirm_customer_email_address($driver, $token);
+
+        Session::flash('success', 'Un mail de confirmation vient de vous être envoyé');
+        return redirect()->back();
+    }
+
 
 
 }

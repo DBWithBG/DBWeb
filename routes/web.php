@@ -99,6 +99,7 @@ Route::get('/home', 'CustomerController@home');
 Route::get('/contact', 'CustomerController@contact');
 Route::post('/contact', 'CustomerController@postContact');
 Route::get('/confirmEmail', 'CustomerController@confirmEmail');
+Route::get('/resendConfirmationEmail', 'CustomerController@resendConfirmationEmail');
 Route::get('inscription', 'CustomerController@inscription');
 
 Route::post('inscription', 'CustomerController@postInscription');
