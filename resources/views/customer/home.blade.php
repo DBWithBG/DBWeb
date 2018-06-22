@@ -189,9 +189,9 @@
                                 <div class="icon-plain-medium center white icon"><span
                                             class="pe-7s-photo-gallery"></span></div>
                                 <br/>
-                                <h5 class="title font-weight-5 text-white">Classic Styles</h5>
-                                <p class="text-white opacity-8">Vestibulum ante ipsum primis sit amet justo elit
-                                    faucibus orci luctus ultrices posuere cubilia Curae.</p>
+                                <h5 class="title font-weight-5 text-white">A votre écoute</h5>
+                                <p class="text-white opacity-8">Pour toutes vos questions, n'hésitez pas à nous contacter, nous vous répondrons dans les plus bref délais.</p>
+                                <a class="text-center text-white opacity-8" href="{{url('/contact')}}">Nous contacter</a>
                             </div>
                         </div>
                         <!--end item-->

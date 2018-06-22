@@ -120,4 +120,25 @@ class MailController
             'body' => json_encode($body)
         ]);
     }
+
+    public static function contact_email($nom, $prenom, $email, $message) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                'simonhajek88@gmail.com',
+
+            'to' => 'testdeliver@yopmail.com',
+            'Subject' => "Contact de " . $nom . " " . $prenom,
+            "html-part" => view('emails.contact')->with(['message' => $message, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email])->render()
+        ];
+
+        $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+    }
 }
