@@ -11,5 +11,12 @@ return [
     'APP_ID_FLIGHT' => '95a4eb71',
     'APP_KEY_FLIGHT' => '84cb52736b8c4db53b753b8f87be34a8',
 
-    'SNCF_API_KEY' => '7308cd76-a20f-4f01-9cc3-59d4742bba24'
+    'SNCF_API_KEY' => '7308cd76-a20f-4f01-9cc3-59d4742bba24',
+
+    'NON_FINALISE' => 0,
+    'EN_ATTENTE_DE_PRISE_EN_CHARGE' => 1,
+    'PRIS_EN_CHARGE' => 2,
+    'EN_COURS_DE_LIVRAISON' => 3,
+    'CONSIGNE' => 4,
+    'TERMINE' => 5
 ];
