@@ -6,6 +6,7 @@ use App\AuthorizedDepartment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Validator;
@@ -177,6 +178,42 @@ class CustomerController extends Controller
         $customer = $user->customer;
 
         return view('customer.modificationMotDePasse')->with(['customer' => $customer]);
+    }
+
+    function updatePassword(Request $request) {
+        $user = Auth::user();
+
+        $v = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_password_again' => 'required'
+        ], [
+            'current_password.required' => 'Merci de fournir votre mot de passe actuel',
+            'new_password.required' => 'Merci de fournir votre nouveau mot de passe',
+            'new_password_again.required' => 'Merci de fournir la confirmation de votre nouveau mot de passe'
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        }
+
+        $current_password = $request->current_password;
+        $new_password = $request->new_password;
+        $new_password_again = $request->new_password_again;
+
+        if (!Hash::check($current_password, $user->password)) {
+            return redirect()->back()->withErrors(['Mot de passe actuel invalide']);
+        }
+
+        if ($new_password != $new_password_again) {
+            return redirect()->back()->withErrors(['Les deux mots de passe ne correspondent pas']);
+        }
+
+        $user->password = Hash::make($new_password);
+        $user->save();
+
+        Session::flash('success', 'Votre mot de passe a été modifié');
+        return redirect()->back();
     }
 
 
