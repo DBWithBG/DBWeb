@@ -100,7 +100,15 @@ Route::get('/home', 'CustomerController@home');
 Route::get('/contact', 'CustomerController@contact');
 Route::post('/contact', 'CustomerController@postContact');
 
+Route::get('/modificationEmail', 'CustomerController@modificationEmail');
+Route::post('/updateEmail', 'CustomerController@updateEmail');
+
+Route::get('/modificationMotDePasse', 'CustomerController@modificationMotDePasse');
+Route::post('/updatePassword', 'CustomerController@updatePassword');
+
 Route::get('/historique', 'CustomerController@historique');
+Route::get('/profil', 'CustomerController@profil');
+Route::post('/profil', 'CustomerController@update');
 
 Route::get('/confirmEmail', 'CustomerController@confirmEmail');
 Route::get('/resendConfirmationEmail', 'CustomerController@resendConfirmationEmail');
@@ -133,7 +141,7 @@ Route::post('/mobile/deliveries/disputes', 'phone\MobileController@disputeDelive
 
 Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDelivery');
 
-Route::get('customers/profile','HomeController@getProfile');
+//Route::get('customers/profile','HomeController@getProfile');
 Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 

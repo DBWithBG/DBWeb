@@ -21,7 +21,7 @@
                                                     class="arrow"></span>
                                             <ul class="dm-align-2">
                                                 <li>
-                                                    <a href="{{url("customers/profile?customer_id=".\Illuminate\Support\Facades\Auth::user()->customer->id)}}">Mon profil</a>
+                                                    <a href="{{url("/profil")}}">Mon profil</a>
                                                 </li>
                                                 <li><a href="{{url("logout")}}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit()">Se déconnecter</a>

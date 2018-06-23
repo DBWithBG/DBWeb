@@ -80,13 +80,13 @@ class CustomerController extends Controller
 
     public function resendConfirmationEmail() {
         $user = Auth::user();
-        $driver = $user->customer;
+        $customer = $user->customer;
 
         // Envoyer le mail de confirmation
         $token = bin2hex(random_bytes(78));
-        $driver->user->email_confirmation_token = $token;
-        $driver->user->save();
-        MailController::confirm_customer_email_address($driver, $token);
+        $customer->user->email_confirmation_token = $token;
+        $customer->user->save();
+        MailController::confirm_customer_email_address($customer, $token);
 
         Session::flash('success', 'Un mail de confirmation vient de vous être envoyé');
         return redirect()->back();
@@ -99,6 +99,84 @@ class CustomerController extends Controller
         $deliveries = $customer->deliveries;
 
         return view('customer.historique')->with(['deliveries' => $deliveries]);
+    }
+
+    public function profil() {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        return view('customer.profil')->with(['customer' => $customer]);
+    }
+
+    /**
+     * Mise à jour des infos persos du customer
+     */
+    public function update(Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'phone' => 'nullable|numeric'
+        ], [
+            'name.required' => 'Merci de fournir votre nom et votre prénom',
+            'surname.required' => 'Merci de fournir votre nom et votre prénom',
+            'phone.numeric' => "Le numéro de téléphone est invalide"
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        }
+
+        $customer->update($request->all());
+        $customer->save();
+
+        Session::flash('success', 'Vos informations personnelles ont été mises à jour');
+        return redirect()->back();
+    }
+
+    public function modificationEmail() {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        return view('customer.modificationEmail')->with(['customer' => $customer]);
+    }
+
+    public function updateEmail(Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $v = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users'
+        ], [
+            'email.required' => 'Une nouvelle adresse mail est nécessaire',
+            'email.email' => 'L\'adresse mail est invalide',
+            'email.unique' => 'Cette adresse email est déjà utilisée'
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        }
+
+        $customer->user->email = $request->email;
+        $token = bin2hex(random_bytes(78));
+        $customer->user->email_confirmation_token = $token;
+        $customer->user->is_confirmed = false;
+        $customer->user->save();
+
+
+        MailController::confirm_customer_email_address($customer, $token);
+
+        Session::flash('success', 'Votre adresse mail a été modifiée');
+        return redirect()->back();
+    }
+
+    public function modificationMotDePasse() {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        return view('customer.modificationMotDePasse')->with(['customer' => $customer]);
     }
 
 

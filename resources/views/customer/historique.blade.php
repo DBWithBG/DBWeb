@@ -36,7 +36,6 @@
                             <th>Durée estimée</th>
                             <th>Prix</th>
                             <th></th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,7 +47,6 @@
                                 <td>{{$delivery->estimated_time}}</td>
                                 <td>{{$delivery->price}}</td>
                                 <td><a class="text-warning" href="#">Commenter</a></td>
-                                <td><a class="text-danger" href="#">Supprimer</a></td>
                             </tr>
                         @endforeach
                         </tbody>
