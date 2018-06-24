@@ -107,6 +107,8 @@ Route::get('/modificationMotDePasse', 'CustomerController@modificationMotDePasse
 Route::post('/updatePassword', 'CustomerController@updatePassword');
 
 Route::get('/historique', 'CustomerController@historique');
+Route::post('/comment', 'CustomerController@comment');
+
 Route::get('/profil', 'CustomerController@profil');
 Route::post('/profil', 'CustomerController@update');
 

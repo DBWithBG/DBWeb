@@ -227,7 +227,7 @@
                     <h5 class="modal-title">Vous voyagez en train</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="smart-wrap">
+                    <div class="smart-wrap" style="min-height: 140px">
                         <div class="smart-forms">
 
 
@@ -270,7 +270,7 @@
                     <h5 class="modal-title">Vous voyagez en avion</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="smart-wrap">
+                    <div class="smart-wrap" style="min-height: 140px">
                         <div class="smart-forms">
 
 

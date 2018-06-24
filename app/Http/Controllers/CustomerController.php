@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AuthorizedDepartment;
+use App\Delivery;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -214,6 +215,25 @@ class CustomerController extends Controller
 
         Session::flash('success', 'Votre mot de passe a été modifié');
         return redirect()->back();
+    }
+
+    public function comment(Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $delivery_id = $request->get('delivery_id', -1);
+        $delivery = Delivery::findOrFail($delivery_id);
+
+        if ($delivery->customer_id != $customer->id) {
+            abort(403);
+        }
+
+        $delivery->comment = $request->get('comment', '');
+        $delivery->save();
+
+        Session::flash('success', 'Votre commentaire a bien été pris en compte');
+        return redirect()->back();
+
     }
 
 
