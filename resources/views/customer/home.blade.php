@@ -97,7 +97,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                                            <div class="row">
+                                            <div class="row js-opa" style="opacity: 0.80;">
 
                                                 <div class="smart-wrap">
                                                     <div style="border-radius: 2px"
@@ -326,6 +326,12 @@
         var place_depart;
         var tabGeocSNCF = {};
 
+        $('.js-opa').hover(function(){
+            $(this).css('opacity', '1');
+        },function(){
+                $(this).css('opacity', '0.80');
+        }
+        );
 
         $(document).ready(function () {
             // On est sur que la lib google maps est load
@@ -710,6 +716,8 @@
                             }
 
                         });
+                    }else{
+                        swal("Pos départ : "+pos_depart_ok+" Pos arrivée : "+pos_arrivee_ok);
                     }
 
 

@@ -77,6 +77,7 @@ class CustomerController extends Controller
             Session::flash('success', 'Votre adresse mail a été confirmée');
             return redirect('/');
         }
+        //TODO ERROR
         return abort(400);
     }
 

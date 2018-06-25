@@ -10,6 +10,7 @@ use App\TakeOverDelivery;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use League\OAuth1\Client\Server\User;
@@ -28,7 +29,7 @@ class DeliveryController extends Controller
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
-        $request['delivery']['status'] = 'Non payé';
+        $request['delivery']['status'] = Config::get('constants.NON_PAYE');
         //TODO Calcul du prix
         /******* CALCUL DU PRIX ************/
         $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');
