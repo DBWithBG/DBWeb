@@ -207,22 +207,22 @@ class AdminController extends Controller
 
 
     public function getDeliveriesInProgress(){
-        $deliveries = Delivery::where('status', 'En cours')->where('deleted', 0)->get();
+        $deliveries = Delivery::getAllDeliveryInProgress();
         return view('admin.delivery.deliveries_in_progress')->with([
             'deliveries' => $deliveries
         ]);
     }
 
     public function getDeliveriesPast(){
-        $deliveries = Delivery::where('status', 'Passée')->where('deleted', 0)->get();
-        return view('admin.delivery.deliveries_in_progress')->with([
+        $deliveries = Delivery::getAllDeliveryFinished();
+        return view('admin.delivery.deliveries_past')->with([
             'deliveries' => $deliveries
         ]);
     }
 
     public function getDeliveriesUpComing(){
-        $deliveries = Delivery::where('status', 'A venir')->where('deleted', 0)->get();
-        return view('admin.delivery.deliveries_in_progress')->with([
+        $deliveries = Delivery::getAllDeliveryWaitingTakeOver();
+        return view('admin.delivery.deliveries_up_coming')->with([
             'deliveries' => $deliveries
         ]);
     }
