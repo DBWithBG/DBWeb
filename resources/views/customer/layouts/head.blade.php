@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="{!! asset('iblue/css/shortcodes.css" type="text/css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/js/loaders/stylesheets/screen.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/css/corporate.css" type="text/css') !!}">
+<link rel="stylesheet" href="{!! asset('iblue/js/star-rating/css/star-rating.css" type="text/css') !!}">
+
 <link rel="stylesheet" href="{!! asset('iblue/fonts/font-awesome/css/font-awesome.min.css')!!}" type="text/css">
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/fonts/Simple-Line-Icons-Webfont/simple-line-icons.css') !!}" media="screen" />
 <link rel="stylesheet" href="{!! asset('iblue/fonts/et-line-font/et-line-font.css') !!}">

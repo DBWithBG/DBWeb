@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\AuthorizedDepartment;
 use App\Delivery;
+use App\Rating;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -100,8 +102,17 @@ class CustomerController extends Controller
         $customer = $user->customer;
 
         $deliveries = $customer->deliveries;
+        $takeOverDeliveries = [];
+        foreach ($deliveries as $delivery) {
+            if ($delivery->takeOverDelivery != null) {
+                array_push($takeOverDeliveries, $delivery);
+            }
+        }
 
-        return view('customer.historique')->with(['deliveries' => $deliveries]);
+        return view('customer.historique')->with([
+            'deliveries' => $deliveries,
+            'takeOverDeliveries' => $takeOverDeliveries
+        ]);
     }
 
     public function profil() {
@@ -233,6 +244,35 @@ class CustomerController extends Controller
         $delivery->save();
 
         Session::flash('success', 'Votre commentaire a bien été pris en compte');
+        return redirect()->back();
+
+    }
+
+
+    public function rate(Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $delivery = Delivery::findOrFail($request->get('delivery_id', -1));
+
+        if ($delivery->customer_id != $customer->id || $delivery->takeOverDelivery == null) {
+            return abort(400);
+        }
+
+        if ($delivery->rating == null) {
+            $rating = new Rating;
+            $rating->delivery_id = $delivery->id;
+            $rating->driver_id = $delivery->takeOverDelivery->driver_id;
+            $rating->customer_id = $delivery->customer_id;
+        } else {
+            $rating = $delivery->rating;
+        }
+
+        $rating->rating = $request->rating * 10;
+        $rating->details = $request->comment;
+        $rating->save();
+
+        Session::flash('success', 'Votre note a été prise en compte');
         return redirect()->back();
 
     }

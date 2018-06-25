@@ -18,5 +18,11 @@ return [
     'PRIS_EN_CHARGE' => 2,
     'EN_COURS_DE_LIVRAISON' => 3,
     'CONSIGNE' => 4,
-    'TERMINE' => 5
+    'TERMINE' => 5,
+    'STATUS_0' => 'Non finalisé',
+    'STATUS_1' => 'En attente de prise en charge',
+    'STATUS_2' => 'Pris en charge',
+    'STATUS_3' => 'En cours de livraison',
+    'STATUS_4' => 'Consigne',
+    'STATUS_5' => 'Terminé'
 ];
