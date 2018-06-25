@@ -97,7 +97,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                                            <div class="row">
+                                            <div class="row js-opa" style="opacity: 0.80;">
 
                                                 <div class="smart-wrap">
                                                     <div style="border-radius: 2px"
@@ -189,9 +189,9 @@
                                 <div class="icon-plain-medium center white icon"><span
                                             class="pe-7s-photo-gallery"></span></div>
                                 <br/>
-                                <h5 class="title font-weight-5 text-white">Classic Styles</h5>
-                                <p class="text-white opacity-8">Vestibulum ante ipsum primis sit amet justo elit
-                                    faucibus orci luctus ultrices posuere cubilia Curae.</p>
+                                <h5 class="title font-weight-5 text-white">A votre écoute</h5>
+                                <p class="text-white opacity-8">Pour toutes vos questions, n'hésitez pas à nous contacter, nous vous répondrons dans les plus bref délais.</p>
+                                <a class="text-center text-white opacity-8" href="{{url('/contact')}}">Nous contacter</a>
                             </div>
                         </div>
                         <!--end item-->
@@ -227,7 +227,7 @@
                     <h5 class="modal-title">Vous voyagez en train</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="smart-wrap">
+                    <div class="smart-wrap" style="min-height: 140px">
                         <div class="smart-forms">
 
 
@@ -270,7 +270,7 @@
                     <h5 class="modal-title">Vous voyagez en avion</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="smart-wrap">
+                    <div class="smart-wrap" style="min-height: 140px">
                         <div class="smart-forms">
 
 
@@ -326,6 +326,12 @@
         var place_depart;
         var tabGeocSNCF = {};
 
+        $('.js-opa').hover(function(){
+            $(this).css('opacity', '1');
+        },function(){
+                $(this).css('opacity', '0.80');
+        }
+        );
 
         $(document).ready(function () {
             // On est sur que la lib google maps est load
@@ -710,6 +716,8 @@
                             }
 
                         });
+                    }else{
+                        swal("Pos départ : "+pos_depart_ok+" Pos arrivée : "+pos_arrivee_ok);
                     }
 
 

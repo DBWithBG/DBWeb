@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Config;
 
 class Delivery extends Model
 {
@@ -41,6 +42,21 @@ class Delivery extends Model
 
     public function paiement(){
         return $this->hasOne('App\PayboxPayment', 'delivery_id');
+    }
+
+
+    public static function getAllDeliveryWaitingTakeOver(){
+        return Delivery::where('status', Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE'))->where('deleted', 0)->get();
+    }
+
+    public static function getAllDeliveryInProgress(){
+        return Delivery::where('status',
+            Config::get('constants.PRIS_EN_CHARGE'))->orWhere('status', Config::get('constants.EN_COURS_DE_LIVRAISON'))->orWhere('status',
+            Config::get('constants.CONSIGNE'))->where('deleted', 0)->get();
+    }
+
+    public static function getAllDeliveryFinished(){
+        return Delivery::where('status', Config::get('constants.TERMINE'))->where('deleted', 0)->get();
     }
 }
 

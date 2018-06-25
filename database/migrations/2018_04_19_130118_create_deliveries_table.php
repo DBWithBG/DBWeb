@@ -18,7 +18,7 @@ class CreateDeliveriesTable extends Migration
             $table->text('comment')->nullable();
             $table->double('price', 10,2);
             $table->timestamps();
-            $table->string('status')->nullable();
+            $table->integer('status')->nullable();
             $table->double('distance')->nullable();
             $table->integer('estimated_time')->nullable();
 

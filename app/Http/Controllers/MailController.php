@@ -79,7 +79,7 @@ class MailController
         ]);
     }
 
-    public static function confirm_driver_email_adresse($driver, $token) {
+    public static function confirm_driver_email_address($driver, $token) {
         $client = new Client();
         $body = [
             'FromEmail' =>
@@ -88,6 +88,27 @@ class MailController
             'to' => 'testdeliver@yopmail.com',
             'Subject' => "Confirmation de votre adresse mail",
             "html-part" => view('emails.confirmation_email_driver')->with(['token' => $token, 'driver' => $driver])->render()
+        ];
+
+        $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+    }
+
+    public static function confirm_customer_email_address($customer, $token) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                'simonhajek88@gmail.com',
+
+            'to' => 'testdeliver@yopmail.com',
+            'Subject' => "Confirmation de votre adresse mail",
+            "html-part" => view('emails.confirmation_email_customer')->with(['token' => $token, 'customer' => $customer])->render()
         ];
 
         $client->post('https://api.mailjet.com/v3/send', ['headers' => [
@@ -109,6 +130,27 @@ class MailController
             'to' => 'testdeliver@yopmail.com',
             'Subject' => "Réinitialisation de votre mot de passe",
             "html-part" => view('emails.password_reset_email')->with(['token' => $token])->render()
+        ];
+
+        $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+    }
+
+    public static function contact_email($nom, $prenom, $email, $message) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                'simonhajek88@gmail.com',
+
+            'to' => 'testdeliver@yopmail.com',
+            'Subject' => "Contact de " . $nom . " " . $prenom,
+            "html-part" => view('emails.contact')->with(['message' => $message, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email])->render()
         ];
 
         $client->post('https://api.mailjet.com/v3/send', ['headers' => [

@@ -24,7 +24,7 @@
                                     <div class="tagline"><span>OU Classiquement </span></div><!-- .tagline -->
                                 </div>
                                 @if(sizeof($errors->all())>0)
-                                    <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
+                                    <h5 style="color: #bf3924">{{$errors->all()[0]}}</h5>
                                 @endif
                                 <label for="names" class="field-label">Identité</label>
                                 <div class="frm-row">
@@ -40,14 +40,14 @@
                                     <div class="colm colm6">
                                         <label class="field prepend-icon">
                                             <input type="text" name="name" id="lastname" class="gui-input"
-                                                   placeholder="nom">
+                                                   placeholder="Nom">
                                             <span class="field-icon"><i class="fa fa-user"></i></span>
                                         </label>
                                     </div><!-- end section -->
 
                                 </div><!-- end frm-row section -->
 
-                                <div class="">
+                                <div style="padding-top: 6px" class="">
                                     <label for="email" class="field-label">Adresse email</label>
                                     <label class="field prepend-icon">
                                         <input type="email" name="email" id="email" class="gui-input"
@@ -56,7 +56,7 @@
                                     </label>
                                 </div><!-- end section -->
 
-                                <div class="">
+                                <div style="padding-top: 6px" class="">
                                     <label for="password" class="field-label">Mot de passe</label>
                                     <label class="field prepend-icon">
                                         <input type="password" name="password" id="password" class="gui-input">
@@ -64,7 +64,7 @@
                                     </label>
                                 </div><!-- end section -->
 
-                                <div class="">
+                                <div style="padding-top: 6px" class="">
                                     <label for="confirmPassword" class="field-label">Confirmer le mot de passe</label>
                                     <label class="field prepend-icon">
                                         <input type="password" name="password_confirmation" id="confirmPassword"
@@ -74,7 +74,7 @@
                                 </div><!-- end section -->
 
 
-                                <div class="">
+                                <div style="padding-top: 6px" class="">
                                     <label for="mobile" class="field-label">Numéro de téléphone</label>
                                     <label class="field prepend-icon">
                                         <input type="tel" name="mobile" id="mobile" class="gui-input" placeholder="+33">
@@ -82,7 +82,7 @@
                                     </label>
                                 </div><!-- end section -->
 
-                                <div class="">
+                                <div style="padding-top: 6px" class="">
                                     <label class="option">
                                         <input type="checkbox" name="check1">
                                         <span class="checkbox"></span>
