@@ -26,8 +26,11 @@
     <section class="sec-padding">
         <div class="container">
             <div class="row">
+                <h3 class="uppercase">Courses en cours</h3>
+                <br/>
+                <br/>
                 <div class="domain-pricing-table">
-                    <table class="table-style-2">
+                    <table id="datatables" class="table-style-2">
                         <thead>
                         <tr>
                             <th>Date de création</th>
@@ -58,6 +61,44 @@
     </section>
     <div class="clearfix"></div>
     <!-- end section -->
+
+    <section class="sec-padding">
+        <div class="container">
+            <div class="row">
+                <h3 class="uppercase">Courses terminées</h3>
+                <br/>
+                <br/>
+                <div class="domain-pricing-table">
+                    <table id="datatables" class="table-style-2">
+                        <thead>
+                        <tr>
+                            <th>Date de création</th>
+                            <th>Statut</th>
+                            <th>Distance</th>
+                            <th>Durée estimée</th>
+                            <th>Prix</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($deliveries as $delivery)
+                            <tr>
+                                <td>{{date('d / m / y', strtotime($delivery->created_at))}}</td>
+                                <td>{{$delivery->status}}</td>
+                                <td>{{$delivery->distance}}</td>
+                                <td>{{$delivery->estimated_time}}</td>
+                                <td>{{$delivery->price}}</td>
+                                <td><a data-toggle="modal" data-target="#modal_comment_{{$delivery->id}}"
+                                       class="text-warning" href="#">Commenter</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
 
 
     @foreach($deliveries as $delivery)
@@ -113,5 +154,42 @@
 @endsection
 
 @section('custom-scripts')
+    <script src="{{asset('material_dashboard/assets/js/plugins/jquery.datatables.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            var $table4 = $("#datatables");
 
+            $table4.DataTable({
+                dom: 'Bfrtip',
+                "ordering": false,
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ], language: {
+                    "sProcessing": "Traitement en cours...",
+                    "sSearch": "Rechercher&nbsp;:",
+                    "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",
+                    "sInfo": "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    "sInfoEmpty": "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                    "sInfoFiltered": "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    "sInfoPostFix": "",
+                    "sLoadingRecords": "Chargement en cours...",
+                    "sZeroRecords": "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    "sEmptyTable": "Aucune donn&eacute;e disponible dans le tableau",
+                    "oPaginate": {
+                        "sFirst": "Premier",
+                        "sPrevious": "Pr&eacute;c&eacute;dent",
+                        "sNext": "Suivant",
+                        "sLast": "Dernier"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": activer pour trier la colonne par ordre croissant",
+                        "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
