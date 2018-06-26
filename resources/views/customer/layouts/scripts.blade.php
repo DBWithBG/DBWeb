@@ -199,6 +199,8 @@ The following part can be removed on Server for On Demand Loading) -->
 <script src="{{asset('iblue/js/progress-circle/custom.js')}}"></script>
 <script src="{{asset('iblue/js/progress-circle/jQuery.circleProgressBar.js')}}"></script>
 <script src="{{asset('iblue/js/functions/functions.js')}}"></script>
+<script src="{{asset('iblue/js/star-rating/js/star-rating.js')}}"></script>
+
 <script>
     @if(\Illuminate\Support\Facades\Session::has('success'))
         swal({
