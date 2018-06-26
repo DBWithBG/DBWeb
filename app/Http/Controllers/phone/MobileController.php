@@ -166,7 +166,8 @@ class MobileController extends Controller
             $take->save();
             $del->update(['status'=>Config::get('constants.PRIS_EN_CHARGE')]);
             $res_id=$take->id;
-            NotificationController::sendNotification(array_push(NotificationController::notifyPriseEnCharge(),["tokens"=>$del->customer->user->notify_token]));
+            $token=$del->customer->user->notify_token;
+            NotificationController::sendNotification(array_push(NotificationController::notifyPriseEnCharge(),["tokens"=>$token]));
         }
         return json_encode($res_id);
     }
