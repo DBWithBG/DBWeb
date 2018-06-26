@@ -340,6 +340,7 @@ class MobileController extends Controller
 
         $u->notify_token=$request->notify_token;
         $u->save();
+        return json_encode($request->toArray());
     }
 
 
