@@ -49,6 +49,11 @@ class Delivery extends Model
         return $this->hasOne('App\PayboxPayment', 'delivery_id');
     }
 
+    public function note() {
+        if ($this->rating == null) return '';
+        return $this->rating->rating / 10;
+    }
+
 
     public static function getAllDeliveryWaitingTakeOver(){
         return Delivery::where('status', Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE'))->where('deleted', 0)->get();
