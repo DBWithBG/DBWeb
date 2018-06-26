@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AuthorizedDepartment;
 use App\Delivery;
+use App\Dispute;
 use App\Rating;
 use App\User;
 use Illuminate\Http\Request;
@@ -277,6 +278,85 @@ class CustomerController extends Controller
 
     }
 
+    public function litiges($id) {
+        $user = Auth::user();
+        $customer = $user->customer;
 
+        $delivery = Delivery::findOrFail($id);
+        if ($delivery->customer_id != $customer->id) {
+            return abort(404);
+        }
+
+        if ($delivery->takeOverDelivery == null) {
+            return abort(400);
+        }
+
+        return view('customer.litiges')->with(['delivery' => $delivery]);
+    }
+
+
+    public function newLitige($id, Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $delivery = Delivery::findOrFail($id);
+        if ($delivery->customer_id != $customer->id) {
+            return abort(404);
+        }
+
+        if ($delivery->takeOverDelivery == null) {
+            return abort(400);
+        }
+
+        $v = Validator::make($request->all(), [
+            'title' => 'required',
+            'reason' => 'required',
+        ], [
+            'title.required' => 'Merci de donner un titre à votre litige',
+            'reason.required' => 'Merci de fournir une description de votre litige'
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        }
+
+        $litige = new Dispute;
+        $litige->title = $request->get('title', '');
+        $litige->reason = $request->get('reason', '');
+        $litige->take_over_delivery_id = $delivery->takeOverDelivery->id;
+        $litige->is_customer = true;
+        $litige->status = 'Ouvert';
+        $litige->save();
+
+        Session::flash('success', 'Votre litige a bien été enregistré');
+        return redirect()->back();
+    }
+
+    public function closeLitige($id, Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $delivery = Delivery::findOrFail($id);
+        $dispute = Dispute::findOrFail($request->get('dispute_id', -1));
+
+        if ($delivery->customer_id != $customer->id) {
+            return abort(404);
+        }
+
+        if ($delivery->takeOverDelivery == null) {
+            return abort(400);
+        }
+
+        if ($delivery->takeOverDelivery->id != $dispute->take_over_delivery_id) {
+            return abort(400);
+        }
+
+        $dispute->status = 'Fermé';
+        $dispute->save();
+
+        Session::flash('success', 'Le litige a été fermé');
+        return redirect()->back();
+
+    }
 
 }

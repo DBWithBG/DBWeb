@@ -6,8 +6,6 @@
             <li><a href="{{url('/modificationEmail')}}">Modifier votre adresse email</a></li>
             <li><a href="{{url('/modificationMotDePasse')}}">Modifier votre mot de passe</a></li>
             <li><a href="{{url('/contact')}}">Nous contacter</a></li>
-            <li><a href="#">Action 5</a></li>
-            <li><a href="#">Action 6</a></li>
         </ul>
     </div>
     <!--end item holder-->

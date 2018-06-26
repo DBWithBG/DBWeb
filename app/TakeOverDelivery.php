@@ -33,4 +33,8 @@ class TakeOverDelivery extends Model
     {
         return $this->belongsTo('App\Driver', 'driver_id');
     }
+
+    public function disputes() {
+        return $this->hasMany('App\Dispute', 'take_over_delivery_id');
+    }
 }
