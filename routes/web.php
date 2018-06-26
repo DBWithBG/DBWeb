@@ -87,6 +87,9 @@ Route::post('driver/deleteJustificatif/{id}', 'DriverController@deleteJustificat
 
 Route::get('driver/courses', 'DriverController@deliveries');
 
+Route::get('/driver/litiges/{id}', 'DriverController@litiges');
+Route::post('/driver/newLitige/{id}', 'DriverController@newLitige');
+
 Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 
 

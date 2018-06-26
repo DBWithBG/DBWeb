@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
+use App\Dispute;
 use App\Justificatif;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 
@@ -178,5 +181,58 @@ class DriverController extends Controller
         MailController::confirm_driver_email_address($driver, $token);
 
         return redirect()->back()->with(['success' => 'Un mail de confirmation vient de vous être envoyé']);
+    }
+
+    public function litiges($id) {
+        $user = Auth::user();
+        $driver = $user->driver;
+
+        $delivery = Delivery::findOrFail($id);
+        if ($delivery->takeOverDelivery == null) {
+            return abort(400);
+        }
+
+        if ($delivery->takeOverDelivery->driver_id != $driver->id) {
+            return abort(404);
+        }
+
+        return view('driver.litiges')->with(['delivery' => $delivery]);
+    }
+
+    public function newLitige($id, Request $request) {
+        $user = Auth::user();
+        $driver = $user->driver;
+
+        $delivery = Delivery::findOrFail($id);
+        if ($delivery->takeOverDelivery == null) {
+            return abort(400);
+        }
+
+        if ($delivery->customer_id != $driver->id) {
+            return abort(404);
+        }
+
+        $v = Validator::make($request->all(), [
+            'title' => 'required',
+            'reason' => 'required',
+        ], [
+            'title.required' => 'Merci de donner un titre à votre litige',
+            'reason.required' => 'Merci de fournir une description de votre litige'
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        }
+
+        $litige = new Dispute;
+        $litige->title = $request->get('title', '');
+        $litige->reason = $request->get('reason', '');
+        $litige->take_over_delivery_id = $delivery->takeOverDelivery->id;
+        $litige->is_customer = false;
+        $litige->status = 'Ouvert';
+        $litige->save();
+
+        Session::flash('success', 'Votre litige a bien été enregistré');
+        return redirect()->back();
     }
 }
