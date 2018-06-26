@@ -26,6 +26,7 @@ class NotificationController extends Controller
 
     public function notify(){
 
+        dd('ko');
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 
