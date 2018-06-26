@@ -14,6 +14,7 @@ use App\TakeOverDelivery;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use function MongoDB\BSON\toJSON;
 
@@ -155,14 +156,15 @@ class MobileController extends Controller
             throw new \Error('Pas de commande fournie ou trouvee  :( !');
 
         $res_id=null;
-        if($del->status=="Payé"){
+        //TODO utilise pour debug mettre en attente de pris en charge
+        if($del->status!=Config::get('constants.PRIS_EN_CHARGE')){
             $take=new TakeOverDelivery;
             $take->driver_id=$u->driver->id;
             $take->status=0;
             $take->delivery_id=$del->id;
             $take->actual_position_id=$del->startPosition->id;
             $take->save();
-            $del->update(['status'=>"Pris en charge"]);
+            $del->update(['status'=>Config::get('constants.PRIS_EN_CHARGE')]);
             $res_id=$take->id;
             NotificationController::sendNotification(array_push(Notification::notifyPriseEnCharge()),["tokens"=>$u->notify_token]);
         }
