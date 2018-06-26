@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'customer',
             'surname' => 'clicli',
             'deleted' => false,
-            'mobile_token' => '12345',
+            'mobile_token' => '41bccd72a3d20fe5',
             'user_id' => $customer->id
         ]);
 
