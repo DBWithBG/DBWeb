@@ -44,18 +44,19 @@ class NotificationController extends Controller
 
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
-        $downstreamResponse->numberSuccess();
-        $downstreamResponse->numberFailure();
-        $downstreamResponse->numberModification();
+        print_r($downstreamResponse->numberSuccess());
+        print_r($downstreamResponse->numberFailure());
+        print_r($downstreamResponse->numberModification());
 
 //return Array - you must remove all this tokens in your database
-        $downstreamResponse->tokensToDelete();
+        print_r($downstreamResponse->tokensToDelete());
 
 //return Array (key : oldToken, value : new token - you must change the token in your database )
-        $downstreamResponse->tokensToModify();
+        print_r($downstreamResponse->tokensToModify());
 
 //return Array - you should try to resend the message to the tokens in the array
-        $downstreamResponse->tokensToRetry();
+        print_r($downstreamResponse->tokensToRetry());
+        exit();
 
 // return Array (key:token, value:errror) - in production you should remove from your database the tokens
 
