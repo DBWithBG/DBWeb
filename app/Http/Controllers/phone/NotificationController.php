@@ -44,7 +44,6 @@ class NotificationController extends Controller
 
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
-        dd($downstreamResponse);
         print_r($downstreamResponse->numberSuccess());
         print_r($downstreamResponse->numberFailure());
         print_r($downstreamResponse->numberModification());
