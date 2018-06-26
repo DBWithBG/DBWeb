@@ -40,7 +40,7 @@ class NotificationController extends Controller
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
 
-        $token = "d4kS9phcDYQ:APA91bEq6BOBrJv2sNER7Jbh-5ipTqWsQLnfpXbh4cYpW0g3-m-SBSUiQCzu0yyLgIR1LFYYQixIq2tdmJfKcTt8KZWv5UpZQtMNi4w00I-F0envS-wieht04hY8aLzoiodikBaSe4uq";
+        $token = "c3vWTsHIiH4:APA91bHt39y22gcGN9z-UqecCd0CAH3HVsW8uqTzN8jWW7tcWnl8x2JM-fINuW5RAONGUtVFIzoiWB7BSqueuyD9GvGjm5xg13c-G4qu6zp2zid8N8jZflCZL5uQ6ZcyUSKwn9DiWSgJYwtbi13BtKJi0LjP8oQXtw";
 
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
 
