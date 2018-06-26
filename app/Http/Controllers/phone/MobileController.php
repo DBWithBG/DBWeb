@@ -338,7 +338,6 @@ class MobileController extends Controller
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
-        dd($request->toArray());
         $u->notify_token=$request->notify_token;
         dd($u);
         $u->save();
