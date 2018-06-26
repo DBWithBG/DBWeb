@@ -164,6 +164,7 @@ class MobileController extends Controller
             $take->save();
             $del->update(['status'=>"Pris en charge"]);
             $res_id=$take->id;
+            NotificationController::sendNotification(array_push(Notification::notifyPriseEnCharge()),["tokens"=>$u->notify_token]);
         }
         return json_encode($res_id);
     }
@@ -324,6 +325,17 @@ class MobileController extends Controller
         $d->reason=$request->reason;
         $d->save();
         return $d;
+    }
+
+
+    //methode permettant de modifier le notify_token a partir du mobile_token
+    public function setNotifyToken(Request $request){
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        $u->notify_token=$request->notify_token;
+        $u->save();
     }
 
 

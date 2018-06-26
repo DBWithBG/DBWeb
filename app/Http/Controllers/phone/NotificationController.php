@@ -24,42 +24,44 @@ class NotificationController extends Controller
        // $this->middleware('auth');
     }
 
+
     public function notify(){
+        $options=[];
+        $options['tokens']= ["c3vWTsHIiH4:APA91bHt39y22gcGN9z-UqecCd0CAH3HVsW8uqTzN8jWW7tcWnl8x2JM-fINuW5RAONGUtVFIzoiWB7BSqueuyD9GvGjm5xg13c-G4qu6zp2zid8N8jZflCZL5uQ6ZcyUSKwn9DiWSgJYwtbi13BtKJi0LjP8oQXtw"];
+        $options['title']="Title !";
+        $options["body"]="Body informations ! ";
+        $options["datas"]=["url"=>"une/url/donnee"];
+        dd(NotificationController::sendNotification($options));
+
+    }
+
+
+    public static function notifyPriseEnCharge(){
+        return ['title'=>'Vos bagages sont pris en charge !',
+            'body'=>'Un chauffeur vient de prendre vos bagages en charge.'];
+    }
+    /*
+    * ENVOI DE NOTIFICATION
+    * on appel la methode statique avec un array parametre :
+    * tokens => les tokens destinataires
+    * title => le titre de la notification
+     * body => le corps de la notification
+     * datas => un array concernant les datas de la notification sous forme cle=>valeur
+    */
+    public static function sendNotification($options){
 
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
-
-        $notificationBuilder = new PayloadNotificationBuilder('my title');
-        $notificationBuilder->setBody('Hello world')
+        $notificationBuilder = new PayloadNotificationBuilder($options['title']);
+        $notificationBuilder->setBody($options['body'])
             ->setSound('default');
-
         $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData(['a_data' => 'my_data']);
-
+        $dataBuilder->addData($options['datas']);
         $option = $optionBuilder->build();
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
-
-        $token = "c3vWTsHIiH4:APA91bHt39y22gcGN9z-UqecCd0CAH3HVsW8uqTzN8jWW7tcWnl8x2JM-fINuW5RAONGUtVFIzoiWB7BSqueuyD9GvGjm5xg13c-G4qu6zp2zid8N8jZflCZL5uQ6ZcyUSKwn9DiWSgJYwtbi13BtKJi0LjP8oQXtw";
-
-        $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-
-        print_r($downstreamResponse->numberSuccess());
-        print_r($downstreamResponse->numberFailure());
-        print_r($downstreamResponse->numberModification());
-
-//return Array - you must remove all this tokens in your database
-        print_r($downstreamResponse->tokensToDelete());
-
-//return Array (key : oldToken, value : new token - you must change the token in your database )
-        print_r($downstreamResponse->tokensToModify());
-
-//return Array - you should try to resend the message to the tokens in the array
-        print_r($downstreamResponse->tokensToRetry());
-        exit();
-
-// return Array (key:token, value:errror) - in production you should remove from your database the tokens
-
+        $downstreamResponse = FCM::sendTo($options["tokens"], $option, $notification, $data);
+        return $downstreamResponse;
     }
 
 }

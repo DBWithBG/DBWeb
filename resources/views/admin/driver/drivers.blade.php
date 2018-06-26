@@ -53,6 +53,7 @@
                                             <th>Téléphone</th>
                                             <th>Inscrit le</th>
                                             <th>CA</th>
+                                            <th>Note</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
@@ -67,6 +68,7 @@
                                                 <td>{{$driver->phone}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($driver->created_at)->format('d/m/Y') }}</td>
                                                 <td>0 €</td>
+                                                <td>{{$driver->note()}}</td>
                                                 <td class="text-right">
                                                     <form id="delete_groupe_form_{{ $driver->id }}" method="post"
                                                           action="{{url('/backoffice/driver/delete')}}">

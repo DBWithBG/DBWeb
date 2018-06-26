@@ -48,13 +48,12 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Commentaire</th>
-                                            <th>Position de départ</th>
-                                            <th>Position d'arrivée</th>
                                             <th>Date de création</th>
+                                            <th>Commentaire</th>
                                             <th>Prix</th>
                                             <th>Client</th>
                                             <th>Statut</th>
+                                            <th>Note</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
@@ -63,12 +62,9 @@
                                         @foreach($deliveries as $delivery)
                                             <tr class="text-center">
 
-                                                <td>{{ $delivery->comment }}</td>
-                                                <td>{{$delivery->price}}</td>
-                                                <td>{{$delivery->startPosition->adress}}</td>
-                                                <td>{{$delivery->endPosition->adress}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
-                                                <td>0 €</td>
+                                                <td>{{ $delivery->comment }}</td>
+                                                <td>{{$delivery->price}}€</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
                                                 </td>
@@ -79,6 +75,7 @@
                                                         {{$delivery->takeOverDelivery->status}}
                                                     @endif
                                                 </td>
+                                                <td>{{$delivery->note()}}</td>
                                                 <td class="text-right">
                                                     <form id="delete_groupe_form_{{ $delivery->id }}" method="post"
                                                           action="{{url('/backoffice/driver/delete')}}">
