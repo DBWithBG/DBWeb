@@ -109,6 +109,9 @@ Route::post('/updatePassword', 'CustomerController@updatePassword');
 Route::get('/historique', 'CustomerController@historique');
 Route::post('/comment', 'CustomerController@comment');
 Route::post('/rate', 'CustomerController@rate');
+Route::get('/litiges/{id}', 'CustomerController@litiges');
+Route::post('/litiges/{id}', 'CustomerController@newLitige');
+Route::post('/closeLitige/{id}', 'CustomerController@closeLitige');
 
 Route::get('/profil', 'CustomerController@profil');
 Route::post('/profil', 'CustomerController@update');

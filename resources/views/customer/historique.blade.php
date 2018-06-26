@@ -38,6 +38,7 @@
                             <th>Distance</th>
                             <th>Prix</th>
                             <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,6 +50,11 @@
                                 <td>{{$delivery->price}} €</td>
                                 <td><a data-toggle="modal" data-target="#modal_comment_{{$delivery->id}}"
                                        class="text-warning" href="#">Commentaire</a></td>
+                                <td>
+                                    @if($delivery->takeOverDelivery != null)
+                                        <a href="{{url('/litiges/' . $delivery->id)}}">Litiges</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
