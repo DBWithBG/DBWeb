@@ -162,7 +162,7 @@ Route::post('mobile/login', 'phone\MobileController@mobileLogin');
 
 
 
-Route::get('/test', 'phone\NotificationController@notify');
+Route::get('/test2', 'phone\NotificationController@notify');
 
 /***************************** FIN API MOBILE **************************/
 
