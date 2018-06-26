@@ -108,6 +108,7 @@ Route::post('/updatePassword', 'CustomerController@updatePassword');
 
 Route::get('/historique', 'CustomerController@historique');
 Route::post('/comment', 'CustomerController@comment');
+Route::post('/rate', 'CustomerController@rate');
 
 Route::get('/profil', 'CustomerController@profil');
 Route::post('/profil', 'CustomerController@update');
@@ -161,7 +162,7 @@ Route::post('mobile/login', 'phone\MobileController@mobileLogin');
 
 
 
-Route::get('/test', 'phone\NotificationController@notify');
+Route::get('/test2', 'phone\NotificationController@notify');
 
 /***************************** FIN API MOBILE **************************/
 

@@ -40,6 +40,11 @@ class Delivery extends Model
 
     }
 
+    public function rating(){
+        return $this->hasOne('App\Rating', 'delivery_id');
+
+    }
+
     public function paiement(){
         return $this->hasOne('App\PayboxPayment', 'delivery_id');
     }
