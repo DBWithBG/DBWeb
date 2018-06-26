@@ -71,6 +71,13 @@
 
                                     {{csrf_field()}}
 
+                                    <div class="row">
+                                        <label class="col-sm-2 col-form-label">Note</label>
+                                        <div style="padding-top: 14px" class="col-sm-10">
+                                            {{$driver->note()}}
+                                        </div>
+                                    </div>
+
 
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Nom</label>

@@ -30,4 +30,18 @@ class Driver extends Model
     public function justificatifs() {
         return $this->hasMany('App\Justificatif', 'driver_id');
     }
+
+    public function note() {
+        $total = 0;
+        $number = 0;
+        foreach ($this->takeOverDeliveries as $takeOverDelivery) {
+            if ($takeOverDelivery->delivery->rating != null) {
+                $total += ($takeOverDelivery->delivery->rating->rating / 10);
+                $number++;
+            }
+        }
+
+        if ($number == 0) return '';
+        return '' . ($total / $number);
+    }
 }
