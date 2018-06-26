@@ -29,7 +29,7 @@ class DeliveryController extends Controller
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
-        $request['delivery']['status'] = Config::get('constants.NON_PAYE');
+        $request['delivery']['status'] = Config::get('constants.NON_FINALISE');
         //TODO Calcul du prix
         /******* CALCUL DU PRIX ************/
         $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');

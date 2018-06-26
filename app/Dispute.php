@@ -15,7 +15,7 @@ class Dispute extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'author', 'reason', 'take_over_delivery_id', 'created_at', 'updated_at'
+        'title', 'author', 'reason', 'is_customer', 'take_over_delivery_id', 'created_at', 'updated_at'
     ];
 
 

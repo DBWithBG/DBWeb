@@ -16,8 +16,8 @@ class CreateDisputesTable extends Migration
         Schema::create('disputes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
-            $table->string('author')->nullable();
             $table->mediumText('reason')->nullable();
+            $table->boolean('is_customer')->nullable();
             $table->timestamps();
 
             $table->integer('take_over_delivery_id')->unsigned();
