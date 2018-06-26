@@ -24,6 +24,7 @@ class NotificationController extends Controller
        // $this->middleware('auth');
     }
 
+
     public function notify(){
         $options=[];
         $options['tokens']= ["c3vWTsHIiH4:APA91bHt39y22gcGN9z-UqecCd0CAH3HVsW8uqTzN8jWW7tcWnl8x2JM-fINuW5RAONGUtVFIzoiWB7BSqueuyD9GvGjm5xg13c-G4qu6zp2zid8N8jZflCZL5uQ6ZcyUSKwn9DiWSgJYwtbi13BtKJi0LjP8oQXtw"];
@@ -33,6 +34,15 @@ class NotificationController extends Controller
         dd(NotificationController::sendNotification($options));
 
     }
+
+    /*
+    * ENVOI DE NOTIFICATION
+    * on appel la methode statique avec un array parametre :
+    * tokens => les tokens destinataires
+    * title => le titre de la notification
+     * body => le corps de la notification
+     * datas => un array concernant les datas de la notification sous forme cle=>valeur
+    */
     public static function sendNotification($options){
 
         $optionBuilder = new OptionsBuilder();
