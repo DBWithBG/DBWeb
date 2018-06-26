@@ -59,7 +59,10 @@ class DriverController extends Controller
     }
 
     public function deliveries(){
-        $take_over_deliveries = Auth::user()->driver->takeOverDeliveries;
+        $user = Auth::user();
+        $driver = $user->driver;
+        $take_over_deliveries = $driver->takeOverDeliveries;
+
         return view('driver.deliveries')->with([
             'take_over_deliveries' => $take_over_deliveries,
         ]);

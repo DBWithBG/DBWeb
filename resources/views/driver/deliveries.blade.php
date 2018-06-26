@@ -60,32 +60,32 @@
                                         </thead>
                                         <tbody>
 
-                                        @foreach($take_over_deliveries as $delivery->delivery)
+                                        @foreach($take_over_deliveries as $tod)
                                             <tr class="text-center">
 
-                                                <td>{{ $delivery->comment }}</td>
-                                                <td>{{$delivery->price}}</td>
-                                                <td>{{$delivery->startPosition->adress}}</td>
-                                                <td>{{$delivery->endPosition->adress}}</td>
-                                                <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
+                                                <td>{{$tod->delivery->comment }}</td>
+                                                <td>{{$tod->delivery->price}}</td>
+                                                <td>{{$tod->delivery->startPosition->adress}}</td>
+                                                <td>{{$tod->delivery->endPosition->adress}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($tod->delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>0 €</td>
                                                 <td>
-                                                    <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
+                                                    <a href="{{url('/backoffice/customer/'. $tod->delivery->customer->id )}}">{{ $tod->delivery->customer->surname .'-' . $tod->delivery->customer->name}}</a>
                                                 </td>
                                                 <td>
-                                                    @if(empty($delivery->takeOverDelivery))
+                                                    @if(empty($tod->delivery->takeOverDelivery))
                                                         En recherche de chauffeur
                                                     @else
-                                                        {{$delivery->takeOverDelivery->status}}
+                                                        {{$tod->delivery->takeOverDelivery->status}}
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    <form id="delete_groupe_form_{{ $delivery->id }}" method="post"
+                                                    <form id="delete_groupe_form_{{ $tod->delivery->id }}" method="post"
                                                           action="{{url('/backoffice/driver/delete')}}">
-                                                        <input type="hidden" name="id" value="{{ $delivery->id }}">
+                                                        <input type="hidden" name="id" value="{{ $tod->delivery->id }}">
                                                         {{ csrf_field() }}
                                                     </form>
-                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette course ?')) { document.getElementById('delete_groupe_form_{{ $delivery->id }}').submit(); }"
+                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette course ?')) { document.getElementById('delete_groupe_form_{{ $tod->delivery->id }}').submit(); }"
                                                             class="btn btn-link btn-danger btn-just-icon remove"><i
                                                                 class="material-icons">close</i></button>
                                                 </td>
