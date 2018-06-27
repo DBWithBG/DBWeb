@@ -366,6 +366,7 @@ class MobileController extends Controller
 
         $d->status=1;
         $d->save();
+        return json_encode($d);
     }
 
 
