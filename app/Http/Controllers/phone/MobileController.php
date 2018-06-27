@@ -90,11 +90,11 @@ class MobileController extends Controller
     }
 
     //get deliveries par client
-    public function getDeliveriesByCustomers(){
+    public function getDeliveriesByCustomers(Request $req){
 
-        if(!Input::get('mobile_token'))
+        if(!$req->mobile_token)
             throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        $u=User::where('mobile_token','=',$req->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 

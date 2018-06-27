@@ -141,7 +141,7 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
-Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
+Route::get('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
 Route::post('/mobile/deliveries/takeovers/start', 'phone\MobileController@priseEnChargeDelivery');
 Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDelivery');
 
