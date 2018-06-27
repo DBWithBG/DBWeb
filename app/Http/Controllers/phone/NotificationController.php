@@ -38,7 +38,8 @@ class NotificationController extends Controller
 
     public static function notifyPriseEnCharge(){
         return ['title'=>'Vos bagages sont pris en charge !',
-            'body'=>'Un chauffeur vient de prendre vos bagages en charge.','datas'=>[]];
+            'body'=>'Un chauffeur vient de prendre vos bagages en charge.',
+            'datas'=>['url'=>'courses']];
     }
     /*
     * ENVOI DE NOTIFICATION
