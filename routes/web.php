@@ -56,8 +56,11 @@ Route::get('backoffice/deliveries/past', 'AdminController@getDeliveriesPast');
 Route::get('backoffice/deliveries/upcoming', 'AdminController@getDeliveriesUpComing');
 Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 
-Route::get('backoffice/disputes', 'AdminController@getDisputes');
+Route::get('backoffice/disputes_ouvertes', 'AdminController@getDisputesOuvertes');
+Route::get('backoffice/disputes_fermees', 'AdminController@getDisputesFermees');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
+Route::get('backoffice/dispute/{id}', 'AdminController@dispute');
+Route::post('backoffice/dispute/{id}/update', 'AdminController@update');
 
 //Departments
 Route::get('backoffice/configuration/departments', 'AdminController@getDepartments');
@@ -86,6 +89,9 @@ Route::post('driver/addJustificatif', 'DriverController@addJustificatif');
 Route::post('driver/deleteJustificatif/{id}', 'DriverController@deleteJustificatif');
 
 Route::get('driver/courses', 'DriverController@deliveries');
+
+Route::get('/driver/litiges/{id}', 'DriverController@litiges');
+Route::post('/driver/newLitige/{id}', 'DriverController@newLitige');
 
 Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 
@@ -138,7 +144,7 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
-Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
+Route::get('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
 Route::post('/mobile/deliveries/takeovers/start', 'phone\MobileController@priseEnChargeDelivery');
 Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDelivery');
 
@@ -160,6 +166,7 @@ Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
 Route::put('mobile/users/refreshNotifyToken','phone\MobileController@setNotifyToken');
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
+Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
 
 
 Route::post('mobile/login', 'phone\MobileController@mobileLogin');

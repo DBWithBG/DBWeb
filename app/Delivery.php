@@ -17,7 +17,8 @@ class Delivery extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance'
+        'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id',
+        'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance'
     ];
 
     public function startPosition()
@@ -43,6 +44,10 @@ class Delivery extends Model
     public function rating(){
         return $this->hasOne('App\Rating', 'delivery_id');
 
+    }
+
+    public function bags(){
+        return $this->belongsToMany('App\Bag','infos_bags')->with('type');
     }
 
     public function paiement(){

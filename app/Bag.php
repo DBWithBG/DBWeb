@@ -34,7 +34,7 @@ class Bag extends Model
         return $this->belongsTo('App\Customer', 'customer_id');
     }
 
-    public function typeBag()
+    public function type()
     {
         return $this->belongsTo('App\TypeBag', 'type_id');
     }

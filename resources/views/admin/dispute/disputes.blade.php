@@ -35,7 +35,7 @@
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
-                                    <h4 class="card-title">Litiges</h4>
+                                    <h4 class="card-title">Disputes</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -48,8 +48,8 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Titre</th>
                                             <th>Auteur</th>
+                                            <th>Titre</th>
                                             <th>Raison</th>
                                             <th>Date de création</th>
 
@@ -60,19 +60,26 @@
 
                                         @foreach($disputes as $dispute)
                                             <tr class="text-center">
+
+                                                <td>
+                                                    @if($dispute->is_customer)
+                                                        <a href="{{url('/backoffice/customer/' . $dispute->takeOverDelivery->delivery->customer->id)}}">{{$dispute->takeOverDelivery->delivery->customer->surname . ' ' . $dispute->takeOverDelivery->delivery->customer->name}}</a>
+                                                    @else
+                                                        <a href="{{url('/backoffice/driver/' . $dispute->takeOverDelivery->driver->id)}}">{{$dispute->takeOverDelivery->driver->surname . ' ' . $dispute->takeOverDelivery->driver->name}}</a>
+                                                    @endif
+                                                </td>
                                                 <td><a href="{{url('/backoffice/dispute/'. $dispute->id )}}">{{ $dispute->title}}</a>
                                                 </td>
-                                                <td>{{ $dispute->author }}</td>
                                                 <td>{{$dispute->reason}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($dispute->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">
-                                                    <form id="delete_groupe_form_{{ $customer->id }}" method="post"
+                                                    <form id="delete_dispute_form_{{ $dispute->id }}" method="post"
                                                           action="{{url('/backoffice/dispute/delete')}}">
-                                                        <input type="hidden" name="id" value="{{ $customer->id }}">
+                                                        <input type="hidden" name="id" value="{{ $dispute->id }}">
                                                         {{ csrf_field() }}
                                                     </form>
-                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce client ?')) { document.getElementById('delete_groupe_form_{{ $customer->id }}').submit(); }"
+                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette dispute ?')) { document.getElementById('delete_dispute_form_{{ $dispute->id }}').submit(); }"
                                                             class="btn btn-link btn-danger btn-just-icon remove"><i
                                                                 class="material-icons">close</i></button>
                                                 </td>

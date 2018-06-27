@@ -29,13 +29,60 @@
                     </div>
                 @endif
 
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary card-header-icon">
+                                    <div class="card-text">
+                                        <h4 class="card-title">Ouvrir un litige</h4>
+                                    </div>
+
+                                </div>
+                                <form method="post" action="{{url('/driver/newLitige/' . $delivery->id)}}">
+                                    <div class="card-body">
+
+                                        {{csrf_field()}}
+
+
+
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Titre</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <input required type="text" name="title" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Description</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <textarea required type="text" name="reason" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                    <div class="card-footer ">
+                                        <button type="submit" class="btn btn-fill btn-primary">Sauvegarder</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+            </div>
+
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
-                                    <h4 class="card-title">Courses en cours</h4>
+                                    <h4 class="card-title">Litiges</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -48,48 +95,21 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Commentaire</th>
-                                            <th>Position de départ</th>
-                                            <th>Position d'arrivée</th>
-                                            <th>Date de création</th>
-                                            <th>Prix</th>
-                                            <th>Client</th>
-                                            <th>Statut</th>
+                                            <th>Titre</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        @foreach($take_over_deliveries as $tod)
+                                        @foreach($delivery->takeOverDelivery->disputes->where('is_customer', false) as $dispute)
                                             <tr class="text-center">
 
-                                                <td>{{$tod->delivery->comment }}</td>
-                                                <td>{{$tod->delivery->price}}</td>
-                                                <td>{{$tod->delivery->startPosition->adress}}</td>
-                                                <td>{{$tod->delivery->endPosition->adress}}</td>
-                                                <td>{{ \Carbon\Carbon::parse($tod->delivery->created_at)->format('d/m/Y') }}</td>
-                                                <td>0 €</td>
-                                                <td>
-                                                    <a href="{{url('/backoffice/customer/'. $tod->delivery->customer->id )}}">{{ $tod->delivery->customer->surname .'-' . $tod->delivery->customer->name}}</a>
-                                                </td>
-                                                <td>
-                                                    @if(empty($tod->delivery->takeOverDelivery))
-                                                        En recherche de chauffeur
-                                                    @else
-                                                        {{$tod->delivery->takeOverDelivery->status}}
-                                                    @endif
-                                                </td>
-                                                <td class="text-right">
-                                                    <form id="delete_groupe_form_{{ $tod->delivery->id }}" method="post"
-                                                          action="{{url('/backoffice/driver/delete')}}">
-                                                        <input type="hidden" name="id" value="{{ $tod->delivery->id }}">
-                                                        {{ csrf_field() }}
-                                                    </form>
-                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette course ?')) { document.getElementById('delete_groupe_form_{{ $tod->delivery->id }}').submit(); }"
-                                                            class="btn btn-link btn-danger btn-just-icon remove"><i
-                                                                class="material-icons">close</i></button>
-                                                    <a href="{{url('/driver/litiges/' . $tod->delivery->id)}}"><i class="material-icons">warning</i></a>
-                                                </td>
+                                                <td>{{$dispute->title}}</td>
+                                                <td>{{$dispute->comment}}</td>
+                                                <td>{{$dispute->status}}</td>
+                                                <td></td>
                                             </tr>
                                         @endforeach
 

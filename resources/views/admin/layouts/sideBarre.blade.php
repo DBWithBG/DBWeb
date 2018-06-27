@@ -78,6 +78,33 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="collapse" href="#disputesCollapse">
+                        <i class="material-icons">grid_on</i>
+                        <p> Disputes
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+
+                    <div class="collapse {{ Request::is('backoffice/disputes_*') ? 'show' : '' }}"
+                         id="disputesCollapse">
+                        <ul class="nav">
+                            <li class="nav-item {{ Request::is('backoffice/disputes_ouvertes') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{url('backoffice/disputes_ouvertes')}}">
+                                    <span class="sidebar-mini">  DO </span>
+                                    <span class="sidebar-normal"> Ouvertes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ Request::is('backoffice/disputes_fermees') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{url('backoffice/disputes_fermees')}}">
+                                    <span class="sidebar-mini">  DF</span>
+                                    <span class="sidebar-normal"> Fermées</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#formulairesCollapse">
                         <i class="material-icons">content_paste</i>
