@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'customer',
             'surname' => 'clicli',
             'deleted' => false,
-            'mobile_token' => '41bccd72a3d20fe5',
+            'mobile_token' => '',
             'user_id' => $customer->id
         ]);
 
@@ -58,6 +58,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Gironde',
             'number' => '33'
         ]);
+
+        \App\AuthorizedDepartment::create([
+            'name' => 'Vosges',
+            'number' => '88'
+        ]);
+
+        
 
 
 
