@@ -17,7 +17,7 @@ class Delivery extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance'
+        'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance'
     ];
 
     public function startPosition()
