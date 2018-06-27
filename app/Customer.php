@@ -32,4 +32,8 @@ class Customer extends Model
     public function bags(){
         return $this->hasMany('App\Bag','customer_id');
     }
+
+    public function identity() {
+        return $this->name . ' ' . $this->surname;
+    }
 }

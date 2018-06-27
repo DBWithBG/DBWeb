@@ -12,6 +12,8 @@ use App\Justificatif;
 use App\TypeBag;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Validator;
 
 class AdminController extends Controller
@@ -193,16 +195,42 @@ class AdminController extends Controller
     /*************** DISPUTES ***************/
 
 
-    public function getDisputes(){
-        $disputes = Dispute::where('deleted', '0');
+    public function getDisputesOuvertes(){
+        $disputes = Dispute::where('status', '=', 'Ouvert')->get();
+        return view('admin.dispute.disputes')->with([
+            'disputes' => $disputes
+        ]);
+    }
+
+    public function getDisputesFermees(){
+        $disputes = Dispute::where('status', '=', 'Fermé')->get();
         return view('admin.dispute.disputes')->with([
             'disputes' => $disputes
         ]);
     }
 
     public function deleteDispute(Request $request){
-        $dispute = Dispute::find($request->id);
-        Dispute::destroy($dispute);
+        $dispute = Dispute::findOrFail($request->id);
+        $dispute->delete();
+
+        Session::flash('success', 'La dispute a été supprimé');
+        return redirect()->back();
+    }
+
+    public function dispute($id) {
+        $dispute = Dispute::FindOrFail($id);
+
+        return view('admin.dispute.dispute')->with(['dispute' => $dispute]);
+    }
+
+    public function update($id, Request $request) {
+        $dispute = Dispute::FindOrFail($id);
+
+        $dispute->update($request->all());
+        $dispute->save();
+
+        Session::flash('success', 'La dispute a été mise à jour');
+        return redirect()->back();
     }
 
 

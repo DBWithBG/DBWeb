@@ -56,8 +56,11 @@ Route::get('backoffice/deliveries/past', 'AdminController@getDeliveriesPast');
 Route::get('backoffice/deliveries/upcoming', 'AdminController@getDeliveriesUpComing');
 Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 
-Route::get('backoffice/disputes', 'AdminController@getDisputes');
+Route::get('backoffice/disputes_ouvertes', 'AdminController@getDisputesOuvertes');
+Route::get('backoffice/disputes_fermees', 'AdminController@getDisputesFermees');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
+Route::get('backoffice/dispute/{id}', 'AdminController@dispute');
+Route::post('backoffice/dispute/{id}/update', 'AdminController@update');
 
 //Departments
 Route::get('backoffice/configuration/departments', 'AdminController@getDepartments');
