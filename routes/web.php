@@ -144,7 +144,7 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
-Route::post('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
+Route::get('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
 Route::post('/mobile/deliveries/takeovers/start', 'phone\MobileController@priseEnChargeDelivery');
 Route::put('/mobile/delivery/{id}/edit', 'phone\MobileController@modificationDelivery');
 
@@ -166,6 +166,7 @@ Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
 Route::put('mobile/users/refreshNotifyToken','phone\MobileController@setNotifyToken');
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
+Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
 
 
 Route::post('mobile/login', 'phone\MobileController@mobileLogin');

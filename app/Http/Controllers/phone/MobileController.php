@@ -14,6 +14,7 @@ use App\TakeOverDelivery;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use function MongoDB\BSON\toJSON;
 
@@ -21,7 +22,13 @@ class MobileController extends Controller
 {
     //get deliveries pour debloquer donovan en attendant
     public function getDeliveries(Request $request){
-        $res=Delivery::with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        $res=Delivery::where('status','=',$request->status)
+            ->with('customer')
+            ->with('startPosition')
+            ->with('endPosition')
+            ->with('takeOverDelivery')
+            ->with('bags')
+            ->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
@@ -89,11 +96,11 @@ class MobileController extends Controller
     }
 
     //get deliveries par client
-    public function getDeliveriesByCustomers(){
+    public function getDeliveriesByCustomers(Request $req){
 
-        if(!Input::get('mobile_token'))
+        if(!$req->mobile_token)
             throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        $u=User::where('mobile_token','=',$req->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -155,16 +162,19 @@ class MobileController extends Controller
             throw new \Error('Pas de commande fournie ou trouvee  :( !');
 
         $res_id=null;
-        if($del->status=="Payé"){
+        //TODO utilise pour debug mettre en attente de pris en charge
+        if($del->status!=Config::get('constants.PRIS_EN_CHARGE')){
             $take=new TakeOverDelivery;
             $take->driver_id=$u->driver->id;
             $take->status=0;
             $take->delivery_id=$del->id;
             $take->actual_position_id=$del->startPosition->id;
             $take->save();
-            $del->update(['status'=>"Pris en charge"]);
+            $del->update(['status'=>Config::get('constants.PRIS_EN_CHARGE')]);
             $res_id=$take->id;
-            NotificationController::sendNotification(array_push(Notification::notifyPriseEnCharge()),["tokens"=>$u->notify_token]);
+            $tab=NotificationController::notifyPriseEnCharge();
+            $tab['tokens']=[0=>$del->customer->user->notify_token];
+            NotificationController::sendNotification($tab);
         }
         return json_encode($res_id);
     }
@@ -336,6 +346,25 @@ class MobileController extends Controller
 
         $u->notify_token=$request->notify_token;
         $u->save();
+    }
+
+    //methode de paiement depuis l'appli mobile
+    //TODO link paybox
+    public function payment(Request $request){
+        if(!$request->mobile_token)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$request->delivery_id)
+            throw new \Error('Pas de delivery fournie :( ! ');
+
+        $d=Delivery::find($request->delivery_id);
+        if(!$d)
+            throw new \Error('Pas de delivery trouvée :( ! ');
+
+        $d->update(['status'=>1]);
     }
 
 
