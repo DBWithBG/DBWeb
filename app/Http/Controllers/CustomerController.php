@@ -249,6 +249,32 @@ class CustomerController extends Controller
 
     }
 
+    public function modalComment($id) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $delivery = Delivery::findOrFail($id);
+
+        if ($delivery->customer_id != $customer->id) {
+            abort(403);
+        }
+
+        return view('customer.modalComment')->with(['delivery' => $delivery]);
+    }
+
+    public function modalRating($id) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $delivery = Delivery::findOrFail($id);
+
+        if ($delivery->customer_id != $customer->id) {
+            abort(403);
+        }
+
+        return view('customer.modalRating')->with(['delivery' => $delivery]);
+    }
+
 
     public function rate(Request $request) {
         $user = Auth::user();

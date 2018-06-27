@@ -45,11 +45,20 @@
                         @foreach($deliveries->where('status', '!=', \Illuminate\Support\Facades\Config::get('constants.TERMINE')) as $delivery)
                             <tr>
                                 <td>{{date('d / m / y', strtotime($delivery->created_at))}}</td>
-                                <td>{{\Illuminate\Support\Facades\Config::get('constants.STATUS_' . $delivery->status)}}</td>
+                                <td>
+                                    {{\Illuminate\Support\Facades\Config::get('constants.STATUS_' . $delivery->status)}}
+                                    @if($delivery->status == Config::get('constants.NON_FINALISE'))
+                                        <br><a href="{{url('/delivery/' . $delivery->id . '/save')}}">Finaliser cette course</a>
+                                    @endif
+                                </td>
                                 <td>{{$delivery->distance}} km</td>
                                 <td>{{$delivery->price}} €</td>
-                                <td><a data-toggle="modal" data-target="#modal_comment_{{$delivery->id}}"
-                                       class="text-warning" href="#">Commentaire</a></td>
+                                <td>
+                                <!--<a data-toggle="modal" data-target="#modal_comment_{{$delivery->id}}"
+                                       class="text-warning" href="#">Commentaire</a>-->
+                                    <button class="btn btn-link" onclick="modal_comment({{$delivery->id}})">Commentaire</button>
+
+                                </td>
                                 <td>
                                     @if($delivery->takeOverDelivery != null)
                                         <a href="{{url('/litiges/' . $delivery->id)}}">Litiges</a>
@@ -90,8 +99,11 @@
                                 <td>{{$delivery->status}}</td>
                                 <td>{{$delivery->distance}} km</td>
                                 <td>{{$delivery->price}} €</td>
-                                <td><a data-toggle="modal" data-target="#modal_rate_{{$delivery->id}}"
-                                       class="text-warning" href="#">Noter</a></td>
+                                <td>
+                                    <!--<a data-toggle="modal" data-target="#modal_rate_{{$delivery->id}}"
+                                       class="text-warning" href="#">Noter</a>-->
+                                    <button class="btn btn-link" onclick="modal_rating({{$delivery->id}})">Noter</button>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -102,105 +114,13 @@
     </section>
     <div class="clearfix"></div>
 
-
-    @foreach($deliveries as $delivery)
-        <div class="modal fade" id="modal_comment_{{$delivery->id}}" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Laisser un commentaire</h5>
-                    </div>
-                    <form method="post" action="{{url('/comment')}}">
-                        <div class="modal-body">
-                            <div style="min-height: 110px" class="smart-wrap">
-                                <div class="smart-forms smart-container transparent wrap-full">
-                                    <div class="form-body no-padd">
-
-
-                                        {{csrf_field()}}
-
-                                        <input type="hidden" name="delivery_id" value="{{$delivery->id}}">
-
-                                        <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
-                                             class="section">
-                                            <label class="field prepend-icon">
-                                                                <textarea class="gui-textarea" id="comment"
-                                                                          name="comment"
-                                                                          placeholder="Votre commentaire">{{$delivery->comment}}</textarea>
-                                                <span class="field-icon"><i class="fa fa-comments"></i></span>
-                                            </label>
-                                        </div><!-- end section -->
-
-
-                                        <div class="result"></div><!-- end .result  section -->
-
-
-                                    </div><!-- end .form-body section -->
-                                </div><!-- end .smart-forms section -->
-                            </div><!-- end .smart-wrap section -->
-                        </div>
-                        <div class="modal-footer smart-forms">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                            <button type="submit" class="button btn-primary">Commenter</button>
-                        </div>
-                    </form>
-                </div>
+    <div class="modal fade" id="generic_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div id="modal-content" class="modal-content">
             </div>
         </div>
-    @endforeach
+    </div>
 
-    @foreach($takeOverDeliveries as $delivery)
-        <div class="modal fade" id="modal_rate_{{$delivery->id}}" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Noter cette course</h5>
-                    </div>
-                    <form method="post" action="{{url('/rate')}}">
-                        <div class="modal-body">
-                            <div style="min-height: 150px" class="smart-wrap">
-                                <div class="smart-forms smart-container transparent wrap-full">
-                                    <div class="form-body no-padd">
-
-
-                                        {{csrf_field()}}
-
-                                        <input type="hidden" name="delivery_id" value="{{$delivery->id}}">
-
-                                        <input value="{{($delivery->rating != null ? $delivery->rating->rating / 10 : 0)}}" style="padding-bottom: 20px" name="rating" type="text" class="kv-fa rating-loading" data-size="md" >
-
-
-                                        <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
-                                             class="section">
-                                            <label class="field prepend-icon">
-                                                                <textarea class="gui-textarea" id="comment"
-                                                                          name="comment"
-                                                                          placeholder="Votre commentaire">{{($delivery->rating != null ? $delivery->rating->details : '')}}</textarea>
-                                                <span class="field-icon"><i class="fa fa-comments"></i></span>
-                                            </label>
-                                        </div><!-- end section -->
-
-
-                                        <div class="result"></div><!-- end .result  section -->
-
-
-                                    </div><!-- end .form-body section -->
-                                </div><!-- end .smart-forms section -->
-                            </div><!-- end .smart-wrap section -->
-                        </div>
-                        <div class="modal-footer smart-forms">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                            <button type="submit" class="button btn-primary">Noter</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    @endforeach
 
 
 
@@ -210,16 +130,6 @@
     <script src="{{asset('material_dashboard/assets/js/plugins/jquery.datatables.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function ($) {
-
-            $('.kv-fa').rating({
-                filledStar: '<i class="fa fa-star"></i>',
-                emptyStar: '<i class="fa fa-star-o"></i>',
-                showCaption: false,
-                showRemove: false,
-                showCancel: false,
-                showClose: false,
-                showClear: false
-            });
 
             var table_en_cours = $("#datatable_en_cours");
             var table_terminees = $("#datatable_terminees");
@@ -287,5 +197,33 @@
                 }
             });
         });
+
+
+        function modal_comment(id) {
+            $.get('{{url('/modalComment/')}}' + '/' + id, function (data) {
+                var modalContent = $('#modal-content');
+                modalContent.html(data);
+                var generic_modal = $('#generic_modal');
+                generic_modal.modal('show');
+            });
+        }
+
+        function modal_rating(id) {
+            $.get('{{url('/modalRating/')}}' + '/' + id, function (data) {
+                var modalContent = $('#modal-content');
+                modalContent.html(data);
+                var generic_modal = $('#generic_modal');
+                generic_modal.modal('show');
+                $('.kv-fa').rating({
+                    filledStar: '<i class="fa fa-star"></i>',
+                    emptyStar: '<i class="fa fa-star-o"></i>',
+                    showCaption: false,
+                    showRemove: false,
+                    showCancel: false,
+                    showClose: false,
+                    showClear: false
+                });
+            });
+        }
     </script>
 @endsection
