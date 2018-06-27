@@ -360,7 +360,7 @@ class MobileController extends Controller
         if(!$request->delivery_id)
             throw new \Error('Pas de delivery fournie :( ! ');
 
-        $d=Delivery::find($request->delivery_id)->first();
+        $d=Delivery::find($request->delivery_id);
         if(!$d)
             throw new \Error('Pas de delivery trouvée :( ! ');
 
