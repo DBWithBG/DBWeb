@@ -367,6 +367,30 @@ class MobileController extends Controller
         $d->update(['status'=>1]);
     }
 
+    public function annulationTakeOver(Request $request){
+        if(!$request->mobile_token)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->driver)
+            throw new \Error('Utilisateur non driver :( ! ');
+
+        if(!$request->delivery_id)
+            throw new \Error('Pas de delivery fournie :( ! ');
+
+        $d=Delivery::find($request->delivery_id);
+        if(!$d)
+            throw new \Error('Pas de delivery trouvée');
+        if(!Delivery::isAnnulable($d))
+            throw new \Error('Delivery non annulable');
+
+        Delivery::gestionAnnulationDelivery($d,$u->driver);
+
+
+
+    }
+
 
 
 }

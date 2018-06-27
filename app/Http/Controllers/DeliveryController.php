@@ -113,6 +113,15 @@ class DeliveryController extends Controller
         ]);
     }
 
+    //gestion des consequences d'une annulation de delivery
+    public static function gestionAnnulationDelivery($delivery,$driver){
+
+        $delivery->takeOverDelivery->delete();
+        $delivery->update(['status'=>1]);
+        $driver->canceled_deliveries++;
+        $driver->save();
+
+    }
 
 
 

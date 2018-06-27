@@ -25,6 +25,7 @@ class CreateDriversTable extends Migration
             $table->timestamps();
             $table->boolean('deleted')->default(0);
 
+            $table->integer('canceled_deliveries')->default(0);
 
             $table->integer('user_id')->unsigned();
 

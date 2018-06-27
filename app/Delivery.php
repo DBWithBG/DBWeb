@@ -73,5 +73,10 @@ class Delivery extends Model
     public static function getAllDeliveryFinished(){
         return Delivery::where('status', Config::get('constants.TERMINE'))->where('deleted', 0)->get();
     }
+
+    //methode permettant d'annuler une prise en charge
+    public static function isAnnulable(){
+        return true;
+    }
 }
 
