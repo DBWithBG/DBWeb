@@ -45,7 +45,12 @@
                         @foreach($deliveries->where('status', '!=', \Illuminate\Support\Facades\Config::get('constants.TERMINE')) as $delivery)
                             <tr>
                                 <td>{{date('d / m / y', strtotime($delivery->created_at))}}</td>
-                                <td>{{\Illuminate\Support\Facades\Config::get('constants.STATUS_' . $delivery->status)}}</td>
+                                <td>
+                                    {{\Illuminate\Support\Facades\Config::get('constants.STATUS_' . $delivery->status)}}
+                                    @if($delivery->status == Config::get('constants.NON_FINALISE'))
+                                        <br><a href="{{url('/delivery/' . $delivery->id . '/save')}}">Finaliser cette course</a>
+                                    @endif
+                                </td>
                                 <td>{{$delivery->distance}} km</td>
                                 <td>{{$delivery->price}} €</td>
                                 <td>
