@@ -365,7 +365,6 @@ class MobileController extends Controller
             throw new \Error('Pas de delivery trouvée :( ! ');
 
         $d->update(['status'=>1]);
-        return json_encode($d);
     }
 
 
