@@ -45,6 +45,10 @@ class Delivery extends Model
 
     }
 
+    public function bags(){
+        return $this->belongsToMany('App\Bag','infos_bags');
+    }
+
     public function paiement(){
         return $this->hasOne('App\PayboxPayment', 'delivery_id');
     }
