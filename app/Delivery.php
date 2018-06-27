@@ -46,7 +46,7 @@ class Delivery extends Model
     }
 
     public function bags(){
-        return $this->belongsToMany('App\Bag','infos_bags');
+        return $this->belongsToMany('App\Bag','infos_bags')->with('type');
     }
 
     public function paiement(){
