@@ -303,6 +303,8 @@ class MobileController extends Controller
         if($r=Rating::where('delivery_id','=',$delivery->id)
             ->where('customer_id','=',$u->customer->id)
             ->where('driver_id','=',$driver->id)->first()){
+            if(!$request->details)
+                $request->details="";
             $r->update(['details'=>$request->details,'rating'=>$request->rating]);
         }else{
             $r=new Rating;
