@@ -36,11 +36,50 @@ class NotificationController extends Controller
     }
 
 
+    //notification de prise en charge
     public static function notifyPriseEnCharge(){
         return ['title'=>'Vos bagages sont pris en charge !',
             'body'=>'Un chauffeur vient de prendre vos bagages en charge.',
             'datas'=>['url'=>'courses']];
     }
+
+    //notification d'arrivee de client
+    public static function notifyArrivee(){
+        return ['title'=>'Vos bagages sont arrivés !',
+            'body'=>'Vos bagages sont arrivés à leur lieu de destination.',
+            'datas'=>['url'=>'courses']];
+    }
+
+    //notification de demande de contact infructueuse pour client
+    public static function notifyDemandeDeContact(){
+        return ['title'=>'Votre chauffeur veut vous contacter !',
+            'body'=>'Votre chauffeur veut vous contacter mais n\'y arrive pas, contactez-le.',
+            'datas'=>['url'=>'courses']];
+    }
+
+    //notification de demande d'avis pour client
+    public static function notifyDemandeAvis(){
+        return ['title'=>'Notez votre expérience DeliverBag !',
+            'body'=>'Améliorez nos services en notant votre chauffeur.',
+            'datas'=>['url'=>'courses']];
+    }
+
+
+    //notification de retard d'un client pour chauffeur
+    public static function notifyRetardClient($tps){
+        return ['title'=>'Votre client aura'.$tps.' minutes de retard !',
+            'body'=>'Nos services ont détecté un retard client.',
+            'datas'=>['url'=>'']];
+    }
+
+
+    //notification de validation d'inscription
+    public static function notifyValidationInscription($code){
+        return ['title'=>'Bienvenue, votre code : '.$code,
+            'body'=>'Bienvenue sur l\'application DELIVERBAG.',
+            'datas'=>['url'=>'']];
+    }
+
     /*
     * ENVOI DE NOTIFICATION
     * on appel la methode statique avec un array parametre :

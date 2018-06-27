@@ -348,6 +348,26 @@ class MobileController extends Controller
         $u->save();
     }
 
+    //methode de paiement depuis l'appli mobile
+    //TODO link paybox
+    public function payment(Request $request){
+        if(!$request->mobile_token)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$request->delivery_id)
+            throw new \Error('Pas de delivery fournie :( ! ');
+
+        $d=Delivery::find($request->delivery_id)->first();
+        if(!$d)
+            throw new \Error('Pas de delivery trouvée :( ! ');
+
+        $d->status=1;
+        $d->save();
+    }
+
 
 
 }
