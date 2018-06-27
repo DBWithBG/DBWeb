@@ -21,7 +21,7 @@ class CreateDeliveriesTable extends Migration
             $table->integer('status')->nullable();
             $table->double('distance')->nullable();
             $table->integer('estimated_time')->nullable();
-
+            $table->dateTime('start_date');
             $table->integer('start_position_id')->unsigned();
             $table->integer('end_position_id')->unsigned();
             $table->integer('customer_id')->unsigned()->nullable();
