@@ -300,16 +300,21 @@ class MobileController extends Controller
 
         if(!$driver)
             throw new \Error('Driver non retrouvé :( !');
-        $r=new Rating;
-        $r->driver_id=$driver->id;
-        $r->delivery_id=$delivery->id;
-        $r->rating=$request->rating;
-        if(!$request->details)
-            $request->details="";
-        $r->details=$request->details;
-        $r->customer_id=$u->customer->id;
-        $r->save();
-
+        if($r=Rating::where('delivery_id','=',$delivery->id)
+            ->where('customer_id','=',$u->customer->id)
+            ->where('driver_id','=',$driver->id)->first()){
+            $r->update(['details'=>$request->details,'rating'=>$request->rating]);
+        }else{
+            $r=new Rating;
+            $r->driver_id=$driver->id;
+            $r->delivery_id=$delivery->id;
+            $r->rating=$request->rating;
+            if(!$request->details)
+                $request->details="";
+            $r->details=$request->details;
+            $r->customer_id=$u->customer->id;
+            $r->save();
+        }
 
         return($r);
     }
