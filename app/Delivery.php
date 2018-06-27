@@ -75,8 +75,8 @@ class Delivery extends Model
     }
 
     //methode permettant d'annuler une prise en charge
-    public static function isAnnulable(){
-        return true;
+    public static function isAnnulable($d){
+        return $d->status==Config::get('constants.PRIS_EN_CHARGE');
     }
 }
 
