@@ -78,5 +78,10 @@ class Delivery extends Model
     public static function isAnnulable($d){
         return $d->status==Config::get('constants.PRIS_EN_CHARGE');
     }
+    //methode permettant d'annuler une delivery
+    public static function isAnnulableByCustomer($d){
+        return $d->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE');
+    }
+
 }
 

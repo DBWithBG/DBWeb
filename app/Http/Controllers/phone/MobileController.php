@@ -9,6 +9,7 @@ use App\Delivery;
 use App\Dispute;
 use App\Driver;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DeliveryController;
 use App\Rating;
 use App\TakeOverDelivery;
 use App\User;
@@ -392,7 +393,33 @@ class MobileController extends Controller
         if(!Delivery::isAnnulable($d))
             throw new \Error('Delivery non annulable');
 
-        Delivery::gestionAnnulationDelivery($d,$u->driver);
+        DeliveryController::gestionAnnulationDelivery($d,$u->driver);
+
+
+
+    }
+
+    public function annulationDelivery(Request $request){
+        if(!$request->mobile_token)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Utilisateur non driver :( ! ');
+
+        if(!$request->delivery_id)
+            throw new \Error('Pas de delivery fournie :( ! ');
+
+        $d=Delivery::find($request->delivery_id);
+        if(!$d)
+            throw new \Error('Pas de delivery trouvée');
+        if($d->customer->user->id != $u->id)
+            throw new \Error('L\'utilisateur n\'est pas le bon');
+        if(!Delivery::isAnnulableByCustomer($d))
+            throw new \Error('Delivery non annulable');
+
+        DeliveryController::gestionAnnulationDeliveryCustomer($d,$u->customer);
 
 
 
