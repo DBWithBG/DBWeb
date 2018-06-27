@@ -22,7 +22,7 @@ class MobileController extends Controller
 {
     //get deliveries pour debloquer donovan en attendant
     public function getDeliveries(Request $request){
-        $res=Delivery::whereIn('status',$request->status)->with('customer')->with('startPosition')->with('endPosition')->with('takeOverDelivery')->get()->toJson();
+        $res=Delivery::where('status','=',$request->status)->with('customer')->with('startPosition')->with('endPosition')->with('takeOverDelivery')->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
