@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-5 col-form-label">Hauteur :</label>
+                                        <label class="col-sm-5 col-form-label">Largeur :</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <input required type="text" name="width" class="form-control">
@@ -69,10 +69,18 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-5 col-form-label">Poids :</label>
+                                        <label class="col-sm-5 col-form-label">Hauteur :</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <input required type="text" name="height" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Prix :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input required type="text" name="price" class="form-control" value="0.00">
                                             </div>
                                         </div>
                                     </div>
@@ -108,6 +116,7 @@
                                             <th>Longueur</th>
                                             <th>Hauteur</th>
                                             <th>Poids</th>
+                                            <th>Prix supplémentaire</th>
                                             <th>Créé le</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
@@ -121,6 +130,7 @@
                                                 <td>{{ $typeBag->length }}</td>
                                                 <td>{{ $typeBag->width }}</td>
                                                 <td> {{ $typeBag->height }}</td>
+                                                <td>{{ $typeBag->price }} €</td>
                                                 <td>{{ \Carbon\Carbon::parse($typeBag->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">

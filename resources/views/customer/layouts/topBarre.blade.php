@@ -41,13 +41,8 @@
 
                                             </ul>
                                         </li>
-                                        <li class="right"><a href="#">Connexion</a> <span
+                                        <li class="right"><a href="{{url("connexion")}}">Connexion</a> <span
                                                     class="arrow"></span>
-                                            <ul class="dm-align-2">
-                                                <li><a href="{{url("connexion")}}">Client</a></li>
-                                                <li><a href="{{url("drivers/login")}}">Chauffeur</a></li>
-
-                                            </ul>
                                         </li>
                                     @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"

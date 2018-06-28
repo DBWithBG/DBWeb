@@ -64,7 +64,31 @@ class DatabaseSeeder extends Seeder
             'number' => '88'
         ]);
 
-        
+        \App\TypeBag::create([
+            'name' => 'BAGAGE SOUTE',
+            'length' => 100,
+            'width' => 100,
+            'height'=> 100,
+            'price' => 0.00
+        ]);
+
+        \App\TypeBag::create([
+            'name' => 'BAGAGE MAIN',
+            'length' => 10,
+            'width' => 10,
+            'height'=> 10,
+            'price' => 0.00
+        ]);
+
+        \App\TypeBag::create([
+            'name' => 'AUTRE',
+            'length' => 250,
+            'width' => 250,
+            'height'=> 250,
+            'price' => 10.00
+        ]);
+
+
 
 
 
