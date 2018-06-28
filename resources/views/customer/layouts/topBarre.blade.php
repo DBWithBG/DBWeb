@@ -33,13 +33,7 @@
                                         <li class="right "><a href="{{url('/')}}">Accueil</a>
 
                                         </li>
-                                        <li class="right"><a href="#">Inscription</a> <span
-                                                    class="arrow"></span>
-                                            <ul class="dm-align-2">
-                                                <li><a href="{{url("inscription")}}">Client</a></li>
-                                                <li><a href="{{url("drivers/register")}}">Chauffeur</a></li>
-
-                                            </ul>
+                                        <li class="right"><a href="{{url('/inscription')}}">Inscription</a>
                                         </li>
                                         <li class="right"><a href="{{url("connexion")}}">Connexion</a> <span
                                                     class="arrow"></span>

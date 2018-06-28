@@ -58,7 +58,7 @@ class CustomerController extends Controller
     }
 
     public function inscription(){
-        return view('customer.inscription');
+        return view('customer.inscription_commune');
     }
 
 
