@@ -437,7 +437,7 @@ class MobileController extends Controller
         if(!$u->driver)
             throw new \Error('L\'utilisateur n\'est pas chauffeur');
 
-        $takeovers=TakeOverDelivery::where('driver_id','=',$u->driver->id)->get();
+        $takeovers=TakeOverDelivery::where('driver_id','=',$u->driver->id)->with('delivery')->get();
         return $takeovers;
 
 
