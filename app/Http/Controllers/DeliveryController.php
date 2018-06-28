@@ -7,6 +7,7 @@ use App\Delivery;
 use App\InfoBag;
 use App\Position;
 use App\TakeOverDelivery;
+use Carbon\Carbon;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,8 @@ class DeliveryController extends Controller
         if(isset($request['customer_id']))
             $request['delivery']['customer_id']=$request['customer_id'];
 
+        if(empty($request['delivery']['start_date']))
+            $request['delivery']['start_date'] = Carbon::now();
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
@@ -57,6 +60,28 @@ class DeliveryController extends Controller
         //ajout des bagages
         if(empty($request['bagages'])) $request['bagages'] = [];
 
+        $this->saveBags($request, $delivery->id);
+
+        return $delivery;
+
+    }
+
+    public function postBagsWithDelivery(Request $request){
+        $request = $request->toArray();
+        $delivery = Delivery::find($request['delivery_id']);
+        //TODO Save la date
+        //$delivery->start_date = Carbon::createFromFormat('');
+        $this->saveBags($request, $delivery->id);
+        Session::flash('success', 'Commande enregistrée');
+        return redirect('/');
+    }
+
+    /**
+     * Enregistrement des bagages
+     * @param $request
+     * @param $delivery_id
+     */
+    private function saveBags($request, $delivery_id){
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
                 if(!isset($b['name']))
@@ -64,7 +89,7 @@ class DeliveryController extends Controller
                 if(!isset($b['descr']))
                     $b['descr']="";
                 $bnew=new Bag;
-                $bnew->customer_id=$request['delivery']['customer_id'];
+                $bnew->customer_id=Auth::user()->customer->id;
                 $bnew->name=$b['name'];
                 $bnew->type_id=$k;
                 $bnew->details=$b['descr'];
@@ -73,13 +98,11 @@ class DeliveryController extends Controller
                 //ajout des bages a la course
                 $i=new InfoBag;
                 $i->details_start_driver=$b['descr'];
-                $i->delivery_id=$delivery->id;
+                $i->delivery_id=$delivery_id;
                 $i->bag_id=$bnew->id;
                 $i->save();
             }
         }
-        return $delivery;
-
     }
 
 

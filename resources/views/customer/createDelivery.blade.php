@@ -7,7 +7,7 @@
                 <div class="smart-wrap">
                     <div class="smart-forms smart-container wrap-3">
 
-                        <form method="post" action="{{"register"}}" id="account">
+                        <form method="post" action="{{url("savebags/delivery")}}" id="account">
                             <div class="form-body">
 
                                 <div class="tagline"><span>Vérification des informations</span></div><!-- .tagline -->
@@ -55,16 +55,22 @@
 
                             <!-- end section --><br>
                             <div class="tagline"><span>Enregistrement des bagages</span></div><!-- .tagline -->
-                            <div style="padding-top: 20px">
-                                <label class="field prepend-icon">
-                                    <select class="select-box-2 select">
-                                        @foreach(\App\TypeBag::all() as $type_bag)
-                                            <option value="{{$type_bag->id}}">{{$type_bag->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="text" placeholder="Nom du bagage">
-                                </label>
+                            <div style="padding-top: 10px " class="text-center">
+                                <div class="btn-group " role="group">
+
+                                    @foreach(\App\TypeBag::all() as $type_bag)
+                                        <a id="{{$type_bag->id}}" class="js-add-bag button btn-secondary" href="javascript:void(0)"
+                                                style="margin-bottom: 10px">
+                                            <i class="fa fa-plus-circle"></i> {{$type_bag->name}} ({{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm)
+                                        </a>
+                                        <div class="js-{{$type_bag->id}}">
+
+                                        </div>
+
+                                    @endforeach
+                                </div>
                             </div>
+                            <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
 
                             <div class="form-footer">
@@ -82,4 +88,25 @@
     </section>
     <div class="clearfix"></div>
 
+@endsection
+
+@section('custom-scripts')
+    <script type="text/javascript">
+        var bag_number = 0;
+        $(document).ready(function ($) {
+            $('.js-add-bag').on('click', function () {
+                id = $(this).attr('id');
+                $('.js-'+id).append('<div class="js-delete-'+bag_number+'">' +
+                    '<input type="text" class="gui-input" name="bagages['+id+'][][name]" value="" placeholder="nom">' +
+                    '<input type="text" class="gui-input" name="bagages['+id+'][][descr]" value="" placeholder="description">' +
+                        '<a class="btn btn-small js-press-delete btn-danger" id="'+bag_number+'">Supprimer</a>'+
+                    '</div>');
+            });
+
+            $(document).on('click', '.js-press-delete', function(){
+                id = $(this).attr('id');
+                $('.js-delete-'+id).remove();
+            })
+        });
+    </script>
 @endsection
