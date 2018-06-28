@@ -10,7 +10,7 @@
                         <form method="post" action="{{"register"}}" id="account">
                             <div class="form-body">
 
-                                <div class="tagline"><span>Enregistrement des bagages</span></div><!-- .tagline -->
+                                <div class="tagline"><span>Vérification des informations</span></div><!-- .tagline -->
                             </div>
                             @if(sizeof($errors->all())>0)
                                 <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
@@ -33,15 +33,38 @@
                                     <span class="field-icon"><i class="fa fa-location-arrow"></i></span>
                                 </label>
                             </div>
+                            <div class="frm-row">
+                                <label for="email" class="field-label">Date et heure de prise en charge</label>
+                                <div class="colm colm6">
+                                    <label class="field prepend-icon">
+                                        <input type="date" name="date_prise_en_charge" id="firstname" class="gui-input"
+                                               placeholder="" value="">
+                                        <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                                    </label>
+                                </div><!-- end section -->
 
-                            <div class="">
-                                <label for="email" class="field-label">Adresse email</label>
+                                <div class="colm colm6">
+                                    <label class="field prepend-icon">
+                                        <input type="time" name="time_prise_en_charge" id="firstname" class="gui-input"
+                                               placeholder="" value="">
+                                        <span class="field-icon"><i class="fa fa-hourglass"></i></span>
+                                    </label>
+                                </div><!-- end section -->
+
+                            </div><!-- end frm-row section -->
+
+                            <!-- end section --><br>
+                            <div class="tagline"><span>Enregistrement des bagages</span></div><!-- .tagline -->
+                            <div style="padding-top: 20px">
                                 <label class="field prepend-icon">
-                                    <input type="email" name="email" id="email" class="gui-input"
-                                           placeholder="example@domain.com...">
-                                    <span class="field-icon"><i class="fa fa-envelope"></i></span>
+                                    <select class="select-box-2 select">
+                                        @foreach(\App\TypeBag::all() as $type_bag)
+                                            <option value="{{$type_bag->id}}">{{$type_bag->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="text" placeholder="Nom du bagage">
                                 </label>
-                            </div><!-- end section -->
+                            </div>
 
 
                             <div class="form-footer">

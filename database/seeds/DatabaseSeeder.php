@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'customer',
             'surname' => 'clicli',
             'deleted' => false,
-            'mobile_token' => '41bccd72a3d20fe5',
+            'mobile_token' => '',
             'user_id' => $customer->id
         ]);
 
@@ -58,6 +58,37 @@ class DatabaseSeeder extends Seeder
             'name' => 'Gironde',
             'number' => '33'
         ]);
+
+        \App\AuthorizedDepartment::create([
+            'name' => 'Vosges',
+            'number' => '88'
+        ]);
+
+        \App\TypeBag::create([
+            'name' => 'BAGAGE SOUTE',
+            'length' => 100,
+            'width' => 100,
+            'height'=> 100,
+            'price' => 0.00
+        ]);
+
+        \App\TypeBag::create([
+            'name' => 'BAGAGE MAIN',
+            'length' => 10,
+            'width' => 10,
+            'height'=> 10,
+            'price' => 0.00
+        ]);
+
+        \App\TypeBag::create([
+            'name' => 'AUTRE',
+            'length' => 250,
+            'width' => 250,
+            'height'=> 250,
+            'price' => 10.00
+        ]);
+
+
 
 
 

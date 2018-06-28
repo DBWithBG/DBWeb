@@ -20,6 +20,7 @@ class CreateTypeBag extends Migration
             $table->integer('length');
             $table->integer('width');
             $table->integer('height');
+            $table->double('price', 10,2)->default('0.00');
             $table->timestamps();
         });
 

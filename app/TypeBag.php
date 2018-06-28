@@ -16,7 +16,7 @@ class TypeBag extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'length', 'width', 'weight', 'created_at', 'updated_at'
+        'name', 'length', 'width', 'height', 'created_at', 'updated_at'
     ];
 
     public function deliveryEnd()
