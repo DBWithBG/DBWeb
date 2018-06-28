@@ -114,6 +114,9 @@ Route::post('/updatePassword', 'CustomerController@updatePassword');
 
 Route::get('/historique', 'CustomerController@historique');
 Route::post('/comment', 'CustomerController@comment');
+Route::get('/modalComment/{id}', 'CustomerController@modalComment');
+Route::get('/modalRating/{id}', 'CustomerController@modalRating');
+
 Route::post('/rate', 'CustomerController@rate');
 Route::get('/litiges/{id}', 'CustomerController@litiges');
 Route::post('/litiges/{id}', 'CustomerController@newLitige');
@@ -167,6 +170,8 @@ Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
 Route::put('mobile/users/refreshNotifyToken','phone\MobileController@setNotifyToken');
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
+Route::post('/mobile/drivers/deliveries/cancelTakeOver','phone\MobileController@annulationTakeOver');
+Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileController@annulationDelivery');
 
 
 Route::post('mobile/login', 'phone\MobileController@mobileLogin');

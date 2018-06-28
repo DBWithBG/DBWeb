@@ -59,13 +59,13 @@ class DeliveryController extends Controller
 
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
-                if(!isset($b['nom']))
-                    $b['nom']="";
+                if(!isset($b['name']))
+                    $b['name']="";
                 if(!isset($b['descr']))
                     $b['descr']="";
                 $bnew=new Bag;
                 $bnew->customer_id=$request['delivery']['customer_id'];
-                $bnew->name=$b['nom'];
+                $bnew->name=$b['name'];
                 $bnew->type_id=$k;
                 $bnew->details=$b['descr'];
                 $bnew->save();
@@ -113,6 +113,23 @@ class DeliveryController extends Controller
         ]);
     }
 
+    //gestion des consequences d'une annulation de delivery par le driver
+    public static function gestionAnnulationDelivery($delivery,$driver){
+
+        $delivery->takeOverDelivery->delete();
+        $delivery->update(['status'=>1]);
+        $driver->canceled_deliveries++;
+        $driver->save();
+
+    }
+
+    //gestion des consequences d'une annulation de delivery par le client
+    public static function gestionAnnulationDeliveryCustomer($delivery,$customer){
+
+        $delivery->delete();
+        $customer->canceled_deliveries++;
+        $customer->save();
+    }
 
 
 

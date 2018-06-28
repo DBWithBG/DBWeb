@@ -23,6 +23,8 @@ class CreateCustomersTable extends Migration
             $table->boolean('deleted')->default(0);
             $table->string('mobile_token')->nullable();
             $table->integer('user_id')->unsigned();
+
+            $table->integer('canceled_deliveries')->default(0);
         });
 
         Schema::table('customers', function(Blueprint $table){
