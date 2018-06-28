@@ -39,7 +39,7 @@
 
                 <li class="nav-item {{ Request::is('backoffice/driver*') ? 'active' : '' }}">
                     <a class="nav-link " href="{{url('backoffice/drivers')}}">
-                        <i class="material-icons">grid_on</i>
+                        <i class="material-icons">directions_car</i>
                         <p> Chauffeurs
                         </p>
                     </a>

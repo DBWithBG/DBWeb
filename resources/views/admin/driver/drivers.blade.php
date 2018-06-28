@@ -48,11 +48,10 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Prénom - Nom</th>
-                                            <th>Date d'anniversaire</th>
-                                            <th>Téléphone</th>
+                                            <th>Prénom Nom</th>
                                             <th>Inscrit le</th>
                                             <th>CA</th>
+                                            <th>Statut</th>
                                             <th>Note</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
@@ -62,12 +61,17 @@
                                         @foreach($drivers as $driver)
                                             <tr class="text-center">
                                                 <td>
-                                                    <a href="{{url('/backoffice/driver/'. $driver->id )}}">{{ $driver->surname .'-' . $driver->name}}</a>
+                                                    <a href="{{url('/backoffice/driver/'. $driver->id )}}">{{ $driver->surname .' ' . $driver->name}}</a>
                                                 </td>
-                                                <td>{{ $driver->birth_date }}</td>
-                                                <td>{{$driver->phone}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($driver->created_at)->format('d/m/Y') }}</td>
                                                 <td>0 €</td>
+                                                <td>
+                                                @if($driver->is_op)
+                                                    <span class="text-success">Validé</span>
+                                                @else
+                                                        <span class="text-danger">Non validé</span>
+                                                @endif
+                                                </td>
                                                 <td>{{$driver->note()}}</td>
                                                 <td class="text-right">
                                                     <form id="delete_groupe_form_{{ $driver->id }}" method="post"

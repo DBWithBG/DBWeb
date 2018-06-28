@@ -83,6 +83,7 @@
                                             <ul>
                                                 <li>Une photocopie de votre permis de conduire</li>
                                                 <li>Une photocopie de votre carte d'identité</li>
+                                                <li>Une photocopie d'un relevé d'identité bancaire</li>
                                                 <li>Votre numéro de SIRET</li>
                                             </ul>
                                             <p>Une fois ces pièces justificatives transmises, elles seront validées par
