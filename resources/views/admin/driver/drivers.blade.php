@@ -64,7 +64,7 @@
                                                     <a href="{{url('/backoffice/driver/'. $driver->id )}}">{{ $driver->surname .' ' . $driver->name}}</a>
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($driver->created_at)->format('d/m/Y') }}</td>
-                                                <td>0 €</td>
+                                                <td>{{$driver->ca()}} €</td>
                                                 <td>
                                                 @if($driver->is_op)
                                                     <span class="text-success">Validé</span>

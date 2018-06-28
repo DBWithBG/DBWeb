@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use League\Flysystem\Config;
 
 class Driver extends Model
 {
@@ -31,6 +32,24 @@ class Driver extends Model
         return $this->hasMany('App\Justificatif', 'driver_id');
     }
 
+    /**
+     * @return int La chiffre d'affaires du driver
+     */
+    public function ca() {
+        $ca = 0;
+
+        foreach ($this->takeOverDeliveries as $tod) {
+            if ($tod->delivery->status == Config::get('constants.TERMINE')) {
+                $ca += $tod->delivery->price;
+            }
+        }
+
+        return $ca;
+    }
+
+    /**
+     * @return string Une string contenant la note du driver
+     */
     public function note() {
         $total = 0;
         $number = 0;
