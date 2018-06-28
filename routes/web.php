@@ -135,6 +135,7 @@ Route::get('connexion', 'CustomerController@connexion');
 Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
 
 Route::post('create/delivery', 'DeliveryController@postDelivery');
+Route::post('savebags/delivery', 'DeliveryController@postBagsWithDelivery');
 
 Route::get('delivery/{id}/paiement', 'DeliveryController@getPaiement');
 
