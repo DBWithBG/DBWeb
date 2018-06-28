@@ -427,4 +427,20 @@ class MobileController extends Controller
 
 
 
+    public function getDriversDeliveries(){
+        if(!Input::get('mobile_token'))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$u->driver)
+            throw new \Error('L\'utilisateur n\'est pas chauffeur');
+
+        $takeovers=TakeOverDelivery::where('driver_id','=',$u->driver->id)->get();
+        return $takeovers;
+
+
+    }
+
 }

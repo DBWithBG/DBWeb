@@ -235,4 +235,6 @@ class DriverController extends Controller
         Session::flash('success', 'Votre litige a bien été enregistré');
         return redirect()->back();
     }
+
+
 }
