@@ -166,6 +166,7 @@ Route::get('/drivers', 'phone\MobileController@getDrivers');
 
 Route::get('mobile/user/{token}','phone\MobileController@getUser');
 Route::get('mobile/bags/users/{token}','phone\MobileController@getBagsUsers');
+Route::get('/mobile/deliveries/drivers','phone\MobileController@getDriversDeliveries');
 Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
 Route::put('mobile/users/refreshNotifyToken','phone\MobileController@setNotifyToken');
