@@ -26,7 +26,7 @@ class TakeOverDelivery extends Model
 
     public function delivery()
     {
-        return $this->belongsTo('App\Delivery', 'delivery_id');
+        return $this->belongsTo('App\Delivery', 'delivery_id')->with('startPosition')->with('endPosition')->with('bags');
     }
 
     public function driver()
