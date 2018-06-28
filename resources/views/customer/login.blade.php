@@ -8,6 +8,20 @@
                 <div class="smart-wrap">
                     <div class="smart-forms smart-container wrap-3">
 
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <div class="row" style="padding-top: 20px">
+                                    <div class="col-md-12 nopadding">
+                                        <div class="alert-box warning">
+                                            <span class="alert-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                            <strong><i class="fa fa-exclamation-triangle"aria-hidden="true"></i></strong>
+                                            &nbsp; {{$error}}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+
                         <form method="post" action="{{url('/login')}}" id="js-form-login">
                             {{csrf_field()}}
 
@@ -26,9 +40,7 @@
                                 <div class="spacer-t30 spacer-b30">
                                     <div class="tagline"><span> OU classiquement </span></div><!-- .tagline -->
                                 </div>
-                                @if(sizeof($errors->all())>0)
-                                    <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
-                                @endif
+
                                 <div class="">
                                     <label class="field prepend-icon">
                                         <input type="text" name="email" id="email" class="gui-input" placeholder="Email">
