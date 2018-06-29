@@ -60,7 +60,9 @@ class DeliveryController extends Controller
         //ajout des bagages
         if(empty($request['bagages'])) $request['bagages'] = [];
 
-        $this->saveBags($request, $delivery->id);
+        if(!isset($request['customer_id']))
+            $request['customer_id']=Auth::user()->customer->id;
+        $this->saveBags($request, $delivery->id,$request['customer_id']);
 
         return $delivery;
 
@@ -71,7 +73,7 @@ class DeliveryController extends Controller
         $delivery = Delivery::find($request['delivery_id']);
         //TODO Save la date
         //$delivery->start_date = Carbon::createFromFormat('');
-        $this->saveBags($request, $delivery->id);
+        $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
         Session::flash('success', 'Commande enregistrée');
         return redirect('/');
     }
@@ -81,7 +83,7 @@ class DeliveryController extends Controller
      * @param $request
      * @param $delivery_id
      */
-    private function saveBags($request, $delivery_id){
+    private function saveBags($request, $delivery_id,$customerid){
         foreach($request['bagages'] as $k=>$bags){
             foreach($bags as $b){
                 if(!isset($b['name']))
@@ -89,7 +91,7 @@ class DeliveryController extends Controller
                 if(!isset($b['descr']))
                     $b['descr']="";
                 $bnew=new Bag;
-                $bnew->customer_id=Auth::user()->customer->id;
+                $bnew->customer_id=$customerid;
                 $bnew->name=$b['name'];
                 $bnew->type_id=$k;
                 $bnew->details=$b['descr'];
