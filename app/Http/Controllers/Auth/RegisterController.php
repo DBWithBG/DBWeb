@@ -53,8 +53,27 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'cgu' => 'required'
+        ], [
+            'name.required' => 'Votre nom est requis',
+            'name.string' => 'Votre nom ne doit être composé que de lettres',
+
+            'surname.required' => 'Votre prénom est requis',
+            'surname.string' => 'Votre prénom ne doit être composé que de lettres',
+
+            'email.required' => 'Votre adresse mail est requise',
+            'email.email' => 'L\'adresse email n\'est pas valide',
+            'email.unique' => 'Cette adresse mail est déjà utilisée',
+
+            'password.required' => 'Merci de fournir un mot de passe',
+            'password.min' => 'Votre mot de passe doit contenir au moins 6 caractères',
+            'password.confirmed' => 'Les deux mots de passe ne correspondent pas',
+
+            'cgu.required' => 'Merci d\'accepter les conditions d\'utilisation'
+
         ]);
     }
 
