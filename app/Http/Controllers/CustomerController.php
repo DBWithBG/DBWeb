@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AuthorizedDepartment;
+use App\Bag;
 use App\Delivery;
 use App\Dispute;
 use App\Rating;
@@ -383,6 +384,46 @@ class CustomerController extends Controller
         Session::flash('success', 'Le litige a été fermé');
         return redirect()->back();
 
+    }
+
+    public function bagages() {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $bags = $customer->bags;
+
+        return view('customer.bagages')->with(['bags' => $bags]);
+    }
+
+    public function addBagage(Request $request) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'details' => 'nullable',
+            'type' => 'required|exists:type_bags,id',
+        ], [
+            'name.required' => 'Merci de donner un nom à votre bagage',
+            'type.required' => 'Merci de choisir un type de bagage'
+
+        ]);
+
+        Log::debug('Type : ' . $request->type);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v);
+        }
+
+        $bag = new Bag;
+        $bag->customer_id = $customer->id;
+        $bag->name = $request->name;
+        $bag->details = $request->details;
+        $bag->type_id = $request->type;
+        $bag->save();
+
+        Session::flash('success', 'Le bagage a été ajouté');
+        return redirect()->back();
     }
 
 }
