@@ -431,4 +431,20 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    public function deleteBagage(Request $request, $id) {
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $bag = Bag::findOrFail($id);
+
+        if ($bag->customer_id != $customer->id) {
+            return abort(400);
+        }
+
+        $bag->delete();
+
+        Session::flash('success', 'Le bagage a été supprimé');
+        return redirect()->back();
+    }
+
 }

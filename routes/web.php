@@ -115,6 +115,8 @@ Route::post('/updatePassword', 'CustomerController@updatePassword');
 Route::get('/historique', 'CustomerController@historique');
 Route::get('/bagages', 'CustomerController@bagages');
 Route::post('/addBagage', 'CustomerController@addBagage');
+Route::post('/deleteBagage/{id}', 'CustomerController@deleteBagage');
+
 Route::post('/comment', 'CustomerController@comment');
 Route::get('/modalComment/{id}', 'CustomerController@modalComment');
 Route::get('/modalRating/{id}', 'CustomerController@modalRating');

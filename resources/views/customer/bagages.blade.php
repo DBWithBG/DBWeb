@@ -139,7 +139,12 @@
                                 <td>{{$bag->name}}</td>
                                 <td>{{$bag->details}}</td>
                                 <td>{{$bag->type->name}}</td>
-                                <td></td>
+                                <td>
+                                    <form action="{{url('/deleteBagage/' . $bag->id)}}" method="post" id="delete_bagage_{{$bag->id}}">
+                                        {{csrf_field()}}
+                                    </form>
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('delete_bagage_{{$bag->id}}').submit()">Supprimer</a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
