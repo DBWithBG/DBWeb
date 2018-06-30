@@ -60,7 +60,7 @@
 
                                 </td>
                                 <td>
-                                    @if($delivery->takeOverDelivery != null)
+                                    @if($delivery->takeOverDelivery != null && \Carbon\Carbon::parse($delivery->start_date)->addDays(1) > Carbon\Carbon::now())
                                         <a href="{{url('/litiges/' . $delivery->id)}}">Litiges</a>
                                     @endif
                                 </td>

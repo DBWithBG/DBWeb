@@ -8,6 +8,7 @@ use App\Delivery;
 use App\Dispute;
 use App\Rating;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -345,6 +346,10 @@ class CustomerController extends Controller
 
         if ($v->fails()) {
             return redirect()->back()->withErrors($v);
+        }
+
+        if (Carbon::parse($delivery->start_date)->addDays(1) < Carbon::now()) {
+            return redirect()->back()->withErrors(['Vous ne pouvez déclarer de litige que pendant les 24 heures suivants la course']);
         }
 
         $litige = new Dispute;
