@@ -93,6 +93,12 @@ class NotificationController extends Controller
             'body'=>'Votre chauffeur garde votre bagage avant sa livraison.',
             'datas'=>['url'=>'courses']];
     }
+
+    public function notifyLancementLivraison(){
+        return ['title'=>'Vos bagages sont en routes !',
+            'body'=>'Votre chauffeur transporte vos bagages vers leur lieu de livraison.',
+            'datas'=>['url'=>'courses']];
+    }
     /*
     * ENVOI DE NOTIFICATION
     * on appel la methode statique avec un array parametre :

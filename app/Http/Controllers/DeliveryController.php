@@ -178,4 +178,12 @@ class DeliveryController extends Controller
     }
 
 
+    //gestion des consequences d'un lancement de livraison de delivery par le driver
+    public static function gestionLancementLivraison($delivery){
+        $delivery->update(['status'=>Config::get('constants.EN_COURS_DE_LIVRAISON')]);
+        $tab=NotificationController::notifyLancementLivraison();
+        $tab['tokens']=[0=>$delivery->customer->user->notify_token];
+        NotificationController::sendNotification($tab);
+    }
+
 }
