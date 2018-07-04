@@ -435,7 +435,7 @@ class MobileController extends Controller
         if(!$u->driver)
             throw new \Error('L\'utilisateur n\'est pas chauffeur');
 
-        $delivery=Delivery::find('delivery_id',$request->delivery_id);
+        $delivery=Delivery::find($request->delivery_id);
 
         if(!$delivery)
             throw new \Error('Course invalide');
