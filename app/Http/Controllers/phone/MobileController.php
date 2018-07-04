@@ -375,29 +375,7 @@ class MobileController extends Controller
         $d->update(['status'=>1]);
     }
 
-    public function annulationTakeOver(Request $request){
-        if(!$request->mobile_token)
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->driver)
-            throw new \Error('Utilisateur non driver :( ! ');
 
-        if(!$request->delivery_id)
-            throw new \Error('Pas de delivery fournie :( ! ');
-
-        $d=Delivery::find($request->delivery_id);
-        if(!$d)
-            throw new \Error('Pas de delivery trouvée');
-        if(!Delivery::isAnnulable($d))
-            throw new \Error('Delivery non annulable');
-
-        DeliveryController::gestionAnnulationDelivery($d,$u->driver);
-
-
-
-    }
 
     public function annulationDelivery(Request $request){
         if(!$request->mobile_token)
@@ -447,7 +425,6 @@ class MobileController extends Controller
 
 
     //modification du status d'une delivery par un driver
-    //TODO rassembler avec canceltakeover
     public function editStatusDriver(Request $request){
         if(!Input::get('mobile_token'))
             throw new \Error('Pas de token fourni :( ! ');
@@ -464,6 +441,11 @@ class MobileController extends Controller
             throw new \Error('Course invalide');
         if(!$delivery->takeOverDelivery || $delivery->takeOverDelivery->driver_id != $u->driver->id)
             throw new \Error('Non autorisé à modifier la course');
+
+
+        if($request->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
+            DeliveryController::gestionAnnulationDelivery($delivery,$u->driver);
+        }
 
         if($request->status==Config::get('constants.PRIS_EN_CHARGE'))
         $this->priseEnChargeDelivery($request);

@@ -176,7 +176,6 @@ Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
 Route::put('mobile/users/refreshNotifyToken','phone\MobileController@setNotifyToken');
 Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
-Route::post('/mobile/drivers/deliveries/cancelTakeOver','phone\MobileController@annulationTakeOver');
 Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileController@annulationDelivery');
 
 
