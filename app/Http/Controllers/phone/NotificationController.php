@@ -95,7 +95,7 @@ class NotificationController extends Controller
     }
 
     public static function notifyLancementLivraison(){
-        return ['title'=>'Vos bagages sont en routes !',
+        return ['title'=>'Vos bagages sont en route !',
             'body'=>'Votre chauffeur transporte vos bagages vers leur lieu de livraison.',
             'datas'=>['url'=>'courses']];
     }
