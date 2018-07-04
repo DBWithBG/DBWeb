@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bag;
 use App\Delivery;
+use App\Http\Controllers\phone\NotificationController;
 use App\InfoBag;
 use App\Position;
 use App\TakeOverDelivery;
@@ -142,9 +143,12 @@ class DeliveryController extends Controller
     public static function gestionAnnulationDelivery($delivery,$driver){
 
         $delivery->takeOverDelivery->delete();
-        $delivery->update(['status'=>1]);
+        $delivery->update(['status'=>Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')]);
         $driver->canceled_deliveries++;
         $driver->save();
+        $tab=NotificationController::notifyAnnulation();
+        $tab['tokens']=[0=>$delivery->customer->user->notify_token];
+        NotificationController::sendNotification($tab);
 
     }
 
@@ -157,6 +161,20 @@ class DeliveryController extends Controller
     }
 
 
+    //gestion des consequences d'une livraison de delivery par le driver
+    public static function gestionLivraisonEffectuee($delivery){
+        $delivery->update(['status'=>Config::get('constants.TERMINE')]);
+        $tab=NotificationController::notifyArrivee();
+        $tab['tokens']=[0=>$delivery->customer->user->notify_token];
+        NotificationController::sendNotification($tab);
+    }
+
+    public static function gestionLancementConsigne($delivery){
+        $delivery->update(['status'=>Config::get('constants.CONSIGNE')]);
+        $tab=NotificationController::notifyArrivee();
+        $tab['tokens']=[0=>$delivery->customer->user->notify_token];
+        NotificationController::sendNotification($tab);
+    }
 
 
 }

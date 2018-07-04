@@ -164,7 +164,7 @@ class MobileController extends Controller
 
         $res_id=null;
         //TODO utilise pour debug mettre en attente de pris en charge
-        if($del->status!=Config::get('constants.PRIS_EN_CHARGE')){
+        if($del->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
             $take=new TakeOverDelivery;
             $take->driver_id=$u->driver->id;
             $take->status=0;
@@ -439,8 +439,41 @@ class MobileController extends Controller
 
         $takeovers=TakeOverDelivery::where('driver_id','=',$u->driver->id)->with('delivery')->get();
         return $takeovers;
-
-
     }
 
+
+
+
+
+
+    //modification du status d'une delivery par un driver
+    //TODO rassembler avec canceltakeover
+    public function editStatusDriver(Request $request){
+        if(!Input::get('mobile_token'))
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
+        if(!$u->driver)
+            throw new \Error('L\'utilisateur n\'est pas chauffeur');
+
+        $delivery=Delivery::find('delivery_id',$request->delivery_id);
+
+        if(!$delivery)
+            throw new \Error('Course invalide');
+        if(!$delivery->takeOverDelivery || $delivery->takeOverDelivery->driver_id != $u->driver->id)
+            throw new \Error('Non autorisé à modifier la course');
+
+        if($request->status==Config::get('constants.PRIS_EN_CHARGE'))
+        $this->priseEnChargeDelivery($request);
+
+        if($request->status==Config::get('constants.EN_COURS_DE_LIVRAISON'))
+        DeliveryController::gestionLancementLivraison($delivery);
+
+        if($request->status==Config::get('constants.CONSIGNE'))
+            DeliveryController::gestionLancementConsigne($delivery);
+        if($request->status==Config::get('constants.TERMINE'))
+        DeliveryController::gestionLivraisonEffectuee($delivery);
+    }
 }

@@ -57,6 +57,13 @@ class NotificationController extends Controller
             'datas'=>['url'=>'courses']];
     }
 
+    //notification d'annulation pour client
+    public static function notifyAnnulation(){
+        return['title'=>'Votre chauffeur s\'est désister !',
+            'body'=>'Votre demande a automatiquement été remise en attente',
+            'datas'=>['url'=>'courses']];
+    }
+
     //notification de demande d'avis pour client
     public static function notifyDemandeAvis(){
         return ['title'=>'Notez votre expérience DeliverBag !',
