@@ -443,19 +443,19 @@ class MobileController extends Controller
             throw new \Error('Non autorisé à modifier la course');
 
 
-        if($request->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
+        if($request->status_id==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
             DeliveryController::gestionAnnulationDelivery($delivery,$u->driver);
         }
 
-        if($request->status==Config::get('constants.PRIS_EN_CHARGE'))
+        if($request->status_id==Config::get('constants.PRIS_EN_CHARGE'))
         $this->priseEnChargeDelivery($request);
 
-        if($request->status==Config::get('constants.EN_COURS_DE_LIVRAISON'))
+        if($request->status_id==Config::get('constants.EN_COURS_DE_LIVRAISON'))
         DeliveryController::gestionLancementLivraison($delivery);
 
-        if($request->status==Config::get('constants.CONSIGNE'))
+        if($request->status_id==Config::get('constants.CONSIGNE'))
             DeliveryController::gestionLancementConsigne($delivery);
-        if($request->status==Config::get('constants.TERMINE'))
+        if($request->status_id==Config::get('constants.TERMINE'))
         DeliveryController::gestionLivraisonEffectuee($delivery);
     }
 }
