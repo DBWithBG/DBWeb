@@ -439,16 +439,16 @@ class MobileController extends Controller
 
         if(!$delivery)
             throw new \Error('Course invalide');
-        if(!$delivery->takeOverDelivery || $delivery->takeOverDelivery->driver_id != $u->driver->id)
-            throw new \Error('Non autorisé à modifier la course');
-
-
+        if(!$request->status_id==Config::get('constants.PRIS_EN_CHARGE')){
+            if((!$delivery->takeOverDelivery || $delivery->takeOverDelivery->driver_id != $u->driver->id))
+                throw new \Error('Non autorisé à modifier la course');
+        }
         if($request->status_id==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
             DeliveryController::gestionAnnulationDelivery($delivery,$u->driver);
         }
 
         if($request->status_id==Config::get('constants.PRIS_EN_CHARGE'))
-        $this->priseEnChargeDelivery($request);
+            $this->priseEnChargeDelivery($request);
 
         if($request->status_id==Config::get('constants.EN_COURS_DE_LIVRAISON'))
         DeliveryController::gestionLancementLivraison($delivery);
