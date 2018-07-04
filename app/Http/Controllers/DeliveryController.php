@@ -169,9 +169,10 @@ class DeliveryController extends Controller
         NotificationController::sendNotification($tab);
     }
 
+    //gestion des consequences d'un lancement de consigne
     public static function gestionLancementConsigne($delivery){
         $delivery->update(['status'=>Config::get('constants.CONSIGNE')]);
-        $tab=NotificationController::notifyArrivee();
+        $tab=NotificationController::notifyConsigne();
         $tab['tokens']=[0=>$delivery->customer->user->notify_token];
         NotificationController::sendNotification($tab);
     }

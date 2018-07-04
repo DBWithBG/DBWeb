@@ -87,6 +87,12 @@ class NotificationController extends Controller
             'datas'=>['url'=>'']];
     }
 
+    //notification de lancement de consigne
+    public static function notifyConsigne(){
+        return ['title'=>'Votre chauffeur a bien consigné votre bagage!',
+            'body'=>'Votre chauffeur garde votre bagage avant sa livraison.',
+            'datas'=>['url'=>'courses']];
+    }
     /*
     * ENVOI DE NOTIFICATION
     * on appel la methode statique avec un array parametre :
