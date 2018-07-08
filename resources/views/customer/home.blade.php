@@ -215,9 +215,488 @@
     </section>
     <div class="clearfix"></div>
     <!-- end section -->
+    <section class="sec-tpadding-2 section-light section-pattren-37">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 margin-bottom">
+                    <div class="ce-feature-box-30"><img src="http://via.placeholder.com/1000x1060" alt="" /></div>
+                </div>
+                <!--end item-->
+
+                <div class="col-md-6 margin-bottom">
+                    <div class="ce-feature-box-29">
+                        <div class="col-sm-12">
+                            <div class="sec-title-container less-padding-4 text-left">
+                                <h2 class="font-weight-6 less-mar-1 text-white line-height-5">We offer high Quality Home Pages for You</h2>
+                                <h6 class="raleway opacity-8 align-left text-white">Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus .</h6>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--end title-->
+
+                        <div class="col-md-6">
+                            <div class="ce-feature-box-32 text-left">
+                                <div class="icon-plain-msmall left white icon center"><span class="pe-7s-mouse"></span></div>
+                                <div class=" text-box text-left">
+                                    <h5 class="title font-weight-5 text-white">Beautiful Graphics</h5>
+                                    <p class="text-white opacity-8">Vestibulum ante ipsum primis sit amet justo elit faucibus orci luctus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end item-->
+
+                        <div class="col-md-6">
+                            <div class="ce-feature-box-32 text-left">
+                                <div class="icon-plain-msmall left white icon center"><span class="pe-7s-look"></span></div>
+                                <div class=" text-box text-left">
+                                    <h5 class="title font-weight-5 text-white">Classic Styles</h5>
+                                    <p class="text-white opacity-8">Vestibulum ante ipsum primis sit amet justo elit faucibus orci luctus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end item-->
+
+                    </div>
+                    <!--end item-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- end section -->
+    <section class="sec-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 padding-left-4">
+                    <div class="col-md-6">
+                        <div class="ce-feature-box-15 text-left">
+                            <div class="icon-plain-medium left dark icon"><i class="pe-7s-lock"></i></div>
+                            <div class="text-box-right">
+                                <h5 class="title font-weight-5">Fully Secure and clean</h5>
+                                <p>Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet ligula Etiam sit amet.</p>
+                                <div class="clearfix"></div>
+                                <br/>
+                                <div class="divider-line solid light-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                    <div class="col-md-6">
+                        <div class="ce-feature-box-15 text-left">
+                            <div class="icon-plain-medium left dark icon"><i class="pe-7s-monitor"></i></div>
+                            <div class="text-box-right">
+                                <h5 class="title font-weight-5">Fully Responsive Design</h5>
+                                <p>Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet ligula Etiam sit amet.</p>
+                                <div class="clearfix"></div>
+                                <br/>
+                                <div class="divider-line solid light-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                    <div class="clearfix"></div>
+                    <div class="col-divider-margin-4"></div>
+                    <div class="col-md-6">
+                        <div class="ce-feature-box-15 text-left">
+                            <div class="icon-plain-medium left dark icon"><i class="pe-7s-camera"></i></div>
+                            <div class="text-box-right">
+                                <h5 class="title font-weight-5">Photography & Branding</h5>
+                                <p>Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet ligula Etiam sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                    <div class="col-md-6">
+                        <div class="ce-feature-box-15 text-left">
+                            <div class="icon-plain-medium left dark icon"><i class="pe-7s-mouse"></i></div>
+                            <div class="text-box-right">
+                                <h5 class="title font-weight-5">Excellent Customer Support</h5>
+                                <p>Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet ligula Etiam sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                </div>
+                <!--end item-->
+
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+    <section class="sec-padding section-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="sec-title-container text-center">
+                        <h5 class="font-weight-4 less-mar-1 line-height-4 montserrat opacity-9">We are creating beautiful Products</h5>
+                        <h2 class="font-weight-6 less-mar-1 montserrat line-height-5">Beautifully Crafted Products<br/>
+                            and multipage Templates</h2>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!--end title-->
+
+                <div id="js-filters-mosaic-flat" class="cbp-l-filters-buttonCenter round">
+                    <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".print" class="cbp-filter-item"> Print
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".web-design" class="cbp-filter-item"> Web Design
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".graphic" class="cbp-filter-item"> Graphic
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                    <div data-filter=".motion" class="cbp-filter-item"> Motion
+                        <div class="cbp-filter-counter"></div>
+                    </div>
+                </div>
+                <div>
+                    <div id="js-grid-mosaic-flat" class="cbp cbp-l-grid-mosaic-flat">
+                        <div class="cbp-item web-design graphic"> <a href="http://via.placeholder.com/300x300" class="cbp-caption cbp-lightbox" data-title="Bolt UI<br>by Tiberiu Neamu">
+                                <div class="cbp-caption-defaultWrap"> <img src="http://via.placeholder.com/300x300" alt=""> </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Lorem ipsum dolor sit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div>
+                        <div class="cbp-item print motion"> <a href="http://via.placeholder.com/300x300" class="cbp-caption cbp-lightbox" data-title="Bolt UI<br>by Tiberiu Neamu">
+                                <div class="cbp-caption-defaultWrap"> <img src="http://via.placeholder.com/300x300" alt=""> </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Lorem ipsum dolor sit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div>
+                        <div class="cbp-item print motion"> <a href="http://via.placeholder.com/300x300" class="cbp-caption cbp-lightbox" data-title="Bolt UI<br>by Tiberiu Neamu">
+                                <div class="cbp-caption-defaultWrap"> <img src="http://via.placeholder.com/300x300" alt=""> </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Lorem ipsum dolor sit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div>
+                        <div class="cbp-item motion graphic"> <a href="http://via.placeholder.com/300x300" class="cbp-caption cbp-lightbox" data-title="Bolt UI<br>by Tiberiu Neamu">
+                                <div class="cbp-caption-defaultWrap"> <img src="http://via.placeholder.com/300x300" alt=""> </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Lorem ipsum dolor sit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div>
+                        <div class="cbp-item web-design print"> <a href="http://via.placeholder.com/300x300" class="cbp-caption cbp-lightbox" data-title="Bolt UI<br>by Tiberiu Neamu">
+                                <div class="cbp-caption-defaultWrap"> <img src="http://via.placeholder.com/300x300" alt=""> </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Lorem ipsum dolor sit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div>
+                        <div class="cbp-item print motion"> <a href="http://via.placeholder.com/300x300" class="cbp-caption cbp-lightbox" data-title="Bolt UI<br>by Tiberiu Neamu">
+                                <div class="cbp-caption-defaultWrap"> <img src="http://via.placeholder.com/300x300" alt=""> </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title">Lorem ipsum dolor sit</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- end section -->
+    <section class="section-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="ce-feature-box-3 text-center">
+                        <div class="icon-plain-medium icon center text-primary"><span class="pe-7s-monitor text-primary"></span></div>
+                        <br/>
+                        <h3 class="font-weight-4">Shortcodes</h3>
+                        <p>Pellentesque ut risus a odio posuere aliquet. Pellentesque sapien erat, dignissim vel, faucibus eget, vulputate eget, nulla.</p>
+                        <br/>
+                        <br/>
+                        <a class="btn btn-border light border-1x btn-xround-2 uppercase" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i> Read more</a> </div>
+                </div>
+                <!--end item-->
+
+                <div class="col-md-4">
+                    <div class="ce-feature-box-3 text-center">
+                        <div class="icon-plain-medium icon center text-primary"><span class="pe-7s-folder text-primary"></span></div>
+                        <br/>
+                        <h3 class="font-weight-4">PSD Files</h3>
+                        <p>Pellentesque ut risus a odio posuere aliquet. Pellentesque sapien erat, dignissim vel, faucibus eget, vulputate eget, nulla.</p>
+                        <br/>
+                        <br/>
+                        <a class="btn btn-prim btn-xround-2 uppercase" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i> Read more</a> </div>
+                </div>
+                <!--end item-->
+
+                <div class="col-md-4">
+                    <div class="ce-feature-box-3 text-center">
+                        <div class="icon-plain-medium icon center text-primary"><span class="pe-7s-search text-primary"></span></div>
+                        <br/>
+                        <h3 class="font-weight-4">Creative Layouts</h3>
+                        <p>Pellentesque ut risus a odio posuere aliquet. Pellentesque sapien erat, dignissim vel, faucibus eget, vulputate eget, nulla.</p>
+                        <br/>
+                        <br/>
+                        <a class="btn btn-border border-1x btn-xround-2 light uppercase" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i> Read more</a> </div>
+                </div>
+                <!--end item-->
+
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- end section -->
+    <section class="section-primary">
+        <div class="container-fluid"> </div>
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-md-7 col-sm-12 col-xs-12 margin-bottom"> <img src="http://via.placeholder.com/1500x1100" alt="" class="img-responsive"/> </div>
+                <!--end item-->
+
+                <div class="col-md-5 sec-padding">
+                    <div class="col-md-8">
+                        <h2 class="ce-sec-title font-weight-6 less-mar-1 text-white">Build Modern, creative and clean templates</h2>
+                        <br/>
+                        <h5 class="raleway text-white">Lorem ipsum dolor sit amet consectetuer adipiscing elit Suspendisse et justo .</h5>
+                        <br/>
+                        <div class="iconlist-2">
+                            <div class="icon"><i class="fa fa-arrow-circle-right text-white"></i></div>
+                            <div class="text-white"> Pellentesque sit amet augue eu orci cursus fermentum.</div>
+                        </div>
+                        <!--end item-->
+
+                        <div class="iconlist-2">
+                            <div class="icon"><i class="fa fa-arrow-circle-right text-white"></i></div>
+                            <div class="text-white"> Maecenas fringilla orci ultrices nulla consectetur id.</div>
+                        </div>
+                        <!--end item-->
+
+                        <div class="iconlist-2">
+                            <div class="icon"><i class="fa fa-arrow-circle-right text-white"></i></div>
+                            <div class="text-white">Fringilla orci ultrices nulla consectetur id suscipit .</div>
+                        </div>
+                        <!--end item-->
+
+                        <div class="clearfix"></div>
+                        <br/>
+                        <br/>
+                        <a class="btn btn-white btn-round uppercase" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i> Read more</a> </div>
+                </div>
+                <!--end item-->
+
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
 
 
+    <div class="parallax vertical-align" data-parallax-bg-image="http://via.placeholder.com/2000x1300" data-parallax-speed="0.9" data-parallax-direction="down">
+        <div class="parallax-overlay bg-opacity-8">
+            <div class="container sec-tpadding-2 sec-bpadding-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="sec-title-container text-left">
+                            <h2 class="font-weight-6 less-mar-1 line-height-5 text-white">Know more about our company<br/>
+                                <span class="font-weight-3 text-white">and get unlimited features</span></h2>
+                            <h6 class="ce-sub-text raleway align-left text-white opacity-3">Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus a est Curabitur eget orci Cras laoreet ligula etiam sit amet dolor Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</h6>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end title-->
 
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center margin-bottom">
+                        <div class="ce-feature-box-6 no-margin">
+                            <div class=" iconbox-medium icon round"><span class="pe-7s-look"></span></div>
+                            <div class="text-box">
+                                <h1 class="text-white font-weight-4 less-mar-1 padding-top-1 title">3924</h1>
+                                <h5 class="text-white">Projects</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center margin-bottom">
+                        <div class="ce-feature-box-6 no-margin">
+                            <div class=" iconbox-medium icon round"><span class="pe-7s-server"></span></div>
+                            <div class="text-box">
+                                <h1 class="text-white font-weight-4 less-mar-1 padding-top-1 title">1462</h1>
+                                <h5 class="text-white">Compleated</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center margin-bottom">
+                        <div class="ce-feature-box-6 no-margin">
+                            <div class=" iconbox-medium icon round"><span class="pe-7s-search"></span></div>
+                            <div class="text-box">
+                                <h1 class="text-white font-weight-4 less-mar-1 padding-top-1 title">2547</h1>
+                                <h5 class="text-white">Happy Clients</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12 text-center margin-bottom">
+                        <div class="ce-feature-box-6 no-margin">
+                            <div class=" iconbox-medium icon round"><span class="pe-7s-cup"></span></div>
+                            <div class="text-box">
+                                <h1 class="text-white font-weight-4 less-mar-1 padding-top-1 title">1789</h1>
+                                <h5 class="text-white">Awards</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end item-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- end section -->
+
+
+    <section class="sec-padding section-bgimg-13">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 col-centered">
+                    <div class="col-sm-12">
+                        <div class="sec-title-container text-center">
+                            <h5 class="font-weight-4 less-mar-1 line-height-4 opacity-9">Our creative team gives you best Support</h5>
+                            <h2 class="font-weight-6 less-mar-1 line-height-5">Meet Our Creative team and get<br/>
+                                More features and Services</h2>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end title-->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="ce-feature-box-53">
+                            <div class="img-box">
+                                <div class="overlay text-left">
+                                    <h4 class="title less-mar-1">Benjamin</h4>
+                                    <p class="sub-text">Founder & CEO</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                                    <br/>
+                                    <ul class="sc-icons">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                                <img src="http://via.placeholder.com/500x600" alt="" class="img-responsive"/> </div>
+                        </div>
+                    </div>
+                    <!-- end item -->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="ce-feature-box-53">
+                            <div class="img-box">
+                                <div class="overlay text-left">
+                                    <h4 class="title less-mar-1">Isabella</h4>
+                                    <p class="sub-text">Developer</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                                    <br/>
+                                    <ul class="sc-icons">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                                <img src="http://via.placeholder.com/500x600" alt="" class="img-responsive"/> </div>
+                        </div>
+                    </div>
+                    <!-- end item -->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="ce-feature-box-53">
+                            <div class="img-box">
+                                <div class="overlay text-left">
+                                    <h4 class="title less-mar-1">William</h4>
+                                    <p class="sub-text">Designer</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                                    <br/>
+                                    <ul class="sc-icons">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                                <img src="http://via.placeholder.com/500x600" alt="" class="img-responsive"/> </div>
+                        </div>
+                    </div>
+                    <!-- end item -->
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="ce-feature-box-53">
+                            <div class="img-box">
+                                <div class="overlay text-left">
+                                    <h4 class="title less-mar-1">Charlotte</h4>
+                                    <p class="sub-text">Marketing</p>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                                    <br/>
+                                    <ul class="sc-icons">
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                                <img src="http://via.placeholder.com/500x600" alt="" class="img-responsive"/> </div>
+                        </div>
+                    </div>
+                    <!-- end item -->
+
+                </div>
+                <!--end main-->
+
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- end section -->
+
+    <section class="sec-padding-2 section-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="less-mar-1 font-weight-4 line-height-4 text-white">We offer high Quality Templates and Detailed digital Works </h3>
+                    <p class="text-white opacity-6">Praesent mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In pulvinar. </p>
+                    <div class="clearfix"></div>
+                    <br/>
+                    <a class="btn btn-white btn-round uppercase" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i> Get Started</a> &nbsp;&nbsp; <a class="btn btn-border white btn-round uppercase" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i> View more</a> </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+    <!--end section-->
     <!-- Modal train -->
     <div class="modal fade" id="trainModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
