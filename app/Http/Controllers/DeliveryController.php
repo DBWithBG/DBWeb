@@ -91,13 +91,16 @@ class DeliveryController extends Controller
                     $b['name']="";
                 if(!isset($b['descr']))
                     $b['descr']="";
-                $bnew=new Bag;
-                $bnew->customer_id=$customerid;
-                $bnew->name=$b['name'];
-                $bnew->type_id=$k;
-                $bnew->details=$b['descr'];
-                $bnew->save();
-
+                if(!empty($bnew = Bag::where('name', $b['name'])->first())){
+                    //On ne recrée pas
+                }else {
+                    $bnew = new Bag;
+                    $bnew->customer_id = $customerid;
+                    $bnew->name = $b['name'];
+                    $bnew->type_id = $k;
+                    $bnew->details = $b['descr'];
+                    $bnew->save();
+                }
                 //ajout des bages a la course
                 $i=new InfoBag;
                 $i->details_start_driver=$b['descr'];

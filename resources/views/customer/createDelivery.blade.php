@@ -59,12 +59,21 @@
                                 <div class="btn-group " role="group">
 
                                     @foreach(\App\TypeBag::all() as $type_bag)
-                                        <a id="{{$type_bag->id}}" class="js-add-bag button btn-secondary" href="javascript:void(0)"
-                                                style="margin-bottom: 10px">
-                                            <i class="fa fa-plus-circle"></i> {{$type_bag->name}} ({{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm)
+                                        <a id="{{$type_bag->id}}" class="js-add-bag button btn-secondary"
+                                           href="javascript:void(0)"
+                                           style="margin-bottom: 10px">
+                                            <i class="fa fa-plus-circle"></i> {{$type_bag->name}} ({{$type_bag->length}}
+                                            x{{$type_bag->width}}x{{$type_bag->height}}cm)
                                         </a>
                                         <div class="js-{{$type_bag->id}}">
-
+                                            <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
+                                            @foreach($my_bags as $my_bag)
+                                                    <div class="js-delete-{{$my_bag->id}}">
+                                                        <input type="text" class="gui-input" name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][name]" value="{{$my_bag->name}}" placeholder="nom">
+                                                        <input type="text" class="gui-input" name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][descr]" value="{{$my_bag->details}}" placeholder="description">
+                                                        <a class="btn btn-small js-press-delete btn-info" id="{{$my_bag->id}}">Ne pas utiliser</a>
+                                                        </div>
+                                            @endforeach
                                         </div>
 
                                     @endforeach
@@ -92,20 +101,23 @@
 
 @section('custom-scripts')
     <script type="text/javascript">
-        var bag_number = 0;
+        var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
+        bag_number ++;
         $(document).ready(function ($) {
             $('.js-add-bag').on('click', function () {
                 id = $(this).attr('id');
-                $('.js-'+id).append('<div class="js-delete-'+bag_number+'">' +
-                    '<input type="text" class="gui-input" name="bagages['+id+'][][name]" value="" placeholder="nom">' +
-                    '<input type="text" class="gui-input" name="bagages['+id+'][][descr]" value="" placeholder="description">' +
-                        '<a class="btn btn-small js-press-delete btn-danger" id="'+bag_number+'">Supprimer</a>'+
+                $('.js-' + id).append('<div class="js-delete-' + bag_number + '">' +
+                    '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][name]" value="" placeholder="nom">' +
+                    '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][descr]" value="" placeholder="description">' +
+                    '<a class="btn btn-small js-press-delete btn-danger" id="' + bag_number + '">Supprimer</a>' +
                     '</div>');
+                bag_number ++;
             });
 
-            $(document).on('click', '.js-press-delete', function(){
+
+            $(document).on('click', '.js-press-delete', function () {
                 id = $(this).attr('id');
-                $('.js-delete-'+id).remove();
+                $('.js-delete-' + id).remove();
             })
         });
     </script>
