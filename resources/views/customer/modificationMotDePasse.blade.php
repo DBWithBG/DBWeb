@@ -65,7 +65,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="password" name="current_password"
                                                                        id="current_password" class="gui-input"
-                                                                       placeholder="Mot de passe actuelle">
+                                                                       placeholder="Mot de passe actuel">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-lock"></i></span>
                                                             </label>
