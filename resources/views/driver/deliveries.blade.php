@@ -67,7 +67,7 @@
                                                 <td>{{$tod->delivery->startPosition->address}}</td>
                                                 <td>{{$tod->delivery->endPosition->address}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($tod->delivery->created_at)->format('d/m/Y') }}</td>
-                                                <td>{{$tod->delivery->price}}</td>
+                                                <td>{{$tod->delivery->price}} €</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $tod->delivery->customer->id )}}">{{ $tod->delivery->customer->surname .'-' . $tod->delivery->customer->name}}</a>
                                                 </td>
@@ -75,7 +75,7 @@
                                                     @if(empty($tod->delivery->takeOverDelivery))
                                                         En recherche de chauffeur
                                                     @else
-                                                        {{$tod->delivery->takeOverDelivery->status}}
+                                                        {{\Illuminate\Support\Facades\Config::get('constants.STATUS_'.$tod->delivery->status, $tod->delivery->status)}}
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
