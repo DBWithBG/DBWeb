@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use League\Flysystem\Config;
+use Illuminate\Support\Facades\Config;
 
 class Driver extends Model
 {
