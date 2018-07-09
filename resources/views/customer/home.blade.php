@@ -56,7 +56,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap;">Vos bagages Notre mission
+                                 style="z-index: 7; white-space: nowrap;text-shadow: 4px 4px #343434;"">Vos bagages - Notre mission
                             </div>
 
                             <!-- LAYER NR. 2 -->
@@ -77,7 +77,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap;">Deliverbag
+                                 style="z-index: 7; white-space: nowrap;text-shadow: 4px 4px #343434;"">Deliverbag
                             </div>
 
                             <!-- LAYER NR. 3 -->
