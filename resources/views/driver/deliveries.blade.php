@@ -64,11 +64,10 @@
                                             <tr class="text-center">
 
                                                 <td>{{$tod->delivery->comment }}</td>
-                                                <td>{{$tod->delivery->price}}</td>
                                                 <td>{{$tod->delivery->startPosition->address}}</td>
                                                 <td>{{$tod->delivery->endPosition->address}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($tod->delivery->created_at)->format('d/m/Y') }}</td>
-                                                <td>0 €</td>
+                                                <td>{{$tod->delivery->price}}</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $tod->delivery->customer->id )}}">{{ $tod->delivery->customer->surname .'-' . $tod->delivery->customer->name}}</a>
                                                 </td>
