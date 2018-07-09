@@ -27,7 +27,7 @@ class NotificationController extends Controller
 
     public function notify(){
         $options=[];
-        $options['tokens']= ["dowj1-vZZ4o:APA91bGVZJfTgSSbDeKxy4MfM4UPl14CwGtAKEbRvGYcHHH_vTA5Ep0XUTKB8KvI_AxPJ2EUdCwCKi50TDxDbD5D_8YvHoetIc6VgQPe5NAJJcBEfuhnevxAbUKlPPA_yUTmHY1BhVnyACemXMIQz5SjSM-n8-_dkg"];
+        $options['tokens']= ["fsTOMxcxJFc:APA91bH1IjkdzgWcv9zVnx5RD7hzulyMCPMZXttlPHIczylPk2bcULgriuy7bfuN_apZz8ROXNDIzE1XCYI6pCIjQlKepHZ_h2T9nEGSxb8ynh_cS8hBVyQZDnbao4KQE0vsNX3UpLQN5EeOw1WtOQ2W2rAxbrwwDQ"];
         $options['title']="Title !!!!";
         $options["body"]="Body informations ! ";
         $options["datas"]=["url"=>"une/url/donnee"];
