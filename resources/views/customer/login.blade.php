@@ -76,7 +76,7 @@
                         <div class="spacer-t30 spacer-b30">
                             <div class="tagline"><span> Pas encore inscrit ? </span></div><!-- .tagline -->
                         </div>
-                        <h4 class="" style="margin-left: 20px"><a href="{{Request::is('/driver/login') ? url('inscription') : url('/drivers/register')}}" class="button btn-primary"><span>S'enregistrer</span></a></h4>
+                        <h4 class="" style="margin-left: 20px"><a href="{{url('inscription')}}" class="button btn-primary"><span>S'enregistrer</span></a></h4>
 
                     </div><!-- end .smart-forms section -->
                 </div><!-- end .smart-wrap section -->
