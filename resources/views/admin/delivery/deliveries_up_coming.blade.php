@@ -64,11 +64,11 @@
                                             <tr class="text-center">
 
                                                 <td>{{ $delivery->comment }}</td>
-                                                <td>{{$delivery->price}}</td>
-                                                <td>{{$delivery->startPosition->adress}}</td>
-                                                <td>{{$delivery->endPosition->adress}}</td>
+                                                <td>{{$delivery->price}} €</td>
+                                                <td>{{$delivery->startPosition->address}}</td>
+                                                <td>{{$delivery->endPosition->address}}</td>
+                                                <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
-                                                <td>0 €</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
                                                 </td>
@@ -76,7 +76,7 @@
                                                     @if(empty($delivery->takeOverDelivery))
                                                         En recherche de chauffeur
                                                     @else
-                                                        {{$delivery->status}}
+                                                        {{$delivery->takeOverDelivery->status}}
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
