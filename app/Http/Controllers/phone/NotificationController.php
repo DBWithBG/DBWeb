@@ -28,7 +28,7 @@ class NotificationController extends Controller
     public function notify(){
         $options=[];
         $options['tokens']= ["dowj1-vZZ4o:APA91bGVZJfTgSSbDeKxy4MfM4UPl14CwGtAKEbRvGYcHHH_vTA5Ep0XUTKB8KvI_AxPJ2EUdCwCKi50TDxDbD5D_8YvHoetIc6VgQPe5NAJJcBEfuhnevxAbUKlPPA_yUTmHY1BhVnyACemXMIQz5SjSM-n8-_dkg"];
-        $options['title']="Title !";
+        $options['title']="Title !!!!";
         $options["body"]="Body informations ! ";
         $options["datas"]=["url"=>"une/url/donnee"];
         dd(NotificationController::sendNotification($options));
