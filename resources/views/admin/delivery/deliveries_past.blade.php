@@ -69,10 +69,10 @@
                                                     <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
                                                 </td>
                                                 <td>
-                                                    @if($delivery->takeOverDelivery)
+                                                    @if(empty($delivery->takeOverDelivery))
                                                         En recherche de chauffeur
                                                     @else
-                                                        {{$delivery->takeOverDelivery->status}}
+                                                        {{Config::get('constants.STATUS_'.$delivery->status)}}
                                                     @endif
                                                 </td>
                                                 <td>{{$delivery->note()}}</td>
