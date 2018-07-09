@@ -12,6 +12,7 @@ use App\Justificatif;
 use App\TypeBag;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Validator;
@@ -39,7 +40,8 @@ class AdminController extends Controller
     }
 
     public function home(){
-        return redirect('backoffice/deliveries/inProgress');
+        if(Auth::check()) return redirect('backoffice/deliveries/inProgress');
+        else return redirect('backoffice/login');
     }
 
     /*************** Customers ***************/
