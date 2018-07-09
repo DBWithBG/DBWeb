@@ -53,7 +53,7 @@ Route::post('backoffice/driver/delete', 'AdminController@deleteDriver');
 
 Route::get('backoffice/deliveries/inProgress', 'AdminController@getDeliveriesInProgress');
 Route::get('backoffice/deliveries/past', 'AdminController@getDeliveriesPast');
-Route::get('backoffice/deliveries/upcoming', 'AdminController@getDeliveriesUpComing');
+Route::get('backoffice/deliveries/upComing', 'AdminController@getDeliveriesUpComing');
 Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 
 Route::get('backoffice/disputes_ouvertes', 'AdminController@getDisputesOuvertes');
