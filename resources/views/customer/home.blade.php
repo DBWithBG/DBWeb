@@ -1165,8 +1165,8 @@
                             },
                             success: function (response) {
                                 swal({
-                                    title: 'Confirmer vous la demande de prise en charge ?',
-                                    text: "Le coût est de " + response.price + " €",
+                                    title: 'Confirmez-vous la demande de prise en charge ?',
+                                    text: "Le coût hors bagages est de " + response.price + " €",
                                     icon: 'success',
                                     buttons: {
                                         cancel: false,
@@ -1175,7 +1175,7 @@
                                             value: "cancel"
                                         },
                                         roll: {
-                                            text: "Procéder au paiement!",
+                                            text: "Finaliser ma demande !",
                                             value: "confirm",
                                         },
                                     },

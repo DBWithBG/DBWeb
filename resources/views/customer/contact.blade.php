@@ -126,7 +126,7 @@
                             <div class="col-md-4 col-sm-12 col-xs-12 text-left">
                                 <div style="padding-top: 10px">
                                     <h4>Adresse</h4>
-                                    <h6>Company name</h6>
+                                    <h6>DELIVERBAG</h6>
                                     <p>3096 Cemetery Hollow Street, Houston, TX 77099
                                         Telephone: +1 1234-567-89000</p>
                                     <br/>

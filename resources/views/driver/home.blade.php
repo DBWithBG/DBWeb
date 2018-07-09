@@ -97,6 +97,7 @@
 
                 @else
 
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -119,6 +120,118 @@
                     </div>
 
                 @endif
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary card-header-icon">
+                                    <div class="card-text">
+                                        <h4 class="card-title">Pièces justificatives</h4>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    @if($driver->justificatifs->count() > 0)
+                                        <div class="material-datatables">
+                                            <table class="table table-striped table-no-bordered table-hover"
+                                                   cellspacing="0" width="100%" style="width:100%">
+                                                <thead class="text-center">
+                                                <tr>
+                                                    <th class="text-left">Nom</th>
+                                                    <th class="text-left">Statut</th>
+                                                    <th class="disabled-sorting"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                @foreach($driver->justificatifs as $justificatif)
+                                                    <tr class="text-center">
+                                                        <td class="text-left"><a
+                                                                    href="{{url('/driver/viewJustificatif/' . $justificatif->id)}}">{{ $justificatif->name }}</a>
+                                                        </td>
+                                                        <td class="text-left {{$justificatif->is_valide !== null && !$justificatif->is_valide ? 'text-danger' : ''}} {{$justificatif->is_valide !== null && $justificatif->is_valide ? 'text-success' : ''}}">{{ $justificatif->is_valide === null ? 'En attente de vérification' : ($justificatif->is_valide ? 'Vérifiée' : 'Non valide') }}</td>
+                                                        <td class="text-right">
+                                                            @if (!$justificatif->is_valide)
+                                                                <form id="delete_justificatif_{{ $justificatif->id }}"
+                                                                      method="post"
+                                                                      action="{{url('/driver/deleteJustificatif/' . $justificatif->id)}}">
+                                                                    {{ csrf_field() }}
+                                                                </form>
+                                                                <button onclick="document.getElementById('delete_justificatif_{{ $justificatif->id }}').submit()"
+                                                                        class="btn btn-link btn-warning btn-just-icon remove"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Supprimer"><i
+                                                                            class="material-icons">close</i></button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @else
+                                        <h5>Aucune pièce justificative</h5>
+                                    @endif
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row (Liste justificatifs) -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary card-header-icon">
+                                    <div class="card-text">
+                                        <h4 class="card-title">Ajouter une pièce justificative</h4>
+                                    </div>
+
+                                </div>
+                                <form enctype="multipart/form-data" action="{{url('/driver/addJustificatif')}}"
+                                      method="post" class="form-horizontal">
+                                    <div class="card-body">
+
+                                        {{ csrf_field() }}
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Nom de la pièce</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <input required type="text" name="name" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-2 col-form-label">Fichier</label>
+
+                                            <p style="padding-left: 10px" id="upload-file-info"
+                                               class="text-left col-sm-5 col-form-label"></p>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="card-footer ">
+                                        <label class="col-sm-3 btn btn-primary btn-link btn-success" for="my-file-selector">
+                                            <input name="justificatif" id="my-file-selector" type="file"
+                                                   style="display:none"
+                                                   onchange="$('#upload-file-info').html(this.files[0].name)">
+                                            Choisir un fichier
+                                        </label>
+                                        <button type="submit" class="btn btn-fill btn-primary">Envoyer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row (Upload justi) -->
 
                 <div class="row">
                     <div class="col-md-12">
@@ -195,117 +308,7 @@
                 </div>
                 <!-- end row (Informations) -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <div class="card-text">
-                                    <h4 class="card-title">Pièces justificatives</h4>
-                                </div>
 
-                            </div>
-
-                            <div class="card-body">
-
-                                @if($driver->justificatifs->count() > 0)
-                                    <div class="material-datatables">
-                                        <table class="table table-striped table-no-bordered table-hover"
-                                               cellspacing="0" width="100%" style="width:100%">
-                                            <thead class="text-center">
-                                            <tr>
-                                                <th class="text-left">Nom</th>
-                                                <th class="text-left">Statut</th>
-                                                <th class="disabled-sorting"></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            @foreach($driver->justificatifs as $justificatif)
-                                                <tr class="text-center">
-                                                    <td class="text-left"><a
-                                                                href="{{url('/driver/viewJustificatif/' . $justificatif->id)}}">{{ $justificatif->name }}</a>
-                                                    </td>
-                                                    <td class="text-left {{$justificatif->is_valide !== null && !$justificatif->is_valide ? 'text-danger' : ''}} {{$justificatif->is_valide !== null && $justificatif->is_valide ? 'text-success' : ''}}">{{ $justificatif->is_valide === null ? 'En attente de vérification' : ($justificatif->is_valide ? 'Vérifiée' : 'Non valide') }}</td>
-                                                    <td class="text-right">
-                                                        @if (!$justificatif->is_valide)
-                                                            <form id="delete_justificatif_{{ $justificatif->id }}"
-                                                                  method="post"
-                                                                  action="{{url('/driver/deleteJustificatif/' . $justificatif->id)}}">
-                                                                {{ csrf_field() }}
-                                                            </form>
-                                                            <button onclick="document.getElementById('delete_justificatif_{{ $justificatif->id }}').submit()"
-                                                                    class="btn btn-link btn-warning btn-just-icon remove"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Supprimer"><i
-                                                                        class="material-icons">close</i></button>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                @else
-                                    <h5>Aucune pièce justificative</h5>
-                                @endif
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- end row (Liste justificatifs) -->
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-header-primary card-header-icon">
-                                <div class="card-text">
-                                    <h4 class="card-title">Ajouter une pièce justificative</h4>
-                                </div>
-
-                            </div>
-                            <form enctype="multipart/form-data" action="{{url('/driver/addJustificatif')}}"
-                                  method="post" class="form-horizontal">
-                                <div class="card-body">
-
-                                    {{ csrf_field() }}
-
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Nom de la pièce</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <input required type="text" name="name" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Fichier</label>
-
-                                        <p style="padding-left: 10px" id="upload-file-info"
-                                           class="text-left col-sm-5 col-form-label"></p>
-                                    </div>
-
-
-                                </div>
-                                <div class="card-footer ">
-                                    <label class="col-sm-3 btn btn-primary btn-link btn-success" for="my-file-selector">
-                                        <input name="justificatif" id="my-file-selector" type="file"
-                                               style="display:none"
-                                               onchange="$('#upload-file-info').html(this.files[0].name)">
-                                        Choisir un fichier
-                                    </label>
-                                    <button type="submit" class="btn btn-fill btn-primary">Envoyer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row (Upload justi) -->
 
 
             </div>
