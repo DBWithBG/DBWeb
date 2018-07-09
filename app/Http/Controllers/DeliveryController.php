@@ -19,10 +19,9 @@ use League\OAuth1\Client\Server\User;
 
 class DeliveryController extends Controller
 {
+
+    //Enregistrement d'une delivery (Mobile + 1ere étape web
     public function postDelivery(Request $request){
-
-
-
         $request=HomeController::checkCustomerMobile($request);
         $request = $request->toArray();
         if(isset($request['customer_id']))
@@ -69,6 +68,7 @@ class DeliveryController extends Controller
 
     }
 
+    //Enregistrement d'une demande 2eme étape (saisie des bagages en plus)
     public function postBagsWithDelivery(Request $request){
         $request = $request->toArray();
         $delivery = Delivery::find($request['delivery_id']);
@@ -92,7 +92,9 @@ class DeliveryController extends Controller
                 if(!isset($b['descr']))
                     $b['descr']="";
                 if(!empty($bnew = Bag::where('name', $b['name'])->first())){
-                    //On ne recrée pas
+                    //On ne modifie que la description puisque le nom est le même
+                    $bnew->details = $b['descr'];
+                    $bnew->save();
                 }else {
                     $bnew = new Bag;
                     $bnew->customer_id = $customerid;
@@ -111,7 +113,7 @@ class DeliveryController extends Controller
         }
     }
 
-
+    //Renvoie la page de paiement d'une delivery
     public function getPaiement($id){
         $delivery = Delivery::find($id);
         if($delivery->status == 'non payé'){

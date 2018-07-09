@@ -19,6 +19,7 @@ use Validator;
 
 class CustomerController extends Controller
 {
+    //Accueil pour les customers
     public function home(){
         if(Auth::check() && Auth::user()->admin){
             return redirect('backoffice/home');
@@ -31,10 +32,12 @@ class CustomerController extends Controller
         ]);
     }
 
+    //Formulaire de contact
     public function contact() {
         return view('customer.contact');
     }
 
+    //Envoi du formulaire de contact
     public function postContact(Request $request) {
         $v = Validator::make($request->all(), [
             'name' => 'required',
@@ -59,19 +62,22 @@ class CustomerController extends Controller
 
     }
 
+    //Inscription pour le chauffeur et le client
     public function inscription(){
         return view('customer.inscription_commune');
     }
 
-
+    //Connexion commune chauffeur et client
     public function connexion(){
         return view('customer.login');
     }
 
+    //Récupération des départements
     public function ajaxDepartments(){
         return AuthorizedDepartment::all();
     }
 
+    //Quand clique de la confirmation d'email, on valide le compte
     public function confirmEmail(Request $request) {
         $email = $request->email;
         $token = $request->token;
@@ -86,6 +92,7 @@ class CustomerController extends Controller
         return abort(400);
     }
 
+    //Renvoi d'une nouvelle confirmation par email
     public function resendConfirmationEmail() {
         $user = Auth::user();
         $customer = $user->customer;
@@ -100,6 +107,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    //Récuparation de la page d'historique des courses de l'utilisateur connecté
     public function historique() {
         $user = Auth::user();
         $customer = $user->customer;
@@ -118,6 +126,7 @@ class CustomerController extends Controller
         ]);
     }
 
+    //Récupération de la page d'accueil du profil utilisateur
     public function profil() {
         $user = Auth::user();
         $customer = $user->customer;
@@ -153,6 +162,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    //Get du formulaire de changement d'email
     public function modificationEmail() {
         $user = Auth::user();
         $customer = $user->customer;
@@ -160,6 +170,7 @@ class CustomerController extends Controller
         return view('customer.modificationEmail')->with(['customer' => $customer]);
     }
 
+    //Post du changement d'email
     public function updateEmail(Request $request) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -189,6 +200,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    //get du formulaire de modification de mot de passe
     public function modificationMotDePasse() {
         $user = Auth::user();
         $customer = $user->customer;
@@ -196,6 +208,7 @@ class CustomerController extends Controller
         return view('customer.modificationMotDePasse')->with(['customer' => $customer]);
     }
 
+    //Post du changement de mot de passe
     function updatePassword(Request $request) {
         $user = Auth::user();
 
@@ -232,6 +245,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    //Post du commentaire d'une delivery
     public function comment(Request $request) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -251,6 +265,7 @@ class CustomerController extends Controller
 
     }
 
+    //Get de la modale de commentaire d'une delivery
     public function modalComment($id) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -264,6 +279,7 @@ class CustomerController extends Controller
         return view('customer.modalComment')->with(['delivery' => $delivery]);
     }
 
+    //get de la modal de notation d'une course
     public function modalRating($id) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -278,6 +294,7 @@ class CustomerController extends Controller
     }
 
 
+    //Post de la notation d'une course (modification + création)
     public function rate(Request $request) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -306,6 +323,7 @@ class CustomerController extends Controller
 
     }
 
+    //Get litige
     public function litiges($id) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -322,7 +340,7 @@ class CustomerController extends Controller
         return view('customer.litiges')->with(['delivery' => $delivery]);
     }
 
-
+    //Post Litige
     public function newLitige($id, Request $request) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -364,6 +382,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    //Fermeture d'un litige
     public function closeLitige($id, Request $request) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -391,6 +410,7 @@ class CustomerController extends Controller
 
     }
 
+    //Get bagages
     public function bagages() {
         $user = Auth::user();
         $customer = $user->customer;
@@ -400,6 +420,7 @@ class CustomerController extends Controller
         return view('customer.bagages')->with(['bags' => $bags]);
     }
 
+    //Post bagage
     public function addBagage(Request $request) {
         $user = Auth::user();
         $customer = $user->customer;
@@ -431,6 +452,7 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    //Suppression d'un bagage
     public function deleteBagage(Request $request, $id) {
         $user = Auth::user();
         $customer = $user->customer;
