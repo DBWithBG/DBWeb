@@ -67,7 +67,7 @@
 
                                 <button type="submit" class="button btn-primary">Connexion</button>
 
-                                <a href="{{url('/password/reset')}}">Mot de passe oublié</a>
+                                <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
                             </div><!-- end .form-footer section -->
                             <input type="hidden" id="test">
 
