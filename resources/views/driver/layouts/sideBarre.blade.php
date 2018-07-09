@@ -45,15 +45,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item ">
-                    <a class="nav-link " href="{{url('driver/disputes')}}">
-                        <i class="material-icons">grid_on</i>
-                        <p> Litiges
-                        </p>
-                    </a>
-
-                </li>
-
             </ul>
         </div>
     </div>
