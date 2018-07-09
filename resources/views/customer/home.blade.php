@@ -112,7 +112,7 @@
                                                                     <label class="field prepend-icon">
                                                                         <input id="adresse_input_depart" type="search"
                                                                                class="gui-input"
-                                                                               placeholder="Adresse de départ">
+                                                                               placeholder="Lieu de prise en charge">
                                                                         <span class="field-icon"><i
                                                                                     class="fa fa-arrow-right"></i></span>
                                                                     </label>
@@ -121,7 +121,7 @@
                                                                     <label class="field prepend-icon">
                                                                         <input id="adresse_input_arrivee" type="search"
                                                                                class="gui-input"
-                                                                               placeholder="Adresse d'arrivée">
+                                                                               placeholder="Lieu de livraison">
                                                                         <span class="field-icon"><i
                                                                                     class="fa fa-arrow-left"></i></span>
                                                                     </label>
@@ -845,7 +845,7 @@
                             if (verifyDepartment(this.getPlace())) {
                                 pos_depart_ok = true;
                                 place_depart = this.getPlace();
-                                swal("L'adresse de départ est OK");
+                                swal("Lieu de prise en charge OK");
                             } else {
                                 printErrorDepartments(true);
                             }
@@ -857,7 +857,7 @@
                         if (verifyDepartment(this.getPlace())) {
                             pos_arrivee_ok = true;
                             place_arrivee = this.getPlace();
-                            swal("L'adresse d'arrivée est OK");
+                            swal("Lieu de livraison OK");
                         } else {
                             printErrorDepartments(false);
                         }

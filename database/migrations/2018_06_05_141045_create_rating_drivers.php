@@ -19,7 +19,7 @@ class CreateRatingDrivers extends Migration
             $table->integer('delivery_id')->unsigned();
             $table->integer('customer_id')->unsigned();
             $table->integer('rating')->unsigned();
-            $table->string('details')->default(255);
+            $table->string('details')->nullable();
             $table->timestamps();
         });
 
