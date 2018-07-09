@@ -65,8 +65,8 @@
 
                                                 <td>{{$tod->delivery->comment }}</td>
                                                 <td>{{$tod->delivery->price}}</td>
-                                                <td>{{$tod->delivery->startPosition->adress}}</td>
-                                                <td>{{$tod->delivery->endPosition->adress}}</td>
+                                                <td>{{$tod->delivery->startPosition->address}}</td>
+                                                <td>{{$tod->delivery->endPosition->address}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($tod->delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>0 €</td>
                                                 <td>
