@@ -47,7 +47,7 @@
 
                 <div class="col-md-8 col-sm-12 col-xs-12">
 
-                    <h3 class="uppercase">Ajouter un bagages</h3>
+                    <h3 class="uppercase">Ajouter un bagage</h3>
                     <p>Ajouter un bagages à votre profil vous permettra de commander des courses plus rapidement.</p>
                     <br/>
                     <br/>
@@ -65,7 +65,7 @@
                                                  class="section">
                                                 <label class="field prepend-icon">
                                                     <input required type="text" name="name" id="name"
-                                                           class="gui-input" placeholder="Nom du bagages">
+                                                           class="gui-input" placeholder="Nom du bagage">
                                                     <span class="field-icon"><i
                                                                 class="fa fa-shopping-basket"></i></span>
                                                 </label>
