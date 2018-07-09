@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('google_id')->unique()->nullable();
             $table->string('mobile_token')->nullable();
             $table->boolean('admin')->default(0);
-            $table->boolean('is_confirmed');
+            $table->boolean('is_confirmed')->default(0);
             $table->string('email_confirmation_token')->nullable();
             $table->string('notify_token')->nullable();
             $table->rememberToken();
