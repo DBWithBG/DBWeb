@@ -479,10 +479,10 @@ class MobileController extends Controller
             throw new \Error('Pas de delivery fournie :( ! ');
         if($request->details){
             foreach($request->details as $d){
-                InfoBag::where('bag_id','=',$d->bag_id)
+                InfoBag::where('bag_id','=',$d["bag_id"])
                     ->where('delivery_id','=',$request->delivery_id)
                     ->first()
-                    ->update(["details_start_driver"=>$d->detail]);
+                    ->update(["details_start_driver"=>$d["detail"]]);
             }
         }
        }
