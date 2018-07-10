@@ -88,6 +88,8 @@ class MobileController extends Controller
     public function mobileLogin(Request $request){
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            //clear des users au meme mobile_token
+            User::where('mobile_token','=',$request->mobile_token)->update(['mobile_token'=>'']);
             $user = Auth::user();
             $user->mobile_token = $request->mobile_token;
             $user->save();
@@ -109,6 +111,7 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$req->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
 
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
             ->orderBy('created_at','DESC')
