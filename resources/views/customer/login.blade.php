@@ -84,7 +84,7 @@
                             <span> Pas encore inscrit ? </span>
                         </div>
                     <div class="row text-center">
-                        <button class="button btn-primary"><a href="{{url('inscription')}}"><i class="fa fa-register"></i>S'enregistrer</a></button>
+                        <button class="btn btn-primary"><a href="{{url('inscription')}}"><i class="fa fa-register"></i>S'enregistrer</a></button>
                     </div>
 
                     </div><!-- end .smart-forms section -->
