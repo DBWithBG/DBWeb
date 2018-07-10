@@ -37,7 +37,11 @@ class MobileController extends Controller
     }
     //get delivery pour debloquer donovan en attendant
     public function getDelivery(Request $request,$id){
-        $res=Delivery::where('id',$id)->with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        $res=Delivery::where('id',$id)
+            ->with('customer')
+            ->with('startPosition')
+            ->with('endPosition')
+            ->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
@@ -473,6 +477,6 @@ class MobileController extends Controller
 
         if(!$request->delivery_id)
             throw new \Error('Pas de delivery fournie :( ! ');
-        InfoBag::find($request->infobag_id)->update(["details_start_driver"=>$request->details]);
+        InfoBag::where('bag_id','=',$request->bag_id)->where('delivery_id','=',$request->delivery_id)->first()->update(["details_start_driver"=>$request->details]);
     }
 }
