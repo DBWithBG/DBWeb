@@ -10,6 +10,7 @@ use App\Dispute;
 use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DeliveryController;
+use App\InfoBag;
 use App\Rating;
 use App\TakeOverDelivery;
 use App\User;
@@ -457,5 +458,21 @@ class MobileController extends Controller
             DeliveryController::gestionLancementConsigne($delivery);
         if($request->status_id==Config::get('constants.TERMINE'))
         DeliveryController::gestionLivraisonEffectuee($delivery);
+    }
+
+
+
+    public function modificationEtatDesLieux(Request $request){
+        if(!$request->mobile_token)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Utilisateur non driver :( ! ');
+
+        if(!$request->delivery_id)
+            throw new \Error('Pas de delivery fournie :( ! ');
+        InfoBag::find($request->infobag_id)->update(["details_start_driver"=>$request->details]);
     }
 }
