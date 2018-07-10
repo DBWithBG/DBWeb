@@ -89,7 +89,7 @@ class MobileController extends Controller
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             //clear des users au meme mobile_token
-            User::where('mobile_token','=',$request->mobile_token)->update(['mobile_token'=>'']);
+            User::where('mobile_token','=',$request->mobile_token)->where('email','!=',$request->email)->update(['mobile_token'=>'']);
             $user = Auth::user();
             $user->mobile_token = $request->mobile_token;
             $user->save();
