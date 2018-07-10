@@ -472,7 +472,7 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$request->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->customer)
+        if(!$u->driver)
             throw new \Error('Utilisateur non driver :( ! ');
 
         if(!$request->delivery_id)
