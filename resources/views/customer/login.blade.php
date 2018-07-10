@@ -65,9 +65,16 @@
                             </div><!-- end .form-body section -->
                             <div class="form-footer">
 
+                                <div class="row">
                                 <button type="submit" class="button btn-primary">Connexion</button>
+                                </div>
 
-                                <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
+
+                                <div class="row">
+                                    <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
+                                </div>
+                            </div>
+
                             </div><!-- end .form-footer section -->
                             <input type="hidden" id="test">
 
