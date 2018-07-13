@@ -407,8 +407,6 @@ class MobileController extends Controller
 
         DeliveryController::gestionAnnulationDeliveryCustomer($d,$u->customer);
 
-
-
     }
 
 
