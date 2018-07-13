@@ -167,6 +167,7 @@ Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 
 Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
+Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 
 Route::get('mobile/user/{token}','phone\MobileController@getUser');
 Route::get('mobile/bags/users/{token}','phone\MobileController@getBagsUsers');

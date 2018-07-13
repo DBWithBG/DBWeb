@@ -10,6 +10,7 @@ use App\Dispute;
 use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DeliveryController;
+use App\InfoBag;
 use App\Rating;
 use App\TakeOverDelivery;
 use App\User;
@@ -36,7 +37,11 @@ class MobileController extends Controller
     }
     //get delivery pour debloquer donovan en attendant
     public function getDelivery(Request $request,$id){
-        $res=Delivery::where('id',$id)->with('customer')->with('startPosition')->with('endPosition')->get()->toJson();
+        $res=Delivery::where('id',$id)
+            ->with('customer')
+            ->with('startPosition')
+            ->with('endPosition')
+            ->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
@@ -83,6 +88,8 @@ class MobileController extends Controller
     public function mobileLogin(Request $request){
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            //clear des users au meme mobile_token
+            User::where('mobile_token','=',$request->mobile_token)->where('email','!=',$request->email)->update(['mobile_token'=>'']);
             $user = Auth::user();
             $user->mobile_token = $request->mobile_token;
             $user->save();
@@ -104,6 +111,7 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$req->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
 
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
             ->orderBy('created_at','DESC')
@@ -383,7 +391,7 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$request->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->customer)
+        if(!$u->driver)
             throw new \Error('Utilisateur non driver :( ! ');
 
         if(!$request->delivery_id)
@@ -458,4 +466,27 @@ class MobileController extends Controller
         if($request->status_id==Config::get('constants.TERMINE'))
         DeliveryController::gestionLivraisonEffectuee($delivery);
     }
+
+
+
+    public function modificationEtatDesLieux(Request $request){
+        if(!$request->mobile_token)
+            throw new \Error('Pas de token fourni :( ! ');
+        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        if(!$u)
+            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->driver)
+            throw new \Error('Utilisateur non driver :( ! ');
+
+        if(!$request->delivery_id)
+            throw new \Error('Pas de delivery fournie :( ! ');
+        if($request->details){
+            foreach($request->details as $d){
+                InfoBag::where('bag_id','=',$d["bag_id"])
+                    ->where('delivery_id','=',$request->delivery_id)
+                    ->first()
+                    ->update(["details_start_driver"=>$d["detail"]]);
+            }
+        }
+       }
 }

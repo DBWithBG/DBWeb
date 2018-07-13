@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Delivery;
 use App\Dispute;
+use App\InfoBag;
 use App\Justificatif;
 use App\User;
 use Illuminate\Http\Request;
@@ -244,6 +245,5 @@ class DriverController extends Controller
         Session::flash('success', 'Votre litige a bien été enregistré');
         return redirect()->back();
     }
-
 
 }

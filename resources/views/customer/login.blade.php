@@ -65,18 +65,27 @@
                             </div><!-- end .form-body section -->
                             <div class="form-footer">
 
-                                <button type="submit" class="button btn-primary">Connexion</button>
+                                <div class="row text-center">
+                                    <button type="submit" class="button btn-primary">Connexion</button>
+                                </div>
 
-                                <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
+
+                                <div class="row text-center">
+                                    <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
+                                </div>
+                            </div>
+
                             </div><!-- end .form-footer section -->
                             <input type="hidden" id="test">
 
                             <p id="infos"></p>
                         </form>
-                        <div class="spacer-t30 spacer-b30">
-                            <div class="tagline"><span> Pas encore inscrit ? </span></div><!-- .tagline -->
+                        <div class="row text-center">
+                            <span> Pas encore inscrit ? </span>
                         </div>
-                        <h4 class="" style="margin-left: 20px"><a href="{{url('inscription')}}" class="button btn-primary"><span>S'enregistrer</span></a></h4>
+                    <div class="row text-center">
+                        <a href="{{url('inscription')}}"><button class="btn btn-primary"><i class="fa fa-register"></i>S'enregistrer</button></a>
+                    </div>
 
                     </div><!-- end .smart-forms section -->
                 </div><!-- end .smart-wrap section -->
