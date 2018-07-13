@@ -162,10 +162,8 @@ class DeliveryController extends Controller
         $info_bag = InfoBag::where('delivery_id', $delivery->id)->get();
         foreach ($info_bag as $i_bag){
             $i_bag->delete();
-            $i_bag->save();
         }
         $ret = $delivery->delete();
-        $delivery->save();
         $customer->canceled_deliveries++;
         $customer->save();
         return $ret;
