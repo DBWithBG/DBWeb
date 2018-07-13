@@ -22,6 +22,7 @@ class MailController
 {
 
 
+    //Email permettant de renvoyer un nouveau mot de passe
     public function sendPassword(\Illuminate\Http\Request $request)
     {
         if (!Auth::check()) {
@@ -57,6 +58,7 @@ class MailController
         return redirect('backoffice/login');
     }
 
+    //Envoi de l'email de confirmation d'inscription
     public function confirm_register_customer(){
         //TODO On peut remplacer par n'importe quelle vue, n'importe quel css
         $client = new Client();
@@ -79,6 +81,7 @@ class MailController
         ]);
     }
 
+    //Envoi de l'email de confirmation d'un driver
     public static function confirm_driver_email_address($driver, $token) {
         $client = new Client();
         $body = [
@@ -100,6 +103,7 @@ class MailController
         ]);
     }
 
+    //Envoir de l'email de confirmation d'un customer
     public static function confirm_customer_email_address($customer, $token) {
         $client = new Client();
         $body = [
@@ -121,6 +125,7 @@ class MailController
         ]);
     }
 
+    //Reset du password d'un ut
     public static function reset_password_email($token) {
         $client = new Client();
         $body = [

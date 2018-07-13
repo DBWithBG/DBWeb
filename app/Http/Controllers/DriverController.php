@@ -15,21 +15,23 @@ use Validator;
 
 class DriverController extends Controller
 {
-    //
-
+    //Deprecated, remplacée par une inscription commune
     public function getRegister(){
         return view('driver.register');
     }
 
+    //partage de la page de login des customers et des drivers
     public function login() {
         return view('customer.login');
     }
 
+    //Page d'accueil des driver
     public function home(){
         $driver = Auth::user()->driver;
         return view('driver.home', ['driver' => $driver]);
     }
 
+    //Post des informations du driver
     public function update(Request $request) {
         $driver = Auth::user()->driver;
 
@@ -61,6 +63,7 @@ class DriverController extends Controller
 
     }
 
+    //Get des take over deliveries du chauffeur
     public function deliveries(){
         $user = Auth::user();
         $driver = $user->driver;
@@ -71,6 +74,7 @@ class DriverController extends Controller
         ]);
     }
 
+    //Ajout d'une pièce justificative au chauffeur
     public function addJustificatif(Request $request) {
         $driver = Auth::user()->driver;
 
@@ -109,6 +113,7 @@ class DriverController extends Controller
 
     }
 
+    //Suppression d'un justificatif
     public function deleteJustificatif($id) {
         $user = Auth::user();
         $driver = $user->driver;
@@ -136,6 +141,7 @@ class DriverController extends Controller
         return redirect()->back()->with(['success' => 'Pièce justificative supprimée']);
     }
 
+    //Récuparétion de la vue d'un justificatif
     public function viewJustificatif($id) {
         $user = Auth::user();
         $driver = $user->driver;
@@ -158,6 +164,7 @@ class DriverController extends Controller
         return response($file, 200)->header('Content-Type', $mimetype);
     }
 
+    //Confirmation de l'email d'un driver
     public function confirmEmail(Request $request) {
         $email = $request->email;
         $token = $request->token;
@@ -170,6 +177,7 @@ class DriverController extends Controller
         return abort(400);
     }
 
+    //Renvoi de l'email de confirmation d'un driver
     public function resendConfirmationEmail() {
         $user = Auth::user();
         $driver = $user->driver;
@@ -199,6 +207,7 @@ class DriverController extends Controller
         return view('driver.litiges')->with(['delivery' => $delivery]);
     }
 
+    //Post de la création d'un litige
     public function newLitige($id, Request $request) {
         $user = Auth::user();
         $driver = $user->driver;
