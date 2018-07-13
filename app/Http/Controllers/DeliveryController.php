@@ -161,6 +161,7 @@ class DeliveryController extends Controller
     public static function gestionAnnulationDeliveryCustomer($delivery,$customer){
 
         $delivery->delete();
+        $delivery->save();
         $customer->canceled_deliveries++;
         $customer->save();
     }
