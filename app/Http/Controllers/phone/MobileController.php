@@ -391,9 +391,9 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$request->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->driver)
+        /*if(!$u->driver)
             throw new \Error('Utilisateur non driver :( ! ');
-
+        */ //MODIF DU 13/07 Bug quand suppression utilisateur
         if(!$request->delivery_id)
             throw new \Error('Pas de delivery fournie :( ! ');
 
