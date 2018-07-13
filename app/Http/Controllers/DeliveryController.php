@@ -159,7 +159,10 @@ class DeliveryController extends Controller
 
     //gestion des consequences d'une annulation de delivery par le client
     public static function gestionAnnulationDeliveryCustomer($delivery,$customer){
-
+        $info_bag = InfoBag::where('delivery_id', $delivery->id)->get();
+        foreach ($info_bag as $i_bag){
+            $i_bag->delete();
+        }
         $delivery->delete();
         $delivery->save();
         $customer->canceled_deliveries++;
