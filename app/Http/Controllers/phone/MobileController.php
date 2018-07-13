@@ -405,7 +405,7 @@ class MobileController extends Controller
         if(!Delivery::isAnnulableByCustomer($d))
             throw new \Error('Delivery non annulable');
 
-        DeliveryController::gestionAnnulationDeliveryCustomer($d,$u->customer);
+        return DeliveryController::gestionAnnulationDeliveryCustomer($d,$u->customer);
 
     }
 
