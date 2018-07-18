@@ -252,8 +252,8 @@ class MobileController extends Controller
                             $bnew->name=$b['name'];
                         else
                             $bnew->name="";
-                        if(isset($b['descr']))
-                            $bnew->details=$b['descr'];
+                        if(isset($b['details']))
+                            $bnew->details=$b['details'];
                         else
                             $bnew->details="";
                         $bnew->type_id=$cate;
