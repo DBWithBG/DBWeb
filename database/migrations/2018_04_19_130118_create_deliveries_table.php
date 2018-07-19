@@ -22,9 +22,12 @@ class CreateDeliveriesTable extends Migration
             $table->double('distance')->nullable();
             $table->integer('estimated_time')->nullable();
             $table->dateTime('start_date');
+            $table->time('time_consigne')->nullable();
             $table->integer('start_position_id')->unsigned();
             $table->integer('end_position_id')->unsigned();
             $table->integer('customer_id')->unsigned()->nullable();
+            $table->string('no_train')->nullable();
+            $table->string('no_flight')->nullable();
             $table->boolean('deleted')->default(0);
         });
 

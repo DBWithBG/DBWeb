@@ -52,7 +52,19 @@
                                 </div><!-- end section -->
 
                             </div><!-- end frm-row section -->
-
+                            <div class="frm-row">
+                                <label for="email" class="field-label">Besoin de stocker vos bagages ?</label>
+                                <div class="colm colm6">
+                                    <input id="switch-labelText" checked type="checkbox" name="my-checkbox" data-off-text="Non" data-on-text="Oui" data-label-text="Consigne" >
+                                </div>
+                                <div class="colm colm6">
+                                    <label class="field prepend-icon">
+                                        <input type="time" name="time_consigne" id="firstname" class="gui-input"
+                                               placeholder="" value="{{$delivery->time_consigne}}">
+                                        <span class="field-icon"><i class="fa fa-hourglass"></i></span>
+                                    </label>
+                                </div>
+                            </div>
                             <!-- end section --><br>
                             <div class="tagline"><span>Enregistrement des bagages</span></div><!-- .tagline -->
                             <div style="padding-top: 10px " class="text-center">
@@ -68,11 +80,16 @@
                                         <div class="js-{{$type_bag->id}}">
                                             <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
                                             @foreach($my_bags as $my_bag)
-                                                    <div class="js-delete-{{$my_bag->id}}">
-                                                        <input type="text" class="gui-input" name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][name]" value="{{$my_bag->name}}" placeholder="nom">
-                                                        <input type="text" class="gui-input" name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][descr]" value="{{$my_bag->details}}" placeholder="description">
-                                                        <a class="btn btn-small js-press-delete btn-info" id="{{$my_bag->id}}">Ne pas utiliser</a>
-                                                        </div>
+                                                <div class="js-delete-{{$my_bag->id}}">
+                                                    <input type="text" class="gui-input"
+                                                           name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][name]"
+                                                           value="{{$my_bag->name}}" placeholder="nom">
+                                                    <input type="text" class="gui-input"
+                                                           name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][descr]"
+                                                           value="{{$my_bag->details}}" placeholder="description">
+                                                    <a class="btn btn-small js-press-delete btn-info"
+                                                       id="{{$my_bag->id}}">Ne pas utiliser</a>
+                                                </div>
                                             @endforeach
                                         </div>
 
@@ -100,10 +117,12 @@
 @endsection
 
 @section('custom-scripts')
+    <script src="{{asset('iblue/js/switches/bootstrap-switch.js')}}"></script>
     <script type="text/javascript">
         var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
-        bag_number ++;
+        bag_number++;
         $(document).ready(function ($) {
+            $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
                 id = $(this).attr('id');
                 $('.js-' + id).append('<div class="js-delete-' + bag_number + '">' +
@@ -111,7 +130,7 @@
                     '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                     '<a class="btn btn-small js-press-delete btn-danger" id="' + bag_number + '">Supprimer</a>' +
                     '</div>');
-                bag_number ++;
+                bag_number++;
             });
 
 

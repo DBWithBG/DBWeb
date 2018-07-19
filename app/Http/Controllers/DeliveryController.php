@@ -59,9 +59,10 @@ class DeliveryController extends Controller
 
         //ajout des bagages
         if(empty($request['bagages'])) $request['bagages'] = [];
+        if(empty($request['customer_id'])) $request['customer_id'] = "";
+        //if(!isset($request['customer_id']))
+        //    $request['customer_id']=Auth::user()->customer->id;
 
-        if(!isset($request['customer_id']))
-            $request['customer_id']=Auth::user()->customer->id;
         $this->saveBags($request, $delivery->id,$request['customer_id']);
 
         return $delivery;
@@ -73,7 +74,19 @@ class DeliveryController extends Controller
         $request = $request->toArray();
         $delivery = Delivery::find($request['delivery_id']);
         //TODO Save la date
-        //$delivery->start_date = Carbon::createFromFormat('');
+        if(empty($request['date_prise_en_charge'])){
+            throw new \Error('Please enter a valid date');
+        }
+        if(empty($request['time_prise_en_charge'])){
+            throw new \Error('Please enter a valid time');
+        }
+        $date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
+        $date->setTimeFromTimeString($request['time_prise_en_charge']);
+        $delivery->start_date = $date;
+        $delivery->save();
+        if(empty($request['bagages'])){
+            throw new \Error('Please enter a least a bag');
+        }
         $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
         Session::flash('success', 'Commande enregistrée');
         return redirect('/');

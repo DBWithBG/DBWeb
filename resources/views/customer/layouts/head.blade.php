@@ -33,6 +33,7 @@
 
 <link rel="stylesheet" href="{!! asset('iblue/fonts/et-line-font/et-line-font.css')!!}">
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/js/smart-forms/smart-forms.css') !!}">
+<link href="{!! asset('iblue/js/switches/bootstrap-switch.css') !!}" rel="stylesheet">
 
 <link rel="stylesheet/less" type="text/css" href="{!! asset('iblue/less/skin.less') !!}">
 
