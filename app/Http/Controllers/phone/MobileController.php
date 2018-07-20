@@ -127,12 +127,20 @@ class MobileController extends Controller
         $tab=[];
         foreach($deliveries as $d){
 
+            $d->tracking=[null,null];
+            if($d->status==Config::get('constants.EN_COURS_DE_LIVRAISON')){
+                //TODO calculer tracking => [temps restant estime, pourcentage sur la demande]
+                $d->tracking=[20,10];
+            }
             if(!isset($tab[$d->status])){
                 $tab[$d->status]=[];
 
             }
             array_push($tab[$d->status],$d);
         }
+
+
+
         return response()
             ->json($tab)
             ->setCallback(Input::get('callback'));
