@@ -111,6 +111,8 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$req->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Pas de compte client trouvé :( ! ');
 
 
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
@@ -118,6 +120,9 @@ class MobileController extends Controller
             ->with('takeOverDelivery')
             ->with('startPosition')
             ->with('endPosition')
+            ->with('takeOverDelivery.driver')
+            ->with('takeOverDelivery.disputes')
+            ->with('rating')
             ->get();
         $tab=[];
         foreach($deliveries as $d){
