@@ -111,6 +111,8 @@ class MobileController extends Controller
         $u=User::where('mobile_token','=',$req->mobile_token)->first();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+        if(!$u->customer)
+            throw new \Error('Pas de compte client trouvé :( ! ');
 
 
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
@@ -118,16 +120,27 @@ class MobileController extends Controller
             ->with('takeOverDelivery')
             ->with('startPosition')
             ->with('endPosition')
+            ->with('takeOverDelivery.driver')
+            ->with('takeOverDelivery.disputes')
+            ->with('rating')
             ->get();
         $tab=[];
         foreach($deliveries as $d){
 
+            $d->tracking=[null,null];
+            if($d->status==Config::get('constants.EN_COURS_DE_LIVRAISON')){
+                //TODO calculer tracking => [temps restant estime, pourcentage sur la demande]
+                $d->tracking=[20,10];
+            }
             if(!isset($tab[$d->status])){
                 $tab[$d->status]=[];
 
             }
             array_push($tab[$d->status],$d);
         }
+
+
+
         return response()
             ->json($tab)
             ->setCallback(Input::get('callback'));
