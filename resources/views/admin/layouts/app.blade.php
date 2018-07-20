@@ -14,6 +14,7 @@
         @include('admin.layouts.head')
 
     </head>
+
     <body>
         <div id="app">
             <div class="wrapper">
@@ -22,6 +23,7 @@
 
             </div>
         </div>
+
 
     <!-- Scripts -->
     @include('admin.layouts.scripts')

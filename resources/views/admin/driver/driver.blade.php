@@ -151,12 +151,12 @@
                 </div>
                 <!-- end row (Informations) -->
                 <form style="display: none;" id="validate_driver" method="post"
-                      action="{{url('http://localhost:8888/backoffice/driver/'. $driver->id .'/validate')}}">
+                      action="{{url('/backoffice/driver/'. $driver->id .'/validate')}}">
                     {{csrf_field()}}
 
                 </form>
                 <form style="display: none;" id="revoke_driver" method="post"
-                      action="{{url('http://localhost:8888/backoffice/driver/'. $driver->id .'/revoke')}}">
+                      action="{{url('/backoffice/driver/'. $driver->id .'/revoke')}}">
                     {{csrf_field()}}
 
                 </form>

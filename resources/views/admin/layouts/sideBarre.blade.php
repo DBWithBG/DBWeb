@@ -117,7 +117,7 @@
                          id="formulairesCollapse">
                         <ul class="nav">
                             <li class="nav-item {{ Request::is('backoffice/notification*') ? 'active' : '' }}">
-                                <a class="nav-link" href="#informations_row">
+                                <a class="nav-link" href="{{url('backoffice/notifications')}}">
                                     <span class="sidebar-mini"> NO </span>
                                     <span class="sidebar-normal"> Notification </span>
                                 </a>
@@ -143,7 +143,7 @@
                          id="facturationCollapse">
                         <ul class="nav">
                             <li class="nav-item {{ Request::is('backoffice/facturation/client*') ? 'active' : '' }}">
-                                <a class="nav-link" href="#informations_row">
+                                <a class="nav-link" href="{{url('')}}">
                                     <span class="sidebar-mini"> IN </span>
                                     <span class="sidebar-normal"> Clients </span>
                                 </a>

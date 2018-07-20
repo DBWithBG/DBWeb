@@ -73,6 +73,11 @@ Route::post('backoffice/configuration/addTypeBagages', 'AdminController@addTypeB
 Route::post('/backoffice/configuration/deleteTypeBagages','AdminController@deleteTypeBagage');
 
 
+//Notifications
+Route::get('backoffice/notifications', 'AdminController@getNotifications');
+Route::post('/backoffice/push/notification', 'AdminController@postNotifications');
+
+
 /******************* FIN BACKOFFICE ADMIN****************************************/
 
 /******************* BACKOFFICE DRIVER *************************************/

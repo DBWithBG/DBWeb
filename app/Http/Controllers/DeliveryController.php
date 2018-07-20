@@ -80,9 +80,10 @@ class DeliveryController extends Controller
         if(empty($request['time_prise_en_charge'])){
             throw new \Error('Please enter a valid time');
         }
-        $date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
-        $date->setTimeFromTimeString($request['time_prise_en_charge']);
-        $delivery->start_date = $date;
+        $start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
+        $start_date->setTimeFromTimeString($request['time_prise_en_charge']);
+        $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
+        $delivery->start_date = $start_date;
         $delivery->save();
         if(empty($request['bagages'])){
             throw new \Error('Please enter a least a bag');

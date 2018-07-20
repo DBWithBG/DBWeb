@@ -1,13 +1,14 @@
 <!-- all js here -->
 
 
-
 <script src="{{asset('material_dashboard/assets/js/core/jquery.min.js')}}"></script>
 <script src="{{asset('material_dashboard/assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('material_dashboard/assets/js/bootstrap-material-design.js')}}"></script>
 <script src="{{asset('material_dashboard/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
 <!--  Google Maps Plugin  -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPu0rMci1BipLeAf9TPppiOD10Ej21NI0&libraries=places" async defer></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPu0rMci1BipLeAf9TPppiOD10Ej21NI0&libraries=places" async
+        defer></script>
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
 <script src="{{asset('material_dashboard/assets/js/plugins/moment.min.js')}}"></script>
 <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
@@ -52,4 +53,3 @@
 <script src="{{asset('material_dashboard/assets/js/plugins/jasny-bootstrap.min.js')}}"></script>
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
 <script src="{{asset('material_dashboard/assets/js/plugins/fullcalendar.min.js')}}"></script>
-

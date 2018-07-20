@@ -8,6 +8,7 @@ use App\Delivery;
 use App\Dispute;
 use App\Driver;
 use App\Http\Controllers\phone\MobileController;
+use App\Http\Controllers\phone\NotificationController;
 use App\Justificatif;
 use App\TypeBag;
 use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
@@ -305,6 +306,44 @@ class AdminController extends Controller
 
 
 
+    //Get vue des notifications
+    public function getNotifications(){
+        return view('admin.notification.create_notification');
+    }
+
+    //Envoi des notifications
+    public function postNotifications(Request $request){
+        $envoi = ['title'=>$request->titre,
+            'body'=>$request->contenu,
+            'datas'=>['url'=>'']];
+        $tokens = [];
+        if($request->customer){//On veut envoyer aux customers
+            $customers = Customer::all();
+            foreach($customers as $customer){
+                $user = $customer->user;
+                if(!empty($user->notify_token)){//On envoie qu'a ceux qui se sont connecté avec un téléphone
+                    array_push($tokens, $user->notify_token);
+                }
+            }
+        }
+        if($request->driver){
+            $drivers = Driver::all();
+            foreach($drivers as $driver){
+                $user = $driver->user;
+                if(!empty($user->notify_token)){//On envoie qu'a ceux qui ont un token ok
+                    array_push($tokens, $user->notify_token);
+                }
+            }
+        }
+        if(sizeof($tokens) == 0){
+            Session::flash('error', 'Aucun utilisateur choisi pour envoyer la notification ou aucun utilisateur ne s\'est encore connecté sur mobile');
+        }else{
+            $envoi['tokens'] = $tokens;
+            NotificationController::sendNotification($tokens);
+            Session::flash('success', 'Notification envoyée à '.sizeof($envoi['tokens']).' comptes');
+        }
+        return redirect()->back();
+    }
 
 
 }
