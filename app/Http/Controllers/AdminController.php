@@ -339,7 +339,7 @@ class AdminController extends Controller
             Session::flash('error', 'Aucun utilisateur choisi pour envoyer la notification ou aucun utilisateur ne s\'est encore connecté sur mobile');
         }else{
             $envoi['tokens'] = $tokens;
-            NotificationController::sendNotification($tokens);
+            NotificationController::sendNotification($envoi);
             Session::flash('success', 'Notification envoyée à '.sizeof($envoi['tokens']).' comptes');
         }
         return redirect()->back();
