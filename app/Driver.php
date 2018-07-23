@@ -15,7 +15,8 @@ class Driver extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'birth_date', 'is_online', 'phone', 'created_at','updated_at', 'user_id','canceled_deliveries'
+        'name', 'surname', 'birth_date', 'is_online', 'phone', 'created_at','updated_at', 'user_id','canceled_deliveries',
+        'current_lat','current_lng'
     ];
 
     public function user()

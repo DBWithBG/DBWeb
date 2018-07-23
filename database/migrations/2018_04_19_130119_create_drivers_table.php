@@ -24,7 +24,8 @@ class CreateDriversTable extends Migration
             $table->boolean('is_op')->default(0);//Si le siret && et les différentes pièces sont OK
             $table->timestamps();
             $table->boolean('deleted')->default(0);
-
+            $table->float('current_lat', 10,6)->nullable();
+            $table->float('current_lng', 10,6)->nullable();
             $table->integer('canceled_deliveries')->default(0);
 
             $table->integer('user_id')->unsigned();

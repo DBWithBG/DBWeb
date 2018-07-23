@@ -500,4 +500,18 @@ class MobileController extends Controller
             }
         }
        }
+
+
+       public function setPosition(Request $request){
+           if(!$request->mobile_token)
+               throw new \Error('Pas de token fourni :( ! ');
+           $u=User::where('mobile_token','=',$request->mobile_token)->first();
+           if(!$u)
+               throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+           if(!$u->driver)
+               throw new \Error('Utilisateur non driver :( ! ');
+
+           $u->update($request);
+           return json_encode($u);
+       }
 }
