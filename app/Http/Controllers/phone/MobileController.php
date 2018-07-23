@@ -511,7 +511,7 @@ class MobileController extends Controller
            if(!$u->driver)
                throw new \Error('Utilisateur non driver :( ! ');
 
-           $u->update(['current_lng'=>$request->current_lng,'current_lat'=>$request->current_lat]);
+           $u->driver->update(['current_lng'=>$request->current_lng,'current_lat'=>$request->current_lat]);
            return json_encode($u);
        }
 }
