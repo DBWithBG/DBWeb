@@ -511,7 +511,7 @@ class MobileController extends Controller
            if(!$u->driver)
                throw new \Error('Utilisateur non driver :( ! ');
 
-           $u->update($request);
+           $u->update($request->toArray());
            return json_encode($u);
        }
 }
