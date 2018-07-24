@@ -184,7 +184,7 @@ Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepar
 Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
 Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileController@annulationDelivery');
 
-Route::post('/mobile/drivers/setPosition','phone\MobileController@setPosition');
+Route::put('/mobile/drivers/setPosition','phone\MobileController@setPosition');
 
 
 Route::post('mobile/login', 'phone\MobileController@mobileLogin');
