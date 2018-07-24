@@ -17,6 +17,7 @@ $("#js-form-login").on('submit',function(e){
 			$("#test").val("ok");
 		},
 		error:function(e){
+            $("#test").val("ok");
             $("#infos").html('Informations incorrectes');
 		}
 	});
