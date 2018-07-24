@@ -153,7 +153,7 @@ class MailController
             'FromEmail' =>
                 'simonhajek88@gmail.com',
 
-            'to' => 'testdeliver@yopmail.com',
+            'to' => 'randy@sup.sarl',
             'Subject' => "Contact de " . $nom . " " . $prenom,
             "html-part" => view('emails.contact')->with(['message' => $message, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email])->render()
         ];
