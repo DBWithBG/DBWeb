@@ -151,7 +151,7 @@ class MailController
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'simonhajek88@gmail.com',
+                'randy@sup.sarl',
 
             'to' => 'randy@sup.sarl',
             'Subject' => "Contact de " . $nom . " " . $prenom,
