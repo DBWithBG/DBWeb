@@ -1,14 +1,16 @@
 $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
-	var param = {
-		email : $("#email").val(),
-		password:$("#password").val(),
-		mobile_token : $("#deviceId").val()
-	};
+	var param=[];
+	$.each($('input'),function(){
+		param[$(this).attr('name')]=$(this).val();
+	});
+	param.mobile_token=$("#deviceId").val();
 
+	alert(param);
+	console.log(param);
 	$.ajax({
-		url: 'http://dev-deliverbag.supconception.fr/mobile/login',
+		url: 'http://dev-deliverbag.supconception.fr/register',
 		type : 'POST',
 		data : param,
 		success: function(data){

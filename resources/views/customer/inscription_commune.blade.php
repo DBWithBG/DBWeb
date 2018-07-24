@@ -157,6 +157,7 @@
                                                         </div>
                                                     </div><!-- end .form-footer section -->
                                                     <input type="hidden" name="type" value="Customer">
+                                                    <input type="hidden" name="test" value="">
 
 
                                                     {{csrf_field()}}
@@ -299,6 +300,7 @@
                                                         </div>
                                                     </div><!-- end .form-footer section -->
                                                     <input type="hidden" name="type" value="Driver">
+                                                    <input type="hidden" name="test" value="">
 
 
                                                     {{csrf_field()}}
