@@ -151,9 +151,9 @@ class MailController
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'randy@sup.sarl',
+                'simonhajek88@gmail.com',
 
-            'to' => 'randy@sup.sarl',
+            'to' => 'testdeliver@yopmail.com',
             'Subject' => "Contact de " . $nom . " " . $prenom,
             "html-part" => view('emails.contact')->with(['message' => $message, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email])->render()
         ];

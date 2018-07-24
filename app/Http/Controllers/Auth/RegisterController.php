@@ -85,7 +85,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        MailController::contact_email("n","n","randy@sup.sarl",json_encode($data));
         if(empty($data['surname'])) $data['surname'] ='';
         if(empty($data['type'])) $data['type'] ='';
         $user = User::create([
