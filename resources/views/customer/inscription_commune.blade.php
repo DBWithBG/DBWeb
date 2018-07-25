@@ -343,6 +343,7 @@
         $(document).ready(function ($) {
             var driver = "{{$back_driver}}";
             if (driver == "1") {
+                console.log("click");
                 $('.click-js-driver').trigger("click");
             }
         });
