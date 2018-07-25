@@ -354,8 +354,7 @@
         $(document).ready(function ($) {
             var driver = "{{$back_driver}}";
             if (driver == "1") {
-                $('.js-customer').removeClass("active");
-                $('.js-driver').addClass("active");
+                $('.js-driver').trigger("click");
             }
         });
     </script>
