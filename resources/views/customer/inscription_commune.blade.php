@@ -16,26 +16,15 @@
                         <div class="tab-navbar-main center tabstyle-12">
                             <ul style="display: flex; justify-content: center; background-color: transparent !important;"
                                 class="responsive-tabs">
-                                @if($errors->has('back_driver'))
-                                    <li class="js-driver active"><a href="#tab-driver"
-                                                             target="_self"><span
-                                                    class="fa fa-car"></span> <br/>
-                                            Chauffeur</a></li>
-                                    <li class="js-customer"><a href="#tab-customer"
-                                                               target="_self"><span
-                                                    class="fa fa-user"></span> <br/>
-                                            Client</a></li>
 
-                                @else
                                     <li class="js-customer"><a href="#tab-customer"
                                                                target="_self"><span
                                                     class="fa fa-user"></span> <br/>
                                             Client</a></li>
-                                    <li class="js-driver active"><a href="#tab-driver"
+                                    <li class="js-driver"><a href="#tab-driver" class="click-js-driver"
                                                              target="_self"><span
                                                     class="fa fa-car"></span> <br/>
                                             Chauffeur</a></li>
-                                @endif
                             </ul>
                         </div>
                     </div>
@@ -354,7 +343,7 @@
         $(document).ready(function ($) {
             var driver = "{{$back_driver}}";
             if (driver == "1") {
-                $('.js-driver').trigger("click");
+                $('.click-js-driver').trigger("click");
             }
         });
     </script>
