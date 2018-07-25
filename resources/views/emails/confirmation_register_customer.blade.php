@@ -24,7 +24,7 @@
 
 
 
-        @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 
         /* Take care of image borders and formatting */
 
