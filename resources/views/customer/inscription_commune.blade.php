@@ -337,7 +337,7 @@
         </div>
     </section>
     <div class="clearfix"></div>
-    <?php $back_driver = $errors->has('back_driver') ?: "no" ?>
+    <?php $back_driver = $errors->has('back_driver') ?'1': "0" ?>
     <script type="text/javascript">
 
         $(document).ready(function ($) {
