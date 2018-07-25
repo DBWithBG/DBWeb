@@ -16,15 +16,26 @@
                         <div class="tab-navbar-main center tabstyle-12">
                             <ul style="display: flex; justify-content: center; background-color: transparent !important;"
                                 class="responsive-tabs">
-                                <li class="js-customer"><a href="#tab-customer"
-                                         target="_self"><span
-                                                class="fa fa-user"></span> <br/>
-                                        Client</a></li>
-                                <li class="js-driver"><a href="#tab-driver"
-                                                                                                  target="_self"><span
-                                                class="fa fa-car"></span> <br/>
-                                        Chauffeur</a></li>
+                                @if($errors->has('back_driver'))
+                                    <li class="js-driver active"><a href="#tab-driver"
+                                                             target="_self"><span
+                                                    class="fa fa-car"></span> <br/>
+                                            Chauffeur</a></li>
+                                    <li class="js-customer"><a href="#tab-customer"
+                                                               target="_self"><span
+                                                    class="fa fa-user"></span> <br/>
+                                            Client</a></li>
 
+                                @else
+                                    <li class="js-customer"><a href="#tab-customer"
+                                                               target="_self"><span
+                                                    class="fa fa-user"></span> <br/>
+                                            Client</a></li>
+                                    <li class="js-driver active"><a href="#tab-driver"
+                                                             target="_self"><span
+                                                    class="fa fa-car"></span> <br/>
+                                            Chauffeur</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -337,12 +348,12 @@
         </div>
     </section>
     <div class="clearfix"></div>
-    <?php $back_driver = $errors->has('back_driver') ? :"no" ?>
+    <?php $back_driver = $errors->has('back_driver') ?: "no" ?>
     <script type="text/javascript">
 
         $(document).ready(function ($) {
             var driver = "{{$back_driver}}";
-            if(driver == "1"){
+            if (driver == "1") {
                 $('.js-customer').removeClass("active");
                 $('.js-driver').addClass("active");
             }
