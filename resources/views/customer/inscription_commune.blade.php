@@ -16,9 +16,13 @@
                         <div class="tab-navbar-main center tabstyle-12">
                             <ul style="display: flex; justify-content: center; background-color: transparent !important;"
                                 class="responsive-tabs">
-                                <li><a href="#tab-customer" target="_self"><span class="fa fa-user"></span> <br/>
+                                <li class="js-customer"><a href="#tab-customer"
+                                         target="_self"><span
+                                                class="fa fa-user"></span> <br/>
                                         Client</a></li>
-                                <li><a href="#tab-driver" target="_self"><span class="fa fa-car"></span> <br/>
+                                <li class="js-driver"><a href="#tab-driver"
+                                                                                                  target="_self"><span
+                                                class="fa fa-car"></span> <br/>
                                         Chauffeur</a></li>
 
                             </ul>
@@ -34,16 +38,20 @@
                                         <div class="smart-wrap">
                                             <div class="smart-forms smart-container wrap-3">
                                                 @if($errors->any())
-                                                    @foreach($errors->all() as $error)
-                                                        <div class="row">
-                                                            <div class="col-md-12 nopadding">
-                                                                <div class="alert-box warning">
-                                                                    <span class="alert-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                                                                    <strong><i class="fa fa-exclamation-triangle"aria-hidden="true"></i></strong>
-                                                                    &nbsp; {{$error}}
+                                                    @foreach($errors->all() as $key => $error)
+                                                        @if($error != "")
+                                                            <div class="row">
+                                                                <div class="col-md-12 nopadding">
+                                                                    <div class="alert-box warning">
+                                                                    <span class="alert-closebtn"
+                                                                          onclick="this.parentElement.style.display='none';">&times;</span>
+                                                                        <strong><i class="fa fa-exclamation-triangle"
+                                                                                   aria-hidden="true"></i></strong>
+                                                                        &nbsp; {{$error}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
                                                     @endforeach
                                                 @endif
 
@@ -178,15 +186,19 @@
 
                                                 @if($errors->any())
                                                     @foreach($errors->all() as $error)
-                                                        <div class="row">
-                                                            <div class="col-md-12 nopadding">
-                                                                <div class="alert-box warning">
-                                                                    <span class="alert-closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                                                                    <strong><i class="fa fa-exclamation-triangle"aria-hidden="true"></i></strong>
-                                                                    &nbsp; {{$error}}
+                                                        @if($error != "")
+                                                            <div class="row">
+                                                                <div class="col-md-12 nopadding">
+                                                                    <div class="alert-box warning">
+                                                                    <span class="alert-closebtn"
+                                                                          onclick="this.parentElement.style.display='none';">&times;</span>
+                                                                        <strong><i class="fa fa-exclamation-triangle"
+                                                                                   aria-hidden="true"></i></strong>
+                                                                        &nbsp; {{$error}}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
                                                     @endforeach
                                                 @endif
 
@@ -325,7 +337,16 @@
         </div>
     </section>
     <div class="clearfix"></div>
+    <?php $back_driver = $errors->has('back_driver') ? :"no" ?>
+    <script type="text/javascript">
 
-
+        $(document).ready(function ($) {
+            var driver = "{{$back_driver}}";
+            if(driver == "1"){
+                $('.js-customer').removeClass("active");
+                $('.js-driver').addClass("active");
+            }
+        });
+    </script>
 
 @endsection
