@@ -2,24 +2,15 @@ $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
 	var param=[];
-	alert('start');
 	$.each($('#js-form-login :input'),function(){
-		alert($(this).val());
 
 		param[$(this).attr('name')]=$(this).val();
+		alert(param[$(this).attr('name')]);
 	});
-	alert('end');
 	param["mobile_token"]=$("#deviceId").val();
-	alert('start');
-	alert(param['mobile_token']);
-	alert($("#deviceId").val());
-	alert('end');
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-	param["_token"]= CSRF_TOKEN;
+    alert(param);
 
-	param[0]="fdp";
-	alert(param);
-    $("#infos").html(JSON.stringify(param, null, 2));
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');;
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/register',
 		type : 'POST',
