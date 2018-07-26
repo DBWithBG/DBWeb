@@ -22,7 +22,7 @@
                             @endforeach
                         @endif
 
-                        <form method="post" action="{{url('/login')}}" id="js-form-login">
+                        <form method="post" action="{{url('/login')}}" id="js-form-login" url="{{url('/login')}}">
                             {{csrf_field()}}
 
                             <div class="form-body">

@@ -16,6 +16,5 @@ class VerifyCsrfToken extends BaseVerifier
         '/test/delivery',
         'mobile/*',
         'create/delivery',
-        '/login'
     ];
 }
