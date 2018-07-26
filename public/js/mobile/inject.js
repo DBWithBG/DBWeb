@@ -2,10 +2,19 @@ $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
 	var param=[];
+	alert('start');
 	$.each($('#js-form-login :input'),function(){
+		alert($(this).val());
+		alert($(this)[0].val());
+
 		param[$(this).attr('name')]=$(this).val();
 	});
+	alert('end');
 	param["mobile_token"]=$("#deviceId").val();
+	alert('start');
+	alert(param['mobile_token']);
+	alert($("#deviceId").val());
+	alert('end');
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	param["_token"]= CSRF_TOKEN;
 
