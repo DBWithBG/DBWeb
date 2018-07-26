@@ -4,8 +4,10 @@ $("#js-form-login").on('submit',function(e){
 	var param=[];
 	$.each($('#js-form-login :input'),function(){
 
+		if($(this).attr('name') && $(this).val){
 		param[$(this).attr('name')]=$(this).val();
 		alert(param[$(this).attr('name')]);
+        }
 	});
     alert(param.length);
 
