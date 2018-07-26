@@ -6,7 +6,7 @@ $("#js-form-login").on('submit',function(e){
 
 		param[$(this).attr('name')]=$(this).val();
 	});
-    alert(param);
+    alert(param.length);
 
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');;
 	$.ajax({
