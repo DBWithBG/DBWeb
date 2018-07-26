@@ -7,8 +7,6 @@ $("#js-form-login").on('submit',function(e){
 	});
 	param.mobile_token=$("#deviceId").val();
 
-	alert(param);
-	console.log(param);
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/register',
 		type : 'POST',
@@ -17,8 +15,8 @@ $("#js-form-login").on('submit',function(e){
 			$("#test").val("ok");
 		},
 		error:function(e){
-			alert(e);
-            $("#infos").html('Informations incorrectes');
+
+			$("#infos").html(JSON.stringify(e, null, 2));
 		}
 	});
 	return false;
