@@ -2,7 +2,8 @@ $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
 	var param=[];
-	$.each($('input'),function(){
+	$.each($('#js-form-login :input'),function(){
+		alert($(this).attr('name'));
 		param[$(this).attr('name')]=$(this).val();
 	});
 	param.mobile_token=$("#deviceId").val();
