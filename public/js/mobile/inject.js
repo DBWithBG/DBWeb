@@ -2,7 +2,7 @@ $("#js-form-login").on('submit',function(e){
 
 	e.preventDefault();
 	var param=[];
-	$.each($('#js-form-login :input'),function(){
+	$('#js-form-login :input').each(function(){
 
 		if($(this).attr('name') && $(this).val){
 		param[$(this).attr('name')]=$(this).val();
