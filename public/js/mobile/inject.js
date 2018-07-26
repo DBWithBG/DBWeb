@@ -7,9 +7,9 @@ $("#js-form-login").on('submit',function(e){
 	});
 	param.mobile_token=$("#deviceId").val();
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    alert('token : '+CSRF_TOKEN);
 	param._token= CSRF_TOKEN;
 
+    alert(JSON.stringify(param, null, 2));
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/register',
 		type : 'POST',
