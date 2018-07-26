@@ -5,9 +5,9 @@ $("#js-form-login").on('submit',function(e){
 	$.each($('#js-form-login :input'),function(){
 		param[$(this).attr('name')]=$(this).val();
 	});
-	param.mobile_token=$("#deviceId").val();
+	param["mobile_token"]=$("#deviceId").val();
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-	param._token= CSRF_TOKEN;
+	param["_token"]= CSRF_TOKEN;
 
 	alert(param);
     $("#infos").html(JSON.stringify(param, null, 2));
