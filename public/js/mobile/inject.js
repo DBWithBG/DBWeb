@@ -8,6 +8,7 @@ $("#js-form-login").on('submit',function(e){
 		param[$(this).attr('name')]=$(this).val();
 		alert(param[$(this).attr('name')]);
         }
+        alert(param.length);
 	});
     alert(param.length);
 
