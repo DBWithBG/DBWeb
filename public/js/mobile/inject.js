@@ -5,6 +5,7 @@ $("#js-form-login").on('submit',function(e){
 	$.each($('#js-form-login :input'),function(){
 
 		param[$(this).attr('name')]=$(this).val();
+		alert(param[$(this).attr('name')]);
 	});
     alert(param.length);
 
