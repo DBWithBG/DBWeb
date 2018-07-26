@@ -9,6 +9,7 @@ $("#js-form-login").on('submit',function(e){
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	param._token= CSRF_TOKEN;
 
+	alert(param);
     $("#infos").html(JSON.stringify(param, null, 2));
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/register',
