@@ -3,14 +3,13 @@ $("#js-form-login").on('submit',function(e){
 	e.preventDefault();
 	var param=[];
 	$.each($('#js-form-login :input'),function(){
-		alert($(this).attr('name'));
 		param[$(this).attr('name')]=$(this).val();
 	});
 	param.mobile_token=$("#deviceId").val();
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 	param._token= CSRF_TOKEN;
 
-    alert(JSON.stringify(param, null, 2));
+    $("#infos").html(JSON.stringify(param, null, 2));
 	$.ajax({
 		url: 'http://dev-deliverbag.supconception.fr/register',
 		type : 'POST',
@@ -20,7 +19,7 @@ $("#js-form-login").on('submit',function(e){
 		},
 		error:function(e){
 
-			$("#infos").html(JSON.stringify(e, null, 2));
+			$("#infos").append(JSON.stringify(e, null, 2));
 		}
 	});
 	return false;
