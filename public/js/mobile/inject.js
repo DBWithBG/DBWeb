@@ -6,7 +6,6 @@ $("#js-form-login").on('submit',function(e){
 
 		param[$(this).attr('name')]=$(this).val();
 	});
-	param["mobile_token"]=$("#deviceId").val();
     alert(param);
 
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');;
