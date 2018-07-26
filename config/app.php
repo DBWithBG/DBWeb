@@ -187,6 +187,12 @@ return [
         //agent
         Jenssegers\Agent\AgentServiceProvider::class,
 
+        //CKeditor
+        JeroenNoten\LaravelCkEditor\ServiceProvider::class,
+
+        //PDF
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+
     ],
 
     /*
@@ -241,6 +247,9 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         //agent
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+
+        //PDF
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
 
 
     ],

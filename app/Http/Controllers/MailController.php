@@ -9,17 +9,82 @@
 namespace App\Http\Controllers;
 
 
+use App\Customer;
+use App\Driver;
 use App\User;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Snowfire\Beautymail\Beautymail;
+
+use Illuminate\Support\Facades\Session;
 
 class MailController
 {
+
+    /**
+     * Fonction permettant d'envoyer un ou plusieurs emails
+     * @param $users tableau d'ids d'utilisateur a qui envoyer l'email
+     * @param $subject le sujet de l'email
+     * @param $html le contenu (html supporté) de l'email
+     *
+     * retourne le statut de l'envoi de tous les emails avec en clé l'id de l'utilisateur
+     */
+    public static function send_email($users, $subject, $html){
+        $client = new Client();
+        $return = [];
+        foreach ($users as $user){
+            $o_user = User::find($user);
+            //Préparation du body pour l'envoi
+            $body = [
+                'fromEmail' => Config::get('constants.SENDER_EMAIL'),
+                'to' => $o_user->email,
+                'Subject' => $subject,
+                'html-part' => $html
+            ];
+
+            //Envoi de l'email
+            $return[$o_user->id] =  $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+                'Content-type' => 'application/json',
+
+            ],
+                'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+                'body' => json_encode($body)
+            ]);
+        }
+        return $return;
+    }
+
+    //Envoi un email à tous les driver qui ont des comptes valides et sont prêts à livrer
+    public static function send_email_all_drivers($subject, $html){
+        $drivers = Driver::where('deleted', '0')->where('is_op', '1')->get();
+        $users = [];
+        foreach ($drivers as $driver){
+            array_push($users, $driver->user->id);
+        }
+
+        if(sizeof($users) == 0){
+            Session::flash('success', 'Aucun utilisateur choisi');
+            return redirect()->back();
+        }
+        return self::send_email($users, $subject, $html);
+    }
+
+    //Envoi un email à tous les customers qui ont des comptes valides
+    public static function send_email_all_customers($subject, $html){
+        $customers = Customer::all();
+        $users = [];
+        foreach ($customers as $customer){
+            if($customer->user->is_confirmed) array_push($users, $customer->user->id);
+        }
+        if(sizeof($users) == 0){
+            Session::flash('success', 'Aucun utilisateur choisi');
+            return redirect()->back();
+        }
+        return self::send_email($users, $subject, $html);
+    }
+
+
 
 
     //Email permettant de renvoyer un nouveau mot de passe
@@ -33,7 +98,7 @@ class MailController
                 $client = new Client();
                 $body = [
                     'FromEmail' =>
-                        'simonhajek88@gmail.com',
+                        Config::get('constants.SENDER_EMAIL'),
 
                     'to' => $user->email,
                     'Subject' => "Génération d'un nouveau mot de passe!",
@@ -58,13 +123,14 @@ class MailController
         return redirect('backoffice/login');
     }
 
+
     //Envoi de l'email de confirmation d'inscription
     public function confirm_register_customer(){
         //TODO On peut remplacer par n'importe quelle vue, n'importe quel css
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'simonhajek88@gmail.com',
+                Config::get('constants.SENDER_EMAIL'),
 
             'to' => 'testdeliver@mailinator.com',
             'Subject' => "Génération d'un nouveau mot de passe!",
@@ -86,7 +152,7 @@ class MailController
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'simonhajek88@gmail.com',
+                Config::get('constants.SENDER_EMAIL'),
 
             'to' => 'testdeliver@yopmail.com',
             'Subject' => "Confirmation de votre adresse mail",
@@ -108,7 +174,7 @@ class MailController
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'simonhajek88@gmail.com',
+                Config::get('constants.SENDER_EMAIL'),
 
             'to' => 'testdeliver@yopmail.com',
             'Subject' => "Confirmation de votre adresse mail",
@@ -130,7 +196,7 @@ class MailController
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'simonhajek88@gmail.com',
+                Config::get('constants.SENDER_EMAIL'),
 
             'to' => 'testdeliver@yopmail.com',
             'Subject' => "Réinitialisation de votre mot de passe",
@@ -151,7 +217,7 @@ class MailController
         $client = new Client();
         $body = [
             'FromEmail' =>
-                'simonhajek88@gmail.com',
+                Config::get('constants.SENDER_EMAIL'),
 
             'to' => 'testdeliver@yopmail.com',
             'Subject' => "Contact de " . $nom . " " . $prenom,

@@ -77,6 +77,9 @@ Route::post('/backoffice/configuration/deleteTypeBagages','AdminController@delet
 Route::get('backoffice/notifications', 'AdminController@getNotifications');
 Route::post('/backoffice/push/notification', 'AdminController@postNotifications');
 
+//Emails
+Route::get('backoffice/emails', 'AdminController@getEmails');
+Route::post('/backoffice/push/email', 'AdminController@postEmails');
 
 /******************* FIN BACKOFFICE ADMIN****************************************/
 

@@ -11,10 +11,12 @@
         "cirovargas/google-distance-matrix": "^0.0.8",
         "devpark/laravel-paybox-gateway": "^1.0",
         "jenssegers/agent": "^2.6",
+        "jeroennoten/laravel-ckeditor": "^3.8",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
-        "mpociot/laravel-firebase-sync": "~1.0"
+        "mpociot/laravel-firebase-sync": "~1.0",
+        "niklasravnsborg/laravel-pdf": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -345,5 +345,22 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    //Affichage de la vue admin pour envoyer des emails groupés
+    public function getEmails(){
+       return view('admin.notification.create_email');
+    }
+
+    //Envoi de l'email groupé aux customers ou aux drivers (tous valides)
+    public function postEmails(Request $request){
+       if($request->customer){
+            $retour = MailController::send_email_all_customers($request->subject, $request->html);
+       }
+       if($request->driver){
+           $retour = MailController::send_email_all_drivers($request->subject, $request->html);
+       }
+        Session::flash('success', 'Vous venez d\'envoyer '.sizeof($retour). ' emails');
+       return redirect()->back();
+    }
+
 
 }
