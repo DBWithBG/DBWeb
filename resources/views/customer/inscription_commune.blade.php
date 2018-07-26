@@ -55,7 +55,7 @@
                                                     @endforeach
                                                 @endif
 
-                                                <form method="post" action="{{"register"}}" id="account">
+                                                <form method="post" action="{{"register"}}" url="{{url('register')}}" id="account">
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">

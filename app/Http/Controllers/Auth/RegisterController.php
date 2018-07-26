@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Customer;
 use App\Driver;
 use App\Http\Controllers\MailController;
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -90,13 +89,23 @@ class RegisterController extends Controller
     {
         if(empty($data['surname'])) $data['surname'] ='';
         if(empty($data['type'])) $data['type'] ='';
+
+        if(!isset($data['mobile_token'])){
+            $data['mobile_token']=null;
+        }else{
+            //clear des users au meme mobile_token
+            User::where('mobile_token','=',$data['mobile_token'])->where('email','!=',$data['email'])->update(['mobile_token'=>null]);
+
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'admin' => false,
-            'is_confirmed' => false
+            'is_confirmed' => false,
+            'mobile_token'=>$data['mobile_token']
         ]);
 
         if($data['type'] == 'Customer'){
