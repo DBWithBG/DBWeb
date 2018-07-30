@@ -216,3 +216,7 @@ Route::get('paybox/refus/','PayboxController@refus_paybox');
 /***************************** FIN PAYBOX ************************************/
 
 Route::get('test', 'MailController@confirm_register_customer');
+
+
+//mise en place langues
+Route::name('language')->get('language/{lang}', 'HomeController@language');

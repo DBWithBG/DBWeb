@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,6 +91,10 @@ return [
     */
 
     'fallback_locale' => 'en',
+
+    //langues mises en place
+
+    'locales' => ['fr', 'en'],
 
     /*
     |--------------------------------------------------------------------------
@@ -191,7 +195,8 @@ return [
         JeroenNoten\LaravelCkEditor\ServiceProvider::class,
 
         //PDF
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
+        Bestmomo\ArtisanLanguage\ArtisanLanguageProvider::class,
 
     ],
 

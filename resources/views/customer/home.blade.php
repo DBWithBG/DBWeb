@@ -56,7 +56,7 @@
                                  data-splitin="none"
                                  data-splitout="none"
                                  data-responsive_offset="on"
-                                 style="z-index: 7; white-space: nowrap;text-shadow: 4px 4px #343434;"">Vos bagages - Notre mission
+                                 style="z-index: 7; white-space: nowrap;text-shadow: 4px 4px #343434;"">@lang('Vos bagages - Notre mission')
                             </div>
 
                             <!-- LAYER NR. 2 -->

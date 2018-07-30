@@ -65,4 +65,13 @@ class HomeController extends Controller
     }
 
 
+    //mise en place de la langue
+    public function language($locale)
+    {
+        $locale = in_array($locale, config('app.locales')) ? $locale : config('app.fallback_locale');
+        session(['locale' => $locale]);
+        return back();
+    }
+
+
 }
