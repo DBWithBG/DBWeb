@@ -9,8 +9,7 @@ class Locale
             session(['locale' => $request->getPreferredLanguage(config('app.locales'))]);
         }
 
-
-        $locale ="en";
+        $locale = session('locale');
 
         app()->setLocale($locale);
 
