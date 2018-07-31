@@ -2,6 +2,7 @@ $("form").on('submit',function(e){
 
 	var formulaire=$(this);
 	var idFormulaire=$(this).attr('id');
+	alert(idFormulaire);
 	e.preventDefault();
 	var param={};
 
