@@ -165,7 +165,6 @@
                                                         </div>
                                                     </div><!-- end .form-footer section -->
                                                     <input type="hidden" name="type" value="Customer">
-                                                    <input type="hidden" id="test" value="">
 
 
                                                     {{csrf_field()}}
