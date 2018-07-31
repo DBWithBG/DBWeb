@@ -18,10 +18,12 @@ $("form").on('submit',function(e){
 		type : 'POST',
 		data : param,
 		success: function(data){
+			alert(data);
 			$("#test").val("ok");
 		},
 		error:function(e){
 
+			alert(e);
 			$("#infos").append(JSON.stringify(e, null, 2));
 		}
 	});
