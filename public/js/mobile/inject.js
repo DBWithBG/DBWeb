@@ -11,6 +11,7 @@ $("form").on('submit',function(e){
 		param[$(this).attr('name')]=$(this).val();
         }
 	});
+	alert(param);
 
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');;
 	$.ajax({
@@ -21,7 +22,7 @@ $("form").on('submit',function(e){
 			$("#test").val("ok");
 		},
 		error:function(e){
-			alert(JSON.stringify(e));
+            alert(JSON.stringify(e));
 			$("#infos").append(JSON.stringify(e, null, 2));
 		}
 	});
