@@ -55,7 +55,7 @@
                                                     @endforeach
                                                 @endif
 
-                                                <form method="post" action="{{"register"}}" url="{{url('register')}}" id="account">
+                                                <form method="post" action="{{"register"}}" url="{{url('register')}}" id="account1">
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">
@@ -201,7 +201,7 @@
                                                     @endforeach
                                                 @endif
 
-                                                <form method="post" action="{{"register"}}" id="account" url="{{url('register')}}">
+                                                <form method="post" action="{{"register"}}" id="account2" url="{{url('register')}}">
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">

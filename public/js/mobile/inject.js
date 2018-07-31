@@ -2,7 +2,6 @@ $("form").on('submit',function(e){
 
 	var formulaire=$(this);
 	var idFormulaire=$(this).attr('id');
-	alert(idFormulaire);
 	e.preventDefault();
 	var param={};
 
@@ -19,14 +18,9 @@ $("form").on('submit',function(e){
 		type : 'POST',
 		data : param,
 		success: function(data){
-			alert(data);
 			$("#test").val("ok");
 		},
 		error:function(e){
-
-			alert('ok');
-			alert(JSON.stringify(e));
-			alert(e);
 			$("#infos").append(JSON.stringify(e, null, 2));
 		}
 	});
