@@ -91,6 +91,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        return(json_encode($data));
         if(empty($data['surname'])) $data['surname'] ='';
         if(empty($data['type'])) $data['type'] ='';
 
