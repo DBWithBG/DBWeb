@@ -222,7 +222,7 @@
                                                             <div class="tagline"><span>OU Classiquement </span></div>
                                                             <!-- .tagline -->
                                                         </div>
-                                                        <label for="names" class="field-label">Identité</label>
+                                                        <label for="names" class="field-label">Identité2</label>
                                                         <div class="frm-row">
 
                                                             <div class="colm colm6">
@@ -337,16 +337,25 @@
         </div>
     </section>
     <div class="clearfix"></div>
-    <?php $back_driver = $errors->has('back_driver') ?'1': "0" ?>
-    {{$back_driver}}
+    <?php
+        if(session('inscription_driver')){
+            $tmp=1;
+            session()->forget('inscription_driver');
+        }else{
+            $tmp=0;
+        }
+
+    ?>
     <script type="text/javascript">
 
         $(document).ready(function ($) {
-            var driver = "{{$back_driver}}";
-            if (driver == "1") {
-                console.log("click");
-                $('.click-js-driver').trigger("click");
-            }
+           if("{{$tmp}}"=="1"){
+               $('.js-customer').removeClass("active");
+               $('.js-driver').addClass("active");
+               $("#tab-customer").hide();
+               $("#tab-driver").toggle();
+
+           }
         });
     </script>
 

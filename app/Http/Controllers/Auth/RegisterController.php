@@ -7,6 +7,7 @@ use App\Driver;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -50,7 +51,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
+        if($data['type'] && $data['type']=='Driver'){
+            session(['inscription_driver'=>1]);
+        }
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
