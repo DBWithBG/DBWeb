@@ -21,6 +21,7 @@ $("form").on('submit',function(e){
 			$("#test").val("ok");
 		},
 		error:function(e){
+			alert(JSON.stringify(e));
 			$("#infos").append(JSON.stringify(e, null, 2));
 		}
 	});
