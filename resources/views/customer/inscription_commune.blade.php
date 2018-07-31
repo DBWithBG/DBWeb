@@ -75,7 +75,7 @@
                                                             <div class="tagline"><span>OU Classiquement </span></div>
                                                             <!-- .tagline -->
                                                         </div>
-                                                        <label for="names" class="field-label">Identité</label>
+                                                        <label for="names" class="field-label">Identité du chauffeur</label>
                                                         <div class="frm-row">
 
                                                             <div class="colm colm6">
