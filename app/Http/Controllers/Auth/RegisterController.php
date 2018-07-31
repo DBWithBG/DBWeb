@@ -6,6 +6,7 @@ use App\Customer;
 use App\Driver;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
