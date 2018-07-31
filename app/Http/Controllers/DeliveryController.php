@@ -100,9 +100,18 @@ class DeliveryController extends Controller
      */
     private function saveBags($request, $delivery_id,$customerid){
         foreach($request['bagages'] as $k=>$bags){
-            foreach($bags as $b){
-                if(!isset($b['name']))
-                    $b['name']="";
+            foreach($bags as $key=>$b){
+                if(!isset($b['name'])) {
+                    if($k==Config::get('constants.BAGAGE_CABINE')){
+                        $b['name']="BAGAGE CABINE ".($key+1);
+                    }
+                    if($k==Config::get('constants.BAGAGE_SOUTE')){
+                        $b['name']="BAGAGE SOUTE ".($key+1);
+                    }
+                    if($k==Config::get('constants.BAGAGE_AUTRE')){
+                        $b['name']="BAGAGE AUTRE ".($key+1);
+                    }
+                }
                 if(!isset($b['descr']))
                     $b['descr']="";
                 if(!empty($bnew = Bag::where('name', $b['name'])->first())){

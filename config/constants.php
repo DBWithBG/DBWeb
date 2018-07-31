@@ -26,5 +26,8 @@ return [
     'STATUS_2' => 'Pris en charge',
     'STATUS_3' => 'En cours de livraison',
     'STATUS_4' => 'Consigne',
-    'STATUS_5' => 'Terminé'
+    'STATUS_5' => 'Terminé',
+    'BAGAGE_CABINE'=>1,
+    'BAGAGE_SOUTE'=>2,
+    'BAGAGE_AUTRE'=>3
 ];
