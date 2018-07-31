@@ -203,6 +203,7 @@ class MobileController extends Controller
 
 
     public function getUser($mobile_token){
+        return($mobile_token);
         $user=User::where('mobile_token','=',$mobile_token)->first();
         if(!$user)
             return 'null';
