@@ -23,6 +23,8 @@ $("form").on('submit',function(e){
 		},
 		error:function(e){
 
+			alert('ok');
+			alert(JSON.stringify(e));
 			alert(e);
 			$("#infos").append(JSON.stringify(e, null, 2));
 		}
