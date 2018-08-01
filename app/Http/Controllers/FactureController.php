@@ -16,6 +16,7 @@ class FactureController extends Controller
     public static function genererFactureDelivery($idDelivery)
     {
         $delivery = Delivery::find($idDelivery);
+        //TODO AJOUTER LE CHECK DU PAIEMENT VALIDE AVEC PAYBOX POUR CONSULTER LA FACTURE
         if (!$delivery->num_facture || $delivery->num_facture == 1) {
 
             $inc = DB::table('reglages')->where('id', '=', '1')
