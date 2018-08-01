@@ -149,6 +149,9 @@ Route::post('ajax/departments', 'CustomerController@ajaxDepartments');
 Route::post('create/delivery', 'DeliveryController@postDelivery');
 Route::post('savebags/delivery', 'DeliveryController@postBagsWithDelivery');
 
+//Facture
+Route::get('delivery/{id}/getFacture', 'FactureController@genererFactureDelivery');
+
 Route::get('delivery/{id}/paiement', 'DeliveryController@getPaiement');
 
 

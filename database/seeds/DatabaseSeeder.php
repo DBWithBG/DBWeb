@@ -88,6 +88,10 @@ class DatabaseSeeder extends Seeder
             'price' => 10.00
         ]);
 
+        \App\Reglage::create([
+            'no_facture' => 999
+        ]);
+
 
 
 
