@@ -87,7 +87,7 @@
                                  data-hoffset="['0','0','0','0']"
                                  data-y="['top','top','top','top']" data-voffset="['460','350','370','300']"
                                  data-speed="800"
-                                 data-start="2500"
+                                 data-start="1600"
                                  data-transform_in="y:bottom;s:1500;e:Power3.easeOut;"
                                  data-transform_out="opacity:0;s:3000;e:Power4.easeIn;s:3000;e:Power4.easeIn;"
                                  data-endspeed="300"
@@ -109,7 +109,16 @@
 
                                                             <div class="form-body">
                                                                 <div class="">
-                                                                    <label class="field prepend-icon">
+                                                                    <button disabled="disabled" class="button btn-transparent" style="background: transparent;width: 58%" >Voyage en avion ou train ?</button><label data-toggle="modal"
+                                                                           data-target="#trainModal"
+                                                                           class="button btn-primary"><i
+                                                                                class="fa fa-train"></i></label>
+                                                                    <label data-toggle="modal"
+                                                                           data-target="#planeModal"
+                                                                           class="button btn-primary"><i
+                                                                                class="fa fa-plane"></i></label><br>
+                                                                    <label class="field prepend-icon" style="margin-top: 10px">
+
                                                                         <input id="adresse_input_depart" type="search"
                                                                                class="gui-input"
                                                                                placeholder="Lieu de prise en charge">
@@ -131,19 +140,9 @@
                                                                 <label class="js_valid_deliver button btn-primary">
                                                                     Valider
                                                                 </label>
-                                                                <label data-toggle="modal"
-                                                                        data-target="#trainModal"
-                                                                        class="button btn-primary"><i
-                                                                            class="fa fa-train"></i></label>
-                                                                <label data-toggle="modal"
-                                                                        data-target="#planeModal"
-                                                                        class="button btn-primary"><i
-                                                                            class="fa fa-plane"></i></label>
+
                                                             </div>
-                                                            <p id="infos"></p>
                                                         </form>
-
-
                                                     </div><!-- end .smart-forms section -->
                                                 </div><!-- end .smart-wrap section -->
 

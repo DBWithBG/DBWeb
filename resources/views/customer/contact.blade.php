@@ -47,7 +47,7 @@
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
                                 <h3 class="uppercase">Formulaire de contact</h3>
-                                <p>Pour toutes questions, n'hésitez pas à nous contacter via ce formulaire. Nous vous
+                                <p>Pour toute question, n'hésitez pas à nous contacter via ce formulaire. Nous vous
                                     répondrons dans les plus brefs délais.</p>
                                 <br/>
                                 <br/>

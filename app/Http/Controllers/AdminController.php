@@ -27,10 +27,14 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-       //$this->middleware('admin')->except(['login', 'getForgotPassword']);
+       $this->middleware('admin')->except(['login']);
     }
 
 
+    /**
+     * Doit outrepasser le middleware
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function login(){
 
         return view('admin.login.login');

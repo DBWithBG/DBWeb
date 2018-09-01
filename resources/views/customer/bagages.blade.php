@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Vos bagages enregistés</h4>
+                        <h4>Vos bagages enregistrés</h4>
                     </div>
                     <div class="col-md-6">
                         <ol class="breadcrumb">
@@ -48,7 +48,8 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
 
                     <h3 class="uppercase">Ajouter un bagage</h3>
-                    <p>Ajouter un bagages à votre profil vous permettra de commander des courses plus rapidement.</p>
+                    <p>Ajouter un bagage que vous utilisez souvent en déplacement,
+                        afin qu’il vous soit proposé lors d’une demande de prise en charge.</p>
                     <br/>
                     <br/>
 

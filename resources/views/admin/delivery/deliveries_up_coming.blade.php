@@ -49,10 +49,11 @@
                                         <thead class="text-center">
                                         <tr>
                                             <th>Commentaire</th>
+                                            <th>Prix</th>
                                             <th>Position de départ</th>
                                             <th>Position d'arrivée</th>
+                                            <th>Distance (en km)</th>
                                             <th>Date de création</th>
-                                            <th>Prix</th>
                                             <th>Client</th>
                                             <th>Statut</th>
                                             <th class="disabled-sorting text-right">Actions</th>

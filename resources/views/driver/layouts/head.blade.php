@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css?family=Dosis:300" rel="stylesheet">
 
 <!-- favicon icon -->
-<link rel="shortcut icon" type="images/png" href="{!! asset("") !!}">
+<link rel="shortcut icon" type="images/png" href="{!! asset("img/ico_deliverbag.png") !!}">
 
 <!-- all css here -->
 <link rel="stylesheet" type="text/css"

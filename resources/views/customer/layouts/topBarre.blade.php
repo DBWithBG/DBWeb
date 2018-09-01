@@ -6,8 +6,8 @@
         <div class="container">
             <div class="mod-menu">
                 <div class="row">
-                    <div class="col-sm-2"><a href="{{url("/")}}" title="" class="logo style-1 mar-4"> <img
-                                    src="{{asset('img/logo.png')}}" style="height: 30px; width: 50px" alt=""> </a></div>
+                    <div class="col-sm-2"><a href="{{url("/")}}" title="" class="logo style-1 mar-2"> <img
+                                    src="{{asset('img/logo_plat_milieu.png')}}"> </a></div>
                     <div class="col-sm-10">
                         <div class="main-nav">
 

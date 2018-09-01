@@ -11,7 +11,7 @@
                     {{csrf_field()}}
 
                     <input type="hidden" name="delivery_id" value="{{$delivery->id}}">
-
+                    Ce commentaire sera visible par deliverbag ainsi que le chauffeur.
                     <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
                          class="section">
                         <label class="field prepend-icon">

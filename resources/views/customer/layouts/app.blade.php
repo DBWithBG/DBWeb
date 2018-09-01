@@ -34,7 +34,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="over-loader loader-live">
+<!--<div class="over-loader loader-live">
     <div class="loader">
         <div class="loader-item style4">
             <div class="cube1"></div>
@@ -42,6 +42,7 @@
         </div>
     </div>
 </div>
+-->
 <div class="wrapper-boxed">
     <div class="site-wrapper">
         @include('customer.layouts.topBarre')

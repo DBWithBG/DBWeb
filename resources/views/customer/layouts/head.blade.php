@@ -2,7 +2,7 @@
 <link href="https://fonts.googleapis.com/css?family=Dosis:300" rel="stylesheet">
 
 <!-- favicon icon -->
-<link rel="shortcut icon" type="images/png" href="{!! asset("") !!}">
+<link rel="shortcut icon" type="images/png" href="{!! asset("img/ico_deliverbag.png") !!}">
 
 <!-- all css here -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">

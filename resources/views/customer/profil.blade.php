@@ -79,7 +79,7 @@
 
                                                     <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
                                                          class="section">
-                                                        <label class="field prepend-icon">
+                                                        Nom : <label class="field prepend-icon">
                                                             <input required type="text" name="name"
                                                                    id="sendername"
                                                                    class="gui-input" placeholder="Nom"
@@ -91,7 +91,7 @@
 
                                                     <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
                                                          class="section">
-                                                        <label class="field prepend-icon">
+                                                        Prénom : <label class="field prepend-icon">
                                                             <input required type="text" name="surname"
                                                                    id="sendername" class="gui-input"
                                                                    placeholder="Prénom"
@@ -103,7 +103,7 @@
 
                                                     <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
                                                          class="section">
-                                                        <label class="field prepend-icon">
+                                                        Téléphone : <label class="field prepend-icon">
                                                             <input type="tel" name="phone"
                                                                    id="phone" class="gui-input"
                                                                    placeholder="Téléphone"

@@ -48,12 +48,14 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead class="text-center">
                                         <tr>
-                                            <th>Date de création</th>
                                             <th>Commentaire</th>
                                             <th>Prix</th>
+                                            <th>Position de départ</th>
+                                            <th>Position d'arrivée</th>
+                                            <th>Distance (en km)</th>
+                                            <th>Date de création</th>
                                             <th>Client</th>
                                             <th>Statut</th>
-                                            <th>Note</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
@@ -62,9 +64,12 @@
                                         @foreach($deliveries as $delivery)
                                             <tr class="text-center">
 
-                                                <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>{{ $delivery->comment }}</td>
-                                                <td>{{$delivery->price}}€</td>
+                                                <td>{{$delivery->price}} €</td>
+                                                <td>{{$delivery->startPosition->address}}</td>
+                                                <td>{{$delivery->endPosition->address}}</td>
+                                                <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
+                                                <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>
                                                     <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
                                                 </td>
@@ -72,10 +77,9 @@
                                                     @if(empty($delivery->takeOverDelivery))
                                                         En recherche de chauffeur
                                                     @else
-                                                        {{Config::get('constants.STATUS_'.$delivery->status)}}
+                                                        {{$delivery->takeOverDelivery->status}}
                                                     @endif
                                                 </td>
-                                                <td>{{$delivery->note()}}</td>
                                                 <td class="text-right">
                                                     <form id="delete_groupe_form_{{ $delivery->id }}" method="post"
                                                           action="{{url('/backoffice/driver/delete')}}">

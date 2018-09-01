@@ -81,7 +81,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#disputesCollapse">
                         <i class="material-icons">grid_on</i>
-                        <p> Disputes
+                        <p> Litiges
                             <b class="caret"></b>
                         </p>
                     </a>

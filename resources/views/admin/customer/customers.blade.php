@@ -51,6 +51,7 @@
                                             <th>Prénom - Nom</th>
                                             <th>Date d'anniversaire</th>
                                             <th>Téléphone</th>
+                                            <th>Nombre de courses</th>
                                             <th>Inscrit le</th>
 
                                             <th class="disabled-sorting text-right">Actions</th>
@@ -64,6 +65,7 @@
                                                 </td>
                                                 <td>{{ $customer->birth_date }}</td>
                                                 <td>{{$customer->phone}}</td>
+                                                <td>{{sizeof($customer->deliveries)}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($customer->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">

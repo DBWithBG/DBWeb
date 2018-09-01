@@ -97,7 +97,7 @@
                                         <tr>
                                             <th>Titre</th>
                                             <th>Description</th>
-                                            <th>Status</th>
+                                            <th>Statut</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>

@@ -35,10 +35,10 @@
                         <tr>
                             <th>Date de création</th>
                             <th>Statut</th>
-                            <th>Distance</th>
-                            <th>Prix</th>
-                            <th></th>
-                            <th></th>
+                            <th>Départ</th>
+                            <th>Arrivée</th>
+                            <th>Informations</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -51,15 +51,14 @@
                                         <br><a href="{{url('/delivery/' . $delivery->id . '/save')}}">Finaliser cette course</a>
                                     @endif
                                 </td>
-                                <td>{{$delivery->distance}} km</td>
-                                <td>{{$delivery->price}} €</td>
+                                <td>{{$delivery->startPosition->address}}</td>
+                                <td>{{$delivery->endPosition->address}}</td>
+                                <td>Distance : {{$delivery->distance}} km<br>
+                                    Prix : {{$delivery->price}} €</td>
                                 <td>
                                 <!--<a data-toggle="modal" data-target="#modal_comment_{{$delivery->id}}"
                                        class="text-warning" href="#">Commentaire</a>-->
                                     <button class="btn btn-link" onclick="modal_comment({{$delivery->id}})">Commentaire</button>
-
-                                </td>
-                                <td>
                                     @if($delivery->takeOverDelivery != null && \Carbon\Carbon::parse($delivery->start_date)->addDays(1) > Carbon\Carbon::now())
                                         <a href="{{url('/litiges/' . $delivery->id)}}">Litiges</a>
                                     @endif
@@ -87,9 +86,10 @@
                         <tr>
                             <th>Date de création</th>
                             <th>Statut</th>
-                            <th>Distance</th>
-                            <th>Prix</th>
-                            <th></th>
+                            <th>Départ</th>
+                            <th>Arrivée</th>
+                            <th>Informations</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -97,8 +97,10 @@
                             <tr>
                                 <td>{{date('d / m / y', strtotime($delivery->created_at))}}</td>
                                 <td>{{$delivery->status}}</td>
-                                <td>{{$delivery->distance}} km</td>
-                                <td>{{$delivery->price}} €</td>
+                                <td>{{$delivery->startPosition->address}}</td>
+                                <td>{{$delivery->endPosition->address}}</td>
+                                <td>Distance : {{$delivery->distance}} km<br>
+                                    Prix : {{$delivery->price}} €</td>
                                 <td>
                                     <!--<a data-toggle="modal" data-target="#modal_rate_{{$delivery->id}}"
                                        class="text-warning" href="#">Noter</a>-->
