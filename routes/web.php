@@ -57,10 +57,13 @@ Route::get('backoffice/deliveries/upComing', 'AdminController@getDeliveriesUpCom
 Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
 
 Route::get('backoffice/disputes_ouvertes', 'AdminController@getDisputesOuvertes');
+Route::get('backoffice/disputes_traitement', 'AdminController@getDisputesTraitement');
 Route::get('backoffice/disputes_fermees', 'AdminController@getDisputesFermees');
 Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 Route::get('backoffice/dispute/{id}', 'AdminController@dispute');
 Route::post('backoffice/dispute/{id}/update', 'AdminController@update');
+
+
 
 //Departments
 Route::get('backoffice/configuration/departments', 'AdminController@getDepartments');
@@ -80,6 +83,9 @@ Route::post('/backoffice/push/notification', 'AdminController@postNotifications'
 //Emails
 Route::get('backoffice/emails', 'AdminController@getEmails');
 Route::post('/backoffice/push/email', 'AdminController@postEmails');
+
+//Historique des envois
+Route::get('backoffice/envoi/historique', 'AdminController@getHistoriqueEnvoi');
 
 /******************* FIN BACKOFFICE ADMIN****************************************/
 

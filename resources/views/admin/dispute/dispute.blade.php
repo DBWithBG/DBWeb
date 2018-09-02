@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <label class="col-sm-2 col-form-label">Raison</label>
+                                        <label class="col-sm-2 col-form-label">Commentaire</label>
                                         <div class="col-sm-10">
                                             <div class="form-group">
                                                 <input required type="text" name="reason" class="form-control"

@@ -7,14 +7,13 @@ use App\Customer;
 use App\Delivery;
 use App\Dispute;
 use App\Driver;
+use App\HistoriqueNotification;
 use App\Http\Controllers\phone\MobileController;
 use App\Http\Controllers\phone\NotificationController;
 use App\Justificatif;
 use App\TypeBag;
-use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Validator;
 
@@ -27,7 +26,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('admin')->except(['login']);
+        $this->middleware('admin')->except(['login']);
     }
 
 
@@ -35,40 +34,46 @@ class AdminController extends Controller
      * Doit outrepasser le middleware
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function login(){
+    public function login()
+    {
 
         return view('admin.login.login');
     }
 
-    public function getForgotPassword(){
+    public function getForgotPassword()
+    {
         return view('admin.login.password');
     }
 
-    public function home(){
-        if(Auth::check()) return redirect('backoffice/deliveries/inProgress');
+    public function home()
+    {
+        if (Auth::check()) return redirect('backoffice/deliveries/inProgress');
         else return redirect('backoffice/login');
     }
 
     /*************** Customers ***************/
 
-    public function getCustomers(){
+    public function getCustomers()
+    {
         $customers = Customer::where('deleted', '0')->get();
         return view('admin.customer.customers')->with([
             'customers' => $customers
         ]);
     }
 
-    public function getCustomer($id) {
+    public function getCustomer($id)
+    {
         $customer = Customer::findOrFail($id);
         return view('admin.customer.customer')->with(['customer' => $customer]);
     }
 
-    public function updateCustomer(Request $request, $id) {
+    public function updateCustomer(Request $request, $id)
+    {
 
 
         $customer = Customer::findOrFail($id);
         //on verifie que la requete fournie contient le mobile_token du customer
-        if(!MobileController::checkToken($customer->user->mobile_token,$request))
+        if (!MobileController::checkToken($customer->user->mobile_token, $request))
             throw new \Error('Vous n\'avez pas le droit de modifier cet utilisateur');
 
         $v = Validator::make($request->all(), [
@@ -95,9 +100,10 @@ class AdminController extends Controller
         }
     }
 
-    public function deleteCustomer(Request $request){
+    public function deleteCustomer(Request $request)
+    {
         $customer = Customer::find($request->id);
-        if($customer){
+        if ($customer) {
             $customer->deleted = true;
             $customer->save();
         }
@@ -107,26 +113,30 @@ class AdminController extends Controller
 
     /*************** DRIVERS ***************/
 
-    public function getDrivers(){
+    public function getDrivers()
+    {
         $drivers = Driver::where('deleted', '0')->get();
         return view('admin.driver.drivers')->with([
             'drivers' => $drivers
         ]);
     }
 
-    public function getDriver($id) {
+    public function getDriver($id)
+    {
         $driver = Driver::findOrFail($id);
         return view('admin.driver.driver')->with(['driver' => $driver]);
     }
 
-    public function validateDriver($id) {
+    public function validateDriver($id)
+    {
         $driver = Driver::findOrFail($id);
         $driver->is_op = true;
         $driver->save();
         return redirect()->back()->with(['success' => 'Le chauffeur a été validé']);
     }
 
-    public function validateDriverJustificatif($idDriver, $idJustificatif) {
+    public function validateDriverJustificatif($idDriver, $idJustificatif)
+    {
         $driver = Driver::findOrFail($idDriver);
         $justificatif = Justificatif::findOrFail($idJustificatif);
 
@@ -140,14 +150,16 @@ class AdminController extends Controller
         return redirect()->back()->with(['success' => 'La pièce justificative a été validée']);
     }
 
-    public function revokeDriver($id) {
+    public function revokeDriver($id)
+    {
         $driver = Driver::findOrFail($id);
         $driver->is_op = false;
         $driver->save();
         return redirect()->back()->with(['success' => 'Le chauffeur a été invalidé']);
     }
 
-    public function revokeDriverJustificatif($idDriver, $idJustificatif) {
+    public function revokeDriverJustificatif($idDriver, $idJustificatif)
+    {
         $driver = Driver::findOrFail($idDriver);
         $justificatif = Justificatif::findOrFail($idJustificatif);
 
@@ -161,15 +173,17 @@ class AdminController extends Controller
         return redirect()->back()->with(['success' => 'La pièce justificative a été invalidée']);
     }
 
-    public function deleteDriver(Request $request){
+    public function deleteDriver(Request $request)
+    {
         $driver = Driver::find($request->id);
-        if($driver){
+        if ($driver) {
             $driver->deleted = true;
             $driver->save();
         }
     }
 
-    public function updateDriver(Request $request, $id) {
+    public function updateDriver(Request $request, $id)
+    {
         $driver = Driver::findOrFail($id);
 
         $v = Validator::make($request->all(), [
@@ -202,21 +216,32 @@ class AdminController extends Controller
     /*************** DISPUTES ***************/
 
 
-    public function getDisputesOuvertes(){
+    public function getDisputesOuvertes()
+    {
         $disputes = Dispute::where('status', '=', 'Ouvert')->get();
         return view('admin.dispute.disputes')->with([
             'disputes' => $disputes
         ]);
     }
 
-    public function getDisputesFermees(){
+    public function getDisputesTraitement()
+    {
+        $disputes = Dispute::where('status', '=', 'En cours de traitement')->get();
+        return view('admin.dispute.disputes')->with([
+            'disputes' => $disputes
+        ]);
+    }
+
+    public function getDisputesFermees()
+    {
         $disputes = Dispute::where('status', '=', 'Fermé')->get();
         return view('admin.dispute.disputes')->with([
             'disputes' => $disputes
         ]);
     }
 
-    public function deleteDispute(Request $request){
+    public function deleteDispute(Request $request)
+    {
         $dispute = Dispute::findOrFail($request->id);
         $dispute->delete();
 
@@ -224,147 +249,188 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function dispute($id) {
+    public function dispute($id)
+    {
         $dispute = Dispute::FindOrFail($id);
 
         return view('admin.dispute.dispute')->with(['dispute' => $dispute]);
     }
 
-    public function update($id, Request $request) {
+    public function update($id, Request $request)
+    {
         $dispute = Dispute::FindOrFail($id);
 
         $dispute->update($request->all());
         $dispute->save();
 
         Session::flash('success', 'La dispute a été mise à jour');
-        return redirect()->back();
+        return redirect('backoffice/disputes_ouvertes');
     }
 
 
-    public function getDeliveriesInProgress(){
+    public function getDeliveriesInProgress()
+    {
         $deliveries = Delivery::getAllDeliveryInProgress();
         return view('admin.delivery.deliveries_in_progress')->with([
             'deliveries' => $deliveries
         ]);
     }
 
-    public function getDeliveriesPast(){
+    public function getDeliveriesPast()
+    {
         $deliveries = Delivery::getAllDeliveryFinished();
         return view('admin.delivery.deliveries_past')->with([
             'deliveries' => $deliveries
         ]);
     }
 
-    public function getDeliveriesUpComing(){
+    public function getDeliveriesUpComing()
+    {
         $deliveries = Delivery::getAllDeliveryWaitingTakeOver();
         return view('admin.delivery.deliveries_up_coming')->with([
             'deliveries' => $deliveries
         ]);
     }
 
-    public function deleteDelivery(Request $request){
+    public function deleteDelivery(Request $request)
+    {
         $delivery = Delivery::find($request->id);
-        if($delivery){
+        if ($delivery) {
             $delivery->deleted = true;
             $delivery->save();
         }
     }
 
     /***************** DEPARTMENTS ************************/
-    public function getDepartments(){
+    public function getDepartments()
+    {
         $departments = AuthorizedDepartment::all();
         return view('admin.config.departments')->with([
             'departments' => $departments
         ]);
     }
 
-    public function addDepartment(Request $request){
+    public function addDepartment(Request $request)
+    {
         AuthorizedDepartment::create($request->toArray());
         return redirect()->back();
     }
 
-    public function deleteDepartment(Request $request){
+    public function deleteDepartment(Request $request)
+    {
         $department = AuthorizedDepartment::find($request->id);
         AuthorizedDepartment::destroy($department->id);
         return $department;
     }
+
     /************************ END DEPARTMENTS *******************/
 
-    public function getTypeBagages(){
+    public function getTypeBagages()
+    {
         $typeBags = TypeBag::all();
         return view('admin.config.type_bagages')->with([
             'typeBags' => $typeBags
         ]);
     }
 
-    public function addTypeBagages(Request $request){
+    public function addTypeBagages(Request $request)
+    {
         TypeBag::create($request->toArray());
         return redirect()->back();
     }
 
-    public function deleteTypeBagages(Request $request){
+    public function deleteTypeBagages(Request $request)
+    {
         $typebag = TypeBag::find($request->id);
         TypeBag::destroy($typebag->id);
         return $typebag;
     }
 
 
-
     //Get vue des notifications
-    public function getNotifications(){
+    public function getNotifications()
+    {
         return view('admin.notification.create_notification');
     }
 
     //Envoi des notifications
-    public function postNotifications(Request $request){
-        $envoi = ['title'=>$request->titre,
-            'body'=>$request->contenu,
-            'datas'=>['url'=>'']];
+    public function postNotifications(Request $request)
+    {
+        $historique = new HistoriqueNotification();
+        $historique->titre = $request->titre;
+        $historique->contenu = $request->contenu;
+        $historique->createur = Auth::user()->name;
+        $historique->moyen = 'Notification application téléphone';
+        $envoi = ['title' => $request->titre,
+            'body' => $request->contenu,
+            'datas' => ['url' => '']];
         $tokens = [];
-        if($request->customer){//On veut envoyer aux customers
+
+        if ($request->customer) {//On veut envoyer aux customers
+            $historique->cible = 'Clients ';
             $customers = Customer::all();
-            foreach($customers as $customer){
+            foreach ($customers as $customer) {
                 $user = $customer->user;
-                if(!empty($user->notify_token)){//On envoie qu'a ceux qui se sont connecté avec un téléphone
+                if (!empty($user->notify_token)) {//On envoie qu'a ceux qui se sont connecté avec un téléphone
                     array_push($tokens, $user->notify_token);
                 }
             }
         }
-        if($request->driver){
+        if ($request->driver) {
+            $historique->cible .= 'Chauffeurs';
             $drivers = Driver::all();
-            foreach($drivers as $driver){
+            foreach ($drivers as $driver) {
                 $user = $driver->user;
-                if(!empty($user->notify_token)){//On envoie qu'a ceux qui ont un token ok
+                if (!empty($user->notify_token)) {//On envoie qu'a ceux qui ont un token ok
                     array_push($tokens, $user->notify_token);
                 }
             }
         }
-        if(sizeof($tokens) == 0){
+        if (sizeof($tokens) == 0) {
             Session::flash('error', 'Aucun utilisateur choisi pour envoyer la notification ou aucun utilisateur ne s\'est encore connecté sur mobile');
-        }else{
+        } else {
             $envoi['tokens'] = $tokens;
             NotificationController::sendNotification($envoi);
-            Session::flash('success', 'Notification envoyée à '.sizeof($envoi['tokens']).' comptes');
+            $historique->hits = sizeof($envoi['tokens']);
+            $historique->save();
+            Session::flash('success', 'Notification envoyée à ' . sizeof($envoi['tokens']) . ' comptes');
         }
         return redirect()->back();
     }
 
     //Affichage de la vue admin pour envoyer des emails groupés
-    public function getEmails(){
-       return view('admin.notification.create_email');
+    public function getEmails()
+    {
+        return view('admin.notification.create_email');
     }
 
     //Envoi de l'email groupé aux customers ou aux drivers (tous valides)
-    public function postEmails(Request $request){
-       if($request->customer){
-            $retour = MailController::send_email_all_customers($request->subject, $request->html);
+    public function postEmails(Request $request)
+    {
+        $historique = new HistoriqueNotification();
+        $historique->titre = $request->subject;
+        $historique->contenu = $request->html;
+        $historique->createur = Auth::user()->name;
+        $historique->moyen = 'Emails';
+       if ($request->customer) {
+           $historique->cible = 'Clients ';
+           $retour = MailController::send_email_all_customers($request->subject, $request->html);
        }
-       if($request->driver){
+       if ($request->driver) {
+           $historique->cible .= 'Chauffeurs';
            $retour = MailController::send_email_all_drivers($request->subject, $request->html);
        }
-        Session::flash('success', 'Vous venez d\'envoyer '.sizeof($retour). ' emails');
+       if(!empty($retour['tokens'])) $historique->hits = sizeof($retour['tokens']);
+       else $historique->hits = 0;
+       $historique->save();
+       Session::flash('success', 'Vous venez d\'envoyer ' . sizeof($retour) . ' emails');
        return redirect()->back();
     }
 
-
+    public function getHistoriqueEnvoi(Request $request){
+        $historiques = HistoriqueNotification::all();
+        return view('admin.notification.historique')->with([
+            'historiques'=>$historiques
+        ]);
+    }
 }

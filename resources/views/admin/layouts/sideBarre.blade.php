@@ -92,13 +92,19 @@
                             <li class="nav-item {{ Request::is('backoffice/disputes_ouvertes') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{url('backoffice/disputes_ouvertes')}}">
                                     <span class="sidebar-mini">  DO </span>
-                                    <span class="sidebar-normal"> Ouvertes</span>
+                                    <span class="sidebar-normal"> Ouverts</span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ Request::is('backoffice/disputes_traitement') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{url('backoffice/disputes_traitement')}}">
+                                    <span class="sidebar-mini">  DT </span>
+                                    <span class="sidebar-normal"> En cours de traitement</span>
                                 </a>
                             </li>
                             <li class="nav-item {{ Request::is('backoffice/disputes_fermees') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{url('backoffice/disputes_fermees')}}">
                                     <span class="sidebar-mini">  DF</span>
-                                    <span class="sidebar-normal"> Fermées</span>
+                                    <span class="sidebar-normal"> Fermés</span>
                                 </a>
                             </li>
 
@@ -113,7 +119,8 @@
                         </p>
                     </a>
 
-                    <div class="collapse {{ Request::is('backoffice/notification*') ? 'show' : '' }}"
+                    <div class="collapse {{ Request::is('backoffice/notification*') || Request::is('backoffice/emails*') ||
+                    Request::is('backoffice/envoi/historique') ? 'show' : '' }}"
                          id="formulairesCollapse">
                         <ul class="nav">
                             <li class="nav-item {{ Request::is('backoffice/notification*') ? 'active' : '' }}">
@@ -122,10 +129,16 @@
                                     <span class="sidebar-normal"> Notification </span>
                                 </a>
                             </li>
-                            <li class="nav-item {{ Request::is('backoffice/mail*') ? 'active' : '' }}">
-                                <a class="nav-link" href="#proprietaire_row">
+                            <li class="nav-item {{ Request::is('backoffice/emails*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{url("backoffice/emails")}}">
                                     <span class="sidebar-mini"> MA </span>
                                     <span class="sidebar-normal"> Mails </span>
+                                </a>
+                            </li>
+                            <li class="nav-item {{ Request::is('backoffice/envoi/historique*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{url("backoffice/envoi/historique")}}">
+                                    <span class="sidebar-mini"> HE </span>
+                                    <span class="sidebar-normal"> Historique des envois </span>
                                 </a>
                             </li>
                         </ul>
