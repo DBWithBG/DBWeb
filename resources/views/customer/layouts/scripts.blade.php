@@ -3,9 +3,10 @@
 
 <script src="{{asset('iblue/js/jquery/jquery.js')}}"></script>
 <script src="{{asset('iblue/js/bootstrap/bootstrap.min.js')}}"></script>
-
+<script src="{{asset('iblue/js/datepicker/moment.js')}}"></script>
+<script src="{{asset('iblue/js/datepicker/bootstrap-datetimepicker.js')}}"></script>
 <script src="{{asset('iblue/js/less/less.min.js')}}" data-env="development"></script>
-
+<script src="{{asset('iblue/js/bootstrap/bootstrap.min.js')}}" data-env="development"></script>
 <!-- Scripts END -->
 
 <!-- Template scripts -->
@@ -30,8 +31,8 @@ The following part can be removed on Server for On Demand Loading) -->
 <script type="text/javascript" src="{{asset('iblue/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('iblue/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('iblue/js/revolution-slider/js/extensions/revolution.extension.video.min.js')}}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://unpkg.com/promise-polyfill"></script>
+<script src="{{asset('js/sweetalert.min.js')}}"></script>
+<script src="{{asset('js/promise-polyfill.min.js')}}"></script>
 <script type="text/javascript">
     var tpj=jQuery;
     var revapi4;

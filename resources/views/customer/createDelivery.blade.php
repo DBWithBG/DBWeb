@@ -35,35 +35,29 @@
                             </div>
                             <div class="frm-row">
                                 <label for="email" class="field-label">Date et heure de prise en charge</label>
-                                <div class="colm colm6">
+                                <div class="colm colm12">
                                     <label class="field prepend-icon">
-                                        <input type="date" name="date_prise_en_charge" id="firstname" class="gui-input"
-                                               placeholder="" value="">
-                                        <span class="field-icon"><i class="fa fa-calendar"></i></span>
+                                        <input type='text' class="datepicker-input" id='datetimepicker4' name="datetimevalue"
+                                               placeholder="DD/MM/YYYY" value=""/>
                                     </label>
                                 </div><!-- end section -->
-
-                                <div class="colm colm6">
-                                    <label class="field prepend-icon">
-                                        <input type="time" name="time_prise_en_charge" id="firstname" class="gui-input"
-                                               placeholder="" value="">
-                                        <span class="field-icon"><i class="fa fa-hourglass"></i></span>
-                                    </label>
-                                </div><!-- end section -->
-
                             </div><!-- end frm-row section -->
                             <div class="frm-row">
-                                <label for="email" class="field-label">Besoin de stocker vos bagages ?</label>
+                                <label for="email" class="field-label">Voulez-vous que nous gardions vos bagages
+                                    quelques heures ? ? Indiquer une durée :</label>
                                 <div class="colm colm6 switch-1">
                                     <input id="switch-labelText" checked type="checkbox" name="my-checkbox"
                                            data-off-text="Non" data-on-text="Oui" data-label-text="Consigne">
                                 </div>
-                                <div class="colm colm6">
+                                <div class="colm colm6 js-hide-time">
                                     <label class="field prepend-icon">
                                         <input type="time" name="time_consigne" id="time_consigne" class="gui-input"
                                                placeholder="" value="2:00" min="2:00" max="24:00" step="0:30">
                                         <span class="field-icon"><i class="fa fa-hourglass"></i></span>
                                     </label>
+                                </div>
+                                <div class="js-immediate">
+                                    <strong>Livraison dès que possible</strong>
                                 </div>
                             </div>
                             <!-- end section --><br>
@@ -127,6 +121,14 @@
         var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
         bag_number++;
         $(document).ready(function ($) {
+
+            $('#datetimepicker4').datetimepicker({
+                locale: 'fr',
+                defaultDate: moment()
+            });
+            $('#datetimepicker4').data("DateTimePicker").minDate(moment() );
+            $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
+
             $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
                 id = $(this).attr('id');
@@ -139,6 +141,8 @@
             });
             $('.switch-1').hover(function () {
                 if ($('.bootstrap-switch').hasClass('bootstrap-switch-on') == true) {
+                    $('.js-hide-time').show();
+                    $('.js-immediate').hide();
                     time = $('#time_consigne').val();
                     if (time.split(':')[0] > 2) {
 
@@ -146,6 +150,8 @@
                         $('#time_consigne').val('02:00');
                     }
                 } else {
+                    $('.js-hide-time').hide();
+                    $('.js-immediate').show();
                     $('#time_consigne').val('--:--');
                 }
             });

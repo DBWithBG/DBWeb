@@ -73,18 +73,19 @@ class DeliveryController extends Controller
     public function postBagsWithDelivery(Request $request){
         $request = $request->toArray();
         $delivery = Delivery::find($request['delivery_id']);
-        //TODO Save la date
-        if(empty($request['date_prise_en_charge'])){
-            throw new \Error('Please enter a valid date');
-        }
-        if(empty($request['time_prise_en_charge'])){
-            throw new \Error('Please enter a valid time');
-        }
-        $start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
-        $start_date->setTimeFromTimeString($request['time_prise_en_charge']);
-        $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
+        $date_sliced = explode(' ',$request['datetimevalue'])[0];
+        $time_sliced = explode(' ',$request['datetimevalue'])[1];
+
+        $start_date = Carbon::create(explode('/',$date_sliced)[2],explode('/',$date_sliced)[1],
+            explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1])->format('Y-m-d H:m');
+        //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
+        //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
+        if(!empty($request['time_consigne']))
+            $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
+
         $delivery->start_date = $start_date;
         $delivery->save();
+
         if(empty($request['bagages'])){
             throw new \Error('Please enter a least a bag');
         }

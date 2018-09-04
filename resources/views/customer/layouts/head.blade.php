@@ -10,11 +10,11 @@
 <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/js/bootstrap/bootstrap.min.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/js/megamenu/stylesheets/screen.css') !!}">
-<link rel="stylesheet" href="{!! asset('iblue/css/theme-default.css" type="text/css') !!}">
-<link rel="stylesheet" href="{!! asset('iblue/css/shortcodes.css" type="text/css') !!}">
+<link rel="stylesheet" href="{!! asset('iblue/css/theme-default.css') !!}">
+<link rel="stylesheet" href="{!! asset('iblue/css/shortcodes.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/js/loaders/stylesheets/screen.css') !!}">
-<link rel="stylesheet" href="{!! asset('iblue/css/corporate.css" type="text/css') !!}">
-<link rel="stylesheet" href="{!! asset('iblue/js/star-rating/css/star-rating.css" type="text/css') !!}">
+<link rel="stylesheet" href="{!! asset('iblue/css/corporate.css') !!}">
+<link rel="stylesheet" href="{!! asset('iblue/js/star-rating/css/star-rating.css') !!}">
 
 <link rel="stylesheet" href="{!! asset('iblue/fonts/font-awesome/css/font-awesome.min.css')!!}" type="text/css">
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/fonts/Simple-Line-Icons-Webfont/simple-line-icons.css') !!}" media="screen" />
@@ -36,7 +36,7 @@
 <link href="{!! asset('iblue/js/switches/bootstrap-switch.css') !!}" rel="stylesheet">
 
 <link rel="stylesheet/less" type="text/css" href="{!! asset('iblue/less/skin.less') !!}">
-
+<link rel="stylesheet" href="{!!  asset('iblue/js/datepicker/bootstrap-datetimepicker.css') !!}" />
 <script
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

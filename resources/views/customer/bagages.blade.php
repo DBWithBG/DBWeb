@@ -131,7 +131,7 @@
                             <th>Nom</th>
                             <th>Détails</th>
                             <th>Type</th>
-                            <th></th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -141,10 +141,11 @@
                                 <td>{{$bag->details}}</td>
                                 <td>{{$bag->type->name}}</td>
                                 <td>
+                                    <button class="btn btn-info" onclick="modal_edit_bag({{$bag->id}})">Modifier</button>
                                     <form action="{{url('/deleteBagage/' . $bag->id)}}" method="post" id="delete_bagage_{{$bag->id}}">
                                         {{csrf_field()}}
                                     </form>
-                                    <a href="#" onclick="event.preventDefault(); document.getElementById('delete_bagage_{{$bag->id}}').submit()">Supprimer</a>
+                                    <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('delete_bagage_{{$bag->id}}').submit()">Supprimer</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -157,7 +158,12 @@
     <div class="clearfix"></div>
     <!-- end section -->
 
-
+    <div class="modal fade" id="generic_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div id="modal-content" class="modal-content">
+            </div>
+        </div>
+    </div>
 
 
 
@@ -202,6 +208,14 @@
                 }
             });
         });
+        function modal_edit_bag(id) {
+            $.get('{{url('/bagages/')}}' + '/' + id + '/edit', function (data) {
+                var modalContent = $('#modal-content');
+                modalContent.html(data);
+                var generic_modal = $('#generic_modal');
+                generic_modal.modal('show');
+            });
+        }
 
 
     </script>

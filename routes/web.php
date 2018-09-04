@@ -130,6 +130,8 @@ Route::get('/historique', 'CustomerController@historique');
 Route::get('/bagages', 'CustomerController@bagages');
 Route::post('/addBagage', 'CustomerController@addBagage');
 Route::post('/deleteBagage/{id}', 'CustomerController@deleteBagage');
+Route::get('bagages/{id}/edit', 'CustomerController@showEditBag');
+Route::post('bagages/{id}/edit', 'CustomerController@editBagage');
 
 Route::post('/comment', 'CustomerController@comment');
 Route::get('/modalComment/{id}', 'CustomerController@modalComment');

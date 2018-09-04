@@ -30,7 +30,7 @@
                                       onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></strong>
                         &nbsp; Veuillez valider votre adresse email en vous rendant sur le lien que nous vous avons
-                        envoyé par mail. Si vous n'avez pas recu ce mail, cliquez <a class="text-white"
+                        envoyé par mail. Si vous n'avez pas reçu ce mail, cliquez <a class="text-white"
                                                                                      href="{{url('/resendConfirmationEmail')}}">ici</a>.
                     </div>
                 </div>

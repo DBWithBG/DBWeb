@@ -469,4 +469,35 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
+    public function showEditBag($id){
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $bag = Bag::findOrFail($id);
+
+        if ($bag->customer_id != $customer->id) {
+            abort(403);
+        }
+
+        return view('customer.modalEditBag')->with(['bag' => $bag]);
+    }
+
+
+    public function editBagage(Request $request, $id){
+        $user = Auth::user();
+        $customer = $user->customer;
+
+        $bag = Bag::find($id);
+        if($customer->id == $bag->customer_id){
+            $bag->name = $request->name;
+            $bag->details = $request->details;
+            $bag->save();
+            Session::flash('success', 'Le bagage a été modifié');
+        }else{
+            Session::flash('success', 'Bagage introuvable');
+        }
+        return redirect()->back();
+
+    }
+
 }

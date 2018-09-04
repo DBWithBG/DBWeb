@@ -116,6 +116,7 @@ class RegisterController extends Controller
             $customer = new Customer();
             $customer->name = $data['name'];
             $customer->surname = $data['surname'];
+            $customer->phone = $data['phone'];
             $customer->user_id = $user->id;
             $customer->save();
 
@@ -128,6 +129,7 @@ class RegisterController extends Controller
             $driver = new Driver();
             $driver->name = $data['name'];
             $driver->surname = $data['surname'];
+            $driver->phone = $data['phone'];
             $driver->user_id = $user->id;
             $driver->save();
 

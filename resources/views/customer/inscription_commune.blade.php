@@ -136,7 +136,7 @@
                                                             <label for="mobile" class="field-label">Numéro de
                                                                 téléphone</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="tel" name="mobile" id="mobile"
+                                                                <input type="tel" name="phone" id="mobile"
                                                                        class="gui-input" placeholder="+33">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-phone-square"></i></span>
@@ -282,7 +282,7 @@
                                                             <label for="mobile" class="field-label">Numéro de
                                                                 téléphone</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="tel" name="mobile" id="mobile"
+                                                                <input type="tel" name="phone" id="mobile"
                                                                        class="gui-input" placeholder="+33">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-phone-square"></i></span>
