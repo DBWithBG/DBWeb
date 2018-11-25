@@ -109,7 +109,7 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'cipher' => 'AES-256-CBC',
+    'cipher' => 'AES-128-CBC',
 
     /*
     |--------------------------------------------------------------------------
@@ -198,6 +198,9 @@ return [
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         Bestmomo\ArtisanLanguage\ArtisanLanguageProvider::class,
 
+        //JWT AUTH
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
     ],
 
     /*
@@ -254,8 +257,11 @@ return [
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
         //PDF
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
 
+        //JWT AUTH
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 

@@ -16,7 +16,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "mpociot/laravel-firebase-sync": "~1.0",
-        "niklasravnsborg/laravel-pdf": "^2.0"
+        "niklasravnsborg/laravel-pdf": "^2.0",
+        "tymon/jwt-auth": "^0.5.12"
     },
     "require-dev": {
         "bestmomo/laravel5-artisan-language": "^0.1.3",

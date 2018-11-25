@@ -4,7 +4,6 @@ namespace Illuminate\Foundation\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 trait AuthenticatesUsers
 {
@@ -97,13 +96,7 @@ trait AuthenticatesUsers
      */
     protected function sendLoginResponse(Request $request)
     {
-        if(!empty($request->session()->get('delivery_id'))){
-            $save_id = $request->session()->get('delivery_id');
-        }else{
-            $save_id = '';
-        }
         $request->session()->regenerate();
-        $request->session()->put('delivery_id', $save_id);
 
         $this->clearLoginAttempts($request);
 
@@ -120,9 +113,7 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        if(!empty(Session::get('delivery_id'))){
-            return redirect('delivery/'.Session::get('delivery_id').'/save');
-        }
+        //
     }
 
     /**
