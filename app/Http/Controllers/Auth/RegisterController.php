@@ -139,6 +139,7 @@ class RegisterController extends Controller
             $driver->user->save();
             MailController::confirm_driver_email_address($driver, $token);
         }else{
+            // TODO FIX IT
             $user->admin = true;
             $user->save();
         }

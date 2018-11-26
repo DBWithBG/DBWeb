@@ -22,6 +22,7 @@ use function MongoDB\BSON\toJSON;
 
 class MobileController extends Controller
 {
+
     //get deliveries pour debloquer donovan en attendant
     public function getDeliveries(Request $request){
         $res=Delivery::where('status','=',$request->status)

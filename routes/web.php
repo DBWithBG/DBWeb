@@ -169,8 +169,8 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
 /************************** API MOBILE *******************************/
 
-Route::post('mobile/register', 'APIRegisterController@register');
-Route::post('mobile/login', 'APILoginController@login');
+Route::post('mobile/register', 'phone\APIRegisterController@register');
+Route::post('mobile/login', 'phone\APILoginController@login');
 
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
@@ -202,9 +202,6 @@ Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
 Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileController@annulationDelivery');
 
 Route::put('/mobile/drivers/setPosition','phone\MobileController@setPosition');
-
-
-Route::post('mobile/login', 'phone\MobileController@mobileLogin');
 
 
 
