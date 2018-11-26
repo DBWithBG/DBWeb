@@ -23,9 +23,15 @@ use function MongoDB\BSON\toJSON;
 class MobileController extends Controller
 {
 
-    //get deliveries pour debloquer donovan en attendant
+    public function __construct()
+    {
+        $this->middleware('jwt.auth');
+    }
+
+    //Get all deliveries from user auth with status passed in request
     public function getDeliveries(Request $request){
-        $res=Delivery::where('status','=',$request->status)
+        $user = auth()->user();
+        $res=Delivery::where('status','=',$request->status)->where('customer_id', $user->customer->id)
             ->with('customer')
             ->with('startPosition')
             ->with('endPosition')
@@ -36,9 +42,9 @@ class MobileController extends Controller
             ->json($res)
             ->setCallback($request->input('callback'));
     }
-    //get delivery pour debloquer donovan en attendant
+
     public function getDelivery(Request $request,$id){
-        $res=Delivery::where('id',$id)
+        $res=Delivery::where('id',$id)->where('customer_id', auth()->user()->id)
             ->with('customer')
             ->with('startPosition')
             ->with('endPosition')
@@ -85,7 +91,7 @@ class MobileController extends Controller
         return response()->json($departments)->setCallback($request->input('callback'));
     }
 
-    //POST connexion mobile
+    //POST connexion mobile deprecated
     public function mobileLogin(Request $request){
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
@@ -105,17 +111,8 @@ class MobileController extends Controller
     }
 
     //get deliveries par client
-    public function getDeliveriesByCustomers(Request $req){
-
-        if(!$req->mobile_token)
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$req->mobile_token)->first();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->customer)
-            throw new \Error('Pas de compte client trouvé :( ! ');
-
-
+    public function getDeliveriesByCustomers(){
+        $u = auth()->user();
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
             ->orderBy('created_at','DESC')
             ->with('takeOverDelivery')
@@ -151,17 +148,15 @@ class MobileController extends Controller
     //modification d'une delivery
     public function modificationDelivery($id){
 
-        if(!Input::get('mobile_token'))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        $u=auth()->user();
         if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+            throw new \Error('user does\'nt exist');
 
         if($id==null || !$del=Delivery::find($id))
             throw new \Error('Pas de commande fournie ou trouvee  :( !');
 
         if(User::find($del->customer_id)!=$u)
-            throw new \Error('Utilisateur non authorise a modifier la delivery');
+            throw new \Error('delivery not fount');
 
 
         if(!$infos=Input::get('delivery'))
@@ -172,9 +167,8 @@ class MobileController extends Controller
 
     //prise en charge d'une delivery par chauffeur
     public function priseEnChargeDelivery(){
-        if(!Input::get('mobile_token'))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -203,8 +197,8 @@ class MobileController extends Controller
     }
 
 
-    public function getUser($mobile_token){
-        $user=User::where('mobile_token','=',$mobile_token)->first();
+    public function getUser(){
+        $user=auth()->user();
         if(!$user)
             return 'null';
         else
@@ -217,9 +211,8 @@ class MobileController extends Controller
 
 
     public function getBagsUsers($id=null){
-        if(!$id)
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$id)->first();
+
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -230,6 +223,7 @@ class MobileController extends Controller
     }
 
 
+    //TODO A VERIFIER
     //methode permettant de verifier que le token fournit correspond au token utilisateur (methode amenee a devenir plus complexe)
     public static function checkToken($t1,Request $request){
         if(isset($request->chk_mobile_token))
@@ -240,9 +234,7 @@ class MobileController extends Controller
 
 
     public function editBagsUsers(Request $request){
-        if(!isset($request->mobile_token))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -282,9 +274,7 @@ class MobileController extends Controller
 
     //get delivery pour consulter les informations d'une delivery
     public function showDelivery(Request $request,$delivery_id){
-        if(!isset($request->mobile_token))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
         if(!$u->customer)
@@ -305,9 +295,7 @@ class MobileController extends Controller
     //TODO methode de check des params
     //post d'un rating de delivery
     public function ratingDelivery(Request $request){
-        if(!isset($request->mobile_token))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
         if(!$u->customer)
@@ -347,7 +335,7 @@ class MobileController extends Controller
 
     //envoie d'une dispute delivery
     public function disputeDelivery(Request $request){
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
         if(!$u->customer)
@@ -368,9 +356,9 @@ class MobileController extends Controller
     }
 
 
-    //methode permettant de modifier le notify_token a partir du mobile_token
+    //methode permettant de modifier le notify_token
     public function setNotifyToken(Request $request){
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -381,9 +369,7 @@ class MobileController extends Controller
     //methode de paiement depuis l'appli mobile
     //TODO link paybox
     public function payment(Request $request){
-        if(!$request->mobile_token)
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -400,9 +386,7 @@ class MobileController extends Controller
 
 
     public function annulationDelivery(Request $request){
-        if(!$request->mobile_token)
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
         /*if(!$u->driver)
@@ -426,9 +410,7 @@ class MobileController extends Controller
 
 
     public function getDriversDeliveries(){
-        if(!Input::get('mobile_token'))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -446,9 +428,7 @@ class MobileController extends Controller
 
     //modification du status d'une delivery par un driver
     public function editStatusDriver(Request $request){
-        if(!Input::get('mobile_token'))
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',Input::get('mobile_token'))->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
@@ -482,9 +462,7 @@ class MobileController extends Controller
 
 
     public function modificationEtatDesLieux(Request $request){
-        if(!$request->mobile_token)
-            throw new \Error('Pas de token fourni :( ! ');
-        $u=User::where('mobile_token','=',$request->mobile_token)->first();
+        $u=auth()->user();
         if(!$u)
             throw new \Error('Pas d\'utilisateur trouvé :( ! ');
         if(!$u->driver)
@@ -504,9 +482,7 @@ class MobileController extends Controller
 
 
        public function setPosition(Request $request){
-           if(!$request->mobile_token)
-               throw new \Error('Pas de token fourni :( ! ');
-           $u=User::where('mobile_token','=',$request->mobile_token)->first();
+           $u=auth()->user();
            if(!$u)
                throw new \Error('Pas d\'utilisateur trouvé :( ! ');
            if(!$u->driver)

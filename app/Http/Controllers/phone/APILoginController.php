@@ -34,7 +34,7 @@
                 $type = 'driver';
             }elseif ($user->customer) {
                 $type = 'customer';
-            }else return response()->json(['error' => 'An error has occured, send a message to Simon']);
+            }else return response()->json(['error' => 'An error has occured, user does\'nt exists']);
             return response()->json(compact('token', 'type'));
         }
     }

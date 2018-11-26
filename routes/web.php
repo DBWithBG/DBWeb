@@ -191,8 +191,8 @@ Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 
-Route::get('mobile/user/{token}','phone\MobileController@getUser');
-Route::get('mobile/bags/users/{token}','phone\MobileController@getBagsUsers');
+Route::get('mobile/user','phone\MobileController@getUser');
+Route::get('mobile/bags/users','phone\MobileController@getBagsUsers');
 Route::get('/mobile/deliveries/drivers','phone\MobileController@getDriversDeliveries');
 Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
