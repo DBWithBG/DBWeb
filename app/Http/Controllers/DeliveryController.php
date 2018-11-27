@@ -24,8 +24,12 @@ class DeliveryController extends Controller
     public function postDelivery(Request $request){
         //$request=HomeController::checkCustomerMobile($request);
         $request = $request->toArray();
+        if(!isset($request['customer_id']))
+            $request['customer_id']=Auth::user()->customer->id;
         if(isset($request['customer_id']))
             $request['delivery']['customer_id']=$request['customer_id'];
+
+
 
         if(empty($request['delivery']['start_date']))
             $request['delivery']['start_date'] = Carbon::now();
@@ -61,7 +65,7 @@ class DeliveryController extends Controller
         if(empty($request['bagages'])) $request['bagages'] = [];
         if(empty($request['customer_id'])) $request['customer_id'] = "";
         //if(!isset($request['customer_id']))
-        //    $request['customer_id']=Auth::user()->customer->id;
+            //$request['customer_id']=Auth::user()->customer->id;
 
         $this->saveBags($request, $delivery->id,$request['customer_id']);
 
