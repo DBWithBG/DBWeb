@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\phone;
 
+use App\Customer;
 use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MailController;
@@ -53,7 +54,7 @@ class APIRegisterController extends Controller
             $type = 'driver';
         }else if($request->get('type') == 'customer'){
             $user->save();
-            $customer = new Driver([
+            $customer = new Customer([
                 'name' => $request->get('name'),
                 'surname' => $request->get('surname'),
                 'phone' => $request->get('phone'),

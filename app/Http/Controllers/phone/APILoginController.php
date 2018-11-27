@@ -31,15 +31,15 @@
             }
             //$user =  Auth::user();
             $user = User::where('email', $request->email)->first();
-            if ($user->driver) {
+            if (!empty($user->driver)) {
                 $type = 'driver';
-            }elseif ($user->customer) {
+            }elseif (!empty($user->customer)) {
                 $type = 'customer';
             }else return response()->json(['error' => 'An error has occured, user does\'nt exists']);
             return response()->json(compact('token', 'type'));
         }
 
         public function logout(Request $request){
-            return response()->json(['blacklisted',JWTAuth::invalidate(JWTAuth::getToken())]);
+            return response()->json(['blacklisted'=> JWTAuth::invalidate($request->get('token'))]);
         }
     }
