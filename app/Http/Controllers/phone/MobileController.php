@@ -493,6 +493,7 @@ class MobileController extends Controller
        }
 
        public function postDelivery(Request $request){
-            return DeliveryController::postDeliveryMobile($request, Auth::user()->customer->id);
+        $dc = new DeliveryController();
+            return $dc->postDeliveryMobile($request, Auth::user()->customer->id);
        }
 }
