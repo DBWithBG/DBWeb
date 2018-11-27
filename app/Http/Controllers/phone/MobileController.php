@@ -491,4 +491,8 @@ class MobileController extends Controller
            $u->driver->update(['current_lng'=>$request->current_lng,'current_lat'=>$request->current_lat]);
            return json_encode($u);
        }
+
+       public function postDelivery(Request $request){
+            return DeliveryController::postDeliveryMobile($request, Auth::user()->customer->id);
+       }
 }

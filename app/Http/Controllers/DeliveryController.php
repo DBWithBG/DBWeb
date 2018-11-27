@@ -20,14 +20,19 @@ use League\OAuth1\Client\Server\User;
 class DeliveryController extends Controller
 {
 
+
+    public function postDeliveryMobile(Request $request, $customer_id){
+        return $this->postDelivery($request, $customer_id);
+    }
+
     //Enregistrement d'une delivery (Mobile + 1ere étape web
-    public function postDelivery(Request $request){
+    public function postDelivery(Request $request, $customer_id = null){
         //$request=HomeController::checkCustomerMobile($request);
         $request = $request->toArray();
-        if(!isset($request['customer_id']))
-            $request['customer_id']=Auth::user()->customer->id;
-        if(isset($request['customer_id']))
-            $request['delivery']['customer_id']=$request['customer_id'];
+        if(isset($customer_id)) {
+            $request['customer_id'] = $customer_id;
+            $request['delivery']['customer_id'] = $customer_id;
+        }
 
 
 

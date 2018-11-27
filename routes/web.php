@@ -174,7 +174,7 @@ Route::post('mobile/login', 'phone\APILoginController@login');
 
 Route::post('mobile/logout', 'phone\APILoginController@logout');
 
-
+Route::post('mobile/deliveries', 'phone\MobileController@postDelivery');
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
 Route::get('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');
