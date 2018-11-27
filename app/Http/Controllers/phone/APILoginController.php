@@ -8,6 +8,7 @@
     use Illuminate\Support\Facades\Validator;
     use Tymon\JWTAuth\Exceptions\JWTException;
     use Tymon\JWTAuth\Facades\JWTAuth;
+    use Tymon\JWTAuth\JWTManager;
 
     class APILoginController extends Controller
     {
@@ -36,5 +37,9 @@
                 $type = 'customer';
             }else return response()->json(['error' => 'An error has occured, user does\'nt exists']);
             return response()->json(compact('token', 'type'));
+        }
+
+        public function logout(Request $request){
+            return response()->json(['blacklisted',JWTAuth::invalidate(JWTAuth::getToken())]);
         }
     }

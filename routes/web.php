@@ -172,6 +172,9 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 Route::post('mobile/register', 'phone\APIRegisterController@register');
 Route::post('mobile/login', 'phone\APILoginController@login');
 
+Route::get('mobile/logout', 'phone\APILoginController@logout');
+
+
 Route::get('/deliveries/{id}', 'phone\MobileController@getDelivery');
 Route::get('/deliveries', 'phone\MobileController@getDeliveries');
 Route::get('/mobile/deliveries/customers', 'phone\MobileController@getDeliveriesByCustomers');

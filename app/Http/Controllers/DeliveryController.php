@@ -22,7 +22,7 @@ class DeliveryController extends Controller
 
     //Enregistrement d'une delivery (Mobile + 1ere étape web
     public function postDelivery(Request $request){
-        $request=HomeController::checkCustomerMobile($request);
+        //$request=HomeController::checkCustomerMobile($request);
         $request = $request->toArray();
         if(isset($request['customer_id']))
             $request['delivery']['customer_id']=$request['customer_id'];
