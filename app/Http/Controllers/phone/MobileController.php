@@ -274,8 +274,8 @@ class MobileController extends Controller
     }
 
     //get delivery pour consulter les informations d'une delivery
-    public function showDelivery(Request $request,$delivery_id, $token){
-        $u = JWTAuth::toUser($token);
+    public function showDelivery(Request $request,$delivery_id){
+        $u = JWTAuth::toUser(Input::get('token'));
         $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
         if(!$delivery)
             throw new \Error('Delivery non trouvée :( !');
