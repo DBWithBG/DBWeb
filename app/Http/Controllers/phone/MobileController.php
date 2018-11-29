@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use function MongoDB\BSON\toJSON;
-use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MobileController extends Controller
 {
@@ -275,7 +275,8 @@ class MobileController extends Controller
 
     //get delivery pour consulter les informations d'une delivery
     public function showDelivery(Request $request,$delivery_id){
-        $u = JWTAuth::toUser(Input::get('token'));
+        JWTAuth::setToken(Input::get('token'));
+        $u = JWTAuth::authenticate();
         $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
         if(!$delivery)
             throw new \Error('Delivery non trouvée :( !');
