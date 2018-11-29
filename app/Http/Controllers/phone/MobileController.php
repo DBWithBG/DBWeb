@@ -19,13 +19,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use function MongoDB\BSON\toJSON;
+use Tymon\JWTAuth\JWTAuth;
 
 class MobileController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('jwt.auth');
+        $this->middleware('jwt.auth')->except(['showDelivery']);
     }
 
     //Get all deliveries from user auth with status passed in request
@@ -273,18 +274,11 @@ class MobileController extends Controller
     }
 
     //get delivery pour consulter les informations d'une delivery
-    public function showDelivery(Request $request,$delivery_id){
-        $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->customer)
-            throw new \Error('Utilisateur non customer');
+    public function showDelivery(Request $request,$delivery_id, $token){
+        $u = JWTAuth::toUser($token);
         $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
         if(!$delivery)
             throw new \Error('Delivery non trouvée :( !');
-        if($delivery->customer_id!=$u->customer->id){
-            throw new \Error('L\'utilisateur n\'a pas accès à cette course.');
-        }
 
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)->orderBy('created_at','DESC')->with('customer')->with('startPosition')->with('endPosition')->get();
 
@@ -380,7 +374,7 @@ class MobileController extends Controller
         if(!$d)
             throw new \Error('Pas de delivery trouvée :( ! ');
 
-        $d->update(['status'=>1]);
+        $d->update(['status'=>Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')]);
     }
 
 
