@@ -41,6 +41,9 @@ class DeliveryController extends Controller
         $start_position = Position::create($request['start_position']);
         $end_position = Position::create($request['end_position']);
         //TODO Calcul du statut selon l'heure envoyée
+        if(!empty($request['delivery']['time_consigne'])){
+            //TODO TIME CONSIGNE ENVOYER EN MINUTE
+        }
         $request['delivery']['status'] = Config::get('constants.NON_FINALISE');
         //TODO Calcul du prix
         /******* CALCUL DU PRIX ************/

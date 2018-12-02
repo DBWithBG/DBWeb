@@ -30,8 +30,10 @@ class MobileController extends Controller
     }
 
     //Get all deliveries from user auth with status passed in request
+    // TODO Deprecated
     public function getDeliveries(Request $request){
         $user = auth()->user();
+
         $res=Delivery::where('status','=',$request->status)->where('customer_id', $user->customer->id)
             ->with('customer')
             ->with('startPosition')
