@@ -46,6 +46,23 @@ class MobileController extends Controller
             ->setCallback($request->input('callback'));
     }
 
+    public function getDeliveriesByDriverByStatus(Request $request){
+        $user = auth()->user();
+
+        if(!$user->driver) return "This user is not a driver";
+
+
+        $takeovers=TakeOverDelivery::where('driver_id','=',$user->driver->id)
+            ->with('delivery')
+            ->with('delivery.customer')
+            ->with('delivery.startPosition')
+            ->with('delivery.endPosition')
+            ->with('delivery.bags')
+            ->get()->toJson();
+        return $takeovers->setCallback($request->input('callback'));;
+
+    }
+
     public function getDelivery(Request $request,$id){
         $res=Delivery::where('id',$id)->where('customer_id', auth()->user()->id)
             ->with('customer')

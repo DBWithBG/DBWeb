@@ -196,6 +196,7 @@ Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationE
 
 Route::get('mobile/user','phone\MobileController@getUser');
 Route::get('mobile/bags/users','phone\MobileController@getBagsUsers');
+Route::get('/mobile/deliveries-status/drivers','phone\MobileController@getDeliveriesByDriverByStatus');
 Route::get('/mobile/deliveries/drivers','phone\MobileController@getDriversDeliveries');
 Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
@@ -204,7 +205,7 @@ Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepar
 Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
 Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileController@annulationDelivery');
 
-Route::put('/mobile/drivers/setPosition','phone\MobileController@setPosition');
+Route::put('/drivers/setPosition','phone\MobileController@setPosition');
 
 
 

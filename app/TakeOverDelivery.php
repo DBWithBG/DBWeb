@@ -19,7 +19,7 @@ class TakeOverDelivery extends Model
     ];
 
 
-    public function customer()
+    public function actualPosition()
     {
         return $this->belongsTo('App\Position', 'actual_position_id');
     }
