@@ -59,7 +59,7 @@ class MobileController extends Controller
             ->with('delivery.endPosition')
             ->with('delivery.bags')
             ->get()->toJson();
-        return $takeovers->setCallback($request->input('callback'));;
+        return response()->json($takeovers)->setCallback($request->input('callback'));;
 
     }
 
