@@ -32,7 +32,7 @@ class MobileController extends Controller
     //Get all deliveries  with status passed in request
     public function getDeliveries(Request $request){
 
-        $res=Delivery::where('status','=',$request->get('status')
+        $res=Delivery::where('status','=',$request->get('status'))
             ->with('customer')
             ->with('startPosition')
             ->with('endPosition')
