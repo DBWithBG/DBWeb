@@ -29,12 +29,10 @@ class MobileController extends Controller
         $this->middleware('jwt.auth')->except(['showDelivery']);
     }
 
-    //Get all deliveries from user auth with status passed in request
-    // TODO Deprecated
+    //Get all deliveries  with status passed in request
     public function getDeliveries(Request $request){
-        $user = auth()->user();
 
-        $res=Delivery::where('status','=',$request->status)->where('customer_id', $user->customer->id)
+        $res=Delivery::where('status','=',$request->get('status')
             ->with('customer')
             ->with('startPosition')
             ->with('endPosition')
