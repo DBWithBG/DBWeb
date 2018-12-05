@@ -68,15 +68,6 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Titre</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-group">
-                                                <input required type="text" name="title" class="form-control"
-                                                       value="{{$dispute->title}}">
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label">Commentaire</label>
