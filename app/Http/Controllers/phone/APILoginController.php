@@ -35,7 +35,7 @@
                 $type = 'driver';
             }elseif (!empty($user->customer)) {
                 $type = 'customer';
-            }else return response()->json(['error' => 'An error has occured, user does\'nt exists']);
+            }else return response()->json(['error' => 'user_doesnot_exist'], 403);
             return response()->json(compact('token', 'type'));
         }
 

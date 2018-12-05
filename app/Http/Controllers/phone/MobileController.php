@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
-use function MongoDB\BSON\toJSON;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MobileController extends Controller
@@ -47,7 +46,7 @@ class MobileController extends Controller
     public function getDeliveriesByDriverByStatus(Request $request){
         $user = auth()->user();
 
-        if(!$user->driver) return "This user is not a driver";
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
 
 
         $takeovers=TakeOverDelivery::where('driver_id','=',$user->driver->id)
@@ -167,14 +166,10 @@ class MobileController extends Controller
     public function modificationDelivery($id){
 
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('user does\'nt exist');
 
-        if($id==null || !$del=Delivery::find($id))
-            throw new \Error('Pas de commande fournie ou trouvee  :( !');
+        if($id==null || !$del=Delivery::find($id)) response()->json(['error' => 'delivery_not_found'], 403);
 
-        if(User::find($del->customer_id)!=$u)
-            throw new \Error('delivery not fount');
+        if(User::find($del->customer_id)!=$u) response()->json(['error' => 'operation_not_allowed'], 403);
 
 
         if(!$infos=Input::get('delivery'))
@@ -187,14 +182,11 @@ class MobileController extends Controller
     public function priseEnChargeDelivery(){
 
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
-        if(!$u->driver)
-            throw new \Error('L\'utilisateur n\'est pas chauffeur');
+        if(!$u->driver) return response()->json(['error' => 'user_is_not_driver'], 403);
 
         if(!Input::get('delivery_id') || !$del=Delivery::find(Input::get('delivery_id')))
-            throw new \Error('Pas de commande fournie ou trouvee  :( !');
+            return response()->json(['error' => 'delivery_not_found'], 403);
 
         $res_id=null;
         //TODO utilise pour debug mettre en attente de pris en charge
@@ -217,25 +209,17 @@ class MobileController extends Controller
 
     public function getUser(){
         $user=auth()->user();
-        if(!$user)
-            return 'null';
-        else
-        {
-            $user['customer']=Customer::where('user_id','=',$user->id)->first();
-            $user['driver']=Driver::where('user_id','=',$user->id)->first();
-            return json_encode($user);
-        }
+
+        $user['customer']=Customer::where('user_id','=',$user->id)->first();
+        $user['driver']=Driver::where('user_id','=',$user->id)->first();
+        return json_encode($user);
     }
 
 
     public function getBagsUsers($id=null){
 
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-
-        if(!$u->customer)
-            throw new \Error('Utilisateur non customer');
+        if(!$u->customer) response()->json(['error' => 'user_is_not_customer'], 403);
 
         return json_encode(Bag::where('customer_id','=',$u->customer->id)->where('saved','=',true)->get());
     }
@@ -253,11 +237,8 @@ class MobileController extends Controller
 
     public function editBagsUsers(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
-        if(!$u->customer)
-            throw new \Error('Utilisateur non customer');
+        if(!$u->customer) response()->json(['error' => 'user_is_not_customer'], 403);
 
         Bag::where('customer_id','=',$u->customer->id)->delete();
         $request=$request->toArray();
@@ -291,12 +272,12 @@ class MobileController extends Controller
     }
 
     //get delivery pour consulter les informations d'une delivery
+    // TODO DEPRECTED
     public function showDelivery(Request $request,$delivery_id){
         JWTAuth::setToken(Input::get('token'));
         $u = JWTAuth::authenticate();
         $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
-        if(!$delivery)
-            throw new \Error('Delivery non trouvée :( !');
+        if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
 
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)->orderBy('created_at','DESC')->with('customer')->with('startPosition')->with('endPosition')->get();
 
@@ -308,21 +289,15 @@ class MobileController extends Controller
     //post d'un rating de delivery
     public function ratingDelivery(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->customer)
-            throw new \Error('Utilisateur non customer');
+        if(!$u->customer) response()->json(['error' => 'user_is_not_customer'], 403);
 
         $delivery=Delivery::where('id',$request->delivery_id)->first();
-        if(!$delivery)
-            throw new \Error('Delivery non trouvée :( !');
+        if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
 
-        if(!$delivery->takeOverDelivery)
-            throw new \Error('Prise en charge non trouvée :( !');
+        if(!$delivery->takeOverDelivery) response()->json(['error' => 'take_over_delivery_not_found'], 403);
         $driver=Driver::find($delivery->takeOverDelivery->driver->id);
 
-        if(!$driver)
-            throw new \Error('Driver non retrouvé :( !');
+        if(!$driver) response()->json(['error' => 'driver_not_found'], 403);
         if($r=Rating::where('delivery_id','=',$delivery->id)
             ->where('customer_id','=',$u->customer->id)
             ->where('driver_id','=',$driver->id)->first()){
@@ -348,18 +323,12 @@ class MobileController extends Controller
     //envoie d'une dispute delivery
     public function disputeDelivery(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->customer)
-            throw new \Error('Utilisateur non customer');
+        if(!$u->customer) response()->json(['error' => 'user_is_not_customer'], 403);
 
         $delivery=Delivery::where('id',$request->delivery_id)->first();
-        if(!$delivery)
-            throw new \Error('Delivery non trouvée :( !');
-        if($delivery->customer_id!=$u->customer->id)
-            throw new \Error('User n\'a pas les droits de dispute sur cette delivery :( !');
-        if(!$delivery->takeOverDelivery)
-            throw new \Error('Prise en charge non trouvée :( !');
+        if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
+        if($delivery->customer_id!=$u->customer->id) response()->json(['error' => 'delivery_not_found'], 403);
+        if(!$delivery->takeOverDelivery) response()->json(['error' => 'take_over_delivery_not_found'], 403);
         $d=new Dispute;
         $d->take_over_delivery_id=$delivery->takeOverDelivery->id;
         $d->reason=$request->reason;
@@ -371,8 +340,7 @@ class MobileController extends Controller
     //methode permettant de modifier le notify_token
     public function setNotifyToken(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
 
         $u->notify_token=$request->notify_token;
         $u->save();
@@ -382,15 +350,11 @@ class MobileController extends Controller
     //TODO link paybox
     public function payment(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
-        if(!$request->delivery_id)
-            throw new \Error('Pas de delivery fournie :( ! ');
+        if(!$request->delivery_id) response()->json(['error' => 'delivery_id_not_provided'], 403);
 
         $d=Delivery::find($request->delivery_id);
-        if(!$d)
-            throw new \Error('Pas de delivery trouvée :( ! ');
+        if(!$d) response()->json(['error' => 'delivery_not_found'], 403);
 
         $d->update(['status'=>Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')]);
     }
@@ -399,21 +363,16 @@ class MobileController extends Controller
 
     public function annulationDelivery(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
+
         /*if(!$u->driver)
             throw new \Error('Utilisateur non driver :( ! ');
         */ //MODIF DU 13/07 Bug quand suppression utilisateur
-        if(!$request->delivery_id)
-            throw new \Error('Pas de delivery fournie :( ! ');
+        if(!$request->delivery_id) response()->json(['error' => 'delivery_id_not_provided'], 403);
 
         $d=Delivery::find($request->delivery_id);
-        if(!$d)
-            throw new \Error('Pas de delivery trouvée');
-        if($d->customer->user->id != $u->id)
-            throw new \Error('L\'utilisateur n\'est pas le bon');
-        if(!Delivery::isAnnulableByCustomer($d))
-            throw new \Error('Delivery non annulable');
+        if(!$d) response()->json(['error' => 'delivery_not_found'], 403);
+        if($d->customer->user->id != $u->id) response()->json(['error' => 'operation_not_allowed_from_user'], 403);
+        if(!Delivery::isAnnulableByCustomer($d)) response()->json(['error' => 'delivery_not_canceled'], 403);
 
         return json_encode(DeliveryController::gestionAnnulationDeliveryCustomer($d,$u->customer));
 
@@ -423,11 +382,8 @@ class MobileController extends Controller
 
     public function getDriversDeliveries(){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
-        if(!$u->driver)
-            throw new \Error('L\'utilisateur n\'est pas chauffeur');
+        if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
 
         $takeovers=TakeOverDelivery::where('driver_id','=',$u->driver->id)->with('delivery')->get();
         return $takeovers;
@@ -441,19 +397,15 @@ class MobileController extends Controller
     //modification du status d'une delivery par un driver
     public function editStatusDriver(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
 
-        if(!$u->driver)
-            throw new \Error('L\'utilisateur n\'est pas chauffeur');
+        if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
 
         $delivery=Delivery::find($request->delivery_id);
 
-        if(!$delivery)
-            throw new \Error('Course invalide');
+        if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
         if(!$request->status_id==Config::get('constants.PRIS_EN_CHARGE')){
             if((!$delivery->takeOverDelivery || $delivery->takeOverDelivery->driver_id != $u->driver->id))
-                throw new \Error('Non autorisé à modifier la course');
+                response()->json(['error' => 'toke_over_delivery_not_found'], 403);
         }
         if($request->status_id==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
             DeliveryController::gestionAnnulationDelivery($delivery,$u->driver);
@@ -475,13 +427,10 @@ class MobileController extends Controller
 
     public function modificationEtatDesLieux(Request $request){
         $u=auth()->user();
-        if(!$u)
-            throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-        if(!$u->driver)
-            throw new \Error('Utilisateur non driver :( ! ');
 
-        if(!$request->delivery_id)
-            throw new \Error('Pas de delivery fournie :( ! ');
+        if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
+
+        if(!$request->delivery_id) response()->json(['error' => 'delivery_not_found'], 403);
         if($request->details){
             foreach($request->details as $d){
                 InfoBag::where('bag_id','=',$d["bag_id"])
@@ -495,10 +444,8 @@ class MobileController extends Controller
 
        public function setPosition(Request $request){
            $u=auth()->user();
-           if(!$u)
-               throw new \Error('Pas d\'utilisateur trouvé :( ! ');
-           if(!$u->driver)
-               throw new \Error('Utilisateur non driver :( ! ');
+
+           if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
 
            $u->driver->update(['current_lng'=>$request->current_lng,'current_lat'=>$request->current_lat]);
            return json_encode($u);
