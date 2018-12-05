@@ -332,7 +332,6 @@ class MobileController extends Controller
         $d=new Dispute;
         $d->take_over_delivery_id=$delivery->takeOverDelivery->id;
         $d->reason=$request->reason;
-        $d->title = $request->title;
         $d->is_customer = true;
         $d->status = "ouvert";
         $d->save();

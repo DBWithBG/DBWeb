@@ -49,7 +49,6 @@
                                         <thead class="text-center">
                                         <tr>
                                             <th>Auteur</th>
-                                            <th>Titre</th>
                                             <th>Commentaire</th>
                                             <th>Date de création</th>
 
@@ -68,9 +67,8 @@
                                                         <a href="{{url('/backoffice/driver/' . $dispute->takeOverDelivery->driver->id)}}">{{$dispute->takeOverDelivery->driver->surname . ' ' . $dispute->takeOverDelivery->driver->name}}</a>
                                                     @endif
                                                 </td>
-                                                <td><a href="{{url('/backoffice/dispute/'. $dispute->id )}}">{{ $dispute->title}}</a>
                                                 </td>
-                                                <td>{{$dispute->reason}}</td>
+                                                <td><a href="{{url('/backoffice/dispute/'. $dispute->id )}}">{{$dispute->reason}}</a></td>
                                                 <td>{{ \Carbon\Carbon::parse($dispute->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">
