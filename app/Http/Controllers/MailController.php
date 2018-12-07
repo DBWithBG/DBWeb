@@ -154,7 +154,7 @@ class MailController
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
 
-            'to' => 'testdeliver@yopmail.com',
+            'to' => $driver->user->email,
             'Subject' => "Confirmation de votre adresse mail",
             "html-part" => view('emails.confirmation_email_driver')->with(['token' => $token, 'driver' => $driver])->render()
         ];

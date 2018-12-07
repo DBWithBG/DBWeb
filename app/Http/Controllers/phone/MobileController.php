@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class MobileController extends Controller
@@ -99,6 +100,40 @@ class MobileController extends Controller
         $res=Driver::where('id',$id)->get()->toJson();
         return response()
             ->json($res)
+            ->setCallback($request->input('callback'));
+    }
+
+    public function updateDriver(Request $request, $id){
+        $user = auth()->user();
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+        $driver = $user->driver;
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'siret' => 'nullable|digits_between:14,14',
+            'phone' => 'nullable|numeric'
+        ], [
+            'name.required' => 'Le champ nom est requis',
+            'surname.required' => 'Le champ prénom est requis',
+            'email.required' => 'Le champ email est requis',
+            'email.email' => 'L\'adresse mail est invalide',
+            'siret.digits_between' => 'Le numéro de SIRET est invalide. Celui-ci doit être composé de 14 chiffres'
+        ]);
+
+        if ($v->fails()) {
+            return response()->json(['error' => $v], 401);
+        } else {
+            $driver->update($request->all());
+            // Le siret passe passe dans le update...
+            $driver->siret = $request->siret;
+            $driver->user->email = $request->email;
+            $driver->user->save();
+            $driver->save();
+        }
+        return response()
+            ->json($driver)
             ->setCallback($request->input('callback'));
     }
 
@@ -401,7 +436,7 @@ class MobileController extends Controller
         $u=auth()->user();
 
         if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
-
+driver
         $delivery=Delivery::find($request->delivery_id);
 
         if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);

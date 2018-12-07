@@ -191,6 +191,7 @@ Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 
 Route::get('/drivers/{id}', 'phone\MobileController@getDriver');
+Route::put('/drivers/{id}', 'phone\MobileController@updateDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 
