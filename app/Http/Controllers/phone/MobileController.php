@@ -440,7 +440,6 @@ class MobileController extends Controller
         $u=auth()->user();
 
         if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
-driver
         $delivery=Delivery::find($request->delivery_id);
 
         if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
