@@ -275,6 +275,32 @@ class MobileController extends Controller
             ->setCallback(Input::get('callback'));
     }
 
+    public function updateCustomer(Request $request) {
+        $user = auth()->user();
+        $customer = $user->customer;
+
+        if(!$user->customer) return response()->json(['error' => 'user_is_not_customer'], 403);
+
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'phone' => 'nullable|numeric'
+        ], [
+            'name.required' => 'Merci de fournir votre nom et votre prénom',
+            'surname.required' => 'Merci de fournir votre nom et votre prénom',
+            'phone.numeric' => "Le numéro de téléphone est invalide"
+        ]);
+
+        if ($v->fails()) {
+            return response()->json(['error' => $v], 403);
+        }
+
+        $customer->update($request->all());
+        $customer->save();
+
+        return response()->json()->setCallback($request->input('callback'));
+    }
+
 
     //modification d'une delivery
     public function modificationDelivery($id){
