@@ -188,7 +188,7 @@ Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDe
 
 //Route::get('customers/profile','HomeController@getProfile');
 Route::get('/customers', 'phone\MobileController@getCustomers');
-Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
+Route::get('/customer', 'phone\MobileController@getCustomer');
 
 Route::get('/driver/', 'phone\MobileController@getDriver');
 Route::put('/driver/', 'phone\MobileController@updateDriver');

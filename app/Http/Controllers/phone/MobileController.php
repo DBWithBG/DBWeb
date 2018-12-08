@@ -81,8 +81,12 @@ class MobileController extends Controller
             ->setCallback($request->input('callback'));
     }
     //get delivery pour debloquer donovan en attendant
-    public function getCustomer(Request $request,$id){
-        $res=Customer::where('id',$id)->with('deliveries')->get()->toJson();
+    public function getCustomer(Request $request){
+        $user = auth()->user();
+
+        if(!$user->customer) return response()->json(['error' => 'user_not_customer'], 403);
+
+        $res=Customer::where('id',$user->customer->id)->with('deliveries')->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
@@ -96,7 +100,7 @@ class MobileController extends Controller
             ->setCallback($request->input('callback'));
     }
     //get delivery pour debloquer donovan en attendant
-    public function getDriver(Request $request,$id){
+    public function getDriver(Request $request){
         $user = auth()->user();
 
         if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
