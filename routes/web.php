@@ -190,8 +190,8 @@ Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDe
 Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('/customers/{id}', 'phone\MobileController@getCustomer');
 
-Route::get('/drivers/', 'phone\MobileController@getDriver');
-Route::put('/drivers/', 'phone\MobileController@updateDriver');
+Route::get('/driver/', 'phone\MobileController@getDriver');
+Route::put('/driver/', 'phone\MobileController@updateDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 

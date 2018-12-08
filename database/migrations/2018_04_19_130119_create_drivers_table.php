@@ -27,6 +27,7 @@ class CreateDriversTable extends Migration
             $table->float('current_lat', 10,6)->nullable();
             $table->float('current_lng', 10,6)->nullable();
             $table->integer('canceled_deliveries')->default(0);
+            $table->integer('max_bags')->default(3);
 
             $table->integer('user_id')->unsigned();
 

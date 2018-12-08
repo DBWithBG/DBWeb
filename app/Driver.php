@@ -16,7 +16,7 @@ class Driver extends Model
      */
     protected $fillable = [
         'name', 'surname', 'birth_date', 'is_online', 'phone', 'created_at','updated_at', 'user_id','canceled_deliveries',
-        'current_lat','current_lng'
+        'current_lat','current_lng', 'max_bags'
     ];
 
     public function user()
