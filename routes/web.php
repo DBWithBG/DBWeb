@@ -188,8 +188,8 @@ Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDe
 
 //Route::get('customers/profile','HomeController@getProfile');
 Route::get('/customers', 'phone\MobileController@getCustomers');
-Route::get('/customer', 'phone\MobileController@getCustomer');
-Route::put('/customer', 'phone\MobileController@updateCustomer');
+Route::get('mobile/customer', 'phone\MobileController@getCustomer');
+Route::put('mobile/customer', 'phone\MobileController@updateCustomer');
 
 Route::put('mobile/password', 'phone\MobileController@updatePassword');
 
