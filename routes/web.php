@@ -190,6 +190,10 @@ Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDe
 Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('/customer', 'phone\MobileController@getCustomer');
 
+Route::put('mobile/password', 'phone\MobileController@updatePassword');
+
+Route::put('mobile/email', 'phone\MobileController@updateEmail');
+
 Route::get('/driver/', 'phone\MobileController@getDriver');
 Route::put('/driver/', 'phone\MobileController@updateDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');

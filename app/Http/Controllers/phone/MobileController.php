@@ -10,6 +10,7 @@ use App\Dispute;
 use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\MailController;
 use App\InfoBag;
 use App\Rating;
 use App\TakeOverDelivery;
@@ -17,6 +18,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -133,6 +135,7 @@ class MobileController extends Controller
         if ($v->fails()) {
             return response()->json(['error' => $v], 401);
         } else {
+
             $driver->update($request->all());
             // Le siret passe passe dans le update...
             $driver->siret = $request->siret;
@@ -143,6 +146,74 @@ class MobileController extends Controller
         return response()
             ->json($driver)
             ->setCallback($request->input('callback'));
+    }
+
+
+    function updatePassword(Request $request) {
+        $user = auth()->user();
+
+        $v = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_password_again' => 'required'
+        ], [
+            'current_password.required' => 'Merci de fournir votre mot de passe actuel',
+            'new_password.required' => 'Merci de fournir votre nouveau mot de passe',
+            'new_password_again.required' => 'Merci de fournir la confirmation de votre nouveau mot de passe'
+        ]);
+
+        if ($v->fails()) {
+            return response()->json(['error' => $v], 403);
+        }
+
+        $current_password = $request->current_password;
+        $new_password = $request->new_password;
+        $new_password_again = $request->new_password_again;
+
+        if (!Hash::check($current_password, $user->password)) {
+            return response()->json(['error' => 'actual_password_invalid'], 403);
+        }
+
+        if ($new_password != $new_password_again) {
+            return response()->json(['error' => 'two_new_passwords_not_correspond'], 403);
+        }
+
+        $user->password = Hash::make($new_password);
+        $user->save();
+
+        return response()->json()->setCallback($request->input('callback'));;
+
+    }
+
+    //Post du changement d'email
+    public function updateEmail(Request $request) {
+        $user = auth()->user();
+
+        $v = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users'
+        ], [
+            'email.required' => 'Une nouvelle adresse mail est nécessaire',
+            'email.email' => 'L\'adresse mail est invalide',
+            'email.unique' => 'Cette adresse email est déjà utilisée'
+        ]);
+
+        if ($v->fails()) {
+            return response()->json(['error' => $v], 403);
+        }
+
+        $user->email = $request->email;
+        try {
+            $token = bin2hex(random_bytes(78));
+        } catch (\Exception $e) {
+        }
+        $user->email_confirmation_token = $token;
+        $user->is_confirmed = false;
+        $user->save();
+
+        if(!$user->customer) MailController::confirm_customer_email_address($user->driver, $token);
+        else MailController::confirm_customer_email_address($user->customer, $token);
+
+        return redirect()->back();
     }
 
     //get departement autorises
