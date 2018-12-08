@@ -97,13 +97,17 @@ class MobileController extends Controller
     }
     //get delivery pour debloquer donovan en attendant
     public function getDriver(Request $request,$id){
-        $res=Driver::where('id',$id)->get()->toJson();
+        $user = auth()->user();
+
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+        $res=Driver::where('id',$user->driver->id)->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
     }
 
-    public function updateDriver(Request $request, $id){
+    public function updateDriver(Request $request){
         $user = auth()->user();
         if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
 
