@@ -86,7 +86,7 @@ class MobileController extends Controller
 
         if(!$user->customer) return response()->json(['error' => 'user_not_customer'], 403);
 
-        $res=Customer::where('id',$user->customer->id)->with('deliveries')->get()->toJson();
+        $res=Customer::where('id',$user->customer->id)->with('user')->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
@@ -105,7 +105,7 @@ class MobileController extends Controller
 
         if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
 
-        $res=Driver::where('id',$user->driver->id)->get()->toJson();
+        $res=Driver::where('id',$user->driver->id)->with('user')->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
