@@ -181,7 +181,7 @@ class MobileController extends Controller
         $user->password = Hash::make($new_password);
         $user->save();
 
-        return response()->json()->setCallback($request->input('callback'));;
+        return response()->json()->setCallback($request->input('callback'));
 
     }
 
@@ -213,7 +213,7 @@ class MobileController extends Controller
         if(!$user->customer) MailController::confirm_customer_email_address($user->driver, $token);
         else MailController::confirm_customer_email_address($user->customer, $token);
 
-        return redirect()->back();
+        return response()->json()->setCallback($request->input('callback'));
     }
 
     //get departement autorises
