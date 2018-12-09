@@ -207,11 +207,11 @@ Route::get('/mobile/deliveries/drivers','phone\MobileController@getDriversDelive
 Route::put('mobile/bags/users','phone\MobileController@editBagsUsers');
 Route::get('mobile/deliveries/{id}','phone\MobileController@showDelivery');
 Route::put('mobile/users/refreshNotifyToken','phone\MobileController@setNotifyToken');
-Route::get('/departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
+Route::get('departments/authorized', 'phone\MobileController@getAuthorizedDepartments');
 Route::post('/mobile/deliveries/payment','phone\MobileController@payment');
 Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileController@annulationDelivery');
 
-Route::put('/drivers/setPosition','phone\MobileController@setPosition');
+Route::put('mobile/drivers/setPosition','phone\MobileController@setPosition');
 
 
 

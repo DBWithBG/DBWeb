@@ -34,6 +34,7 @@ class MobileController extends Controller
     /************************************ GENERAL FUNCTIONS (ALL) **************************************/
 
     //Get all deliveries  with status passed in request
+    //TODO VERIF SI CALL PAR DRIVER
     public function getDeliveries(Request $request){
 
         $res=Delivery::where('status','=',$request->get('status'))
@@ -43,6 +44,14 @@ class MobileController extends Controller
             ->with('takeOverDelivery')
             ->with('bags')
             ->get()->toJson();
+
+        /*$final_res = [];
+
+        foreach ($res as $delivery){
+            if(sizeof($delivery->bags()) <= $user->driver->max_bags){
+                array_push($res, $takeover);
+            }
+        }*/
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
@@ -417,6 +426,9 @@ class MobileController extends Controller
             ->with('delivery.endPosition')
             ->with('delivery.bags')
             ->get()->toJson();
+
+
+        //TO json
         return response()->json($takeovers)->setCallback($request->input('callback'));;
 
     }
