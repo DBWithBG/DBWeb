@@ -31,6 +31,8 @@ class MobileController extends Controller
         $this->middleware('jwt.auth')->except(['showDelivery']);
     }
 
+    /************************************ GENERAL FUNCTIONS (ALL) **************************************/
+
     //Get all deliveries  with status passed in request
     public function getDeliveries(Request $request){
 
@@ -46,108 +48,18 @@ class MobileController extends Controller
             ->setCallback($request->input('callback'));
     }
 
-    public function getDeliveriesByDriverByStatus(Request $request){
-        $user = auth()->user();
-
-        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
-
-
-        $takeovers=TakeOverDelivery::where('driver_id','=',$user->driver->id)
-            ->with('delivery')
-            ->with('delivery.customer')
-            ->with('delivery.startPosition')
-            ->with('delivery.endPosition')
-            ->with('delivery.bags')
-            ->get()->toJson();
-        return response()->json($takeovers)->setCallback($request->input('callback'));;
-
-    }
-
-    public function getDelivery(Request $request,$id){
-        $res=Delivery::where('id',$id)->where('customer_id', auth()->user()->id)
-            ->with('customer')
-            ->with('startPosition')
-            ->with('endPosition')
-            ->get()->toJson();
-        return response()
-            ->json($res)
-            ->setCallback($request->input('callback'));
-    }
-
-
-    //get deliveries pour debloquer donovan en attendant
     public function getCustomers(Request $request){
         $res=Customer::with('deliveries')->get()->toJson();
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
     }
-    //get delivery pour debloquer donovan en attendant
-    public function getCustomer(Request $request){
-        $user = auth()->user();
 
-        if(!$user->customer) return response()->json(['error' => 'user_not_customer'], 403);
-
-        $res=Customer::where('id',$user->customer->id)->with('user')->get()->toJson();
-        return response()
-            ->json($res)
-            ->setCallback($request->input('callback'));
+    //get departement autorises
+    public function getAuthorizedDepartments(Request $request){
+        $departments = AuthorizedDepartment::all()->toJson();
+        return response()->json($departments)->setCallback($request->input('callback'));
     }
-
-    //get deliveries pour debloquer donovan en attendant
-    public function getDrivers(Request $request){
-        $res=Driver::all()->toJson();
-        return response()
-            ->json($res)
-            ->setCallback($request->input('callback'));
-    }
-    //get delivery pour debloquer donovan en attendant
-    public function getDriver(Request $request){
-        $user = auth()->user();
-
-        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
-
-        $res=Driver::where('id',$user->driver->id)->with('user')->get()->toJson();
-        return response()
-            ->json($res)
-            ->setCallback($request->input('callback'));
-    }
-
-    public function updateDriver(Request $request){
-        $user = auth()->user();
-        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
-
-        $driver = $user->driver;
-        $v = Validator::make($request->all(), [
-            'name' => 'required',
-            'surname' => 'required',
-            'email' => 'required|email',
-            'siret' => 'nullable|digits_between:14,14',
-            'phone' => 'nullable|numeric'
-        ], [
-            'name.required' => 'Le champ nom est requis',
-            'surname.required' => 'Le champ prénom est requis',
-            'email.required' => 'Le champ email est requis',
-            'email.email' => 'L\'adresse mail est invalide',
-            'siret.digits_between' => 'Le numéro de SIRET est invalide. Celui-ci doit être composé de 14 chiffres'
-        ]);
-
-        if ($v->fails()) {
-            return response()->json(['error' => $v], 401);
-        } else {
-
-            $driver->update($request->all());
-            // Le siret passe passe dans le update...
-            $driver->siret = $request->siret;
-            $driver->user->email = $request->email;
-            $driver->user->save();
-            $driver->save();
-        }
-        return response()
-            ->json($driver)
-            ->setCallback($request->input('callback'));
-    }
-
 
     function updatePassword(Request $request) {
         $user = auth()->user();
@@ -157,9 +69,9 @@ class MobileController extends Controller
             'new_password' => 'required',
             'new_password_again' => 'required'
         ], [
-            'current_password.required' => 'Merci de fournir votre mot de passe actuel',
-            'new_password.required' => 'Merci de fournir votre nouveau mot de passe',
-            'new_password_again.required' => 'Merci de fournir la confirmation de votre nouveau mot de passe'
+            'current_password.required' => 'current_password_required',
+            'new_password.required' => 'new_password_required',
+            'new_password_again.required' => 'new_password_again_required'
         ]);
 
         if ($v->fails()) {
@@ -192,9 +104,9 @@ class MobileController extends Controller
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users'
         ], [
-            'email.required' => 'Une nouvelle adresse mail est nécessaire',
-            'email.email' => 'L\'adresse mail est invalide',
-            'email.unique' => 'Cette adresse email est déjà utilisée'
+            'email.required' => 'email_required',
+            'email.email' => 'email_invalid',
+            'email.unique' => 'email_already_used'
         ]);
 
         if ($v->fails()) {
@@ -216,32 +128,63 @@ class MobileController extends Controller
         return response()->json()->setCallback($request->input('callback'));
     }
 
-    //get departement autorises
-    public function getAuthorizedDepartments(Request $request){
-        $departments = AuthorizedDepartment::all()->toJson();
-        return response()->json($departments)->setCallback($request->input('callback'));
+    //TODO SECU
+    public function getDrivers(Request $request){
+        $res=Driver::all()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
     }
 
-    //POST connexion mobile deprecated
-    public function mobileLogin(Request $request){
+    public function getUser(){
+        $user=auth()->user();
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            //clear des users au meme mobile_token
-            User::where('mobile_token','=',$request->mobile_token)->where('email','!=',$request->email)->update(['mobile_token'=>'']);
-            $user = Auth::user();
-            $user->mobile_token = $request->mobile_token;
-            $user->save();
-
-            $user['customer']=Customer::where('user_id','=',$user->id)->first();
-            $user['driver']=Driver::where('user_id','=',$user->id)->first();
-            return response()->json($user)->setCallback($request->input('callback'));
-        }else{
-            throw new \Error('Erreur de connexion');
-        }
-
+        $user['customer']=Customer::where('user_id','=',$user->id)->first();
+        $user['driver']=Driver::where('user_id','=',$user->id)->first();
+        return json_encode($user);
     }
 
-    //get deliveries par client
+    //methode permettant de modifier le notify_token
+    public function setNotifyToken(Request $request){
+        $u=auth()->user();
+
+
+        $u->notify_token=$request->notify_token;
+        $u->save();
+    }
+
+
+
+    /************************************ END GENERAL FUNCTIONS (ALL) **********************************/
+
+    /************************************ -CUSTOMER FUNCTIONS- *******************************************/
+
+    //TODO CHECK, elle est fail ????
+    public function getDelivery(Request $request,$id){
+        $res=Delivery::where('id',$id)->where('customer_id', auth()->user()->id)
+            ->with('customer')
+            ->with('startPosition')
+            ->with('endPosition')
+            ->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
+    }
+
+    public function getCustomer(Request $request){
+        $user = auth()->user();
+
+        if(!$user->customer) return response()->json(['error' => 'user_not_customer'], 403);
+
+        $res=Customer::where('id',$user->customer->id)->with('user')->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
+    }
+
+
+    //get deliveries par
+    //TODO CHECK SI USER CUSTO
     public function getDeliveriesByCustomers(){
         $u = auth()->user();
         $deliveries=Delivery::where('customer_id','=',$u->customer->id)
@@ -275,6 +218,7 @@ class MobileController extends Controller
             ->setCallback(Input::get('callback'));
     }
 
+
     public function updateCustomer(Request $request) {
         $user = auth()->user();
         $customer = $user->customer;
@@ -286,9 +230,9 @@ class MobileController extends Controller
             'surname' => 'required',
             'phone' => 'nullable|numeric'
         ], [
-            'name.required' => 'Merci de fournir votre nom et votre prénom',
-            'surname.required' => 'Merci de fournir votre nom et votre prénom',
-            'phone.numeric' => "Le numéro de téléphone est invalide"
+            'name.required' => 'name_required',
+            'surname.required' => 'surname_required',
+            'phone.numeric' => "tel_invalide"
         ]);
 
         if ($v->fails()) {
@@ -301,8 +245,8 @@ class MobileController extends Controller
         return response()->json()->setCallback($request->input('callback'));
     }
 
-
     //modification d'une delivery
+    // TODO CHECK SI FAIL
     public function modificationDelivery($id){
 
         $u=auth()->user();
@@ -318,43 +262,6 @@ class MobileController extends Controller
         return json_encode(Delivery::find($id)->update($infos));
     }
 
-    //prise en charge d'une delivery par chauffeur
-    public function priseEnChargeDelivery(){
-
-        $u=auth()->user();
-
-        if(!$u->driver) return response()->json(['error' => 'user_is_not_driver'], 403);
-
-        if(!Input::get('delivery_id') || !$del=Delivery::find(Input::get('delivery_id')))
-            return response()->json(['error' => 'delivery_not_found'], 403);
-
-        $res_id=null;
-        //TODO utilise pour debug mettre en attente de pris en charge
-        if($del->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
-            $take=new TakeOverDelivery;
-            $take->driver_id=$u->driver->id;
-            $take->status=0;
-            $take->delivery_id=$del->id;
-            $take->actual_position_id=$del->startPosition->id;
-            $take->save();
-            $del->update(['status'=>Config::get('constants.PRIS_EN_CHARGE')]);
-            $res_id=$take->id;
-            $tab=NotificationController::notifyPriseEnCharge();
-            $tab['tokens']=[0=>$del->customer->user->notify_token];
-            NotificationController::sendNotification($tab);
-        }
-        return json_encode($res_id);
-    }
-
-
-    public function getUser(){
-        $user=auth()->user();
-
-        $user['customer']=Customer::where('user_id','=',$user->id)->first();
-        $user['driver']=Driver::where('user_id','=',$user->id)->first();
-        return json_encode($user);
-    }
-
 
     public function getBagsUsers($id=null){
 
@@ -362,16 +269,6 @@ class MobileController extends Controller
         if(!$u->customer) response()->json(['error' => 'user_is_not_customer'], 403);
 
         return json_encode(Bag::where('customer_id','=',$u->customer->id)->where('saved','=',true)->get());
-    }
-
-
-    //TODO A VERIFIER
-    //methode permettant de verifier que le token fournit correspond au token utilisateur (methode amenee a devenir plus complexe)
-    public static function checkToken($t1,Request $request){
-        if(isset($request->chk_mobile_token))
-            return $t1==$request->chk_mobile_token;
-        else
-            return true;
     }
 
 
@@ -411,20 +308,6 @@ class MobileController extends Controller
         }
     }
 
-    //get delivery pour consulter les informations d'une delivery
-    // TODO DEPRECTED
-    public function showDelivery(Request $request,$delivery_id){
-        JWTAuth::setToken(Input::get('token'));
-        $u = JWTAuth::authenticate();
-        $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
-        if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
-
-        $deliveries=Delivery::where('customer_id','=',$u->customer->id)->orderBy('created_at','DESC')->with('customer')->with('startPosition')->with('endPosition')->get();
-
-        return view('customer.showDelivery')->with(compact('delivery','deliveries'));
-
-    }
-
     //TODO methode de check des params
     //post d'un rating de delivery
     public function ratingDelivery(Request $request){
@@ -459,7 +342,6 @@ class MobileController extends Controller
         return($r);
     }
 
-
     //envoie d'une dispute delivery
     public function disputeDelivery(Request $request){
         $u=auth()->user();
@@ -479,17 +361,8 @@ class MobileController extends Controller
     }
 
 
-    //methode permettant de modifier le notify_token
-    public function setNotifyToken(Request $request){
-        $u=auth()->user();
-
-
-        $u->notify_token=$request->notify_token;
-        $u->save();
-    }
-
     //methode de paiement depuis l'appli mobile
-    //TODO link paybox
+    //TODO link paybox + Check user customer + que c'est bien sa delivery
     public function payment(Request $request){
         $u=auth()->user();
 
@@ -500,8 +373,6 @@ class MobileController extends Controller
 
         $d->update(['status'=>Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')]);
     }
-
-
 
     public function annulationDelivery(Request $request){
         $u=auth()->user();
@@ -514,12 +385,114 @@ class MobileController extends Controller
         $d=Delivery::find($request->delivery_id);
         if(!$d) response()->json(['error' => 'delivery_not_found'], 403);
         if($d->customer->user->id != $u->id) response()->json(['error' => 'operation_not_allowed_from_user'], 403);
-        if(!Delivery::isAnnulableByCustomer($d)) response()->json(['error' => 'delivery_not_canceled'], 403);
+        if(!Delivery::isAnnulableByCustomer($d)) response()->json(['error' => 'delivery_not_cancelable'], 403);
 
         return json_encode(DeliveryController::gestionAnnulationDeliveryCustomer($d,$u->customer));
 
     }
 
+
+    //TODO CHECK CA Sécu ??
+    public function postDelivery(Request $request){
+        $dc = new DeliveryController();
+        return $dc->postDeliveryMobile($request, Auth::user()->customer->id);
+    }
+
+
+    /************************************ END -CUSTOMER- FUNCTION ****************************************/
+
+    /************************************ -DRIVER- FUNCTIONS *********************************************/
+
+
+    public function getDeliveriesByDriverByStatus(Request $request){
+        $user = auth()->user();
+
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+
+        $takeovers=TakeOverDelivery::where('driver_id','=',$user->driver->id)
+            ->with('delivery')
+            ->with('delivery.customer')
+            ->with('delivery.startPosition')
+            ->with('delivery.endPosition')
+            ->with('delivery.bags')
+            ->get()->toJson();
+        return response()->json($takeovers)->setCallback($request->input('callback'));;
+
+    }
+
+    //get delivery pour debloquer donovan en attendant
+    public function getDriver(Request $request){
+        $user = auth()->user();
+
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+        $res=Driver::where('id',$user->driver->id)->with('user')->get()->toJson();
+        return response()
+            ->json($res)
+            ->setCallback($request->input('callback'));
+    }
+
+
+    public function updateDriver(Request $request){
+        $user = auth()->user();
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+        $driver = $user->driver;
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'siret' => 'nullable|digits_between:14,14',
+            'phone' => 'nullable|numeric'
+        ], [
+            'name.required' => 'name_required',
+            'surname.required' => 'surname_required',
+            'siret.digits_between' => 'siret_invalid_need_to_be_size_14_digits'
+        ]);
+
+        if ($v->fails()) {
+            return response()->json(['error' => $v], 401);
+        } else {
+
+            $driver->update($request->all());
+            // Le siret passe passe dans le update...
+            $driver->siret = $request->siret;
+            $driver->user->email = $request->email;
+            $driver->user->save();
+            $driver->save();
+        }
+        return response()
+            ->json($driver)
+            ->setCallback($request->input('callback'));
+    }
+
+    //prise en charge d'une delivery par chauffeur
+    public function priseEnChargeDelivery(){
+
+        $u=auth()->user();
+
+        if(!$u->driver) return response()->json(['error' => 'user_is_not_driver'], 403);
+
+        if(!Input::get('delivery_id') || !$del=Delivery::find(Input::get('delivery_id')))
+            return response()->json(['error' => 'delivery_not_found'], 403);
+
+        $res_id=null;
+        //TODO utilise pour debug mettre en attente de pris en charge
+        if($del->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')){
+            $take=new TakeOverDelivery;
+            $take->driver_id=$u->driver->id;
+            $take->status=0;
+            $take->delivery_id=$del->id;
+            $take->actual_position_id=$del->startPosition->id;
+            $take->save();
+            $del->update(['status'=>Config::get('constants.PRIS_EN_CHARGE')]);
+            $res_id=$take->id;
+            $tab=NotificationController::notifyPriseEnCharge();
+            $tab['tokens']=[0=>$del->customer->user->notify_token];
+            NotificationController::sendNotification($tab);
+        }
+        return json_encode($res_id);
+    }
 
 
     public function getDriversDeliveries(){
@@ -530,11 +503,6 @@ class MobileController extends Controller
         $takeovers=TakeOverDelivery::where('driver_id','=',$u->driver->id)->with('delivery')->get();
         return $takeovers;
     }
-
-
-
-
-
 
     //modification du status d'une delivery par un driver
     public function editStatusDriver(Request $request){
@@ -556,15 +524,13 @@ class MobileController extends Controller
             $this->priseEnChargeDelivery($request);
 
         if($request->status_id==Config::get('constants.EN_COURS_DE_LIVRAISON'))
-        DeliveryController::gestionLancementLivraison($delivery);
+            DeliveryController::gestionLancementLivraison($delivery);
 
         if($request->status_id==Config::get('constants.CONSIGNE'))
             DeliveryController::gestionLancementConsigne($delivery);
         if($request->status_id==Config::get('constants.TERMINE'))
-        DeliveryController::gestionLivraisonEffectuee($delivery);
+            DeliveryController::gestionLivraisonEffectuee($delivery);
     }
-
-
 
     public function modificationEtatDesLieux(Request $request){
         $u=auth()->user();
@@ -580,20 +546,33 @@ class MobileController extends Controller
                     ->update(["details_start_driver"=>$d["detail"]]);
             }
         }
-       }
+    }
 
 
-       public function setPosition(Request $request){
-           $u=auth()->user();
+    public function setPosition(Request $request){
+        $u=auth()->user();
 
-           if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
+        if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
 
-           $u->driver->update(['current_lng'=>$request->current_lng,'current_lat'=>$request->current_lat]);
-           return json_encode($u);
-       }
+        $u->driver->update(['current_lng'=>$request->current_lng,'current_lat'=>$request->current_lat]);
+        return json_encode($u);
+    }
 
-       public function postDelivery(Request $request){
-        $dc = new DeliveryController();
-            return $dc->postDeliveryMobile($request, Auth::user()->customer->id);
-       }
+    /************************************ END DRIVER FUNCTION *****************************************/
+
+    //get delivery pour consulter les informations d'une delivery
+    // TODO DEPRECTED
+    public function showDelivery(Request $request,$delivery_id){
+        JWTAuth::setToken(Input::get('token'));
+        $u = JWTAuth::authenticate();
+        $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
+        if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
+
+        $deliveries=Delivery::where('customer_id','=',$u->customer->id)->orderBy('created_at','DESC')->with('customer')->with('startPosition')->with('endPosition')->get();
+
+        return view('customer.showDelivery')->with(compact('delivery','deliveries'));
+
+    }
+
+
 }
