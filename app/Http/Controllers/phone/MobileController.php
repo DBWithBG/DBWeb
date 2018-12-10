@@ -463,7 +463,7 @@ class MobileController extends Controller
         ]);
 
         if ($v->fails()) {
-            return response()->json(['error' => $v], 401);
+            return response()->json(['error' => $v->errors()], 401);
         } else {
 
             $driver->update($request->all());

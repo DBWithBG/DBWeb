@@ -195,8 +195,8 @@ Route::put('mobile/password', 'phone\MobileController@updatePassword');
 
 Route::put('mobile/email', 'phone\MobileController@updateEmail');
 
-Route::get('/driver/', 'phone\MobileController@getDriver');
-Route::put('/driver/', 'phone\MobileController@updateDriver');
+Route::get('mobile/driver/', 'phone\MobileController@getDriver');
+Route::put('mobile/driver/', 'phone\MobileController@updateDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 
