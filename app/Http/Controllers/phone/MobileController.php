@@ -84,7 +84,7 @@ class MobileController extends Controller
         ]);
 
         if ($v->fails()) {
-            return response()->json(['error' => $v], 403);
+            return response()->json(['error' => $v->errors()], 403);
         }
 
         $current_password = $request->current_password;
@@ -119,7 +119,7 @@ class MobileController extends Controller
         ]);
 
         if ($v->fails()) {
-            return response()->json(['error' => $v], 403);
+            return response()->json(['error' => $v->errors()], 403);
         }
 
         $user->email = $request->email;
@@ -245,7 +245,7 @@ class MobileController extends Controller
         ]);
 
         if ($v->fails()) {
-            return response()->json(['error' => $v], 403);
+            return response()->json(['error' => $v->errors()], 403);
         }
 
         $customer->update($request->all());
