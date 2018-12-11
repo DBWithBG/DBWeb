@@ -162,6 +162,37 @@ class MobileController extends Controller
         $u->save();
     }
 
+    //Renvoi d'une nouvelle confirmation par email
+    public function resendConfirmationEmail() {
+        $user = auth()->user();
+        // Envoyer le mail de confirmation
+        try {
+            $token = bin2hex(random_bytes(78));
+        } catch (\Exception $e) {
+        }
+
+        if(!$user->customer){
+            $driver = $user->driver;
+
+            $driver->user->email_confirmation_token = $token;
+            $driver->user->save();
+
+            MailController::confirm_driver_email_address($driver, $token);
+
+        }else{
+            $customer = $user->customer;
+
+
+            $customer->user->email_confirmation_token = $token;
+            $customer->user->save();
+
+            MailController::confirm_customer_email_address($customer, $token);
+        }
+
+        return response()->json();
+
+    }
+
 
 
     /************************************ END GENERAL FUNCTIONS (ALL) **********************************/

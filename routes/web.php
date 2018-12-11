@@ -186,6 +186,8 @@ Route::post('/mobile/deliveries/disputes', 'phone\MobileController@disputeDelive
 
 Route::get('/mobile/bags/customers/{id}', 'phone\MobileController@modificationDelivery');
 
+Route::get('/mobile/resend-confirmation-email', 'phone\MobileController@resendConfirmationEmail');
+
 //Route::get('customers/profile','HomeController@getProfile');
 Route::get('/customers', 'phone\MobileController@getCustomers');
 Route::get('mobile/customer', 'phone\MobileController@getCustomer');
