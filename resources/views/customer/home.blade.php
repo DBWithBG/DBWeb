@@ -1165,7 +1165,7 @@
                             success: function (response) {
                                 swal({
                                     title: 'Confirmez-vous la demande de prise en charge ?',
-                                    text: "Pour cette course avec un bagage par exemple cela coûterait git s" + parseFloat(response.price).toFixed(2) + " €",
+                                    text: "Pour cette course avec un bagage par exemple cela coûterait " + parseFloat(response.price).toFixed(2) + " €",
                                     icon: 'success',
                                     buttons: {
                                         cancel: false,
