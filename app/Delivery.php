@@ -111,7 +111,6 @@ class Delivery extends Model
         $remuneration_driver = round(($priceLine->to_add_driver + $priceLine->coef_kilometers_driver * sqrt($distance)*($priceLine->coef_bags_driver * sqrt($priceLine->bags_min))) * $priceLine->coef_total_driver, 2);
         $remuneration_deliver = round($remuneration_driver * $priceLine->coef_deliver, 2);
         $total = $remuneration_driver + $remuneration_deliver;
-        dd($remuneration_deliver, $remuneration_driver, $total);
         return [
             'remuneration_driver' => $remuneration_driver,
             'remuneration_deliver' => $remuneration_deliver,
