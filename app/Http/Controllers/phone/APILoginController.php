@@ -13,6 +13,12 @@
 
     class APILoginController extends Controller
     {
+
+        public function __construct()
+        {
+            $this->middleware('jwt.auth')->except(['login']);
+        }
+
         public function login(Request $request)
         {
             $validator = Validator::make($request->all(), [
@@ -41,7 +47,7 @@
         }
 
         public function logout(Request $request){
-            $user = Auth::user();
+            $user = auth()->user();
             if(!empty($user->id)){
                 $user->notify_token = null;
                 $user->save();
