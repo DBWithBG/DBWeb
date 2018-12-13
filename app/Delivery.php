@@ -101,9 +101,10 @@ class Delivery extends Model
                 ->addOrigin($start_position->lat . ', ' . $start_position->lng)
                 ->addDestination($end_position->lat . ', ' . $end_position->lng)
                 ->sendRequest();
+            $distance = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
+            $distance = str_replace(',', '.', $distance);
         }
-        $distance = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
-        $distance = str_replace(',', '.', $distance);
+
         // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
         $priceLine = Price::where('bags_min', '>=', $nb_bags)->first();
         $remuneration_driver = round(($priceLine->to_add_driver + $priceLine->coef_kilometers_driver * sqrt($distance)*($priceLine->coef_bags_driver * sqrt($priceLine->bags_min))) * $priceLine->coef_total_driver, 2);
