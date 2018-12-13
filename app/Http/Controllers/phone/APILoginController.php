@@ -5,6 +5,7 @@
     use App\Http\Controllers\Controller;
     use App\User;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Validator;
     use Tymon\JWTAuth\Exceptions\JWTException;
     use Tymon\JWTAuth\Facades\JWTAuth;
@@ -40,7 +41,7 @@
         }
 
         public function logout(Request $request){
-            $user = auth()->user();
+            $user = Auth::user();
             dd($user);
             if(!empty($user->id)){
                 $user->notify_token = null;
