@@ -40,11 +40,11 @@
         }
 
         public function logout(Request $request){
-            $user = auth()->user;
+            $user = auth()->user();
             if(!empty($user)){
                 $user->notify_token = null;
                 $user->save();
-            }else{
+            }else {
                 return response()->json(['error' => 'user_not_logged'], 403);
             }
             return response()->json(['blacklisted'=> JWTAuth::invalidate($request->get('token'))]);
