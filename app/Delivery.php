@@ -106,7 +106,9 @@ class Delivery extends Model
         }
 
         // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
+
         $priceLine = Price::where('bags_min', '>=', $nb_bags)->first();
+        dd($nb_bags, $priceLine);
         $remuneration_driver = round(($priceLine->to_add_driver + $priceLine->coef_kilometers_driver * sqrt($distance)*($priceLine->coef_bags_driver * sqrt($priceLine->bags_min))) * $priceLine->coef_total_driver, 2);
         $remuneration_deliver = round($remuneration_driver * $priceLine->coef_deliver, 2);
         $total = $remuneration_driver + $remuneration_deliver;
