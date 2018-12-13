@@ -88,6 +88,28 @@ class DatabaseSeeder extends Seeder
             'price' => 10.00
         ]);
 
+        \App\Price::create([
+            'createur' => 'AUTRE',
+            'bags_min' => 0,
+            'bags_max' => 8,
+            'to_add_driver'=> 3,
+            'coef_kilometers_driver' => 2,
+            'coef_bags_driver' => 1,
+            'coef_total_driver' => 1.2,
+            'coef_deliver' => 0.333334
+        ]);
+
+        \App\Price::create([
+            'createur' => 'AUTRE',
+            'bags_min' => 8,
+            'bags_max' => 1000,
+            'to_add_driver'=> 3,
+            'coef_kilometers_driver' => 2,
+            'coef_bags_driver' => 1,
+            'coef_total_driver' => 1.2,
+            'coef_deliver' => 0.333334
+        ]);
+
         \App\Reglage::create([
             'no_facture' => 999
         ]);

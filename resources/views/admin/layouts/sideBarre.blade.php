@@ -181,6 +181,14 @@
                     <div class="collapse {{ Request::is('backoffice/configuration*') ? 'show' : '' }}"
                          id="configurationCollapse">
                         <ul class="nav">
+                            <li class="nav-item {{ Request::is('backoffice/configuration/prices*') ? 'active' : '' }}">
+                                <a class="nav-link " href="{{url('backoffice/configuration/prices')}}">
+                                    <i class="material-icons">grid_on</i>
+                                    <p> Prix des courses
+                                    </p>
+                                </a>
+
+                            </li>
                             <li class="nav-item {{ Request::is('backoffice/configuration/department*') ? 'active' : '' }}">
                                 <a class="nav-link " href="{{url('backoffice/configuration/departments')}}">
                                     <i class="material-icons">grid_on</i>

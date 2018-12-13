@@ -64,6 +64,10 @@ Route::get('backoffice/dispute/{id}', 'AdminController@dispute');
 Route::post('backoffice/dispute/{id}/update', 'AdminController@update');
 
 
+//Prices
+Route::get('backoffice/configuration/prices', 'AdminController@getPrice');
+Route::post('backoffice/configuration/addPrice', 'AdminController@addPrice');
+Route::post('backoffice/configuration/deletePrice', 'AdminController@deletePrice');
 
 //Departments
 Route::get('backoffice/configuration/departments', 'AdminController@getDepartments');
@@ -215,9 +219,8 @@ Route::post('/mobile/customers/deliveries/cancelDelivery','phone\MobileControlle
 
 Route::put('mobile/drivers/setPosition','phone\MobileController@setPosition');
 
-
-
 Route::get('/test2', 'phone\NotificationController@notify');
+
 
 /***************************** FIN API MOBILE **************************/
 

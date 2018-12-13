@@ -11,6 +11,7 @@ use App\HistoriqueNotification;
 use App\Http\Controllers\phone\MobileController;
 use App\Http\Controllers\phone\NotificationController;
 use App\Justificatif;
+use App\Price;
 use App\TypeBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -324,6 +325,30 @@ class AdminController extends Controller
     }
 
     /************************ END DEPARTMENTS *******************/
+
+    /***************** PRICES ************************/
+    public function getPrice()
+    {
+        $prices = Price::all();
+        return view('admin.config.prices')->with([
+            'prices' => $prices
+        ]);
+    }
+
+    public function addPrice(Request $request)
+    {
+        Price::create($request->toArray());
+        return redirect('backoffice/configuration/prices#rowPrices');
+    }
+
+    public function deletePrice(Request $request)
+    {
+        $price = Price::find($request->id);
+        Price::destroy($price->id);
+        return $price;
+    }
+
+    /************************ END PRICES *******************/
 
     public function getTypeBagages()
     {
