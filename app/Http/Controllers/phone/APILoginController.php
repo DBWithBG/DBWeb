@@ -41,7 +41,7 @@
 
         public function logout(Request $request){
             $user = auth()->user();
-            if(!empty($user)){
+            if(!empty($user->id)){
                 $user->notify_token = null;
                 $user->save();
             }else {
