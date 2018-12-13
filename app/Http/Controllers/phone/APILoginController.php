@@ -45,7 +45,7 @@
                 $user->notify_token = null;
                 $user->save();
             }else{
-                return response()->json(['error' => 'User_not_logged'], 403);
+                return response()->json(['error' => 'user_not_logged'], 403);
             }
             return response()->json(['blacklisted'=> JWTAuth::invalidate($request->get('token'))]);
 
