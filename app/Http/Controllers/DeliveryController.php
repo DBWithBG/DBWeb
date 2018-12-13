@@ -107,9 +107,9 @@
                 $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
 
             $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance);
-            $request['delivery']['price'] = $prices['total'];
-            $request['delivery']['remuneration_driver'] = $prices['remuneration_driver'];
-            $request['delivery']['remuneration_deliver'] = $prices['remuneration_deliver'];
+            $delivery->price = $prices['total'];
+            $delivery->remuneration_driver = $prices['remuneration_driver'];
+            $delivery->remuneration_deliver = $prices['remuneration_deliver'];
 
             $delivery->start_date = $start_date;
             $delivery->save();
