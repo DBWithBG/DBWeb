@@ -400,6 +400,14 @@ class MobileController extends Controller
         return $d;
     }
 
+    public function computePrice(Request $request){
+        $u = auth()->user();
+
+        if(empty($u->driver)) return response()->json(['error' => 'user_not_customer'], 403);
+
+        return response()->json(['price' => Delivery::computePrice($request->get('bagages'), $request->get('start_position'), $request->get('end_position'))['total']]);
+    }
+
 
     //methode de paiement depuis l'appli mobile
     //TODO link paybox + Check user customer + que c'est bien sa delivery

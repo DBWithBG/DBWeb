@@ -25,6 +25,7 @@ class CreateTakeOverDeliveriesTable extends Migration
             $table->integer('actual_position_id')->unsigned();
 
 
+
         });
 
         Schema::table('take_over_deliveries', function(Blueprint $table){

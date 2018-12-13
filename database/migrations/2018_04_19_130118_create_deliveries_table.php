@@ -17,6 +17,8 @@ class CreateDeliveriesTable extends Migration
             $table->increments('id');
             $table->text('comment')->nullable();
             $table->double('price', 10,2);
+            $table->double('remuneration_driver', 10, 2)->nullable();
+            $table->double('remuneration_deliver', 10, 2)->nullable();
             $table->timestamps();
             $table->integer('status')->nullable();
             $table->double('distance')->nullable();

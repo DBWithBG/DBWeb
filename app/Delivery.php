@@ -2,6 +2,7 @@
 
 namespace App;
 
+use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Config;
@@ -17,9 +18,13 @@ class Delivery extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id',
+        'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'remuneration_driver', 'remuneration_deliver',
 
         'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance', 'no_train', 'no_flight', 'time_consigne', 'end_date'
+    ];
+
+    protected $hidden = [
+        'remuneration_deliver'
     ];
 
     public function startPosition()
@@ -82,6 +87,33 @@ class Delivery extends Model
     //methode permettant d'annuler une delivery
     public static function isAnnulableByCustomer($d){
         return $d->status==Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE');
+    }
+
+
+    public static function computePrice($type_bags, $start_position, $end_position, $distance = null){
+        $nb_bags = 0;
+        foreach ($type_bags as $type_bag){
+            $nb_bags += sizeof($type_bag);
+        }
+        if($distance == null) {
+            $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');
+            $distance = $distanceMatrix->setLanguage('fr')
+                ->addOrigin($start_position->lat . ', ' . $start_position->lng)
+                ->addDestination($end_position->lat . ', ' . $end_position->lng)
+                ->sendRequest();
+        }
+        $distance = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
+        $distance = str_replace(',', '.', $distance);
+        // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
+        $priceLine = Price::where('bags_min', '>=', $nb_bags)->first();
+        $remuneration_driver = round(($priceLine->to_add_driver + $priceLine->coef_kilometers_driver * sqrt($distance)*($priceLine->coef_bags_driver * sqrt($priceLine->bags_min))) * $priceLine->coef_total_driver, 2);
+        $remuneration_deliver = round($remuneration_driver * $priceLine->coef_deliver, 2);
+        $total = $remuneration_driver + $remuneration_deliver;
+        return [
+            'remuneration_driver' => $remuneration_driver,
+            'remuneration_deliver' => $remuneration_deliver,
+            'total' => $total
+        ];
     }
 
 }
