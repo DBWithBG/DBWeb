@@ -49,3 +49,35 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+
+{
+	"start_position": {
+		"name": "34 Rue Charles Domercq",
+		"address": "34 Rue Charles Domercq, 33800 Bordeaux, France",
+		"lat": 44.82538599999999,
+		"lng": -0.5574260999999296,
+	},
+	"end_position": {
+		"name": "56 Rue Sainte-Catherine",
+		"address": "56 Rue Sainte-Catherine, 33000 Bordeaux, France",
+		"lat": 44.83955494,
+		"lng": -0.5740906999999424,
+	},
+	"delivery": {
+		"comment": "Commentaire",
+		"start_date": "2018-12-14 14:29:00",
+		"end_date": "2018-12-14 16:29:00",
+		"no_train": "",
+		"time_consigne": 120
+	},
+	"bagages": {
+		"1": [
+			{
+				"name":"34",
+				"details":"56"
+			}
+		]
+	}
+	
+}
