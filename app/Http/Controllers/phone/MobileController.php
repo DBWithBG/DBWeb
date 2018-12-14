@@ -45,9 +45,10 @@ class MobileController extends Controller
             ->with('bags')
             ->get()->toJson();
 
-        /*$final_res = [];
+        $final_res = [];
+        dd($res);
 
-        foreach ($res as $delivery){
+        /*foreach ($res as $delivery){
             if(sizeof($delivery->bags()) <= $user->driver->max_bags){
                 array_push($res, $takeover);
             }
