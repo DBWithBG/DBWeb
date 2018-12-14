@@ -104,6 +104,7 @@ class Delivery extends Model
             $distance = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
             $distance = str_replace(',', '.', $distance);
         }
+        dd($distance);
 
         // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
 
