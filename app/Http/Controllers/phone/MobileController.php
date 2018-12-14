@@ -403,7 +403,7 @@ class MobileController extends Controller
     public function computePrice(Request $request){
         $u = auth()->user();
 
-        if(empty($u->driver)) return response()->json(['error' => 'user_not_customer'], 403);
+        if(empty($u->customer)) return response()->json(['error' => 'user_not_customer'], 403);
 
         return response()->json(['price' => Delivery::computePrice($request->get('bagages'), $request->get('start_position'), $request->get('end_position'))['total']]);
     }
