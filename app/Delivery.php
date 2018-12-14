@@ -97,7 +97,7 @@ class Delivery extends Model
         }
         if($distance == null) {
             $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');
-            dd($distanceMatrix, $start_position->lng, $end_position->lng);
+            dd($end_position->lng);
             $distance = $distanceMatrix->setLanguage('fr')
                 ->addOrigin($start_position->lat . ', ' . $start_position->lng)
                 ->addDestination($end_position->lat . ', ' . $end_position->lng)
