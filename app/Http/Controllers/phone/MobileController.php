@@ -56,7 +56,6 @@ class MobileController extends Controller
             }
         }
 
-        dd(sizeof($res), sizeof($final_res));
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));
