@@ -38,6 +38,7 @@ class MobileController extends Controller
     public function getDeliveries(Request $request){
 
         $driver = auth()->user()->driver;
+        dd($driver);
 
         $res=Delivery::where('status','=',$request->get('status'))
             ->with('customer')
@@ -48,9 +49,7 @@ class MobileController extends Controller
             ->get();
 
         $final_res = [];
-        dd($res);
         foreach ($res as $delivery){
-
             if(sizeof($delivery->getRelation('bags')) <= $driver->max_bags){
                 array_push($res, $delivery);
             }
