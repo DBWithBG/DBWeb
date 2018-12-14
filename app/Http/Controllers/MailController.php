@@ -123,7 +123,7 @@ class MailController
         return redirect('backoffice/login');
     }
 
-
+    //TODO DEPRECATED I THINK
     //Envoi de l'email de confirmation d'inscription
     public function confirm_register_customer(){
         //TODO On peut remplacer par n'importe quelle vue, n'importe quel css
@@ -176,7 +176,7 @@ class MailController
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
 
-            'to' => 'testdeliver@yopmail.com',
+            'to' => $customer->user->email,
             'Subject' => "Confirmation de votre adresse mail",
             "html-part" => view('emails.confirmation_email_customer')->with(['token' => $token, 'customer' => $customer])->render()
         ];
@@ -192,13 +192,13 @@ class MailController
     }
 
     //Reset du password d'un ut
-    public static function reset_password_email($token) {
+    public static function reset_password_email($token, $user) {
         $client = new Client();
         $body = [
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
 
-            'to' => 'testdeliver@yopmail.com',
+            'to' => $user->email,
             'Subject' => "Réinitialisation de votre mot de passe",
             "html-part" => view('emails.password_reset_email')->with(['token' => $token])->render()
         ];
@@ -219,7 +219,7 @@ class MailController
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
 
-            'to' => 'testdeliver@yopmail.com',
+            'to' => $email,
             'Subject' => "Contact de " . $nom . " " . $prenom,
             "html-part" => view('emails.contact')->with(['message' => $message, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email])->render()
         ];

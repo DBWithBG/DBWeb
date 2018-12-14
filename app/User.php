@@ -5,6 +5,7 @@ namespace App;
 use App\Http\Controllers\MailController;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -40,7 +41,8 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        MailController::reset_password_email($token);
+        $user = Auth::user();
+        MailController::reset_password_email($token, $user);
     }
 
 }
