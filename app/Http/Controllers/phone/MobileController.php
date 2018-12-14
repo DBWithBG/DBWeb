@@ -45,7 +45,7 @@ class MobileController extends Controller
             ->with('endPosition')
             ->with('takeOverDelivery')
             ->with('bags')
-            ->get()->toJson();
+            ->get();
 
         $final_res = [];
 
