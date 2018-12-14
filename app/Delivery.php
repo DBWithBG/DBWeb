@@ -101,6 +101,9 @@ class Delivery extends Model
                 ->addOrigin($start_position['lat'] . ', ' . $start_position['lng'])
                 ->addDestination($end_position['lat'] . ', ' . $end_position['lng'])
                 ->sendRequest();
+
+        }
+        if(!empty($distance->getStatus())){
             $distance = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
             $distance = str_replace(',', '.', $distance);
         }
