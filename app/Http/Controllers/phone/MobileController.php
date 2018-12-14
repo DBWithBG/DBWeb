@@ -37,8 +37,9 @@ class MobileController extends Controller
     //TODO VERIF SI CALL PAR DRIVER
     public function getDeliveries(Request $request){
 
-        $driver = auth()->user()->driver;
-        dd($driver);
+        $user = auth()->user();
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
 
         $res=Delivery::where('status','=',$request->get('status'))
             ->with('customer')
@@ -50,7 +51,7 @@ class MobileController extends Controller
 
         $final_res = [];
         foreach ($res as $delivery){
-            if(sizeof($delivery->getRelation('bags')) <= $driver->max_bags){
+            if(sizeof($delivery->getRelation('bags')) <= $user->driver->max_bags){
                 array_push($res, $delivery);
             }
         }
