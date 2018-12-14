@@ -52,7 +52,7 @@ class MobileController extends Controller
         $final_res = [];
         foreach ($res as $delivery){
             if(sizeof($delivery->getRelation('bags')) <= $user->driver->max_bags){
-                array_push($res, $delivery);
+                array_push($final_res, $delivery);
             }
         }
 
