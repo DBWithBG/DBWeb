@@ -92,7 +92,6 @@ class Delivery extends Model
 
     public static function computePrice($type_bags, $start_position, $end_position, $distance = null){
         $nb_bags = 0;
-        dd($type_bags);
         foreach ($type_bags as $type_bag){
             $nb_bags += sizeof($type_bag);
         }
