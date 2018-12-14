@@ -48,6 +48,7 @@ class MobileController extends Controller
             ->get();
 
         $final_res = [];
+        dd($res);
 
         foreach ($res as $delivery){
             if(sizeof($delivery->bags()) <= $driver->max_bags){
