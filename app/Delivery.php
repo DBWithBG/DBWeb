@@ -103,7 +103,7 @@ class Delivery extends Model
                 ->sendRequest();
 
         }
-        if(!empty($distance->getStatus())){
+        if(!is_float($distance)){
             $distance = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
             $distance = str_replace(',', '.', $distance);
         }
