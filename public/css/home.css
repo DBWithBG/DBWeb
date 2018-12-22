@@ -6,6 +6,11 @@
     padding: 100px 0;
     min-height: 100vh;
 }
+
+.hero-box .hero-text {
+    margin-top: 5%;
+}
+
 .hero-box .hero-text h1,
 .hero-box .hero-text p {
     text-transform: uppercase;
@@ -16,15 +21,13 @@
     font-family: "Raleway", sans-serif;
     letter-spacing: 0.08em;
     font-weight: 700;
-    font-size: 72px;
+    font-size: 54px;
     line-height: 1em;
-    margin: 0 0 75px;
 }
 .hero-box .hero-text p {
     letter-spacing: 0.04em;
     line-height: 1em;
     font-size: 30px;
-    margin: 0 0 80px;
 }
 @media (max-width: 768px) {
     .hero-box {
@@ -45,4 +48,8 @@
 
 .modal-buttons {
     float: right;
+}
+
+.align-center {
+    text-align: center;
 }

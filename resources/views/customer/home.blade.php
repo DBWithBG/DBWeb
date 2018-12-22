@@ -8,6 +8,12 @@
         <div class="hero-box">
             <div class="container">
                 <div class="row">
+                    <div class="hero-text align-center">
+                        <h1>Vos bagages</h1>
+                        <p>Notre mission</p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                         <div class="row">
 
@@ -125,7 +131,7 @@
     <section class="sec-padding-6 section-medium-dark">
         <div class="container">
             <div class="row">
-                <div class="fo-copyright-holder text-center"> Copyright © 2018 | Deliverbag.com</div>
+                <div class="fo-copyright-holder text-center"> Copyright © 2018 | Deliverbag.fr</div>
             </div>
         </div>
     </section>
@@ -145,7 +151,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Vous voyagez en train</h5>
+                    <h5 class="modal-title"><b>Vous voyagez en train</b></h5>
                 </div>
                 <div class="modal-body">
                     <div class="smart-wrap" style="min-height: 140px">
@@ -187,7 +193,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Vous voyagez en avion</h5>
+                    <h5 class="modal-title"><b>Vous voyagez en avion</b></h5>
                 </div>
                 <div class="modal-body">
                     <div class="smart-wrap" style="min-height: 140px">
@@ -243,6 +249,8 @@
 
 @section('custom-scripts')
     <script>
+
+        // TODO Refactor le JS
 
         /**
          * Ouverture de la modal train
