@@ -30,6 +30,9 @@
     font-size: 30px;
 }
 @media (max-width: 768px) {
+    .hero-box .hero-text {
+        margin-top: 0;
+    }
     .hero-box {
         padding: 150px 0 100px;
     }

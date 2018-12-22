@@ -250,7 +250,20 @@
 @section('custom-scripts')
     <script>
 
-        // TODO Refactor le JS
+        const domain = 'https://data.sncf.com/';
+        const key_sncf = '{{config('constants.SNCF_API_KEY')}}';
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        const app_id = '{{config('constants.APP_ID_FLIGHT')}}';
+        const app_key = '{{config('constants.APP_KEY_FLIGHT')}}';
+
+        // Variable globale...
+
+        var departments;
+        var pos_depart_ok = false;
+        var pos_arrivee_ok = false;
+        var place_arrivee;
+        var place_depart;
+        var tabGeocSNCF = {};
 
         /**
          * Ouverture de la modal train
@@ -271,35 +284,34 @@
          * Init de Google maps autocomplete
          **/
         function initAutocomplete() {
+
+            const input_depart = document.getElementById('adresse_input_depart');
+            const input_arrivee = document.getElementById('adresse_input_arrivee');
+
             // Create the autocomplete object, restricting the search to geographical
             // location types.
-            autocompleteDepart = new google.maps.places.Autocomplete(
-                /** @type {!HTMLInputElement} */(document.getElementById('adresse_input_depart')),
-                {
-
+            autocompleteDepart = new google.maps.places.Autocomplete(input_depart, {
                     types: ['address'],
                     language: 'fr',
                     componentRestrictions: {country: 'fr'}
                 });
 
-            autocompleteArrivee = new google.maps.places.Autocomplete(
-                /** @type {!HTMLInputElement} */(document.getElementById('adresse_input_arrivee')),
-                {
+            autocompleteArrivee = new google.maps.places.Autocomplete(input_arrivee, {
                     types: ['address'],
                     language: 'fr',
                     componentRestrictions: {country: 'fr'}
                 });
 
-            /****************** LISTENERS *********************************/
+
             autocompleteDepart.addListener('place_changed', function () {
                 if (this.getPlace().geometry.location) {
                     start_pos = this.getPlace().geometry.location;
                     if (verifyDepartment(this.getPlace())) {
                         pos_depart_ok = true;
                         place_depart = this.getPlace();
-                        swal("Lieu de prise en charge OK");
                     } else {
                         printErrorDepartments(true);
+                        input_depart.value = '';
                     }
                 }
             });
@@ -309,12 +321,11 @@
                 if (verifyDepartment(this.getPlace())) {
                     pos_arrivee_ok = true;
                     place_arrivee = this.getPlace();
-                    swal("Lieu de livraison OK");
                 } else {
                     printErrorDepartments(false);
+                    input_arrivee.value = '';
                 }
             });
-            /******************** FIN LISTENERS *******************************/
 
         }
 
@@ -542,20 +553,6 @@
             }
 
         }
-
-
-        const domain = 'https://data.sncf.com/';
-        const key_sncf = '{{config('constants.SNCF_API_KEY')}}';
-        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        const app_id = '{{config('constants.APP_ID_FLIGHT')}}';
-        const app_key = '{{config('constants.APP_KEY_FLIGHT')}}';
-
-        var departments;
-        var pos_depart_ok = false;
-        var pos_arrivee_ok = false;
-        var place_arrivee;
-        var place_depart;
-        var tabGeocSNCF = {};
 
 
         $(document).ready(function () {
