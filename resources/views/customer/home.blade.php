@@ -131,7 +131,7 @@
     <section class="sec-padding-6 section-medium-dark">
         <div class="container">
             <div class="row">
-                <div class="fo-copyright-holder text-center"> Copyright © 2018 | Deliverbag.fr</div>
+                <div class="fo-copyright-holder text-center"> Copyright © <span id="year"></span> | Deliverbag.fr</div>
             </div>
         </div>
     </section>
@@ -145,7 +145,6 @@
 
 
 
-    <!--end section-->
     <!-- Modal train -->
     <div class="modal fade" id="trainModal" role="dialog">
         <div class="modal-dialog" role="document">
@@ -285,22 +284,29 @@
          **/
         function initAutocomplete() {
 
+            const bounds_gironde = new google.maps.LatLngBounds(
+                new google.maps.LatLng(44.1939019, -1.2614241),
+                new google.maps.LatLng(45.573636, 0.315137)
+            );
+
             const input_depart = document.getElementById('adresse_input_depart');
             const input_arrivee = document.getElementById('adresse_input_arrivee');
 
             // Create the autocomplete object, restricting the search to geographical
             // location types.
             autocompleteDepart = new google.maps.places.Autocomplete(input_depart, {
-                    types: ['address'],
-                    language: 'fr',
-                    componentRestrictions: {country: 'fr'}
-                });
+                types: ['address'],
+                bounds: bounds_gironde,
+                language: 'fr',
+                componentRestrictions: {country: 'fr'}
+            });
 
             autocompleteArrivee = new google.maps.places.Autocomplete(input_arrivee, {
-                    types: ['address'],
-                    language: 'fr',
-                    componentRestrictions: {country: 'fr'}
-                });
+                types: ['address'],
+                bounds: bounds_gironde,
+                language: 'fr',
+                componentRestrictions: {country: 'fr'}
+            });
 
 
             autocompleteDepart.addListener('place_changed', function () {
@@ -379,8 +385,6 @@
                     lng: parseFloat(stops[i].stop_point.coord.lon)
                 };
                 geocoders_promises.push(geocode(pos, stops[i].stop_point.name));
-                //var returna = geocode(pos);
-                //alert(returna);
             }
 
             $.when(...geocoders_promises).then(function (values) {
@@ -390,11 +394,9 @@
                         'text': key,
                         'value': key
                     };
-                    //console.log('OK pour : ' + key + " object" + tabGeocSNCF[key]);
                 }
 
-                //$('#trainModal').modal('hide');
-                if (tabButtons.length == 0) {
+                if (tabButtons.length === 0) {
                     swal('Aucune gare trouvée pour ce numéro de train');
                 }
                 swal("Dans quelle gare arrivez-vous ?", {
@@ -407,7 +409,7 @@
                     }
                     pos_depart_ok = true;
                     place_depart = tabGeocSNCF[value];
-                    console.log(place_depart);
+                    $('#trainModal').modal('hide');
                 });
 
 
@@ -555,6 +557,13 @@
         }
 
 
+        function setCopyrightYear() {
+            var year_span = document.getElementById('year');
+            const year = (new Date()).getFullYear();
+            year_span.textContent = year;
+        }
+
+
         $(document).ready(function () {
             // On est sur que la lib google maps est load
             $(window).load(function () {
@@ -628,8 +637,8 @@
                             },
                             success: function (response) {
                                 swal({
-                                    title: 'Confirmez-vous la demande de prise en charge ?',
-                                    text: "Pour cette course avec un bagage par exemple cela coûterait " + parseFloat(response.price).toFixed(2) + " €",
+                                    title: 'Confirmer la prise en charge ?',
+                                    text: "Avec un bagage, cette course coûterait " + parseFloat(response.price).toFixed(2) + " €",
                                     icon: 'success',
                                     buttons: {
                                         cancel: false,
@@ -644,14 +653,14 @@
                                     },
                                 }).then((result) => {
 
-                                    if (result == 'confirm') {
+                                    if (result === 'confirm') {
                                         document.location.href = "{{url('delivery')}}" + '/' + response.id + '/save'
-                                    } else if (result == 'cancel') {
-                                        swal(
-                                            'Annulation!',
-                                            '.',
-                                            'success'
-                                        )
+                                    } else if (result === 'cancel') {
+                                        swal({
+                                            icon: 'success',
+                                            title: 'Annulation',
+                                            text: 'La prise en charge est annulée'
+                                        });
                                     }
                                 })
 
@@ -664,6 +673,8 @@
 
 
                 });
+
+                setCopyrightYear();
             });
         });
 
