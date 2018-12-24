@@ -1,0 +1,58 @@
+.hero-box {
+    background-image: url(../img/hero-background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 0;
+    min-height: 100vh;
+}
+
+.hero-box .hero-text {
+    margin-top: 5%;
+}
+
+.hero-box .hero-text h1,
+.hero-box .hero-text p {
+    text-transform: uppercase;
+    line-height: 1em;
+    color: #ffffff;
+}
+.hero-box .hero-text h1 {
+    font-family: "Raleway", sans-serif;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 1em;
+}
+.hero-box .hero-text p {
+    letter-spacing: 0.04em;
+    line-height: 1em;
+    font-size: 30px;
+}
+@media (max-width: 768px) {
+    .hero-box .hero-text {
+        margin-top: 0;
+    }
+    .hero-box {
+        padding: 150px 0 100px;
+    }
+    .hero-box .hero-text h1 {
+        font-size: 36px;
+    }
+    .hero-box .hero-text p {
+        font-size: 20px;
+    }
+}
+
+.voyage-train {
+    line-height: 42px;
+    margin-right: 7px;
+}
+
+.modal-buttons {
+    float: right;
+}
+
+.align-center {
+    text-align: center;
+}
