@@ -20,17 +20,17 @@
                                 <label for="email" class="field-label">Lieu de prise en charge</label>
                                 <label class="field prepend-icon">
                                     <input type="text" name="start_position[address]" id="firstname"
-                                           class="gui-input"
+                                           class="gui-input" disabled style="color : black"
                                            placeholder="Adresse" value="{{$delivery->startPosition->address}}">
-                                    <span class="field-icon"><i class="fa fa-location-arrow"></i></span>
+                                    <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                 </label>
                             </div>
                             <div>
                                 <label for="email" class="field-label">Lieu de livraison</label>
                                 <label class="field prepend-icon">
-                                    <input type="text" name="end_position[address]" id="firstname" class="gui-input"
-                                           placeholder="Adresse" value="{{$delivery->endPosition->address}}">
-                                    <span class="field-icon"><i class="fa fa-location-arrow"></i></span>
+                                    <input type="text"  name="end_position[address]" id="firstname" class="gui-input" style="color : black"
+                                           placeholder="Adresse" value="{{$delivery->endPosition->address}}" disabled>
+                                    <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                 </label>
                             </div>
                             <div class="frm-row">
@@ -39,12 +39,13 @@
                                     <label class="field prepend-icon">
                                         <input type='text' class="datepicker-input" id='datetimepicker4' name="datetimevalue"
                                                placeholder="DD/MM/YYYY" value=""/>
+                                        <span class="field-icon"><i class="fa fa-calendar" style="color : black"></i></span>
                                     </label>
                                 </div><!-- end section -->
                             </div><!-- end frm-row section -->
-                            <div class="frm-row">
+                            <div class="frm-row" style="margin-top: 2px">
                                 <label for="email" class="field-label">Voulez-vous que nous gardions vos bagages
-                                    quelques heures ? ? Indiquer une durée :</label>
+                                    quelques heures ? Indiquer une durée :</label>
                                 <div class="colm colm6 switch-1">
                                     <input id="switch-labelText" checked type="checkbox" name="my-checkbox"
                                            data-off-text="Non" data-on-text="Oui" data-label-text="Consigne">
@@ -56,15 +57,16 @@
                                         <span class="field-icon"><i class="fa fa-hourglass"></i></span>
                                     </label>
                                 </div>
-                                <div class="js-immediate">
+                                <div class="js-immediate" hidden>
                                     <strong>Livraison dès que possible</strong>
                                 </div>
                             </div>
                             <!-- end section --><br>
-                            <div class="tagline"><span>Enregistrement des bagages</span></div><!-- .tagline -->
-                            <div style="padding-top: 10px " class="text-center">
+                            <div class="tagline" style="margin-bottom: 10px"><span>Enregistrement des bagages</span></div><!-- .tagline -->
+                            <div style="padding-top: 10px " class="text-center" hidden>
                                 <div class="btn-group " role="group">
                                     <div class="frm-row">
+
 
                                         @foreach(\App\TypeBag::all() as $type_bag)
                                             <a id="{{$type_bag->id}}" class="js-add-bag button btn-secondary"
@@ -126,7 +128,7 @@
                 locale: 'fr',
                 defaultDate: moment()
             });
-            $('#datetimepicker4').data("DateTimePicker").minDate(moment() );
+            $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
 
             $("[name='my-checkbox']").bootstrapSwitch();
