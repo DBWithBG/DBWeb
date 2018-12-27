@@ -76,7 +76,6 @@
                                 </div>
                             </div>
 
-                            </div><!-- end .form-footer section -->
                             <input type="hidden" id="test">
 
                             <p id="infos"></p>
