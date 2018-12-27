@@ -36,7 +36,7 @@
                                         <div style="height: 28px" class="g-signin2" data-onsuccess="onSignIn"></div>
                                     </div>
                                     <div class="col-sm-7">
-                                        <!--<div onlogin="checkLoginState();" class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>-->
+                                        <div onlogin="checkLoginState();" class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
                                         <a href="{{url('/facebook')}}">Facebook</a>
                                     </div>
                                 </div>
