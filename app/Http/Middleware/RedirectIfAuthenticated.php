@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
                 $request->session()->forget('delivery_id');
                 return redirect('/delivery/'.session('delivery_id').'/save');
             }
-            return redirect('/teub');
+            return redirect('/');
         }
 
 
