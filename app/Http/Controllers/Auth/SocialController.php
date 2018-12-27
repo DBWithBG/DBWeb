@@ -44,7 +44,6 @@ class SocialController extends Controller
         }catch(\Exception $e){
             throw $e;
         }
-        dd($providerUser);
 
         //Ici vous pouvez dd($providedUser) pour voir à quoi ressemble
         //les données renvoyées selon le provider
@@ -81,14 +80,14 @@ class SocialController extends Controller
         if(session('type') == 'customer'){
             $customer = new Customer();
             $customer->user_id = $user->id;
-            $customer->name = $providerUser->lastName;
-            $customer->surname = $providerUser->firstName;
+            $customer->name = explode(' ', $providerUser->name )[1];
+            $customer->surname = explode(' ', $providerUser->name )[0];
             $customer->save();
         }elseif(session('type') == 'driver'){
             $driver = new Driver();
             $driver->user_id = $user->id;
-            $driver->name = $providerUser->lastName;
-            $driver->surname = $providerUser->firstName;
+            $driver->name = explode(' ', $providerUser->name )[1];
+            $driver->surname = explode(' ', $providerUser->name )[0];
         }
 
         if($user) Auth::guard()->login($user, true);
