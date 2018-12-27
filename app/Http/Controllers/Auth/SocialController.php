@@ -52,7 +52,7 @@ class SocialController extends Controller
         }catch(\Exception $e){
             throw $e;
         }
-        dd($providerUser);
+        dd(Input::get('from_type'));
 
         //Ici vous pouvez dd($providedUser) pour voir à quoi ressemble
         //les données renvoyées selon le provider
