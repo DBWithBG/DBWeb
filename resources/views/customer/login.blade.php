@@ -56,7 +56,7 @@
                                                 @endif
 
 
-                                                    <form method="post" action="{{url('/login')}}" id="js-form-login" url="{{url('/login')}}">
+                                                    <form method="post" action="{{url('/login')}}" id="js-form-login">
                                                         {{csrf_field()}}
 
                                                         <div class="form-body">
@@ -66,11 +66,11 @@
                                                             </div>
 
                                                             <div class="row text-center">
-                                                                <a href="{{url('facebook?type=driver')}}"
+                                                                <a href="{{url('facebook?from_type=web&type=customer')}}"
                                                                    class="button btn-social facebook span-left"> <span><i
                                                                                 class="fa fa-facebook"></i></span> Facebook
                                                                 </a>
-                                                                <a href="{{url('google?type=driver')}}"
+                                                                <a href="{{url('google?from_type=web&type=customer')}}"
                                                                    class="button btn-social googleplus span-left"> <span><i
                                                                                 class="fa fa-google"></i></span>
                                                                     Google </a>
@@ -158,7 +158,7 @@
                                                 @endif
 
 
-                                                    <form method="post" action="{{url('/login')}}" id="js-form-login" url="{{url('/login')}}">
+                                                    <form method="post" action="{{url('/login')}}" id="js-form-login">
                                                         {{csrf_field()}}
 
                                                         <div class="form-body">
@@ -167,13 +167,15 @@
                                                                 <div class="tagline"><span>Se connecter avec </span></div><!-- .tagline -->
                                                             </div>
 
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <a href="{{url('facebook?from_type=web&type=customer')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <a href="{{url('google?from_type=web&type=customer')}}" class="button btn-social google span-left"> <span><i class="fa fa-google"></i></span> Google </a>
-                                                                </div>
+                                                            <div class="row text-center">
+                                                                <a href="{{url('facebook?from_type=web&type=driver')}}"
+                                                                   class="button btn-social facebook span-left"> <span><i
+                                                                                class="fa fa-facebook"></i></span> Facebook
+                                                                </a>
+                                                                <a href="{{url('google?from_type=web&type=driver')}}"
+                                                                   class="button btn-social googleplus span-left"> <span><i
+                                                                                class="fa fa-google"></i></span>
+                                                                    Google </a>
                                                             </div>
 
                                                             <div class="spacer-t30 spacer-b30">

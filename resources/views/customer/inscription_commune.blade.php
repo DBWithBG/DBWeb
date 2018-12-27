@@ -55,18 +55,18 @@
                                                     @endforeach
                                                 @endif
 
-                                                <form method="post" action="{{"register"}}" url="{{url('register')}}" id="account1">
+                                                <form method="post" action="{{"register"}}" id="account1">
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">
                                                                 <div class="tagline"><span>S'inscrire avec </span></div>
                                                                 <!-- .tagline -->
                                                             </div>
-                                                            <a href="{{url('facebook?type=customer&from_type=web')}}"
+                                                            <a href="{{url('facebook?from_type=web&type=customer')}}"
                                                                class="button btn-social facebook span-left"> <span><i
                                                                             class="fa fa-facebook"></i></span> Facebook
                                                             </a>
-                                                            <a href="{{url('google?type=customer&from_type=web')}}"
+                                                            <a href="{{url('google?from_type=web&type=customer')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
                                                                             class="fa fa-google"></i></span>
                                                                 Google </a>
@@ -201,18 +201,18 @@
                                                     @endforeach
                                                 @endif
 
-                                                <form method="post" action="{{"register"}}" id="account2" url="{{url('register')}}">
+                                                <form method="post" action="{{"register"}}" id="account2">
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">
                                                                 <div class="tagline"><span>S'inscrire avec </span></div>
                                                                 <!-- .tagline -->
                                                             </div>
-                                                            <a href="{{url('facebook?type=driver')}}"
+                                                            <a href="{{url('facebook?from_type=web&type=driver')}}"
                                                                class="button btn-social facebook span-left"> <span><i
                                                                             class="fa fa-facebook"></i></span> Facebook
                                                             </a>
-                                                            <a href="{{url('google?type=driver')}}"
+                                                            <a href="{{url('google?from_type=web&type=driver')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
                                                                             class="fa fa-google"></i></span>
                                                                 Google </a>
