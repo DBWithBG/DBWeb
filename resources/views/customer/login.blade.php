@@ -65,7 +65,7 @@
                                                                 <div class="tagline"><span>Se connecter avec </span></div><!-- .tagline -->
                                                             </div>
 
-                                                            <div class="row">
+                                                            <div class="row text-center">
                                                                 <a href="{{url('facebook?type=driver')}}"
                                                                    class="button btn-social facebook span-left"> <span><i
                                                                                 class="fa fa-facebook"></i></span> Facebook
