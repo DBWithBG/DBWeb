@@ -90,6 +90,7 @@ class SocialController extends Controller
             $driver->user_id = $user->id;
             $driver->name = explode(' ', $providerUser->name )[1];
             $driver->surname = explode(' ', $providerUser->name )[0];
+            $driver->save();
         }
 
         if($user) Auth::guard()->login($user, true);
