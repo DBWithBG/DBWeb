@@ -16,33 +16,10 @@
 
 </head>
 <body>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '623663577980945',
-            xfbml      : true,
-            version    : 'v3.0'
-        });
-        FB.AppEvents.logPageView();
-    };
 
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<!--<div class="over-loader loader-live">
-    <div class="loader">
-        <div class="loader-item style4">
-            <div class="cube1"></div>
-            <div class="cube2"></div>
-        </div>
-    </div>
-</div>
--->
+<div id="fb-root"></div>
+
+
 <div class="wrapper-boxed">
     <div class="site-wrapper">
         @include('customer.layouts.topBarre')
@@ -54,6 +31,25 @@
 
     </div>
 </div>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '320707318542573',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v3.2'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.2';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <!-- Scripts -->
 @include('customer.layouts.scripts')
