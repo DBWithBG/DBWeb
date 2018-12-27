@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
@@ -17,10 +18,9 @@ class SocialController extends Controller
      * On autorise la route seulement pour les utilisateurs non connectés
      */
     public function __construct(){
-        dd(Input::get('type'));
-        if(Input::get('type') == 'customer') session('type', 'customer');
-        else if(Input::get('type') == 'driver') session('type', 'driver');
-        dd(session()->get('type'));
+        if(Input::get('type') == 'customer') Session::put('type', 'customer');
+        else if(Input::get('type') == 'driver') Session::put('type', 'driver');
+        dd(Session::get('type'));
         $this->middleware('guest');
     }
 
