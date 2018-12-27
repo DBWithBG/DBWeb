@@ -20,7 +20,6 @@ class SocialController extends Controller
     public function __construct(){
         if(Input::get('type') == 'customer') Session::put('type', 'customer');
         else if(Input::get('type') == 'driver') Session::put('type', 'driver');
-        dd(Session::get('type'));
         $this->middleware('guest');
     }
 
