@@ -66,12 +66,14 @@
                                                             </div>
 
                                                             <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <a href="{{url('facebook?from_type=web&type=driver')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <a href="{{url('google?from_type=web&type=driver')}}" class="button btn-social google span-left"> <span><i class="fa fa-google"></i></span> Google </a>
-                                                                </div>
+                                                                <a href="{{url('facebook?type=driver')}}"
+                                                                   class="button btn-social facebook span-left"> <span><i
+                                                                                class="fa fa-facebook"></i></span> Facebook
+                                                                </a>
+                                                                <a href="{{url('google?type=driver')}}"
+                                                                   class="button btn-social googleplus span-left"> <span><i
+                                                                                class="fa fa-google"></i></span>
+                                                                    Google </a>
                                                             </div>
 
                                                             <div class="spacer-t30 spacer-b30">
