@@ -145,10 +145,9 @@
             $('.js-add-bag').on('click', function () {
                 id = $(this).attr('id');
                 $('.js-' + id).append('<span class=" js-delete-' + bag_number + ' ">' +
-                    '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][name]" value="" placeholder="nom">' +
+                    '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][name]" value="" placeholder="nom" style="margin-top: 10px">' +
                     '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][descr]" value="" placeholder="description">' +
-                    '<a class="btn btn-small js-press-delete btn-danger" id="' + bag_number + '">Supprimer</a>' +
-                    '</span>');
+                    '<a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336" id='+bag_number+'><i class="fa fa-remove"></i> Ne pas utiliser</a></span>');
                 bag_number++;
             });
             $('.switch-1').hover(function () {
