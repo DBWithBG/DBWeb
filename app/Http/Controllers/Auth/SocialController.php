@@ -79,13 +79,13 @@ class SocialController extends Controller
             'email' => $providerUser->email,
             $provider.'_id' => $providerUser->id,
         ]);
-        if(session('type') == 'customer'){
+        if(Session::get('type') == 'customer'){
             $customer = new Customer();
             $customer->user_id = $user->id;
             $customer->name = explode(' ', $providerUser->name )[1];
             $customer->surname = explode(' ', $providerUser->name )[0];
             $customer->save();
-        }elseif(session('type') == 'driver'){
+        }elseif(Session::get('type') == 'driver'){
             $driver = new Driver();
             $driver->user_id = $user->id;
             $driver->name = explode(' ', $providerUser->name )[1];
