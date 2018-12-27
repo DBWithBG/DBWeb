@@ -33,7 +33,8 @@
 
                                 <div class="text-center">
                                     <a href="{{url('facebook')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
-                                    <a href="{{url('google')}}" class="button btn-social googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google+ </a>
+                                    <div style="display: inline-block;height: 42px;" class="g-signin2" data-onsuccess="onSignIn"></div>
+
 
                                 </div><!-- end section -->
 

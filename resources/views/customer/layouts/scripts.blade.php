@@ -192,6 +192,7 @@ The following part can be removed on Server for On Demand Loading) -->
 <script type="text/javascript" src="{{asset('iblue/js/cubeportfolio/jquery.cubeportfolio.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('iblue/js/cubeportfolio/main-mosaic3-cols3.js')}}"></script>
 <script src="{{asset('iblue/js/owl-carousel/owl.carousel.js')}}"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="{{asset('iblue/js/owl-carousel/custom.js')}}"></script>
 <script src="{{asset('iblue/js/owl-carousel/owl.carousel.js')}}"></script>
 <script src="{{asset('iblue/js/accordion/js/smk-accordion.js')}}"></script>

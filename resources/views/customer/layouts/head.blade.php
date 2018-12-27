@@ -4,6 +4,8 @@
 <!-- favicon icon -->
 <link rel="shortcut icon" type="images/png" href="{!! asset("img/ico_deliverbag.png") !!}">
 
+<meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
+
 <!-- all css here -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700" rel="stylesheet">
