@@ -22,7 +22,6 @@ class SocialController extends Controller
         //Pour différencier le click depuis un driver ou depuis un customer
         if(Input::get('type') == 'customer') Session::put('type', 'customer');
         else if(Input::get('type') == 'driver') Session::put('type', 'driver');
-        dd(Input::get('from_type'));
         //Traitement pour utiliser et sur mobile et sur web
         if(Input::get('from_type') == 'mobile') Session::put('from_type', 'mobile');
         else if(Input::get('from_type') == 'web') Session::put('from_type', 'web');
@@ -53,7 +52,6 @@ class SocialController extends Controller
         }catch(\Exception $e){
             throw $e;
         }
-        dd(Input::get('from_type'));
 
         //Ici vous pouvez dd($providedUser) pour voir à quoi ressemble
         //les données renvoyées selon le provider
@@ -63,11 +61,11 @@ class SocialController extends Controller
         $user = $this->checkIfProviderIdExists($provider, $providerUser->id);
 
         if($user){
-            if(Input::get('from_type') == 'mobile') {
+            if(Session::get('from_type') == 'mobile') {
                 $token = JWTAuth::fromUser($user);
                 !empty($user->driver) ? $type= 'driver' : $type = 'customer';
                 return response()->json(compact('token', 'type'));
-            } else if(Input::get('from_type') == 'web'){
+            } else if(Session::get('from_type') == 'web'){
                 Auth::guard()->login($user, true);
                 return redirect('/');
             }
@@ -82,11 +80,11 @@ class SocialController extends Controller
                 $field = $provider.'_id';
                 $user->$field = $providerUser->id;
 
-                if(Input::get('from_type') == 'mobile') {
+                if(Session::get('from_type') == 'mobile') {
                     $token = JWTAuth::fromUser($user);
                     !empty($user->driver) ? $type= 'driver' : $type = 'customer';
                     return response()->json(compact('token', 'type'));
-                } else if(Input::get('from_type') == 'web'){
+                } else if(Session::get('from_type') == 'web'){
                     Auth::guard()->login($user, true);
                     return redirect('/');
                 }
@@ -116,10 +114,10 @@ class SocialController extends Controller
             $type = 'driver';
         }
 
-        if(Input::get('from_type') == 'mobile') {
+        if(Session::get('from_type') == 'mobile') {
             $token = JWTAuth::fromUser($user);
             return response()->json(compact('token', 'type'));
-        } else if(Input::get('from_type') == 'web'){
+        } else if(Session::get('from_type') == 'web'){
             Auth::guard()->login($user, true);
             return redirect('/');
         }
