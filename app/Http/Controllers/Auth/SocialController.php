@@ -53,7 +53,6 @@ class SocialController extends Controller
             throw $e;
         }
 
-        dd($providerUser);
 
         //Ici vous pouvez dd($providedUser) pour voir à quoi ressemble
         //les données renvoyées selon le provider
@@ -61,7 +60,7 @@ class SocialController extends Controller
         //Si j'ai déjà le provider_id dans la base de donnée
         //je connecte directement l'utilisateur
         $user = $this->checkIfProviderIdExists($provider, $providerUser->id);
-
+        dd($user);
         if($user){
             if(Session::get('from_type') == 'mobile') {
                 $token = JWTAuth::fromUser($user);
