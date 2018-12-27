@@ -32,12 +32,11 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-5">
-                                        <div style="height: 28px" class="g-signin2" data-onsuccess="onSignIn"></div>
+                                    <div class="col-sm-6">
+                                        <a href="{{url('facebook')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
                                     </div>
-                                    <div class="col-sm-7">
-                                        <div onlogin="checkLoginState();" class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-                                        <a href="{{url('/facebook')}}">Facebook</a>
+                                    <div class="col-sm-6">
+                                        <a href="{{url('google')}}" class="button btn-social googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google </a>
                                     </div>
                                 </div>
 
@@ -99,15 +98,4 @@
     </section>
     <!--end item -->
     <div class="clearfix"></div>
-@endsection
-
-@section('custom-scripts')
-<script>
-    function checkLoginState() {
-        console.log('Check login state');
-        FB.getLoginStatus(function(response) {
-            console.log(response);
-        });
-    }
-</script>
 @endsection
