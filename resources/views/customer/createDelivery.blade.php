@@ -75,10 +75,10 @@
 
 
                                                                     @foreach(\App\TypeBag::all() as $type_bag)
-                                                                        <div class="col-md-4 js-{{$type_bag->id}}" style="border-right-color: black;">
+                                                                        <div class="col-md-4 js-{{$type_bag->id}}"  style="border-right-color: black;">
                                                                             <span style="font-size: 20px; font-weight: bold">{{$type_bag->name}}<br><span style="font-weight: lighter; !important;">{{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm</span></span>
                                                                             <br>
-                                                                            <a id="{{$type_bag->id}}" class="js-add-bag btn btn-small light uppercase btn-success"><i class="fa fa-plus-circle"></i> Ajouter</a>
+                                                                            <a id="{{$type_bag->id.'-'.$type_bag->name}}" class="js-add-bag btn btn-small light uppercase btn-success"><i class="fa fa-plus-circle"></i> Ajouter</a>
                                                                             <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
                                                                             @foreach($my_bags as $my_bag)
                                                                                 <span class="js-delete-{{$my_bag->id}}">
@@ -130,7 +130,9 @@
     <script src="{{asset('iblue/js/switches/bootstrap-switch.js')}}"></script>
     <script type="text/javascript">
         var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
+        var bag_ref_number = bag_number;
         bag_number++;
+        var real_number = 0;
         $(document).ready(function ($) {
 
             $('#datetimepicker4').datetimepicker({
@@ -142,10 +144,12 @@
 
             $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
-                id = $(this).attr('id');
-                $('.js-' + id).append('<span class=" js-delete-' + bag_number + ' ">' +
-                    '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][name]" value="" placeholder="nom" style="margin-top: 10px">' +
-                    '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][descr]" value="" placeholder="description">' +
+                real_number ++;
+                id = $(this).attr('id').split('-');
+
+                $('.js-' + id[0]).append('<span class=" js-delete-' + bag_number + ' ">' +
+                    '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][name]" value="BAGAGE '+ id[1] +' '+ real_number+'" placeholder="nom" style="margin-top: 10px">' +
+                    '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                     '<a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336" id='+bag_number+'><i class="fa fa-remove"></i> Ne pas utiliser</a></span>');
                 bag_number++;
             });
@@ -180,6 +184,7 @@
 
             $(document).on('click', '.js-press-delete', function () {
                 id = $(this).attr('id');
+                if(id > bag_ref_number) real_number --;
                 $('.js-delete-' + id).remove();
             })
         });
