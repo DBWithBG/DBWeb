@@ -79,13 +79,14 @@
                             <input type="hidden" id="test">
 
                             <p id="infos"></p>
+
+                            <div class="row text-center">
+                                <span> Pas encore inscrit ? </span>
+                            </div>
+                            <div class="row text-center">
+                                <a href="{{url('inscription')}}">S'enregistrer</a>
+                            </div>
                         </form>
-                        <div class="row text-center">
-                            <span> Pas encore inscrit ? </span>
-                        </div>
-                    <div class="row text-center">
-                        <a href="{{url('inscription')}}"><button class="btn btn-primary"><i class="fa fa-register"></i>S'enregistrer</button></a>
-                    </div>
 
                     </div><!-- end .smart-forms section -->
                 </div><!-- end .smart-wrap section -->
