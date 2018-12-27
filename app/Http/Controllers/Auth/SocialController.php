@@ -60,7 +60,6 @@ class SocialController extends Controller
         //Si j'ai déjà le provider_id dans la base de donnée
         //je connecte directement l'utilisateur
         $user = $this->checkIfProviderIdExists($provider, $providerUser->id);
-        dd($user);
         if($user){
             if(Session::get('from_type') == 'mobile') {
                 $token = JWTAuth::fromUser($user);
@@ -99,6 +98,7 @@ class SocialController extends Controller
             $provider.'_id' => $providerUser->id,
             'is_confirmed' => 1
         ]);
+        dd($user);
         if(Session::get('type') == 'customer'){
             $customer = new Customer();
             $customer->user_id = $user->id;
