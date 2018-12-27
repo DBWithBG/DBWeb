@@ -37,21 +37,25 @@ class MobileController extends Controller
     //TODO VERIF SI CALL PAR DRIVER
     public function getDeliveries(Request $request){
 
+        $user = auth()->user();
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+
         $res=Delivery::where('status','=',$request->get('status'))
             ->with('customer')
             ->with('startPosition')
             ->with('endPosition')
             ->with('takeOverDelivery')
             ->with('bags')
-            ->get()->toJson();
+            ->get();
 
-        /*$final_res = [];
-
+        $final_res = [];
         foreach ($res as $delivery){
-            if(sizeof($delivery->bags()) <= $user->driver->max_bags){
-                array_push($res, $takeover);
+            if(sizeof($delivery->getRelation('bags')) <= $user->driver->max_bags){
+                array_push($final_res, $delivery);
             }
-        }*/
+        }
+
         return response()
             ->json($res)
             ->setCallback($request->input('callback'));

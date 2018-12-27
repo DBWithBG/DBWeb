@@ -54,6 +54,10 @@
     text-align: center;
 }
 
+.row-margin {
+    margin-top: 10px;
+}
+
 .no-border-bottom {
     border-bottom: none !important;
 }
@@ -61,7 +65,6 @@
 .light-border-bottom {
     border-bottom: 1px solid #f0f0f0 !important;
 }
-
 
 
 @media (min-width: 1000px) {

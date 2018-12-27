@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -27,13 +30,17 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+
+    protected function redirectTo(){
+        if(Session::get('delivery_id')){
+            return 'delivery/'.Session::get('delivery_id').'/save';
+        }
+        return '/';
+
+    }
+
+        public function __construct(){
         $this->middleware('guest')->except('logout');
     }
+
 }
