@@ -66,6 +66,7 @@ class SocialController extends Controller
             if($user){
                 $field = $provider.'_id';
                 $user->$field = $providerUser->id;
+                $user->is_confirmed = true;
                 $user->save();
                 Auth::guard()->login($user, true); // true pour garder l'utilisateur connecté ( remember me )
                 return redirect('/');
