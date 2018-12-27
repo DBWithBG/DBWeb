@@ -69,7 +69,7 @@
                                                             <a href="{{url('google?type=customer&from_type=web')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
                                                                             class="fa fa-google"></i></span>
-                                                                Google+ </a>
+                                                                Google </a>
                                                         </div><!-- end section -->
                                                         <div class="spacer-b30" style="padding-top: 20px">
                                                             <div class="tagline"><span>OU Classiquement </span></div>
@@ -214,8 +214,8 @@
                                                             </a>
                                                             <a href="{{url('google?type=driver')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
-                                                                            class="fa fa-google-plus"></i></span>
-                                                                Google+ </a>
+                                                                            class="fa fa-google"></i></span>
+                                                                Google </a>
                                                         </div><!-- end section -->
                                                         <div class="spacer-b30" style="padding-top: 20px">
                                                             <div class="tagline"><span>OU Classiquement </span></div>
