@@ -33,6 +33,7 @@ class SocialController extends Controller
      * Fonction de callback ou le provider nous redirige en passant l'utilisateur
      */
     public function callback($provider){
+        dd($provider);
         //Récupération de l'utilisateur renvoyé
         try{
             $providerUser = Socialite::driver($provider)->user();
