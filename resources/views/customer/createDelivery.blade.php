@@ -3,8 +3,8 @@
 @section('content')
     <section class="sec-padding section-light">
 
-    <div class="container-fluid" >
-        <div class="container">
+        <div class="container-fluid" >
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="text-box white padding-4">
@@ -81,6 +81,7 @@
                                                                             <a id="{{$type_bag->id}}" class="js-add-bag btn btn-small light uppercase btn-success"><i class="fa fa-plus-circle"></i> Ajouter</a>
                                                                             <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
                                                                             @foreach($my_bags as $my_bag)
+                                                                                <span class="js-delete-{{$my_bag->id}}">
                                                                                 <input type="text" class="gui-input" style="margin-top: 10px"
                                                                                        name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][name]"
                                                                                        value="{{$my_bag->name}}" placeholder="nom">
@@ -90,6 +91,7 @@
                                                                                 <a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336"
                                                                                    id="{{$my_bag->id}}">
                                                                                     <i class="fa fa-remove"></i> Ne pas utiliser</a>
+                                                                                    </span>
                                                                         @endforeach
                                                                         <!--end item-->
                                                                         </div>
@@ -98,7 +100,7 @@
 
                                                             </div>
                                                         </div>km
-Prix : 9.96 €
+                                                        Prix : 9.96 €
                                                         <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                                                         <div class="tagline" style="margin-bottom: 10px"></div>
@@ -117,8 +119,8 @@ Prix : 9.96 €
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
 
     </section>
 
@@ -142,11 +144,11 @@ Prix : 9.96 €
             $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
                 id = $(this).attr('id');
-                $('.js-' + id).append('<div class=" js-delete-' + bag_number + ' colm colm6">' +
+                $('.js-' + id).append('<span class=" js-delete-' + bag_number + ' ">' +
                     '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][name]" value="" placeholder="nom">' +
                     '<input type="text" class="gui-input" name="bagages[' + id + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                     '<a class="btn btn-small js-press-delete btn-danger" id="' + bag_number + '">Supprimer</a>' +
-                    '</div>');
+                    '</span>');
                 bag_number++;
             });
             $('.switch-1').hover(function () {
