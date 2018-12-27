@@ -65,7 +65,13 @@
 
 
 @media (min-width: 1000px) {
-    .little-padding-bottom {
+    .little-padding-bottom-lg {
+        padding-bottom: 10px !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .little-padding-bottom-sm {
         padding-bottom: 10px !important;
     }
 }

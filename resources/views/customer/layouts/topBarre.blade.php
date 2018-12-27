@@ -5,8 +5,8 @@
     <div class="header-section style1 pin-style {{Request::is('/') ? 'no-border-bottom' : 'white dark-dropdowns links-dark light-border-bottom'}}">
         <div class="container">
             <div class="mod-menu">
-                <div class="row little-padding-bottom">
-                    <div class="col-sm-2"> <a href="{{url('/')}}" title="" class="logo style-2 mar-4"> <img src="{{asset('img/logo_plat_milieu.png')}}" alt=""> </a> </div>
+                <div class="row little-padding-bottom-lg">
+                    <div class="col-sm-2 little-padding-bottom-sm"> <a href="{{url('/')}}" title="" class="logo style-2 mar-4"> <img src="{{asset('img/logo_plat_milieu.png')}}" alt=""> </a> </div>
                     <div class="col-sm-10">
                         <div class="main-nav">
                             <ul class="nav navbar-nav top-nav">
