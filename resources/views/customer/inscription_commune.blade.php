@@ -62,11 +62,11 @@
                                                                 <div class="tagline"><span>S'inscrire avec </span></div>
                                                                 <!-- .tagline -->
                                                             </div>
-                                                            <a href="{{url('facebook?type=customer')}}"
+                                                            <a href="{{url('facebook?type=customer&from_type=web')}}"
                                                                class="button btn-social facebook span-left"> <span><i
                                                                             class="fa fa-facebook"></i></span> Facebook
                                                             </a>
-                                                            <a href="{{url('google?type=customer')}}"
+                                                            <a href="{{url('google?type=customer&from_type=web')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
                                                                             class="fa fa-google-plus"></i></span>
                                                                 Google+ </a>

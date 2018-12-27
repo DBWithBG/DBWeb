@@ -6,6 +6,8 @@
     use App\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Validator;
+    use Laravel\Socialite\Facades\Socialite;
+    use Laravel\Socialite\SocialiteManager;
     use Tymon\JWTAuth\Exceptions\JWTException;
     use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -14,7 +16,7 @@
 
         public function __construct()
         {
-            $this->middleware('jwt.auth')->except(['login']);
+            $this->middleware('jwt.auth')->except(['login', 'redirectToProvider', 'handleProviderCallback']);
         }
 
         public function login(Request $request)

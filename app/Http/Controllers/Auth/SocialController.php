@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SocialController extends Controller
 {
@@ -18,8 +19,12 @@ class SocialController extends Controller
      * On autorise la route seulement pour les utilisateurs non connectés
      */
     public function __construct(){
+        //Pour différencier le click depuis un driver ou depuis un customer
         if(Input::get('type') == 'customer') Session::put('type', 'customer');
         else if(Input::get('type') == 'driver') Session::put('type', 'driver');
+        //Traitement pour utiliser et sur mobile et sur web
+        if(Input::get('from_type') == 'mobile') Session::put('from_type', 'mobile');
+        else if(Input::get('from_type') == 'web') Session::put('from_type', 'web');
         $this->middleware('guest');
     }
 
@@ -29,7 +34,8 @@ class SocialController extends Controller
      * Fonction qui va se charger de rediriger notre application vers l'url du provider
      */
     public function redirect($provider){
-        return Socialite::driver($provider)->redirect();
+        if(Input::get('from_type') == 'mobile') return Socialite::driver($provider)->stateless()->redirect();
+        else if(Input::get('from_type') == 'web') return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -41,7 +47,8 @@ class SocialController extends Controller
     public function callback($provider){
         //Récupération de l'utilisateur renvoyé
         try{
-            $providerUser = Socialite::driver($provider)->user();
+            if(Input::get('from_type') == 'mobile') $providerUser = Socialite::driver($provider)->stateless()->user();
+            else if(Input::get('from_type') == 'web') $providerUser = Socialite::driver($provider)->user();
         }catch(\Exception $e){
             throw $e;
         }
@@ -54,8 +61,14 @@ class SocialController extends Controller
         $user = $this->checkIfProviderIdExists($provider, $providerUser->id);
 
         if($user){
-            Auth::guard()->login($user, true);
-            return redirect('/');
+            if(Input::get('from_type') == 'mobile') {
+                $token = JWTAuth::fromUser($user);
+                !empty($user->driver) ? $type= 'driver' : $type = 'customer';
+                return response()->json(compact('token', 'type'));
+            } else if(Input::get('from_type') == 'web'){
+                Auth::guard()->login($user, true);
+                return redirect('/');
+            }
         }
 
         //Je vérifie si j'ai un email
@@ -67,8 +80,14 @@ class SocialController extends Controller
                 $field = $provider.'_id';
                 $user->$field = $providerUser->id;
 
-                Auth::guard()->login($user, true); // true pour garder l'utilisateur connecté ( remember me )
-                return redirect('/');
+                if(Input::get('from_type') == 'mobile') {
+                    $token = JWTAuth::fromUser($user);
+                    !empty($user->driver) ? $type= 'driver' : $type = 'customer';
+                    return response()->json(compact('token', 'type'));
+                } else if(Input::get('from_type') == 'web'){
+                    Auth::guard()->login($user, true);
+                    return redirect('/');
+                }
             }
         }
 
@@ -85,17 +104,23 @@ class SocialController extends Controller
             $customer->name = explode(' ', $providerUser->name )[1];
             $customer->surname = explode(' ', $providerUser->name )[0];
             $customer->save();
+            $type = 'customer';
         }elseif(Session::get('type') == 'driver'){
             $driver = new Driver();
             $driver->user_id = $user->id;
             $driver->name = explode(' ', $providerUser->name )[1];
             $driver->surname = explode(' ', $providerUser->name )[0];
             $driver->save();
+            $type = 'driver';
         }
 
-        if($user) Auth::guard()->login($user, true);
-        return redirect('/');
-
+        if(Input::get('from_type') == 'mobile') {
+            $token = JWTAuth::fromUser($user);
+            return response()->json(compact('token', 'type'));
+        } else if(Input::get('from_type') == 'web'){
+            Auth::guard()->login($user, true);
+            return redirect('/');
+        }
     }
 
     /**

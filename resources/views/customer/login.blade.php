@@ -33,10 +33,10 @@
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <a href="{{url('facebook')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
+                                        <a href="{{url('facebook?from_type=web')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a href="{{url('google')}}" class="button btn-social googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google </a>
+                                        <a href="{{url('google?from_type=web')}}" class="button btn-social googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google </a>
                                     </div>
                                 </div>
 

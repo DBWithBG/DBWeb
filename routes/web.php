@@ -119,6 +119,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 
 /*************************** FRONT CUSTOMER **************************************/
 
+
 Route::get('/home', 'CustomerController@home');
 
 Route::get('/contact', 'CustomerController@contact');
@@ -174,6 +175,7 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
 
 /************************** API MOBILE *******************************/
+
 
 Route::post('mobile/register', 'phone\APIRegisterController@register');
 Route::post('mobile/login', 'phone\APILoginController@login');
