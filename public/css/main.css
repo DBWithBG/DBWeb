@@ -30,11 +30,8 @@
     font-size: 30px;
 }
 @media (max-width: 768px) {
-    .hero-box .hero-text {
-        margin-top: 0;
-    }
     .hero-box {
-        padding: 150px 0 100px;
+        padding: 70px 0 60px;
     }
     .hero-box .hero-text h1 {
         font-size: 36px;
@@ -59,4 +56,31 @@
 
 .row-margin {
     margin-top: 10px;
+}
+
+.no-border-bottom {
+    border-bottom: none !important;
+}
+
+.light-border-bottom {
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+
+@media (min-width: 1000px) {
+    .little-padding-bottom-lg {
+        padding-bottom: 10px !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .little-padding-bottom-sm {
+        padding-bottom: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .header-section {
+        padding-bottom: 0px !important;
+    }
 }

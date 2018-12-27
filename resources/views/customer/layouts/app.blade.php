@@ -50,6 +50,8 @@
         <!--end loading-->
         @yield('content')
 
+        @include('customer.layouts.footer')
+
     </div>
 </div>
 
