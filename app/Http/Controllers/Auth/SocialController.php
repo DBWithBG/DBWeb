@@ -47,8 +47,8 @@ class SocialController extends Controller
     public function callback($provider){
         //Récupération de l'utilisateur renvoyé
         try{
-            if(Input::get('from_type') == 'mobile') $providerUser = Socialite::driver($provider)->stateless()->user();
-            else if(Input::get('from_type') == 'web') $providerUser = Socialite::driver($provider)->user();
+            if(Session::get('from_type') == 'mobile') $providerUser = Socialite::driver($provider)->stateless()->user();
+            else if(Session::get('from_type') == 'web') $providerUser = Socialite::driver($provider)->user();
         }catch(\Exception $e){
             throw $e;
         }
