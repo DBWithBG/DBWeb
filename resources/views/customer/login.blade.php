@@ -221,10 +221,10 @@
                                                         <p id="infos"></p>
 
                                                         <div class="row text-center">
-                                                            <span><a href="{{url('inscription')}}"> Pas encore inscrit ? </a></span>
+                                                            <span><a href="{{url('inscription?type=driver')}}"> Pas encore inscrit ? </a></span>
                                                         </div>
                                                         <div class="row text-center">
-                                                            <a href="{{url('inscription')}}">S'enregistrer</a>
+                                                            <a href="{{url('inscription?type=driver')}}">S'enregistrer</a>
                                                         </div>
                                                     </form>
 

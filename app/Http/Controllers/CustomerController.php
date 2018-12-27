@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Validator;
@@ -64,6 +65,7 @@ class CustomerController extends Controller
 
     //Inscription pour le chauffeur et le client
     public function inscription(){
+        if(Input::get('type') == 'driver') Session::put('inscription_driver', 'true');
         return view('customer.inscription_commune');
     }
 
