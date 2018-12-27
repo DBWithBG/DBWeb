@@ -62,11 +62,11 @@
                                                                 <div class="tagline"><span>S'inscrire avec </span></div>
                                                                 <!-- .tagline -->
                                                             </div>
-                                                            <a href="{{url('facebook')}}"
+                                                            <a href="{{url('facebook?type=customer')}}"
                                                                class="button btn-social facebook span-left"> <span><i
                                                                             class="fa fa-facebook"></i></span> Facebook
                                                             </a>
-                                                            <a href="{{url('google')}}"
+                                                            <a href="{{url('google?type=customer')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
                                                                             class="fa fa-google-plus"></i></span>
                                                                 Google+ </a>
@@ -208,11 +208,11 @@
                                                                 <div class="tagline"><span>S'inscrire avec </span></div>
                                                                 <!-- .tagline -->
                                                             </div>
-                                                            <a href="{{url('facebook')}}"
+                                                            <a href="{{url('facebook?type=driver')}}"
                                                                class="button btn-social facebook span-left"> <span><i
                                                                             class="fa fa-facebook"></i></span> Facebook
                                                             </a>
-                                                            <a href="{{url('google')}}"
+                                                            <a href="{{url('google?type=driver')}}"
                                                                class="button btn-social googleplus span-left"> <span><i
                                                                             class="fa fa-google-plus"></i></span>
                                                                 Google+ </a>
