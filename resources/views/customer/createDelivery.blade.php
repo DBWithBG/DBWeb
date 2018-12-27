@@ -50,7 +50,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row row-margin">
-                                                    <div class="col-md-12" style="margin-top: 2px">
+                                                    <div class="col-md-12 switch-1" style="margin-top: 2px">
                                                         <label for="email" class="field-label">Voulez-vous que nous gardions vos bagages
                                                             quelques heures ? Indiquer une durée :</label>
                                                         <input id="switch-labelText" checked type="checkbox" name="my-checkbox"
