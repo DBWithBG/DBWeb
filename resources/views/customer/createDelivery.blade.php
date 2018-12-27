@@ -78,6 +78,7 @@
                                                                         <div class="col-md-4" style="border-right-color: black;">
                                                                             <span style="font-size: 20px; font-weight: bold">{{$type_bag->name}}<br><span style="font-weight: lighter; !important;">{{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm</span></span>
                                                                             <br>
+                                                                            <a class="js-add-bag btn btn-medium light uppercase btn-success"><i class="fa fa-plus-circle"></i></a>
                                                                             <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
                                                                             @foreach($my_bags as $my_bag)
                                                                                 <input type="text" class="gui-input" style="margin-top: 10px"
