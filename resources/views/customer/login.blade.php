@@ -36,7 +36,7 @@
                                         <a href="{{url('facebook?from_type=web&type=customer')}}" class="button btn-social facebook span-left"> <span><i class="fa fa-facebook"></i></span> Facebook </a>
                                     </div>
                                     <div class="col-sm-6">
-                                        <a href="{{url('google?from_type=web&type=customer')}}" class="button btn-social googleplus span-left"> <span><i class="fa fa-google-plus"></i></span> Google </a>
+                                        <a href="{{url('google?from_type=web&type=customer')}}" class="button btn-social google span-left"> <span><i class="fa fa-google"></i></span> Google </a>
                                     </div>
                                 </div>
 
