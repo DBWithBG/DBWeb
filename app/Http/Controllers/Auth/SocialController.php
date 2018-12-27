@@ -98,7 +98,6 @@ class SocialController extends Controller
             $provider.'_id' => $providerUser->id,
             'is_confirmed' => 1
         ]);
-        dd($user);
         if(Session::get('type') == 'customer'){
             $customer = new Customer();
             $customer->user_id = $user->id;
@@ -114,6 +113,7 @@ class SocialController extends Controller
             $driver->save();
             $type = 'driver';
         }
+
 
         if(Session::get('from_type') == 'mobile') {
             $token = JWTAuth::fromUser($user);
