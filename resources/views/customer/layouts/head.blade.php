@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{!! asset('iblue/js/bootstrap/bootstrap.min.css') !!}">
-<link rel="stylesheet" type="text/css" href="{!! asset('css/home.css') !!}">
+<link rel="stylesheet" type="text/css" href="{!! asset('css/main.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/js/megamenu/stylesheets/screen.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/css/theme-default.css') !!}">
 <link rel="stylesheet" href="{!! asset('iblue/css/shortcodes.css') !!}">
