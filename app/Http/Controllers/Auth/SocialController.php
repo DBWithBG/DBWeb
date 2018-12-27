@@ -66,8 +66,7 @@ class SocialController extends Controller
             if($user){
                 $field = $provider.'_id';
                 $user->$field = $providerUser->id;
-                $user->is_confirmed = true;
-                $user->save();
+
                 Auth::guard()->login($user, true); // true pour garder l'utilisateur connecté ( remember me )
                 return redirect('/');
             }
@@ -78,6 +77,7 @@ class SocialController extends Controller
             'name' => $providerUser->name,
             'email' => $providerUser->email,
             $provider.'_id' => $providerUser->id,
+            'is_confirmed' => 1
         ]);
         if(Session::get('type') == 'customer'){
             $customer = new Customer();
