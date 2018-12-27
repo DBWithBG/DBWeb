@@ -18,8 +18,13 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            if($request->session()->has('delivery_id')){
+                $request->session()->forget('delivery_id');
+                return redirect('/delivery/'.session('delivery_id').'/save');
+            }
+            return redirect('/teub');
         }
+
 
         return $next($request);
     }

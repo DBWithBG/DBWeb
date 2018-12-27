@@ -83,6 +83,7 @@
             //ajout des bagages
             if(empty($request['bagages'])) $request['bagages'] = [];
             if(empty($request['customer_id'])) $request['customer_id'] = "";
+            if(!Auth::check()) session('delivery_id', $delivery->id);
             //if(!isset($request['customer_id']))
                 //$request['customer_id']=Auth::user()->customer->id;
 
@@ -187,6 +188,7 @@
             if(Auth::check()){//S'il s'est connecté entre temps
                 $delivery->customer_id = Auth::user()->customer->id;
                 $delivery->save();
+                Session::forget('delivery_id');
             }else{
                 Session::put('delivery_id', $delivery_id);
                 Session::flash('message', 'Connectez-vous pour finaliser la demande de prise en charge');
