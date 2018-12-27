@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
@@ -14,6 +16,8 @@ class SocialController extends Controller
      * On autorise la route seulement pour les utilisateurs non connectés
      */
     public function __construct(){
+        if(Input::get('type') == 'customer') session('type', 'customer');
+        else if(Input::get('type') == 'driver') session('type', 'driver');
         $this->middleware('guest');
     }
 
@@ -39,6 +43,7 @@ class SocialController extends Controller
         }catch(\Exception $e){
             throw $e;
         }
+        dd($providerUser);
 
         //Ici vous pouvez dd($providedUser) pour voir à quoi ressemble
         //les données renvoyées selon le provider
@@ -72,6 +77,13 @@ class SocialController extends Controller
             'email' => $providerUser->email,
             $provider.'_id' => $providerUser->id,
         ]);
+        if(session('type') == 'customer'){
+            $customer = new Customer();
+            $customer->user_id = $user->id;
+            $customer->name = $providerUser->lastName;
+            $customer->surname = $providerUser->firstName;
+            $customer->save();
+        }elseif(session('type') == 'customer')
 
         if($user) Auth::guard()->login($user, true);
         return redirect('/');
