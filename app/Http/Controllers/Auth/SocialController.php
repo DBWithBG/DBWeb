@@ -17,6 +17,7 @@ class SocialController extends Controller
      * On autorise la route seulement pour les utilisateurs non connectés
      */
     public function __construct(){
+        dd(Input::get('type'));
         if(Input::get('type') == 'customer') session('type', 'customer');
         else if(Input::get('type') == 'driver') session('type', 'driver');
         dd(session()->get('type'));
