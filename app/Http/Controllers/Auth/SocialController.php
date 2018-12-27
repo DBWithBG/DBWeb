@@ -22,6 +22,7 @@ class SocialController extends Controller
         //Pour différencier le click depuis un driver ou depuis un customer
         if(Input::get('type') == 'customer') Session::put('type', 'customer');
         else if(Input::get('type') == 'driver') Session::put('type', 'driver');
+        dd(Input::get('from_type'));
         //Traitement pour utiliser et sur mobile et sur web
         if(Input::get('from_type') == 'mobile') Session::put('from_type', 'mobile');
         else if(Input::get('from_type') == 'web') Session::put('from_type', 'web');
