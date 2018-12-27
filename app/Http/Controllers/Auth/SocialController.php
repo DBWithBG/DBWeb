@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Customer;
+use App\Driver;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -83,7 +84,12 @@ class SocialController extends Controller
             $customer->name = $providerUser->lastName;
             $customer->surname = $providerUser->firstName;
             $customer->save();
-        }elseif(session('type') == 'customer')
+        }elseif(session('type') == 'driver'){
+            $driver = new Driver();
+            $driver->user_id = $user->id;
+            $driver->name = $providerUser->lastName;
+            $driver->surname = $providerUser->firstName;
+        }
 
         if($user) Auth::guard()->login($user, true);
         return redirect('/');
