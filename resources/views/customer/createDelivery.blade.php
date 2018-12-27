@@ -148,7 +148,7 @@
                 id = $(this).attr('id').split('-');
 
                 $('.js-' + id[0]).append('<span class=" js-delete-' + bag_number + ' ">' +
-                    '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][name]" value="BAGAGE '+ id[1] +' '+ real_number+'" placeholder="nom" style="margin-top: 10px">' +
+                    '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][name]" value="'+ id[1] +' '+ real_number+'" placeholder="nom" style="margin-top: 10px">' +
                     '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                     '<a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336" id='+bag_number+'><i class="fa fa-remove"></i> Ne pas utiliser</a></span>');
                 bag_number++;
