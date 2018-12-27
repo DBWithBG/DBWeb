@@ -99,8 +99,7 @@
                                                                 </div>
 
                                                             </div>
-                                                        </div>km
-                                                        Prix : 9.96 €
+                                                        </div>
                                                         <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                                                         <div class="tagline" style="margin-bottom: 10px"></div>
