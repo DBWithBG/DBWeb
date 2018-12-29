@@ -131,6 +131,7 @@ class SocialController extends Controller
     public function mobileCheckAccessToken(Request $request){
 
         if(!$request->input('input_token')) return response()->json(['error' => 'input_token_not_provided'], 403);
+        if(!$request->input('type')) return response()->json(['error' => 'type_not_provided'], 403);
 
         $client = new Client();
         $uri = 'https://graph.facebook.com/debug_token?input_token='.
@@ -155,7 +156,35 @@ class SocialController extends Controller
         ]);
         $content = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
-        dd($content);
+
+        $user = User::create([
+            'name' => $content->first_name . ' '.$content->last_name ,
+            'email' => $content->email,
+            'facebook_id' => $content->id,
+            'is_confirmed' => 1
+        ]);
+
+        if($request->input('type') == 'customer'){
+            $customer = new Customer();
+            $customer->user_id = $user->id;
+            $customer->name = $content->last_name;
+            $customer->surname = $content->first_name;
+            $customer->save();
+            $type = 'customer';
+        }else if($request->input('type') == 'driver'){
+            $driver = new Driver();
+            $driver->user_id = $user->id;
+            $driver->name = $content->last_name;
+            $driver->surname = $content->first_name;
+            $driver->save();
+            $type = 'driver';
+        }
+
+
+
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('token', 'type'));
+
 
     }
 
