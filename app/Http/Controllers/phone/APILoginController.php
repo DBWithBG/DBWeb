@@ -6,8 +6,6 @@
     use App\User;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Validator;
-    use Laravel\Socialite\Facades\Socialite;
-    use Laravel\Socialite\SocialiteManager;
     use Tymon\JWTAuth\Exceptions\JWTException;
     use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -36,7 +34,7 @@
             } catch (JWTException $e) {
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
-            //$user =  Auth::user();
+            //$user =  Auth::user();return response()->json(['error' => 'user_not_logged'], 403);
             $user = User::where('email', $request->email)->first();
             if (!empty($user->driver)) {
                 $type = 'driver';

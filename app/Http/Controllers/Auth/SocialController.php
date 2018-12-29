@@ -6,7 +6,10 @@ use App\Customer;
 use App\Driver;
 use App\User;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
@@ -122,6 +125,18 @@ class SocialController extends Controller
             Auth::guard()->login($user, true);
             return redirect('/');
         }
+    }
+
+    public function mobileCheckAccessToken(Request $request){
+
+        if(!$request->input('input_token')) return response()->json(['error' => 'access_token_not_provided'], 403);
+
+        $client = new Client();
+        $uri = 'https://graph.facebook.com/debug_token?input_token='.
+            $request->input('input_token').'&access_token='.Config::get('services.facebook.client_id').'|'.Config::get('services.facebook.client_secret');
+        $res = $client->get($uri);
+
+        dd($res, $uri);
     }
 
     /**
