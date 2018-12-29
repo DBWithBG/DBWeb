@@ -136,7 +136,9 @@ class SocialController extends Controller
             $request->input('input_token').'&access_token='.Config::get('services.facebook.client_id').'|'.Config::get('services.facebook.client_secret');
         $res = $client->get($uri);
 
-        dd($res->getBody()->getContents(), $uri);
+        $content = $res->getBody()->getContents();
+
+        dd($content['data']['is_valid'], $uri);
     }
 
     /**
