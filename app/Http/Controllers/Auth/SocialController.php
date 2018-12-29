@@ -129,14 +129,14 @@ class SocialController extends Controller
 
     public function mobileCheckAccessToken(Request $request){
 
-        if(!$request->input('input_token')) return response()->json(['error' => 'access_token_not_provided'], 403);
+        if(!$request->input('input_token')) return response()->json(['error' => 'input_token_not_provided'], 403);
 
         $client = new Client();
         $uri = 'https://graph.facebook.com/debug_token?input_token='.
             $request->input('input_token').'&access_token='.Config::get('services.facebook.client_id').'|'.Config::get('services.facebook.client_secret');
         $res = $client->get($uri);
 
-        dd($res, $uri);
+        dd($res->getBody()->getContents(), $uri);
     }
 
     /**
