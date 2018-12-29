@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+use Psy\Util\Json;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SocialController extends Controller
@@ -136,7 +137,7 @@ class SocialController extends Controller
             $request->input('input_token').'&access_token='.Config::get('services.facebook.client_id').'|'.Config::get('services.facebook.client_secret');
         $res = $client->get($uri);
 
-        $content = $res->getBody()->getContents();
+        $content = \GuzzleHttp\json_decode($res->getBody()->getContents()));
 
         dd($content['data']['is_valid'], $uri);
     }
