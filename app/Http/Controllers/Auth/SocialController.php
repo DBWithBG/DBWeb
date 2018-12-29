@@ -139,6 +139,7 @@ class SocialController extends Controller
 
         $content = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
+        dd($content->data->is_valid);
         if($content->data->is_valid) {
             return response()->json(['error' => 'input_token_not_valid'], 403);
         }
