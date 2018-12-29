@@ -132,7 +132,6 @@ class SocialController extends Controller
     public function mobileCheckAccessToken(Request $request){
 
         if(!$request->input('input_token')) return response()->json(['error' => 'input_token_not_provided'], 403);
-        if(!$request->input('type')) return response()->json(['error' => 'type_not_provided'], 403);
 
         $client = new Client();
         $uri = 'https://graph.facebook.com/debug_token?input_token='.
@@ -172,6 +171,8 @@ class SocialController extends Controller
             !empty($user->driver) ? $type= 'driver' : $type = 'customer';
             return response()->json(compact('token', 'type'));
         }
+
+        if(!$request->input('type')) return response()->json(['error' => 'type_not_provided'], 403);
 
         //Si on est là c'est que l'user existe pas, on le crée
         $user = User::create([
