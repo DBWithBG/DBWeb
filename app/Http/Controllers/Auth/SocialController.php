@@ -139,7 +139,7 @@ class SocialController extends Controller
 
         $content = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
-        dd($content['data']['is_valid'], $uri);
+        dd($content, $uri);
     }
 
     /**
