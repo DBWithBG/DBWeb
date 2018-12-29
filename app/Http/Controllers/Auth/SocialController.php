@@ -143,7 +143,7 @@ class SocialController extends Controller
             return response()->json(['error' => 'input_token_not_valid'], 403);
         }
         dd($content);
-        $res = $client->get('https://graph.facebook.com/v3.2/'..'?fields=id,email,first_name,last_name');
+        $res = $client->get('https://graph.facebook.com/v3.2/?fields=id,email,first_name,last_name');
         $content = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
         dd($content);
