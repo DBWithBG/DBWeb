@@ -177,7 +177,7 @@ Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 /************************** API MOBILE *******************************/
 
 
-Route::get('mobile/checkLoginFacebook', 'SocialControoler@mobileCheckAccessToken');
+Route::get('mobile/checkLoginFacebook', 'SocialController@mobileCheckAccessToken');
 
 Route::post('mobile/register', 'phone\APIRegisterController@register');
 Route::post('mobile/login', 'phone\APILoginController@login');
