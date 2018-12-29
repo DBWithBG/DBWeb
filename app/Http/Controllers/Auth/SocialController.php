@@ -83,6 +83,7 @@ class SocialController extends Controller
             if($user){
                 $field = $provider.'_id';
                 $user->$field = $providerUser->id;
+                $user->save();
 
                 if(Session::get('from_type') == 'mobile') {
                     $token = JWTAuth::fromUser($user);
@@ -156,7 +157,23 @@ class SocialController extends Controller
         ]);
         $content = \GuzzleHttp\json_decode($res->getBody()->getContents());
 
+        $user = User::where('facebook_id', $content->id)->first();
+        if(!empty($user->id)){
+            $token = JWTAuth::fromUser($user);
+            !empty($user->driver) ? $type= 'driver' : $type = 'customer';
+            return response()->json(compact('token', 'type'));
+        }
 
+        $user = User::where('email', $content->email)->first();
+        if($user){
+            $user->facebook_id = $content->id;
+            $user->save();
+            $token = JWTAuth::fromUser($user);
+            !empty($user->driver) ? $type= 'driver' : $type = 'customer';
+            return response()->json(compact('token', 'type'));
+        }
+
+        //Si on est là c'est que l'user existe pas, on le crée
         $user = User::create([
             'name' => $content->first_name . ' '.$content->last_name ,
             'email' => $content->email,
