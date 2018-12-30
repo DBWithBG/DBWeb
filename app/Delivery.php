@@ -67,8 +67,8 @@ class Delivery extends Model
 
     public function bagsWithTypes(){
         $res = [];
-        dd($this->bags());
-        foreach ($this->bags() as $bag){
+        dd($this->bags);
+        foreach ($this->bags as $bag){
             $res[$bag->type->name] ++;
         }
 
