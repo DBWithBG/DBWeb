@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Delivery;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
@@ -38,12 +37,14 @@ class FactureController extends Controller
         $filename2 = $idDelivery . ".pdf";
         $path = storage_path() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'files' . DIRECTORY_SEPARATOR . 'factures' . DIRECTORY_SEPARATOR . $filename2;
 
-        if (file_exists($path)) {
+        return $path;
+
+        /*if (file_exists($path)) {
             $type = "application/pdf";
             header('Content-Type:' . $type);
             header('Content-Length: ' . filesize($path));
             readfile($path);
-        }
+        }*/
     }
 
     /*

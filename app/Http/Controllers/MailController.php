@@ -10,9 +10,11 @@ namespace App\Http\Controllers;
 
 
 use App\Customer;
+use App\Delivery;
 use App\Driver;
 use App\User;
 use GuzzleHttp\Client;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
@@ -82,6 +84,48 @@ class MailController
             return redirect()->back();
         }
         return self::send_email($users, $subject, $html);
+    }
+
+    public static function send_customer_facture($delivery_id){
+        $delivery = Delivery::find($delivery_id);
+        $path = FactureController::genererFactureDelivery($delivery_id);
+        $attachments = [];
+        if (File::exists($path)) {
+            array_push($attachments,
+                [
+                    'Content-type' => "application/pdf",
+                    'Filename' => "facture.pdf",
+                    'content' => base64_encode(file_get_contents($path))
+                ]
+            );
+        }
+
+        $client = new Client();
+        $return = [];
+            $o_user = Auth::user();
+            //Préparation du body pour l'envoi
+            $body = [
+                'fromEmail' => Config::get('constants.SENDER_EMAIL'),
+                'FromName' => "Deliverbag",
+                'to' => $o_user->email,
+                'Subject' => 'Confirmation commande deliverbag n°'.$delivery->num_facture,
+                'html-part' => "<h3>Bonjour " . $o_user->name . "</h3><br />
+                    La commande n°".$delivery->num_facture." est confirmée. Vous trouverez ci-joint la facture.
+",
+                'Attachments' => $attachments
+            ];
+
+            //Envoi de l'email
+            $return[$o_user->id] =  $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+                'Content-type' => 'application/json',
+
+            ],
+                'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+                'body' => json_encode($body)
+            ]);
+
+
     }
 
 

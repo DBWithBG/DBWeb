@@ -120,6 +120,7 @@
                 throw new \Error('Please enter a least a bag');
             }
             $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
+            MailController::send_customer_facture($delivery->id);
             Session::flash('success', 'Commande enregistrée');
             return redirect('/');
         }
