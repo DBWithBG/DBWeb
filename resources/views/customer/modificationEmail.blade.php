@@ -45,7 +45,7 @@
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Modification de votre adresse email</h3>
+                                <h3 class="uppercase">Modification de votre adresse email ({{\Illuminate\Support\Facades\Auth::user()->email}})</h3>
                                 <p>Une fois votre adresse email modifiée, un mail de confirmation vous sera envoyé afin de procéder à sa vérification.</p>
                                 <br/>
                                 <br/>
