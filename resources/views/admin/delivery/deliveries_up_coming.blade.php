@@ -73,8 +73,8 @@
                                                     @endforeach
 
                                                 </td>
-                                                <td>{{$delivery->startPosition->address}}
-                                                    {{date('d/m/y H:m', strtotime($delivery->start_date))}}
+                                                <td>{{$delivery->startPosition->address}}<br>
+                                                    <strong>{{date('d/m/y H:m', strtotime($delivery->start_date))}}</strong>
                                                 </td>
                                                 <td>{{$delivery->endPosition->address}}</td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
