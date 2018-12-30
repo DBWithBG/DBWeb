@@ -65,6 +65,15 @@ class Delivery extends Model
         return $this->rating->rating / 10;
     }
 
+    public function bagsWithTypes(){
+        $res = [];
+        foreach ($this->bags() as $bag){
+            $res[$bag->type->name] ++;
+        }
+
+        return $res;
+    }
+
 
     public static function getAllDeliveryWaitingTakeOver(){
         return Delivery::where('status', Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE'))->where('deleted', 0)->get();

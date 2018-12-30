@@ -67,7 +67,12 @@
 
                                                 <td>{{ $delivery->comment }}</td>
                                                 <td>{{$delivery->price}} € </td>
-                                                <td>({{sizeof($delivery->bags)}} bagages)</td>
+                                                <td>
+                                                    @foreach($delivery->bagsWithTypes() as $key => $bagWithType)
+                                                        {{$bagWithType}} {{$key}}
+                                                    @endforeach
+
+                                                </td>
                                                 <td>{{$delivery->startPosition->address}}</td>
                                                 <td>{{$delivery->endPosition->address}}</td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
