@@ -74,7 +74,7 @@
 
                                                 </td>
                                                 <td>{{$delivery->startPosition->address}}
-                                                    {{date('d / m / y h:m', strtotime($delivery->start_date))}}
+                                                    {{date('d/m/y H:m', strtotime($delivery->start_date))}}
                                                 </td>
                                                 <td>{{$delivery->endPosition->address}}</td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
