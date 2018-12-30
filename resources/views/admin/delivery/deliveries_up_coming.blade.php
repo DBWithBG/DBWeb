@@ -51,8 +51,8 @@
                                             <th>Commentaire</th>
                                             <th>Prix</th>
                                             <th>Bagages</th>
-                                            <th>Position de départ</th>
-                                            <th>Position d'arrivée</th>
+                                            <th>Départ</th>
+                                            <th>Arrivée</th>
                                             <th>Distance (en km)</th>
                                             <th>Date de création</th>
                                             <th>Client</th>
