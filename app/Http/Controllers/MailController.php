@@ -14,10 +14,10 @@ use App\Delivery;
 use App\Driver;
 use App\User;
 use GuzzleHttp\Client;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class MailController
