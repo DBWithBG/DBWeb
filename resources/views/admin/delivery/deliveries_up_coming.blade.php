@@ -78,7 +78,7 @@
                                                 </td>
                                                 <td>{{$delivery->endPosition->address}}<br>
                                                     @if($delivery->time_consigne == NULL)
-                                                        <strong>Immédiat</strong>
+                                                        <strong>IMMEDIAT</strong>
                                                     @else
                                                         <strong>{{date('d/m/y H:m', strtotime($delivery->end_date))}}</strong>
                                                     @endif
