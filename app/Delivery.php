@@ -68,6 +68,7 @@ class Delivery extends Model
     public function bagsWithTypes(){
         $res = [];
         foreach ($this->bags as $bag){
+            if(empty($res[$bag->type->name])) $res[$bag->type->name] = 0;
             $res[$bag->type->name] ++;
         }
 
