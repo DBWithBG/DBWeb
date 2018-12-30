@@ -73,7 +73,9 @@
                                                     @endforeach
 
                                                 </td>
-                                                <td>{{$delivery->startPosition->address}}</td>
+                                                <td>{{$delivery->startPosition->address}}
+                                                    {{date('d / m / y h:m', strtotime($delivery->start_date))}}
+                                                </td>
                                                 <td>{{$delivery->endPosition->address}}</td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
