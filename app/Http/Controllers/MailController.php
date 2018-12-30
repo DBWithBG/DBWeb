@@ -100,7 +100,6 @@ class MailController
             );
         }
 
-Both are very successful community driven pr
         $client = new Client();
         $return = [];
         //Préparation du body pour l'envoi
