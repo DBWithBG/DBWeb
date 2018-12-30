@@ -77,7 +77,11 @@
                                                     <strong>{{date('d/m/y H:m', strtotime($delivery->start_date))}}</strong>
                                                 </td>
                                                 <td>{{$delivery->endPosition->address}}<br>
-                                                    <strong>{{date('d/m/y H:m', strtotime($delivery->end_date))}}</strong>
+                                                    @if($delivery->time_consigne == NULL)
+                                                        <strong>Immédiat</strong>
+                                                    @else
+                                                        <strong>{{date('d/m/y H:m', strtotime($delivery->end_date))}}</strong>
+                                                    @endif
                                                 </td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
