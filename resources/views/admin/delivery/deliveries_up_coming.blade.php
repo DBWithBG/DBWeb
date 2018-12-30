@@ -116,7 +116,7 @@
             <!-- End container-fluid -->
         </div>
     </div>
-    {{$delivery->bagsWithTypes()}}
+    {{dd($delivery->bagsWithTypes())}}
 @endsection
 
 @section('custom-scripts')
