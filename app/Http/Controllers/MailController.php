@@ -122,10 +122,6 @@ class MailController
 
             'body' => json_encode($body)
         ]);
-
-        dd($return);
-
-
     }
 
 
