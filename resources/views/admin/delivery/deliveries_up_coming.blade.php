@@ -50,6 +50,7 @@
                                         <tr>
                                             <th>Commentaire</th>
                                             <th>Prix</th>
+                                            <th>Bagages</th>
                                             <th>Position de départ</th>
                                             <th>Position d'arrivée</th>
                                             <th>Distance (en km)</th>
@@ -65,7 +66,8 @@
                                             <tr class="text-center">
 
                                                 <td>{{ $delivery->comment }}</td>
-                                                <td>{{$delivery->price}} € ({{sizeof($delivery->bags)}} bagages)</td>
+                                                <td>{{$delivery->price}} € </td>
+                                                <td>({{sizeof($delivery->bags)}} bagages)</td>
                                                 <td>{{$delivery->startPosition->address}}</td>
                                                 <td>{{$delivery->endPosition->address}}</td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
