@@ -99,7 +99,9 @@
             $delivery = Delivery::find($request['delivery_id']);
             $date_sliced = explode(' ',$request['datetimevalue'])[0];
             $time_sliced = explode(' ',$request['datetimevalue'])[1];
-
+            if(empty($request['bagages'])){
+                throw new \Error('Please enter a least a bag');
+            }
             $start_date = Carbon::create(explode('/',$date_sliced)[2],explode('/',$date_sliced)[1],
                 explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1])->format('Y-m-d H:m');
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
@@ -111,15 +113,16 @@
             $delivery->price = $prices['total'];
             $delivery->remuneration_driver = $prices['remuneration_driver'];
             $delivery->remuneration_deliver = $prices['remuneration_deliver'];
+            //TODO A RETIRER QUAND PAIEMENT
+            $delivery->status = Config::get('constants.STATUS_1');
 
             $delivery->start_date = $start_date;
             $delivery->save();
 
 
-            if(empty($request['bagages'])){
-                throw new \Error('Please enter a least a bag');
-            }
+
             $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
+
             MailController::send_customer_facture($delivery->id, Auth()->user());
             Session::flash('success', 'Commande enregistrée');
             return redirect('/');
