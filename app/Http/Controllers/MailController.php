@@ -100,12 +100,12 @@ class MailController
             );
         }
 
+Both are very successful community driven pr
         $client = new Client();
         $return = [];
         //Préparation du body pour l'envoi
         $body = [
             'fromEmail' => Config::get('constants.SENDER_EMAIL'),
-            'FromName' => "Deliverbag",
             'to' => $o_user->email,
             'Subject' => 'Confirmation commande deliverbag n°'.$delivery->num_facture,
             'html-part' => "<h3>Bonjour " . $o_user->name . "</h3><br />
@@ -124,6 +124,7 @@ class MailController
             'body' => json_encode($body)
         ]);
 
+        dd($return);
 
 
     }
