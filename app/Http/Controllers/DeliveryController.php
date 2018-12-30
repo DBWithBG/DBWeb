@@ -112,7 +112,7 @@
             $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance);
             $delivery->price = $prices['total'];
             $delivery->remuneration_driver = $prices['remuneration_driver'];
-            $delivery->remuneration_deliver = $prices['remuneration_deliConfigver'];
+            $delivery->remuneration_deliver = $prices['remuneration_deliver'];
             //TODO A RETIRER QUAND PAIEMENT
             $delivery->status = Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE');
 
