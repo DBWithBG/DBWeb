@@ -49,6 +49,12 @@ class SocialController extends Controller
      * Fonction de callback ou le provider nous redirige en passant l'utilisateur
      */
     public function callback($provider){
+        if(Input::get('type') == 'customer') Session::put('type', 'customer');
+        else if(Input::get('type') == 'driver') Session::put('type', 'driver');
+        //Traitement pour utiliser et sur mobile et sur web
+        if(Input::get('from_type') == 'mobile') Session::put('from_type', 'mobile');
+        else if(Input::get('from_type') == 'web') Session::put('from_type', 'web');
+
         //Récupération de l'utilisateur renvoyé
         try{
             if(Session::get('from_type') == 'mobile') $providerUser = Socialite::driver($provider)->stateless()->user();
