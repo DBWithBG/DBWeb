@@ -106,8 +106,11 @@
                 explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1])->format('Y-m-d H:m');
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
-            if(!empty($request['time_consigne']))
+            if(!empty($request['time_consigne'])){
                 $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
+                $delivery->end_date = $start_date->add($delivery->time_consigne->hour, 'hours')->add($delivery->time_consigne->minute, 'minutes');
+            }
+
 
             $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance);
             $delivery->price = $prices['total'];
