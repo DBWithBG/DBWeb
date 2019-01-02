@@ -87,7 +87,6 @@ class MailController
     }
 
     public static function send_customer_facture($delivery_id, $o_user){
-        $delivery = Delivery::find($delivery_id);
         $path = FactureController::genererFactureDelivery($delivery_id);
         $attachments = [];
         if (File::exists($path)) {
@@ -99,6 +98,7 @@ class MailController
                 ]
             );
         }
+        $delivery = Delivery::find($delivery_id);
 
         $client = new Client();
         $return = [];
