@@ -272,11 +272,11 @@ class MobileController extends Controller
         $v = Validator::make($request->all(), [
             'name' => 'required',
             'surname' => 'required',
-            'phone' => 'nullable|numeric'
+            'phone' => 'nullable|min:10'
         ], [
             'name.required' => 'name_required',
             'surname.required' => 'surname_required',
-            'phone.numeric' => "tel_invalide"
+            'phone.min' => 'phone_min_length_10'
         ]);
 
         if ($v->fails()) {
@@ -496,11 +496,12 @@ class MobileController extends Controller
             'name' => 'required',
             'surname' => 'required',
             'siret' => 'nullable|digits_between:14,14',
-            'phone' => 'nullable|numeric'
+            'phone' => 'nullable|min:10'
         ], [
             'name.required' => 'name_required',
             'surname.required' => 'surname_required',
-            'siret.digits_between' => 'siret_invalid_need_to_be_size_14_digits'
+            'siret.digits_between' => 'siret_invalid_need_to_be_size_14_digits',
+            'phone.min' => 'phone_length_min_10'
         ]);
 
         if ($v->fails()) {
