@@ -50,6 +50,7 @@
                                         <tr>
                                             <th>Commentaire</th>
                                             <th>Prix</th>
+                                            <th>Bagages</th>
                                             <th>Départ</th>
                                             <th>Arrivée</th>
                                             <th>Distance (en km)</th>
@@ -65,9 +66,23 @@
                                             <tr class="text-center">
 
                                                 <td>{{ $delivery->comment }}</td>
-                                                <td>{{$delivery->price}} €</td>
-                                                <td>{{$delivery->startPosition->address}}</td>
-                                                <td>{{$delivery->endPosition->address}}</td>
+                                                <td>{{$delivery->price}} € </td>
+                                                <td>
+                                                    @foreach($delivery->bagsWithTypes() as $key => $bagWithType)
+                                                        {{$bagWithType}} {{$key}}
+                                                    @endforeach
+
+                                                </td>
+                                                <td>{{$delivery->startPosition->address}}<br>
+                                                    <strong>{{date('d/m/y H:m', strtotime($delivery->start_date))}}</strong>
+                                                </td>
+                                                <td>{{$delivery->endPosition->address}}<br>
+                                                    @if($delivery->time_consigne == NULL)
+                                                        <strong>IMMEDIAT</strong>
+                                                    @else
+                                                        <strong>{{date('d/m/y H:m', strtotime($delivery->end_date))}}</strong>
+                                                    @endif
+                                                </td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>

@@ -18,7 +18,17 @@ Route::get('/', 'CustomerController@home');
 Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
 Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('provider', '(facebook|twitter|google)');
 
-Auth::routes();
+// Authentication Routes...
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+$this->post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset');
 /************* FIN LOGIN ***************/
 
 
