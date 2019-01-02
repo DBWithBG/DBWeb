@@ -28,7 +28,7 @@ class MobileController extends Controller
 
     public function __construct()
     {
-        $this->middleware('jwt.auth')->except(['showDelivery']);
+        $this->middleware('jwt.auth');
     }
 
     /************************************ GENERAL FUNCTIONS (ALL) **************************************/
@@ -445,7 +445,11 @@ class MobileController extends Controller
     //TODO CHECK CA Sécu ??
     public function postDelivery(Request $request){
         $dc = new DeliveryController();
-        return $dc->postDeliveryMobile($request, Auth::user()->customer->id);
+
+        $delivery = $dc->postDeliveryMobile($request, Auth::user()->customer->id);
+
+        MailController::send_customer_facture($delivery->id, Auth()->user());
+
     }
 
 
@@ -561,7 +565,7 @@ class MobileController extends Controller
         $u=auth()->user();
 
         if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
-        $delivery=Delivery::find($request->delivery_id);
+        $delivery=Delivery::where('id', $request->delivery_id)->first();
 
         if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
         if(!$request->status_id==Config::get('constants.PRIS_EN_CHARGE')){
@@ -614,7 +618,7 @@ class MobileController extends Controller
 
     //get delivery pour consulter les informations d'une delivery
     // TODO DEPRECTED
-    public function showDelivery(Request $request,$delivery_id){
+    /*public function showDelivery(Request $request,$delivery_id){
         JWTAuth::setToken(Input::get('token'));
         $u = JWTAuth::authenticate();
         $delivery=Delivery::where('id',$delivery_id)->with('customer')->with('startPosition')->with('endPosition')->first();
@@ -624,7 +628,7 @@ class MobileController extends Controller
 
         return view('customer.showDelivery')->with(compact('delivery','deliveries'));
 
-    }
+    }*/
 
 
 }
