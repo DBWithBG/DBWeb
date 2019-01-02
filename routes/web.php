@@ -219,6 +219,9 @@ Route::put('mobile/email', 'phone\MobileController@updateEmail');
 
 Route::get('mobile/driver/', 'phone\MobileController@getDriver');
 Route::put('mobile/driver/', 'phone\MobileController@updateDriver');
+
+Route::post('mobile/driver/addJustificatif', 'phone\MobileController@addJustificatif');
+Route::delete('mobile/driver/justificatif/{id}', 'phone\MobileController@deleteJustificatif');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 

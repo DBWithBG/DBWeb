@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MailController;
 use App\InfoBag;
+use App\Justificatif;
 use App\Rating;
 use App\TakeOverDelivery;
 use App\User;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -421,6 +423,8 @@ class MobileController extends Controller
         $d=Delivery::find($request->delivery_id);
         if(!$d) response()->json(['error' => 'delivery_not_found'], 403);
 
+        MailController::send_customer_facture($d->id, Auth()->user());
+
         $d->update(['status'=>Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE')]);
     }
 
@@ -448,7 +452,7 @@ class MobileController extends Controller
 
         $delivery = $dc->postDeliveryMobile($request, Auth::user()->customer->id);
 
-        MailController::send_customer_facture($delivery->id, Auth()->user());
+        return $delivery;
 
     }
 
@@ -601,6 +605,72 @@ class MobileController extends Controller
                     ->update(["details_start_driver"=>$d["detail"]]);
             }
         }
+    }
+
+    //Ajout d'une pièce justificative au chauffeur
+    public function addJustificatif(Request $request) {
+        $driver = Auth::user()->driver;
+
+        // On vérifie la présence du fichier
+        if (!$request->hasFile('justificatif')) {
+            return redirect()->back()->withErrors(['Aucun fichier fourni']);
+        }
+
+        // La présence du nom
+        $v = Validator::make($request->all(), [
+            'name' => 'required'
+        ], [
+            'name.required' => 'Le nom de la pièce justificative est requis'
+        ]);
+
+        if ($v->fails()) {
+            response()->json(['error' => $v], 403);
+        }
+
+        // Le type du fichier
+        $file = $request->file('justificatif');
+        $extension = $file->getClientOriginalExtension();
+        if (!in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
+            return redirect()->back()->withErrors(['Ce type de fichier n\'est pas supporté. Les extensions supportées sont les suivantes : jpg, png, pdf']);
+        }
+
+        // On enregistre
+        $path = $file->store('justificatifs');
+        $justificatif = new Justificatif;
+        $justificatif->driver_id = $driver->id;
+        $justificatif->name = $request->name;
+        $justificatif->file_path = $path;
+        $justificatif->save();
+
+        return response()->json()->setCallback($request->input('callback'));
+    }
+
+    //Suppression d'un justificatif
+    public function deleteJustificatif($id) {
+        $user = Auth::user();
+        $driver = $user->driver;
+        $justificatif = Justificatif::findOrFail($id);
+
+        // Si le user est un driver, il faut que le justi lui appartienne et que le justi n'est pas été validé
+        if ($driver !== null) {
+            if ($driver->id != $justificatif->driver_id) {
+                return abort(404);
+            }
+
+            if ($justificatif->is_valide) {
+                return abort(400);
+            }
+        }
+
+        else {
+            return abort(404);
+        }
+
+
+
+        Storage::delete($justificatif->file_path);
+        $justificatif->delete();
+        return redirect()->back()->with(['success' => 'Pièce justificative supprimée']);
     }
 
 
