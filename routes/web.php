@@ -19,6 +19,7 @@ Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(
 Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('provider', '(facebook|twitter|google)');
 
 // Authentication Routes...
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
