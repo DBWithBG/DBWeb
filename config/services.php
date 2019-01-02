@@ -51,11 +51,11 @@ return [
 
     //configuration firebase
     'firebase' => [
-        'api_key' => 'AIzaSyBy-5ETkn-l3F1nmk9Iqjy6H3j_kEarHp0', // Only used for JS integration
-        'auth_domain' => 'dbag-202408.firebaseapp.com', // Only used for JS integration
-        'database_url' => 'https://your-database-at.firebaseio.com',
+        'api_key' => 'AIzaSyD7jfikT_8G-pNBvIrABsfchccOgY3DsDg', // Only used for JS integration
+        'auth_domain' => 'dev-deliverbag.firebaseapp.com', // Only used for JS integration
+        'database_url' => 'https://dev-deliverbag.firebaseio.com',
         'secret' => 'https://dbag-202408.firebaseio.com',
-        'storage_bucket' => 'dbag-202408.appspot.com', // Only used for JS integration
+        'storage_bucket' => 'dev-deliverbag.appspot.com', // Only used for JS integration
     ]
 
 
