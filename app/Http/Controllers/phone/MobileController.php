@@ -510,8 +510,6 @@ class MobileController extends Controller
             $driver->update($request->all());
             // Le siret passe passe dans le update...
             $driver->siret = $request->siret;
-            $driver->user->email = $request->email;
-            $driver->user->save();
             $driver->save();
         }
         return response()
