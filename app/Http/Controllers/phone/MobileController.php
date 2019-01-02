@@ -563,9 +563,9 @@ class MobileController extends Controller
     //modification du status d'une delivery par un driver
     public function editStatusDriver(Request $request){
         $u=auth()->user();
-
         if(!$u->driver) response()->json(['error' => 'user_is_not_driver'], 403);
         $delivery=Delivery::where('id', $request->delivery_id)->first();
+        dd($request->delivery_id, $delivery);
 
         if(!$delivery) response()->json(['error' => 'delivery_not_found'], 403);
         if(!$request->status_id==Config::get('constants.PRIS_EN_CHARGE')){
