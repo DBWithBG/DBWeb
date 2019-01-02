@@ -57,6 +57,11 @@ class MailController
         return $return;
     }
 
+    public static function send_customer_priseEnCharge($delivery){
+        self::send_email($delivery->customer->user->id, "Confirmation de prise en charge de vos bagages !",
+            "Nous allons nous occuper de vos bagages");
+    }
+
     //Envoi un email à tous les driver qui ont des comptes valides et sont prêts à livrer
     public static function send_email_all_drivers($subject, $html){
         $drivers = Driver::where('deleted', '0')->where('is_op', '1')->get();

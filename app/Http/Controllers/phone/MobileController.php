@@ -547,6 +547,8 @@ class MobileController extends Controller
             $take->save();
             $del->update(['status'=>Config::get('constants.PRIS_EN_CHARGE')]);
             $res_id=$take->id;
+            //TODO Envoi mail
+            MailController::send_customer_priseEnCharge($del);
             $tab=NotificationController::notifyPriseEnCharge();
             $tab['tokens']=[0=>$del->customer->user->notify_token];
             NotificationController::sendNotification($tab);
