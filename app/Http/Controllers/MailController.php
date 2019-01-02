@@ -58,7 +58,9 @@ class MailController
     }
 
     public static function send_customer_priseEnCharge($delivery){
-        self::send_email($delivery->customer->user->id, "Confirmation de prise en charge de vos bagages !",
+        $tab_user = [];
+        array_push($tab_user,$delivery->customer->user->id);
+        self::send_email($tab_user, "Confirmation de prise en charge de vos bagages !",
             "Nous allons nous occuper de vos bagages");
     }
 

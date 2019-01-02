@@ -553,7 +553,7 @@ class MobileController extends Controller
             $tab['tokens']=[0=>$del->customer->user->notify_token];
             NotificationController::sendNotification($tab);
         }
-        return json_encode($res_id);
+
     }
 
 
