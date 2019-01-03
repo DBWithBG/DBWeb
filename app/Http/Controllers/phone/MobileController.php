@@ -627,5 +627,26 @@ class MobileController extends Controller
 
     }
 
+    public function updateSiretDriver(Request $request){
+        $user = auth()->user();
+        if(!$user->driver) return response()->json(['error' => 'user_not_driver'], 403);
+
+        $driver = $user->driver;
+        $v = Validator::make($request->all(), [
+            'siret' => 'nullable|digits_between:14,14'
+        ], [
+            'siret.required' => 'siret_required',
+            'siret.digits_between' => 'siret_invalid'
+        ]);
+
+        if ($v->fails()) {
+            return response()->json(['error' => $v->errors()], 401);
+        } else {
+            $driver->siret = $request->siret;
+            $driver->save();
+        }
+        return response()->json($driver);
+    }
+
 
 }

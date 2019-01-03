@@ -209,6 +209,7 @@ Route::put('mobile/email', 'phone\MobileController@updateEmail');
 
 Route::get('mobile/driver/', 'phone\MobileController@getDriver');
 Route::put('mobile/driver/', 'phone\MobileController@updateDriver');
+Route::put('mobile/driver/siret', 'phone\MobileController@updateSiretDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');
 Route::put('/mobile/drivers/infobags/edit','phone\MobileController@modificationEtatDesLieux');
 
