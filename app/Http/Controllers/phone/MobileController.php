@@ -653,9 +653,9 @@ class MobileController extends Controller
 
         // Le type du fichier
         $file = $request->file('justificatif');
-        $extension = $file->getClientOriginalExtension();
+        $extension = strtolower($file->getClientOriginalExtension());
         if (!in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
-            return redirect()->back()->withErrors(['Ce type de fichier n\'est pas supporté. Les extensions supportées sont les suivantes : jpg, png, pdf']);
+            return response()->json()(['error' => 'wrong_file_type']);
         }
 
         // On enregistre
