@@ -223,6 +223,7 @@ Route::put('mobile/driver/', 'phone\MobileController@updateDriver');
 
 Route::post('mobile/driver/addJustificatif', 'phone\MobileController@addJustificatif');
 Route::delete('mobile/driver/justificatif/{id}', 'phone\MobileController@deleteJustificatif');
+Route::get('mobile/driver/justificatif/{id}', 'phone\MobileController@getJustificatif');
 Route::get('mobile/driver/justificatifs', 'phone\MobileController@getJustificatifs');
 Route::put('mobile/driver/siret', 'phone\MobileController@updateSiretDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');

@@ -615,6 +615,22 @@ class MobileController extends Controller
         return response()->json(['justificatifs' => $driver->justificatifs]);
     }
 
+    public function getJustificatif($id){
+        $driver = Auth::user()->driver;
+        $justificatif = Justificatif::findOrFail($id);
+
+        // Si le user est un driver, il faut que le justi lui appartienne
+        if ($driver !== null) {
+            if ($driver->id != $justificatif->driver_id) {
+                return response()->json(['error' => 'driver_not_allowed'], 403);
+            }
+        }
+
+        $file = Storage::get($justificatif->file_path);
+        $mimetype = \GuzzleHttp\Psr7\mimetype_from_filename($justificatif->file_path);
+        return response($file, 200)->header('Content-Type', $mimetype);
+    }
+
     //Ajout d'une pièce justificative au chauffeur
     public function addJustificatif(Request $request) {
         $driver = Auth::user()->driver;
