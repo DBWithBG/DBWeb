@@ -648,7 +648,7 @@ class MobileController extends Controller
         ]);
 
         if ($v->fails()) {
-            response()->json(['error' => $v], 403);
+            return response()->json(['error' => $v], 403);
         }
 
         // Le type du fichier
@@ -678,23 +678,21 @@ class MobileController extends Controller
         // Si le user est un driver, il faut que le justi lui appartienne et que le justi n'est pas été validé
         if ($driver !== null) {
             if ($driver->id != $justificatif->driver_id) {
-                return abort(404);
+                return response()->json(['error' => 'driver_not_allowed'], 403);
             }
 
             if ($justificatif->is_valide) {
-                return abort(400);
+                return response()->json(['error' => 'justificatif_valid_cant_delete'], 403);
             }
-        }
-
-        else {
-            return abort(404);
+        } else {
+            return response()->json(['error' => 'user_not_driver'], 403);
         }
 
 
 
         Storage::delete($justificatif->file_path);
         $justificatif->delete();
-        return redirect()->back()->with(['success' => 'Pièce justificative supprimée']);
+        return response()->json();
     }
 
 
