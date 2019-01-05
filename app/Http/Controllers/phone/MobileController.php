@@ -636,9 +636,9 @@ class MobileController extends Controller
         $driver = Auth::user()->driver;
 
         // On vérifie la présence du fichier
-        if (!$request->hasFile('justificatif')) {
+        /*if (!$request->hasFile('justificatif')) {
             return response()->json(['error' => 'no_file_provided'], 403);
-        }
+        }*/
 
         // La présence du nom
         $v = Validator::make($request->all(), [
