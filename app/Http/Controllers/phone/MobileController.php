@@ -637,7 +637,7 @@ class MobileController extends Controller
 
         // On vérifie la présence du fichier
         if (!$request->hasFile('justificatif')) {
-            return redirect()->back()->withErrors(['Aucun fichier fourni']);
+            return response()->json(['error' => 'no_file_provided'], 403);
         }
 
         // La présence du nom
@@ -655,7 +655,7 @@ class MobileController extends Controller
         $file = $request->file('justificatif');
         $extension = $file->getClientOriginalExtension();
         if (!in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
-            return redirect()->back()->withErrors(['Ce type de fichier n\'est pas supporté. Les extensions supportées sont les suivantes : jpg, png, pdf']);
+            return response()->json(['error' => 'file_type_not_supported'], 403);
         }
 
         // On enregistre
@@ -666,7 +666,7 @@ class MobileController extends Controller
         $justificatif->file_path = $path;
         $justificatif->save();
 
-        return response()->json()->setCallback($request->input('callback'));
+        return response()->json(['justificatif' => $justificatif])->setCallback($request->input('callback'));
     }
 
     //Suppression d'un justificatif
