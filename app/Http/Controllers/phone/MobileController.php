@@ -648,14 +648,14 @@ class MobileController extends Controller
         ]);
 
         if ($v->fails()) {
-            return response()->json(['error' => $v], 403);
+            return response()->json(['error' => $v], 400);
         }
 
         // Le type du fichier
         $file = $request->file('justificatif');
-        $extension = $file->getClientOriginalExtension();
+        $extension = strtolower($file->getClientOriginalExtension());
         if (!in_array($extension, ['jpg', 'jpeg', 'png', 'pdf'])) {
-            return response()->json(['error' => 'file_type_not_supported'], 403);
+            return response()->json(['error' => 'wrong_file_type'], 400);
         }
 
         // On enregistre
