@@ -16,6 +16,7 @@ use App\Justificatif;
 use App\Rating;
 use App\TakeOverDelivery;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -409,7 +410,16 @@ class MobileController extends Controller
     public function computePrice(Request $request){
         $u = auth()->user();
         if(empty($u->customer)) return response()->json(['error' => 'user_not_customer'], 403);
-        return response()->json(['price' => Delivery::computePrice($request->get('bagages'), $request->get('start_position'), $request->get('end_position'))['total']]);
+        //TODO A VOIR SI CA MARCHE
+        $date_sliced = explode(' ',$request['datetimevalue'])[0];
+        $time_sliced = explode(' ',$request['datetimevalue'])[1];
+        if(empty($request['bagages'])){
+            throw new \Error('Please enter a least a bag');
+        }
+        $start_date = Carbon::create(explode('/',$date_sliced)[2],explode('/',$date_sliced)[1],
+            explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1])->format('Y-m-d H:m');
+
+        return response()->json(['price' => Delivery::computePrice($request->get('bagages'), $request->get('start_position'), $request->get('end_position'))['total']], $start_date);
     }
 
 
@@ -636,9 +646,9 @@ class MobileController extends Controller
         $driver = Auth::user()->driver;
 
         // On vérifie la présence du fichier
-        /*if (!$request->hasFile('justificatif')) {
+        if (!$request->hasFile('justificatif')) {
             return response()->json(['error' => 'no_file_provided'], 403);
-        }*/
+        }
 
         // La présence du nom
         $v = Validator::make($request->all(), [

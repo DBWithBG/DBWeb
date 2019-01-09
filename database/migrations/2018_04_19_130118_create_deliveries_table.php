@@ -33,6 +33,7 @@ class CreateDeliveriesTable extends Migration
             $table->string('no_train')->nullable();
             $table->string('no_flight')->nullable();
             $table->boolean('deleted')->default(0);
+            $table->integer('promo_code_id')->nullable();
         });
 
         Schema::table('deliveries', function(Blueprint $table){
@@ -45,6 +46,10 @@ class CreateDeliveriesTable extends Migration
 
         Schema::table('deliveries', function(Blueprint $table){
             $table->foreign('start_position_id')->references('id')->on('positions');
+        });
+
+        Schema::table('deliveries', function(Blueprint $table){
+            $table->foreign('promo_code_id')->references('id')->on('promo_codes');
         });
     }
 

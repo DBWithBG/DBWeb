@@ -337,7 +337,13 @@ class AdminController extends Controller
 
     public function addPrice(Request $request)
     {
-        Price::create($request->toArray());
+        $request_tab = $request->toArray();
+        if($request->promotion){
+            $request_tab['promotion'] = true;
+        }else{
+            $request_tab['promotion'] = false;
+        }
+        Price::create($request_tab);
         return redirect('backoffice/configuration/prices#rowPrices');
     }
 

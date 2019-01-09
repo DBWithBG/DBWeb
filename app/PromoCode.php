@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Price extends Model
+class PromoCode extends Model
 {
     use Notifiable;
 
@@ -15,8 +15,11 @@ class Price extends Model
      * @var array
      */
     protected $fillable = [
-        'createur', 'bags_min', 'bags_max', 'to_add_driver', 'coef_kilometers_driver', 'coef_bags_driver',
-        'coef_total_driver', 'coef_total_driver', 'coef_deliver', 'start_date', 'end_date', 'promotion'
+        'createur', 'active', 'name', 'start_date', 'end_date', 'percent'
     ];
     public $timestamps = true;
+
+    public function deliveries(){
+        return $this->hasMany('App\Rating', 'promo_code_id');
+    }
 }

@@ -104,6 +104,33 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <h3>Date de début et de fin en cas de promotion</h3>
+                                    <p>La promotion sera prioritaire par rapport aux autres prix en cours</p>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Activer en tant que promotion :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input type="checkbox" name="promotion" class="form-control js-check">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Date de début de la promotion :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input type="date" name="start_date" class="form-control js-start_date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Date de fin de la promotion :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input type="date" name="end_date" class="form-control js-end_date">
+                                            </div>
+                                        </div>
+                                    </div>
                                     {{ csrf_field() }}
                                 </div>
                                 <div class="card-footer ">
@@ -136,6 +163,7 @@
                                             <th>Coef rémunération deliverbag</th>
                                             <th>Créateur</th>
                                             <th>Créé le</th>
+                                            <th>Si promotion</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
@@ -157,6 +185,12 @@
                                                 </td>
                                                 <td>
                                                     {{ \Carbon\Carbon::parse($price->created_at)->format('d/m/Y') }}
+                                                </td>
+                                                <td><strong>
+                                                    @if($price->promotion)
+                                                        Du {{ \Carbon\Carbon::parse($price->start_date)->format('d/m/Y') }} au {{ \Carbon\Carbon::parse($price->end_date)->format('d/m/Y') }}
+                                                    @endif
+                                                    </strong>
                                                 </td>
 
                                                 <td class="text-right">
@@ -192,6 +226,19 @@
 
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function ($) {
+
+            $('.js-check').on('click', function(){
+                if(!$(this).prop('checked')){
+                    $('.js-start_date').val('');
+                    $('.js-end_date').val('');
+                    $('.js-end_date').prop('required', false);
+                    $('.js-start_date').prop('required', false);
+                }else{
+                    $('.js-end_date').prop('required', true);
+                    $('.js-start_date').prop('required', true);
+                }
+            });
+
             var $table4 = $("#datatables");
 
             $table4.DataTable({
