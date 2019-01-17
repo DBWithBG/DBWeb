@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Delivery;
+use App\Driver;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
@@ -106,5 +107,28 @@ class FactureController extends Controller
         //FactureController::genererFactureGroupe($filename,true);
         FactureController::genererFactureDeliveryFrancais($delivery->id, true);
         return redirect('/facture/consulter/' . $delivery->id);
+    }
+
+    public static function genererFactureDriverMonth($idDriver, $year, $month) {
+        $driver = Driver::find($idDriver);
+        $sorted_deliveries = $driver->sortedDeliveries();
+
+        $filename = "driver-$idDriver-$month-$year.pdf";
+        $path = storage_path() . '/app/files/factures/' . $filename;
+
+        /*if (file_exists($path)) {
+            return $path;
+        }*/
+
+        $data = [
+            'driver' => $driver,
+            'deliveries' => $sorted_deliveries[$year][$month]
+        ];
+
+        $pdf = PDF::loadView('pdf.facture_driver', $data);
+        $pdf->save($path);
+
+        return $path;
+        
     }
 }

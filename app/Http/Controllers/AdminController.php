@@ -129,6 +129,25 @@ class AdminController extends Controller
         return view('admin.driver.driver')->with(['driver' => $driver, 'historique' => $historique]);
     }
 
+    public function getFactureDriver($id, $year, $month) {
+        $driver = Driver::findOrFail($id);
+        $sorted_deliveries = $driver->sortedDeliveries();
+
+        // Si il n'existe pas de récap pour le mois voulu, on renvoie un code Bad Request
+        if(!array_key_exists($year, $sorted_deliveries)) abort(400);
+        if(!array_key_exists($month, $sorted_deliveries[$year])) abort(400);
+
+        // Génération de la facture avec FactureController::genererFactureDriverMonth -> return path
+        $path = FactureController::genererFactureDriverMonth($id, $year, $month);
+
+
+        // On retourne le fichier grâce au path
+        header('Content-Type: application/pdf');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        return;
+    }
+
     public function validateDriver($id)
     {
         $driver = Driver::findOrFail($id);

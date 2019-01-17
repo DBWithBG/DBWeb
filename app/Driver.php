@@ -65,19 +65,7 @@ class Driver extends Model
         return '' . ($total / $number);
     }
 
-    /**
-     * Permet de récupérer les statistiques d'un chaffeur par mois (Du plus récent au plus vieux)
-     * Renvoie un tableau de la forme [
-     *     ['year' => 2019, 'month' => 1, 'nb_deliveries' => 3, 'nb_bags' => 5, 'income' => 50.7, 'deliveries' => [...]],
-     *     ['year' => 2018, 'month' => 1, 'nb_deliveries' => 3, 'nb_bags' => 5, 'income' => 50.7, 'deliveries' => [...]],
-     *     etc...
-     * ]
-     * @return array
-     */
-    public function historique() {
-        // On va regarder les NB_YEARS dernières année
-        $NB_YEARS = 4;
-
+    public function sortedDeliveries() {
         // On récupère les deliveries du driver ayant le status_id TERMINEE
         $takeOversDeliveries = $this->takeOverDeliveries()->get()->filter(function ($takeOverDelivery) {
             return $takeOverDelivery->delivery->status_id === Config::get('constants.TERMINEE');
@@ -111,6 +99,24 @@ class Driver extends Model
       
         }
 
+        return $sorted_deliveries;
+    }
+
+    /**
+     * Permet de récupérer les statistiques d'un chaffeur par mois (Du plus récent au plus vieux)
+     * Renvoie un tableau de la forme [
+     *     ['year' => 2019, 'month' => 1, 'nb_deliveries' => 3, 'nb_bags' => 5, 'income' => 50.7, 'deliveries' => [...]],
+     *     ['year' => 2018, 'month' => 1, 'nb_deliveries' => 3, 'nb_bags' => 5, 'income' => 50.7, 'deliveries' => [...]],
+     *     etc...
+     * ]
+     * @return array
+     */
+    public function historique() {
+        // On va regarder les NB_YEARS dernières année
+        $NB_YEARS = 4;
+
+        $sorted_deliveries = $this->sortedDeliveries();
+
         $current_year = intval(date('Y'));
         $historique = [];
 
@@ -125,7 +131,7 @@ class Driver extends Model
 
                 $recap_current_month = [
                     'year' => $year,
-                    'month' => Config::get('constants.MONTH_' . $month),
+                    'month' => $month,
                     'nb_deliveries' => count($sorted_deliveries[$year][$month]),
                     'nb_bags' => 0,
                     'income' => 0,

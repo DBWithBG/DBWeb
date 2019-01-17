@@ -55,6 +55,7 @@ Route::post('backoffice/customer/delete', 'AdminController@deleteCustomer');
 
 Route::get('backoffice/drivers', 'AdminController@getDrivers');
 Route::get('backoffice/driver/{id}', 'AdminController@getDriver');
+Route::get('backoffice/driver/{id}/facture/{year}/{month}', 'AdminController@getFactureDriver');
 Route::post('backoffice/driver/{id}/update', 'AdminController@updateDriver');
 Route::post('backoffice/driver/{id}/validate', 'AdminController@validateDriver');
 Route::post('backoffice/driver/{id}/revoke', 'AdminController@revokeDriver');
