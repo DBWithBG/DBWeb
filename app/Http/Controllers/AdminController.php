@@ -125,7 +125,8 @@ class AdminController extends Controller
     public function getDriver($id)
     {
         $driver = Driver::findOrFail($id);
-        return view('admin.driver.driver')->with(['driver' => $driver]);
+        $historique = $driver->historique();
+        return view('admin.driver.driver')->with(['driver' => $driver, 'historique' => $historique]);
     }
 
     public function validateDriver($id)
