@@ -6,6 +6,7 @@ use App\Delivery;
 use App\Driver;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use Illuminate\Support\Facades\Config;
 
 class FactureController extends Controller
 {
@@ -120,9 +121,22 @@ class FactureController extends Controller
             return $path;
         }*/
 
+        $deliveries = $sorted_deliveries[$year][$month];
+        $totalHT = 0;
+
+        foreach($deliveries as $takeOverDelivery) {
+            $totalHT += $takeOverDelivery->delivery->remuneration_driver;
+        }
+
+        $TVA = Config::get('constants.TVA');
+        $totalTTC = $totalHT + (($TVA / 100) * $totalHT);
+
         $data = [
             'driver' => $driver,
-            'deliveries' => $sorted_deliveries[$year][$month]
+            'deliveries' => $deliveries,
+            'totalHT' => $totalHT,
+            'totalTTC' => $totalTTC,
+            'TVA' => $TVA
         ];
 
         $pdf = PDF::loadView('pdf.facture_driver', $data);

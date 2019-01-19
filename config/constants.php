@@ -43,4 +43,6 @@ return [
     'MONTH_10' => 'Octobre',
     'MONTH_11' => 'Novembre',
     'MONTH_12' => 'Décembre',
+
+    'TVA' => 20
 ];
