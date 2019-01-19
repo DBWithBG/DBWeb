@@ -56,10 +56,10 @@
             $request['delivery']['distance'] = str_replace(',', '.',$request['delivery']['distance']);
             if(empty($request['bagages'])) {
                 $request['bagages']= [['a'=>'a']];
-                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance);
+                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date']);
                 $request['bagages'] = null;
             }else{
-                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance);
+                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date']);
             }
 
             $request['delivery']['price'] = $prices['total'];
@@ -112,7 +112,7 @@
             }
 
 
-            $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance);
+            $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance, $start_date);
             $delivery->price = $prices['total'];
             $delivery->remuneration_driver = $prices['remuneration_driver'];
             $delivery->remuneration_deliver = $prices['remuneration_deliver'];

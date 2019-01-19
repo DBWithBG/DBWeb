@@ -96,7 +96,8 @@ class DatabaseSeeder extends Seeder
             'coef_kilometers_driver' => 2,
             'coef_bags_driver' => 1,
             'coef_total_driver' => 1.2,
-            'coef_deliver' => 0.333334
+            'coef_deliver' => 0.333334,
+            'promotion' => 0
         ]);
 
         \App\Price::create([
@@ -107,7 +108,8 @@ class DatabaseSeeder extends Seeder
             'coef_kilometers_driver' => 2,
             'coef_bags_driver' => 1,
             'coef_total_driver' => 1.2,
-            'coef_deliver' => 0.333334
+            'coef_deliver' => 0.333334,
+            'promotion' => 0
         ]);
 
         \App\Reglage::create([

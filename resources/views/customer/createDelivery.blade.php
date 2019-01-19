@@ -63,25 +63,35 @@
                                     </label>
                                                 </span>
                                                         <div class="js-immediate" hidden>
+                                                            <br>
                                                             <strong>Livraison dès que possible</strong>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <!-- end section --><br>
-                                                        <div class="text-center">
-                                                            <div class="btn-group " role="group">
-                                                                <div class="frm-row">
-                                                                    <div class="tagline" style="margin-top: 30px; margin-bottom: 20px"><span>Bagages</span></div><!-- .tagline -->
+                                                </div>
+                                                <div class="row row-margin">
+                                                    <div class="col-md-12">
+                                                        <label for="promo_code" class="field-label"><strong>Code promotion</strong></label>
+                                                        <label class="field prepend-icon">
+                                                            <input type="text"  name="promo_code" id="promo_code" class="gui-input js-promo-code" style="color : black">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row col-md-12">
+                                                    <!-- end section --><br>
+                                                    <div class="text-center col-md-12">
+                                                        <div class="btn-group " role="group">
+                                                            <div class="frm-row">
+                                                                <div class="tagline" style="margin-top: 30px; margin-bottom: 20px"><span>Bagages</span></div><!-- .tagline -->
 
 
-                                                                    @foreach(\App\TypeBag::all() as $type_bag)
-                                                                        <div class="col-md-4 js-{{$type_bag->id}}"  style="border-right-color: black;">
-                                                                            <span style="font-size: 20px; font-weight: bold">{{$type_bag->name}}<br><span style="font-weight: lighter; !important;">{{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm</span></span>
-                                                                            <br>
-                                                                            <a id="{{$type_bag->id.'-'.$type_bag->name}}" class="js-add-bag btn btn-small light uppercase btn-success"><i class="fa fa-plus-circle"></i> Ajouter</a>
-                                                                            <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
-                                                                            @foreach($my_bags as $my_bag)
-                                                                                <span class="js-delete-{{$my_bag->id}}">
+                                                                @foreach(\App\TypeBag::all() as $type_bag)
+                                                                    <div class="col-md-4 js-{{$type_bag->id}}"  style="border-right-color: black;">
+                                                                        <span style="font-size: 20px; font-weight: bold">{{$type_bag->name}}<br><span style="font-weight: lighter; !important;">{{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm</span></span>
+                                                                        <br>
+                                                                        <a id="{{$type_bag->id.'-'.$type_bag->name}}" class="js-add-bag btn btn-small light uppercase btn-success"><i class="fa fa-plus-circle"></i> Ajouter</a>
+                                                                        <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
+                                                                        @foreach($my_bags as $my_bag)
+                                                                            <span class="js-delete-{{$my_bag->id}}">
                                                                                 <input type="text" class="gui-input" style="margin-top: 10px"
                                                                                        name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][name]"
                                                                                        value="{{$my_bag->name}}" placeholder="nom">
@@ -92,23 +102,21 @@
                                                                                    id="{{$my_bag->id}}">
                                                                                     <i class="fa fa-remove"></i> Ne pas utiliser</a>
                                                                                     </span>
-                                                                        @endforeach
-                                                                        <!--end item-->
-                                                                        </div>
                                                                     @endforeach
-                                                                </div>
-
+                                                                    <!--end item-->
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
+
                                                         </div>
-                                                        <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
-
-                                                        <div class="tagline" style="margin-bottom: 10px"></div>
-                                                        <div class="form-footer" style="text-align: center">
-                                                            <button type="submit" class="btn btn-medium light uppercase btn-primary">Finaliser ma prise en charge</button>
-                                                        </div><!-- end .form-footer section -->
-
-                                                        {{csrf_field()}}
                                                     </div>
+                                                    <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
+
+                                                    <div class="form-footer" style="text-align: center">
+                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary">Finaliser ma prise en charge</button>
+                                                    </div><!-- end .form-footer section -->
+
+                                                    {{csrf_field()}}
                                                 </div>
                                             </form>
                                         </div>
