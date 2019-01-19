@@ -92,7 +92,7 @@
             <tr>
                 <td><b>FACTURE</b></td>
                 <td class="little-spacer"></td>
-                <td><b>XXXXXXX</b></td>
+                <td><b>{{$numFacture}}</b></td>
             </tr>
         </table>
 

@@ -117,9 +117,11 @@ class FactureController extends Controller
         $filename = "driver-$idDriver-$month-$year.pdf";
         $path = storage_path() . '/app/files/factures/' . $filename;
 
-        /*if (file_exists($path)) {
+        if (file_exists($path)) {
             return $path;
-        }*/
+        }
+
+        $numFacture = "$idDriver-$month-$year";
 
         $deliveries = $sorted_deliveries[$year][$month];
         $totalHT = 0;
@@ -136,7 +138,8 @@ class FactureController extends Controller
             'deliveries' => $deliveries,
             'totalHT' => $totalHT,
             'totalTTC' => $totalTTC,
-            'TVA' => $TVA
+            'TVA' => $TVA,
+            'numFacture' => $numFacture
         ];
 
         $pdf = PDF::loadView('pdf.facture_driver', $data);
