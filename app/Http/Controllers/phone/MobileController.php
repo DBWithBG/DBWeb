@@ -11,6 +11,7 @@ use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\FactureController;
 use App\InfoBag;
 use App\Justificatif;
 use App\Rating;
@@ -639,6 +640,26 @@ class MobileController extends Controller
         $file = Storage::get($justificatif->file_path);
         $mimetype = \GuzzleHttp\Psr7\mimetype_from_filename($justificatif->file_path);
         return response($file, 200)->header('Content-Type', $mimetype);
+    }
+
+    public function getFactureDriver($year, $month) {
+        $driver = Auth::user()->driver;
+
+        $sorted_deliveries = $driver->sortedDeliveries();
+
+        // Si il n'existe pas de récap pour le mois voulu, on renvoie un code Bad Request
+        if(!array_key_exists($year, $sorted_deliveries)) abort(400);
+        if(!array_key_exists($month, $sorted_deliveries[$year])) abort(400);
+
+        // Génération / Récup de la facture avec FactureController::genererFactureDriverMonth -> return path
+        $path = FactureController::genererFactureDriverMonth($driver->id, $year, $month);
+
+
+        // On retourne le fichier grâce au path
+        header('Content-Type: application/pdf');
+        header('Content-Length: ' . filesize($path));
+        readfile($path);
+        return;
     }
 
     //Ajout d'une pièce justificative au chauffeur

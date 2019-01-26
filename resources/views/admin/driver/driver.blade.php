@@ -41,7 +41,57 @@
                     </div>
                 @endif
 
+                @if($driver->is_op)
+                <!-- Begin row (Statistiques) -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-primary card-header-icon">
+                                <div class="card-text">
+                                    <h4 class="card-title">Historique</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="material-datatables">
+                                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                      <thead>
+                                        <tr>
+                                          <th class="disabled-sorting">Mois</th>
+                                          <th class="disabled-sorting">Nombre de courses</th>
+                                          <th class="disabled-sorting">Nombre de bagages</th>
+                                          <th class="disabled-sorting">Gain</th>
+                                          <th class="disabled-sorting text-right">Facture</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
 
+                                        @foreach ($historique as $month)
+                                        <tr>
+                                            <td>{{Config::get('constants.MONTH_' . $month['month']) . ' ' .$month['year']}}</td>
+                                            <td>{{$month['nb_deliveries']}}</td>
+                                            <td>{{$month['nb_bags']}}</td>
+                                            <td>{{$month['income'] . '€'}}</td>
+                                            <td class="text-right">
+                                                @if(date('Y') != $month['year'] && date('M') != $month['month']) 
+                                                <!-- Pas de facture pour le mois en cours -->
+                                                <a href="{{url(sprintf('backoffice/driver/%d/facture/%d/%d', $driver->id, $month['year'], $month['month']))}}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">dvr</i></a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        
+                                      </tbody>
+                                    </table>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                <!-- end row (Statistiques) -->
+
+
+                <!-- Begin row (Informations) -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -49,7 +99,6 @@
                                 <div class="card-text">
                                     <h4 class="card-title">Informations</h4>
                                 </div>
-
                             </div>
                             <form method="post" action="{{url('/backoffice/driver/' . $driver->id . '/update')}}">
                                 <div class="card-body">
@@ -150,6 +199,7 @@
                     </div>
                 </div>
                 <!-- end row (Informations) -->
+
                 <form style="display: none;" id="validate_driver" method="post"
                       action="{{url('/backoffice/driver/'. $driver->id .'/validate')}}">
                     {{csrf_field()}}
@@ -161,6 +211,7 @@
 
                 </form>
 
+                <!-- Begin row (PJ) -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -234,7 +285,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- end row (Liste justificatifs) -->
+                <!-- end row (PJ) -->
 
             </div>
         </div>
@@ -242,19 +293,21 @@
 @endsection
 
 @section('custom-scripts')
+    <script type="text/javascript" src="{{asset('material_dashboard/assets/js/plugins/jquery.datatables.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function ($) {
-            var $table4 = $("#datatables");
-
-            $table4.DataTable({
-                dom: 'Bfrtip',
-                "ordering": false,
-                buttons: [
-                    'copyHtml5',
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ], language: {
+            $('#datatables').DataTable({
+                // Désactivation du trie automatique
+                "aaSorting": [],
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [3, 10, 25, -1],
+                    [3, 10, 25, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Recherche",
                     "sProcessing": "Traitement en cours...",
                     "sSearch": "Rechercher&nbsp;:",
                     "sLengthMenu": "Afficher _MENU_ &eacute;l&eacute;ments",

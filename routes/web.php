@@ -55,6 +55,7 @@ Route::post('backoffice/customer/delete', 'AdminController@deleteCustomer');
 
 Route::get('backoffice/drivers', 'AdminController@getDrivers');
 Route::get('backoffice/driver/{id}', 'AdminController@getDriver');
+Route::get('backoffice/driver/{id}/facture/{year}/{month}', 'AdminController@getFactureDriver');
 Route::post('backoffice/driver/{id}/update', 'AdminController@updateDriver');
 Route::post('backoffice/driver/{id}/validate', 'AdminController@validateDriver');
 Route::post('backoffice/driver/{id}/revoke', 'AdminController@revokeDriver');
@@ -224,6 +225,7 @@ Route::put('mobile/driver/', 'phone\MobileController@updateDriver');
 Route::post('mobile/driver/addJustificatif', 'phone\MobileController@addJustificatif');
 Route::delete('mobile/driver/justificatif/{id}', 'phone\MobileController@deleteJustificatif');
 Route::get('mobile/driver/justificatif/{id}', 'phone\MobileController@getJustificatif');
+Route::get('mobile/driver/facture/{year}/{month}', 'phone\MobileController@getFactureDriver');
 Route::get('mobile/driver/justificatifs', 'phone\MobileController@getJustificatifs');
 Route::put('mobile/driver/siret', 'phone\MobileController@updateSiretDriver');
 Route::get('/drivers', 'phone\MobileController@getDrivers');

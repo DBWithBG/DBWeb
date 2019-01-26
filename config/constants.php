@@ -29,5 +29,20 @@ return [
     'STATUS_5' => 'Terminé',
     'BAGAGE_CABINE'=>1,
     'BAGAGE_SOUTE'=>2,
-    'BAGAGE_AUTRE'=>3
+    'BAGAGE_AUTRE'=>3,
+
+    'MONTH_1' => 'Janvier',
+    'MONTH_2' => 'Février',
+    'MONTH_3' => 'Mars',
+    'MONTH_4' => 'Avril',
+    'MONTH_5' => 'Mais',
+    'MONTH_6' => 'Juin',
+    'MONTH_7' => 'Juillet',
+    'MONTH_8' => 'Aout',
+    'MONTH_9' => 'Septembre',
+    'MONTH_10' => 'Octobre',
+    'MONTH_11' => 'Novembre',
+    'MONTH_12' => 'Décembre',
+
+    'TVA' => 20
 ];

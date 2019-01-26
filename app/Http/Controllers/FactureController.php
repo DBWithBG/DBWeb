@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Delivery;
+use App\Driver;
 use Illuminate\Support\Facades\DB;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use Illuminate\Support\Facades\Config;
 
 class FactureController extends Controller
 {
@@ -106,5 +108,44 @@ class FactureController extends Controller
         //FactureController::genererFactureGroupe($filename,true);
         FactureController::genererFactureDeliveryFrancais($delivery->id, true);
         return redirect('/facture/consulter/' . $delivery->id);
+    }
+
+    public static function genererFactureDriverMonth($idDriver, $year, $month) {
+        $driver = Driver::find($idDriver);
+        $sorted_deliveries = $driver->sortedDeliveries();
+
+        $filename = "driver-$idDriver-$month-$year.pdf";
+        $path = storage_path() . '/app/files/factures/' . $filename;
+
+        if (file_exists($path)) {
+            return $path;
+        }
+
+        $numFacture = "$idDriver-$month-$year";
+
+        $deliveries = $sorted_deliveries[$year][$month];
+        $totalHT = 0;
+
+        foreach($deliveries as $takeOverDelivery) {
+            $totalHT += $takeOverDelivery->delivery->remuneration_driver;
+        }
+
+        $TVA = Config::get('constants.TVA');
+        $totalTTC = $totalHT + (($TVA / 100) * $totalHT);
+
+        $data = [
+            'driver' => $driver,
+            'deliveries' => $deliveries,
+            'totalHT' => $totalHT,
+            'totalTTC' => $totalTTC,
+            'TVA' => $TVA,
+            'numFacture' => $numFacture
+        ];
+
+        $pdf = PDF::loadView('pdf.facture_driver', $data);
+        $pdf->save($path);
+
+        return $path;
+        
     }
 }
