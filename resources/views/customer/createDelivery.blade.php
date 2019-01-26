@@ -113,7 +113,8 @@
                                                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                                                     <div class="form-footer" style="text-align: center">
-                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary">Finaliser ma prise en charge</button>
+                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary js-finalise" hidden>Finaliser ma prise en charge</button>
+                                                        <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
                                                     </div><!-- end .form-footer section -->
 
                                                     {{csrf_field()}}
@@ -139,6 +140,7 @@
     <script type="text/javascript">
         var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
         var bag_ref_number = bag_number;
+        var ng_bags = bag_number;
         bag_number++;
         var real_number = 0;
         $(document).ready(function ($) {
@@ -152,6 +154,7 @@
 
             $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
+                bag_ref_number ++;
                 real_number ++;
                 id = $(this).attr('id').split('-');
 
@@ -160,6 +163,8 @@
                     '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                     '<a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336" id='+bag_number+'><i class="fa fa-remove"></i> Ne pas utiliser</a></span>');
                 bag_number++;
+                $('.js-unfinalise').hide();
+                $('.js-finalise').show();
             });
             $('.switch-1').hover(function () {
                 if ($('.bootstrap-switch').hasClass('bootstrap-switch-on') == true) {
@@ -180,6 +185,7 @@
 
             $('#time_consigne').on('change', function () {
                 time = $(this).val();
+                bag_ref_number --;
                 if (time.split(':')[0] < 2) {
                     $('#time_consigne').val('02:00');
                 }
@@ -193,6 +199,11 @@
             $(document).on('click', '.js-press-delete', function () {
                 id = $(this).attr('id');
                 if(id > bag_ref_number) real_number --;
+                bag_ref_number --;
+                if(bag_ref_number < 1){
+                    $('.js-unfinalise').show();
+                    $('.js-finalise').hide();
+                }
                 $('.js-delete-' + id).remove();
             })
         });
