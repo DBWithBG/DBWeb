@@ -13,7 +13,7 @@ class CreatePromoCodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('code_promos', function (Blueprint $table) {
+        Schema::create('promo_codes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('createur')->nullable();
             $table->boolean('active')->nullable();
@@ -33,6 +33,6 @@ class CreatePromoCodeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('code_promos');
+        Schema::dropIfExists('promo_codes');
     }
 }
