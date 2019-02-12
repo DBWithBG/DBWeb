@@ -82,6 +82,9 @@ class CustomerController extends Controller
 
     //Connexion commune chauffeur et client
     public function connexion(){
+        if(Auth::check() && Auth::user()->admin){
+            return redirect('backoffice/home');
+        }
         return view('customer.login');
     }
 
