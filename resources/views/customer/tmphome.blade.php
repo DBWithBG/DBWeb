@@ -1,5 +1,6 @@
 <!doctype html>
 <title>Votre site Deliverbag fait peau neuve !</title>
+<img src="{{asset('img/logo_plat_milieu.png')}}" alt="">
 <style>
     body { text-align: center; padding: 150px; }
     h1 { font-size: 50px; }
@@ -12,7 +13,7 @@
 <article>
     <h1>Nous revenons rapidement !</h1>
     <div>
-        <p>Nous sommes désolé de cette déconvenue. En attendant, vous pouvez utiliser nos services en nous contactant directementVous pouvez nous contacter <a href="mailto:#">bordeaux@deliverbag.com</a>, ou au +33(0)5.57.84.01.11 !</p>
+        <p>Nous sommes désolé de cette déconvenue. En attendant, vous pouvez utiliser nos services en nous contactant directement<br>Vous pouvez nous contacter <a href="mailto:#">bordeaux@deliverbag.com</a>, ou au +33(0)5.57.84.01.11 !</p>
         <p>&mdash; L'équipe Deliverbag</p>
     </div>
 </article>
