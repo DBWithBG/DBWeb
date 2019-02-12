@@ -33,7 +33,7 @@ class CreateDeliveriesTable extends Migration
             $table->string('no_train')->nullable();
             $table->string('no_flight')->nullable();
             $table->boolean('deleted')->default(0);
-            $table->integer('promo_code_id')->nullable();
+            $table->integer('promo_code_id')->unsigned()->nullable();
         });
 
         Schema::table('deliveries', function(Blueprint $table){
