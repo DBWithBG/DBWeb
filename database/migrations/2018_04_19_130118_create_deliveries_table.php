@@ -49,7 +49,7 @@ class CreateDeliveriesTable extends Migration
         });
 
         Schema::table('deliveries', function(Blueprint $table){
-            $table->foreign('promo_code_id')->references('id')->on('promo_codes');
+            $table->foreign('promo_code_id')->references('id')->on('code_promos');
         });
     }
 
