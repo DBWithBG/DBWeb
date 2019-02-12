@@ -112,10 +112,12 @@
                                                     </div>
                                                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
-                                                    <div class="form-footer" style="text-align: center">
-                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary">Finaliser ma prise en charge</button>
+                                                    <div class="form-footer js-finalise" style="text-align: center" hidden>
+                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>
                                                     </div><!-- end .form-footer section -->
-
+                                                    <div class="form-footer js-unfinalise" style="text-align: center" hidden>
+                                                        <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
+                                                    </div>
                                                     {{csrf_field()}}
                                                 </div>
                                             </form>
@@ -139,9 +141,15 @@
     <script type="text/javascript">
         var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
         var bag_ref_number = bag_number;
+        var nb_bags = bag_number;
         bag_number++;
         var real_number = 0;
         $(document).ready(function ($) {
+            if(nb_bags > 0){
+                $('.js-finalise').show();
+            }else{
+                $('.js-unfinalise').show();
+            }
 
             $('#datetimepicker4').datetimepicker({
                 locale: 'fr',
@@ -152,6 +160,7 @@
 
             $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
+                nb_bags ++;
                 real_number ++;
                 id = $(this).attr('id').split('-');
 
@@ -160,6 +169,8 @@
                     '<input type="text" class="gui-input" name="bagages[' + id[0] + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                     '<a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336" id='+bag_number+'><i class="fa fa-remove"></i> Ne pas utiliser</a></span>');
                 bag_number++;
+                $('.js-unfinalise').hide();
+                $('.js-finalise').show();
             });
             $('.switch-1').hover(function () {
                 if ($('.bootstrap-switch').hasClass('bootstrap-switch-on') == true) {
@@ -193,6 +204,11 @@
             $(document).on('click', '.js-press-delete', function () {
                 id = $(this).attr('id');
                 if(id > bag_ref_number) real_number --;
+                nb_bags --;
+                if(nb_bags < 1){
+                    $('.js-unfinalise').show();
+                    $('.js-finalise').hide();
+                }
                 $('.js-delete-' + id).remove();
             })
         });
