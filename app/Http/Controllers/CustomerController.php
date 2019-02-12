@@ -28,6 +28,7 @@ class CustomerController extends Controller
         if(!empty(Auth::user()->driver->id)){
             return redirect('driver/home');
         }
+        //TODO TO CHANGE
         return view('customer.home')->with([
 
         ]);

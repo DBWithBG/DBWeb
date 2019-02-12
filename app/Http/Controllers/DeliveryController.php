@@ -103,12 +103,12 @@
                 throw new \Error('Please enter a least a bag');
             }
             $start_date = Carbon::create(explode('/',$date_sliced)[2],explode('/',$date_sliced)[1],
-                explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1])->format('Y-m-d H:m');
+                explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1]);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
             if(!empty($request['time_consigne'])){
                 $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
-                $delivery->end_date = $start_date->add($delivery->time_consigne->hour, 'hours')->add($delivery->time_consigne->minute, 'minutes');
+                $delivery->end_date = $start_date->addHours($delivery->time_consigne->hour)->addMinutes($delivery->time_consigne->minute);
             }
 
 

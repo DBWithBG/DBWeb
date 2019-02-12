@@ -112,11 +112,12 @@
                                                     </div>
                                                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
-                                                    <div class="form-footer" style="text-align: center">
-                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary js-finalise" hidden>Finaliser ma prise en charge</button>
-                                                        <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
+                                                    <div class="form-footer js-finalise" style="text-align: center" hidden>
+                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>
                                                     </div><!-- end .form-footer section -->
-
+                                                    <div class="form-footer js-unfinalise" style="text-align: center" hidden>
+                                                        <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
+                                                    </div>
                                                     {{csrf_field()}}
                                                 </div>
                                             </form>
@@ -140,10 +141,15 @@
     <script type="text/javascript">
         var bag_number = "{{sizeof(\App\Bag::where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get())}}";
         var bag_ref_number = bag_number;
-        var ng_bags = bag_number;
+        var nb_bags = bag_number;
         bag_number++;
         var real_number = 0;
         $(document).ready(function ($) {
+            if(nb_bags > 0){
+                $('.js-finalise').show();
+            }else{
+                $('.js-unfinalise').show();
+            }
 
             $('#datetimepicker4').datetimepicker({
                 locale: 'fr',
@@ -154,7 +160,7 @@
 
             $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
-                bag_ref_number ++;
+                nb_bags ++;
                 real_number ++;
                 id = $(this).attr('id').split('-');
 
@@ -185,7 +191,6 @@
 
             $('#time_consigne').on('change', function () {
                 time = $(this).val();
-                bag_ref_number --;
                 if (time.split(':')[0] < 2) {
                     $('#time_consigne').val('02:00');
                 }
@@ -199,8 +204,8 @@
             $(document).on('click', '.js-press-delete', function () {
                 id = $(this).attr('id');
                 if(id > bag_ref_number) real_number --;
-                bag_ref_number --;
-                if(bag_ref_number < 1){
+                nb_bags --;
+                if(nb_bags < 1){
                     $('.js-unfinalise').show();
                     $('.js-finalise').hide();
                 }
