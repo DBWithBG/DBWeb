@@ -90,7 +90,7 @@
                 <td><b>{{\Carbon\Carbon::now()->format('d/m/Y H:m:s')}}</b></td>
             </tr>
             <tr>
-                <td><b>FACTURE</b></td>
+                <td><b>IDENTIFIANT</b></td>
                 <td class="little-spacer"></td>
                 <td><b>{{$numFacture}}</b></td>
             </tr>

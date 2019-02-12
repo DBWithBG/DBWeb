@@ -72,10 +72,8 @@
                                             <td>{{$month['nb_bags']}}</td>
                                             <td>{{$month['income'] . '€'}}</td>
                                             <td class="text-right">
-                                                @if(date('Y') != $month['year'] && date('M') != $month['month']) 
                                                 <!-- Pas de facture pour le mois en cours -->
                                                 <a href="{{url(sprintf('backoffice/driver/%d/facture/%d/%d', $driver->id, $month['year'], $month['month']))}}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">dvr</i></a>
-                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

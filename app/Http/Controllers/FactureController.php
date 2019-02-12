@@ -117,9 +117,6 @@ class FactureController extends Controller
         $filename = "driver-$idDriver-$month-$year.pdf";
         $path = storage_path() . '/app/files/factures/' . $filename;
 
-        if (file_exists($path)) {
-            return $path;
-        }
 
         $numFacture = "$idDriver-$month-$year";
 
