@@ -34,6 +34,12 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function tmphome(){
+        return view('customer.home')->with([
+
+        ]);
+    }
+
     public function tgc() {
         return response()->file(public_path() . '/pdf/legal.pdf');
     }

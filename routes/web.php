@@ -13,6 +13,7 @@
 
 Route::get('/', 'CustomerController@home');
 
+Route::get('/tmphome', 'CustomerController@tmphome');
 
 /******* LOGIN FB GOOGLE TWITTER **************/
 Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
