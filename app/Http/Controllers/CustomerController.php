@@ -33,6 +33,10 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function tgc() {
+        return response()->file(public_path() . '/pdf/legal.pdf');
+    }
+
     //Formulaire de contact
     public function contact() {
         return view('customer.contact');

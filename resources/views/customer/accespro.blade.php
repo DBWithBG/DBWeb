@@ -2,51 +2,50 @@
 
 @section('content')
 
+    <section>
+        <div class="pagenation-holder">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Contact</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <ol class="breadcrumb">
+                            <li><a href="{{url('/')}}">Accueil</a></li>
+                            <li class="current"><a href="{{url('/contact')}}">Contact</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clearfix"></div>
 
-                <section>
-                    <div class="pagenation-holder">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4>Contact</h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <ol class="breadcrumb">
-                                        <li><a href="{{url('/')}}">Accueil</a></li>
-                                        <li class="current"><a href="{{url('/contact')}}">Contact</a></li>
-                                    </ol>
-                                </div>
-                            </div>
+    @if($errors->any())
+        <div style="margin-top: 10px" class="container">
+            @foreach($errors->all() as $error)
+                <div class="row">
+
+                    <div class="col-md-12 nopadding">
+                        <div class="alert-box danger">
+                                <span class="alert-closebtn"
+                                      onclick="this.parentElement.style.display='none';">&times;</span>
+                            <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></strong>
+                            &nbsp; {{$error}}
                         </div>
                     </div>
-                </section>
-                <div class="clearfix"></div>
-
-                @if($errors->any())
-                    <div style="margin-top: 10px" class="container">
-                        @foreach($errors->all() as $error)
-                            <div class="row">
-
-                                <div class="col-md-12 nopadding">
-                                    <div class="alert-box danger">
-                                <span class="alert-closebtn"
-                                  onclick="this.parentElement.style.display='none';">&times;</span>
-                                        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></strong>
-                                        &nbsp; {{$error}}
-                                    </div>
-                            </div>
-                        @endforeach
-                    </div>
+                    @endforeach
+                </div>
                 @endif
 
 
-                            <section class="sec-padding section-light">
+                <section class="sec-padding section-light">
                     <div class="container">
                         <div class="row">
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Formulaire de contact</h3>
+                                <h3 class="uppercase">Demander un accès professionnel</h3>
                                 <p>Pour toute question, n'hésitez pas à nous contacter via ce formulaire. Nous vous
                                     répondrons dans les plus brefs délais.</p>
                                 <br/>
@@ -140,7 +139,5 @@
                         </div>
                     </div>
                 </section>
-
-
 
 @endsection

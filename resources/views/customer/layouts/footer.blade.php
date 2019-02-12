@@ -9,9 +9,10 @@
                     <div class="clearfix"></div>
                     <br/>
                     <ul class="footer-quick-links-5">
-                        <li><a href="#"><i class="fa fa-angle-right"></i> À propos</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i> Règles</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i> Aide</a></li>
+                        <li><a href="{{ url('/apropos') }}"><i class="fa fa-angle-right"></i> À propos</a></li>
+                        <li><a href="{{ url('/mentionslegales') }}"><i class="fa fa-angle-right"></i> Mentions légales</a></li>
+                        <li><a href="{{ url('/regles') }}"><i class="fa fa-angle-right"></i> Règles</a></li>
+                        <li><a href="{{ url('/aide') }}"><i class="fa fa-angle-right"></i> Aide</a></li>
                     </ul>
                 </div>
                 <!--end item-->
@@ -21,8 +22,8 @@
                     <div class="clearfix"></div>
                     <br/>
                     <ul class="footer-quick-links-5">
-                        <li><a href="#"><i class="fa fa-angle-right"></i> Confiance</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i> Sécurité</a></li>
+                        <li><a href="{{ url('/confiance') }}"><i class="fa fa-angle-right"></i> Confiance</a></li>
+                        <li><a href="{{ url('/securite') }}"><i class="fa fa-angle-right"></i> Sécurité</a></li>
                     </ul>
                 </div>
                 <!--end item-->
@@ -32,7 +33,7 @@
                     <div class="clearfix"></div>
                     <br/>
                     <ul class="footer-quick-links-5">
-                        <li><a href="#"><i class="fa fa-angle-right"></i> Accès professionnel</a></li>
+                        <li><a href="{{ url('/accespro') }}"><i class="fa fa-angle-right"></i> Accès professionnel</a></li>
                     </ul>
                 </div>
                 <!--end item-->
@@ -46,7 +47,7 @@
     <section class="sec-padding-6 section-medium-dark">
         <div class="container">
             <div class="row">
-                <div class="fo-copyright-holder text-center"> Copyright © <span id="year"></span> | Deliverbag.fr</div>
+                <div class="fo-copyright-holder text-center"> Copyright © <span id="year"></span> | Deliverbag.fr | <a class="tgclink" href="{{url('/tgc')}}">Termes générales et conditions</a></div>
             </div>
         </div>
     </section>

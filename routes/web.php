@@ -134,6 +134,16 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 
 Route::get('/home', 'CustomerController@home');
 
+
+Route::get('/regles', function() { return view('customer.regles');});
+Route::get('/apropos', function() { return view('customer.apropos');});
+Route::get('/aide', function() { return view('customer.aide');});
+Route::get('/mentionslegales', function() { return view('customer.mentionslegales');});
+Route::get('/confiance', function() { return view('customer.confiance');});
+Route::get('/securite', function() { return view('customer.securite');});
+Route::get('/accespro', function() { return view('customer.accespro');});
+Route::get('/tgc', 'CustomerController@tgc'); // tgc = Termes générales et conditions
+
 Route::get('/contact', 'CustomerController@contact');
 Route::post('/contact', 'CustomerController@postContact');
 

@@ -84,3 +84,7 @@
         padding-bottom: 0px !important;
     }
 }
+
+.tgclink:hover {
+    color: #EEE;
+}
