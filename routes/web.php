@@ -104,6 +104,10 @@ Route::post('/backoffice/push/email', 'AdminController@postEmails');
 //Historique des envois
 Route::get('backoffice/envoi/historique', 'AdminController@getHistoriqueEnvoi');
 
+//Partners
+Route::get('backoffice/partners', 'AdminController@getPartners');
+Route::post('/backoffice/addPartner', 'AdminController@addPartner');
+
 /******************* FIN BACKOFFICE ADMIN****************************************/
 
 /******************* BACKOFFICE DRIVER *************************************/
@@ -278,6 +282,8 @@ Route::get('paybox/refus/','PayboxController@refus_paybox');
 /***************************** FIN PAYBOX ************************************/
 
 Route::get('test', 'MailController@confirm_register_customer');
+
+Route::get('testpaybox', 'AdminController@testPaybox');
 
 
 //mise en place langues

@@ -11,6 +11,7 @@ use App\HistoriqueNotification;
 use App\Http\Controllers\phone\MobileController;
 use App\Http\Controllers\phone\NotificationController;
 use App\Justificatif;
+use App\Partner;
 use App\Price;
 use App\TypeBag;
 use Illuminate\Http\Request;
@@ -483,5 +484,30 @@ class AdminController extends Controller
         return view('admin.notification.historique')->with([
             'historiques'=>$historiques
         ]);
+    }
+
+    /****************** PARTNERS ************************/
+    public function getPartners(){
+        return view('admin.partner.partners');
+    }
+
+    public function addPartner(Request $request){
+        $partner = new Partner();
+        $partner->name = $request->name;
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $partner->logo = $file->store('logos');
+        }
+        $partner->save();
+
+        return redirect('backoffice/partners');
+    }
+
+    public function testPaybox(){
+        $authorizationRequest = \App::make(\Devpark\PayboxGateway\Requests\AuthorizationWithCapture::class);
+
+        return $authorizationRequest->setAmount(1)->setCustomerEmail('simon@sup.sarl')
+            ->setPaymentNumber(1)->send('paybox.send');
     }
 }

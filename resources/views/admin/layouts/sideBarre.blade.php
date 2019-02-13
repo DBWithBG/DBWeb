@@ -207,6 +207,13 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item {{ Request::is('backoffice/partners*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{url('backoffice/partners')}}">
+                        <i class="material-icons">people</i>
+                        <p> Partenaires
+                        </p>
+                    </a>
+                </li>
 
 
 
