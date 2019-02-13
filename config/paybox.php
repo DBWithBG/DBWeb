@@ -31,7 +31,7 @@ return [
      * HMAC authentication key - it should be generated in Paybox merchant panel
      */
 
-    'hmac_key' => env('PAYBOX_HMAC_KEY', '7a8679c4552fc4a78b596e481ac41f9ac050a6cfe03d4a87daa6890ad722713e18ba137e595751f26ab64645bae4ee81da6458a3498f41f41af1a8e712dc627a'),
+    'hmac_key' => env('PAYBOX_HMAC_KEY', '87C0AA0F1E6C6F11B5A8971DB8B63B7502B9AE2E3E93FF03CB84229DC6B79341795ECBAFB8E338C515DFB63C855B163F3AF73FF692C0F583FEDC4D296CA663FC'),
 
     /*
      * HMAC authentication PRE PROD key - it should be generated in Paybox merchant panel
