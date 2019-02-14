@@ -144,8 +144,7 @@
             }
 
             Session::put('paiement', 'paiement');
-            $ret = PayboxController::process($delivery->price, Auth::user()->email);
-            return $ret;
+            return redirect('paybox/paiment_process')->with(['paiement' => $delivery->price, 'email' => Auth::user()->email]);
         }
 
 
