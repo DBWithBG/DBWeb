@@ -7,5 +7,6 @@
             Le montant total de votre commande est de {{$delivery->price}}
             <button type="submit">Aller au paiement</button>
         </div>
+        {{csrf_field()}}
     </form>
 @endsection
