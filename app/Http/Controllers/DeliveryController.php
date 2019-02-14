@@ -126,7 +126,7 @@
             $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
 
             //TODO A RETIRER QUAND PAIEMENT
-            MailController::send_customer_facture($delivery->id, Auth()->user());
+            //MailController::send_customer_facture($delivery->id, Auth()->user());
             Session::flash('success', 'Commande enregistrée');
 
             return view('customer.paiement')->with([
