@@ -134,7 +134,7 @@ class PayboxController extends Controller
     public static function confirmation_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
         //dd($paiement, "OK");
-        return view('paybox.accepted')->with([
+        return redirect('delivery/paiement/success')->withInput([
             'delivery' => $paiement->delivery()
         ]);
         //return view('paiement.confirmation_paybox')->with(['slug_evenement'=>$paiement->slug_evenement,'evenement'=>Evenement::find($paiement->id_evenement)]);
@@ -143,7 +143,7 @@ class PayboxController extends Controller
     //affiche retour paiment refuse a l'utilisateur
     public static function refus_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return view('customer.paybox.refused')->with([
+        return redirect('delivery/paiement/refused')->withInput([
             'delivery' => $paiement->delivery()
         ]);
     }
@@ -151,7 +151,7 @@ class PayboxController extends Controller
     //affiche retour paiment en attente a l'utilisateur
     public static function attente_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return view('customer.paybox.waiting')->with([
+        return redirect('delivery/paiement/waiting')->withInput([
             'delivery' => $paiement->delivery()
         ]);
     }
@@ -159,7 +159,7 @@ class PayboxController extends Controller
     //affiche retour paiment refuse a l'utilisateur
     public static function annule_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return view('customer.paybox.aborted')->with([
+        return redirect('delivery/paiement/aborted')->withInput([
             'delivery' => $paiement->delivery()
         ]);
     }
