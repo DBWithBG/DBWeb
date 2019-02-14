@@ -97,7 +97,8 @@ class DatabaseSeeder extends Seeder
             'coef_bags_driver' => 0,
             'coef_total_driver' => 1,
             'coef_deliver' => 0,
-            'promotion' => 0
+            'promotion' => 0,
+            'to_add_retour' => 15
         ]);
 
         /*\App\Price::create([
