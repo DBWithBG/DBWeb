@@ -139,6 +139,7 @@
             if(empty($delivery->id)){
                 return "ERROR_DELIVERY_NOT_FOUND";
             }
+            dd(Auth::user()->id, $delivery->user_id);
             if(Auth::user()->id != $delivery->user_id){
                 return "OPERATION_NOT_ALLOWED";
             }
