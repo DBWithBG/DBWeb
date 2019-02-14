@@ -13,7 +13,7 @@ class PayboxController extends Controller
     //TODO MODIFICATION AVEC LA BONNE TABLE
     public static function process(Request $request){
         $log = new Logger('reception_paiement');
-        dd($request);
+        dd(session("paiement"));
 
         if(session("paiement")){
             $authorizationRequest = \App::make(\Devpark\PayboxGateway\Requests\AuthorizationWithCapture::class);
