@@ -23,6 +23,7 @@ class CreatePricesTable extends Migration
             $table->decimal('coef_bags_driver',10,6)->nullable();
             $table->decimal('coef_total_driver',10,6)->nullable();
             $table->decimal('coef_deliver',10,6)->nullable();
+            $table->decimal('to_add_retour', 10, 6)->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->boolean('promotion')->nullable();

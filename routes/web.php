@@ -200,6 +200,13 @@ Route::get('delivery/{id}/paiement', 'DeliveryController@getPaiement');
 Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
 Route::post('/delivery/paiement', 'DeliveryController@getPaiement');
+
+Route::get('/delivery/end','DeliveryController@getPaiementStatus');
+
+Route::get('delivery/paiement/success','DeliveryController@success');
+Route::get('delivery/paiement/waiting','DeliveryController@waiting');
+Route::get('delivery/paiement/aborted','DeliveryController@aborted');
+Route::get('delivery/paiement/refused','DeliveryController@refused');
 /************************** END FRONT CUSTOMER **********************************/
 
 

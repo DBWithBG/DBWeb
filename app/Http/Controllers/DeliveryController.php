@@ -6,6 +6,7 @@
     use App\Delivery;
     use App\Http\Controllers\phone\NotificationController;
     use App\InfoBag;
+    use App\PayboxPayment;
     use App\Position;
     use App\TakeOverDelivery;
     use Carbon\Carbon;
@@ -148,7 +149,7 @@
             }
 
             Session::put('paiement', 'paiement');
-            return redirect('paybox/paiment_process')->with(['paiement' => $delivery->price, 'email' => Auth::user()->email]);
+            return redirect('paybox/paiment_process')->with(['paiement' => $delivery->price, 'delivery_id' => $delivery->id, 'email' => Auth::user()->email]);
         }
 
 
@@ -276,6 +277,37 @@
             $tab=NotificationController::notifyLancementLivraison();
             $tab['tokens']=[0=>$delivery->customer->user->notify_token];
             NotificationController::sendNotification($tab);
+        }
+
+        public function confirmation_paiement_paybox(){
+            $paiement=PayboxPayment::find(session('idPaiement'));
+            return view('paybox.accepted')->with([
+                'delivery' => $paiement->delivery()
+            ]);
+        }
+
+        //affiche retour paiment refuse a l'utilisateur
+        public function refus_paybox(){
+            $paiement=PayboxPayment::find(session('idPaiement'));
+            return view('customer.paybox.refused')->with([
+                'delivery' => $paiement->delivery()
+            ]);
+        }
+
+        //affiche retour paiment en attente a l'utilisateur
+        public function attente_paiement_paybox(){
+            $paiement=PayboxPayment::find(session('idPaiement'));
+            return view('customer.paybox.waiting')->with([
+                'delivery' => $paiement->delivery()
+            ]);
+        }
+
+        //affiche retour paiment refuse a l'utilisateur
+        public function annule_paiement_paybox(){
+            $paiement=PayboxPayment::find(session('idPaiement'));
+            return view('customer.paybox.aborted')->with([
+                'delivery' => $paiement->delivery()
+            ]);
         }
 
 

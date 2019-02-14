@@ -94,6 +94,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Nombre à ajouter en cas de retour :</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input required type="number" step="0.000001" name="to_add_retour" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <hr>
                                     <h3>Pour le calcul de la rémunération de deliverbag</h3>
                                     <div class="row">
