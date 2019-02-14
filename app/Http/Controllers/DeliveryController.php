@@ -145,6 +145,7 @@
 
             Session::put('paiement', 'paiement');
             $ret = PayboxController::process($delivery->price, Auth::user()->email);
+            return $ret;
         }
 
 
