@@ -111,6 +111,10 @@
                 $delivery->end_date = $start_date->addHours($delivery->time_consigne->hour)->addMinutes($delivery->time_consigne->minute);
             }
 
+            if(!empty($request['has_retour']) && !empty($request['date_retour'])){
+                $delivery->date_retour = Carbon::createFromTimeString($request['date_retour']);
+            }
+
 
             $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance, $start_date);
             $delivery->price = $prices['total'];

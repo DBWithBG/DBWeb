@@ -43,24 +43,26 @@
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label" ><strong>Date et heure de prise en charge</strong></label>
                                                         <label class="field prepend-icon">
-                                                            <input type='text' class="datepicker-input gui-input" id='datetimepicker4' name="datetimevalue"
-                                                                   placeholder="DD/MM/YYYY" value=""/>
+                                                            <input required type='text' class="datepicker-input gui-input" id='datetimepicker4' name="datetimevalue"
+                                                                   placeholder="JJ/MM/AAAA" value=""/>
                                                             <span class="field-icon"><i class="fa fa-calendar" style="color : black"></i></span>
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12 switch-1" style="margin-top: 2px">
-                                                        <label for="email" class="field-label">Voulez-vous que nous gardions vos bagages
-                                                            quelques heures ? Indiquer une durée :</label>
-                                                        <input id="switch-labelText" checked type="checkbox" name="my-checkbox"
-                                                               data-off-text="Non" data-on-text="Oui" data-label-text="Consigne">
+
+
+                                                        <label for="checkbox">
+                                                            <input id="checkbox-consigne" checked class="check_boxes optional" name="my-checkbox" type="checkbox">
+                                                            Voulez-vous que nous gardions vos bagages quelques heures ? Indiquer une durée :
+                                                        </label>
                                                         <span class="js-hide-time">
-                                    <label class="field prepend-icon">
-                                        <input type="time" name="time_consigne" id="time_consigne" class="gui-input"
-                                               placeholder="" value="2:00" min="2:00" max="24:00" step="0:30">
-                                        <span class="field-icon"><i class="fa fa-hourglass"></i></span>
-                                    </label>
+                                                    <label class="field prepend-icon">
+                                                        <input type="time" name="time_consigne" id="time_consigne" class="gui-input"
+                                                               placeholder="" value="2:00" min="2:00" max="24:00" step="0:30">
+                                                        <span class="field-icon"><i class="fa fa-hourglass"></i></span>
+                                                    </label>
                                                 </span>
                                                         <div class="js-immediate" hidden>
                                                             <br>
@@ -76,6 +78,27 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <div class="row row-margin">
+                                                    <div class="col-md-12">
+                                                        <label for="checkbox">
+                                                            <input id="checkbox-course-retour" class="check_boxes optional" type="checkbox" value="Voulez-vous la course retour" name="has_retour">
+                                                            Voulez-vous la course retour
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="row-date-course-retour" class="row row-margin">
+                                                    <div class="col-md-12">
+                                                        <label for="retour-datetimepicker" class="field-label" ><strong>Date et heure de la course retour</strong></label>
+                                                        <label class="field prepend-icon">
+                                                            <input type='text' class="datepicker-input gui-input" id='retour-datetimepicker' name="date_retour"
+                                                                   placeholder="JJ/MM/AAAA" value=""/>
+                                                            <span class="field-icon"><i class="fa fa-calendar" style="color : black"></i></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+
                                                 <div class="row col-md-12">
                                                     <!-- end section --><br>
                                                     <div class="text-center col-md-12">
@@ -151,6 +174,11 @@
                 $('.js-unfinalise').show();
             }
 
+            $('#retour-datetimepicker').datetimepicker({
+                locale: 'fr',
+                defaultDate: moment()
+            });
+
             $('#datetimepicker4').datetimepicker({
                 locale: 'fr',
                 defaultDate: moment()
@@ -158,7 +186,6 @@
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
 
-            $("[name='my-checkbox']").bootstrapSwitch();
             $('.js-add-bag').on('click', function () {
                 nb_bags ++;
                 real_number ++;
@@ -172,8 +199,10 @@
                 $('.js-unfinalise').hide();
                 $('.js-finalise').show();
             });
-            $('.switch-1').hover(function () {
-                if ($('.bootstrap-switch').hasClass('bootstrap-switch-on') == true) {
+
+            $('#time_consigne').val('02:00');
+            $('#checkbox-consigne').on('click', function () {
+                if($(this).is(':checked')) {
                     $('.js-hide-time').show();
                     $('.js-immediate').hide();
                     time = $('#time_consigne').val();
@@ -188,6 +217,21 @@
                     $('#time_consigne').val('--:--');
                 }
             });
+
+            $('#row-date-course-retour').hide();
+            $('#checkbox-course-retour').on('click', function () {
+                console.log('plop');
+                if($(this).is(':checked')) {
+                    $('#row-date-course-retour').show();
+                } else {
+                    $('#row-date-course-retour').hide();
+                    $('#retour-datetimepicker').val(null);
+                }
+            });
+
+
+
+
 
             $('#time_consigne').on('change', function () {
                 time = $(this).val();
