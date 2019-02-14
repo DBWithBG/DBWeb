@@ -134,26 +134,33 @@ class PayboxController extends Controller
     public static function confirmation_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
         //dd($paiement, "OK");
-        return redirect($paiement->retour_url."?status=".$paiement->status."&refPaiement=".$paiement->id."&idInApp=".$paiement->id_in_app);
+        return view('paybox.accepted')->with([
+            'delivery' => $paiement->delivery()
+        ]);
         //return view('paiement.confirmation_paybox')->with(['slug_evenement'=>$paiement->slug_evenement,'evenement'=>Evenement::find($paiement->id_evenement)]);
     }
 
     //affiche retour paiment refuse a l'utilisateur
     public static function refus_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return redirect($paiement->retour_url."?status=".$paiement->status."&refPaiement=".$paiement->id."&idInApp=".$paiement->id_in_app);
-
+        return view('paybox.refused')->with([
+            'delivery' => $paiement->delivery()
+        ]);
     }
 
     //affiche retour paiment en attente a l'utilisateur
     public static function attente_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return redirect($paiement->retour_url."?status=".$paiement->status."&refPaiement=".$paiement->id."&idInApp=".$paiement->id_in_app);
+        return view('paybox.waiting')->with([
+            'delivery' => $paiement->delivery()
+        ]);
     }
 
     //affiche retour paiment refuse a l'utilisateur
     public static function annule_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return redirect($paiement->retour_url."?status=".$paiement->status."&refPaiement=".$paiement->id."&idInApp=".$paiement->id_in_app);
+        return view('paybox.aborted')->with([
+            'delivery' => $paiement->delivery()
+        ]);
     }
 }
