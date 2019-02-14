@@ -116,8 +116,7 @@
             $delivery->price = $prices['total'];
             $delivery->remuneration_driver = $prices['remuneration_driver'];
             $delivery->remuneration_deliver = $prices['remuneration_deliver'];
-            //TODO A RETIRER QUAND PAIEMENT
-            $delivery->status = Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE');
+            $delivery->status = Config::get('constants.NON_FINALISE');
 
             $delivery->start_date = $start_date;
             $delivery->save();
@@ -126,10 +125,28 @@
 
             $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
 
+            //TODO A RETIRER QUAND PAIEMENT
             MailController::send_customer_facture($delivery->id, Auth()->user());
             Session::flash('success', 'Commande enregistrée');
-            return redirect('/');
+
+            return view('customer.paiement')->with([
+                'delivery' =>$delivery
+            ]);
         }
+
+        public function getPaiement(Request $request){
+            $delivery = Delivery::find($request->delivery_id);
+            if(empty($delivery->id)){
+                return "ERROR_DELIVERY_NOT_FOUND";
+            }
+            if(Auth::user()->id != $delivery->user_id){
+                return "OPERATION_NOT_ALLOWED";
+            }
+
+            Session::put('paiement', 'paiement');
+            $ret = PayboxController::process($delivery->price, Auth::user()->email);
+        }
+
 
         /**
          * Enregistrement des bagages
