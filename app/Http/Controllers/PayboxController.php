@@ -13,11 +13,11 @@ class PayboxController extends Controller
     //TODO MODIFICATION AVEC LA BONNE TABLE
     public static function process(Request $request){
         $log = new Logger('reception_paiement');
-        dd(session("paiement"));
 
         if(session("paiement")){
             $authorizationRequest = \App::make(\Devpark\PayboxGateway\Requests\AuthorizationWithCapture::class);
-            $paiement = session("paiement");
+            $paiement = new PayboxPayment();
+            $paiement->amount = session("paiement");
             $paiement->status='en cours';
             $paiement->email = session("email");
             $paiement->save();
