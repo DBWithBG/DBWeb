@@ -143,7 +143,7 @@ class PayboxController extends Controller
     //affiche retour paiment refuse a l'utilisateur
     public static function refus_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return view('paybox.refused')->with([
+        return view('customer.paybox.refused')->with([
             'delivery' => $paiement->delivery()
         ]);
     }
@@ -151,7 +151,7 @@ class PayboxController extends Controller
     //affiche retour paiment en attente a l'utilisateur
     public static function attente_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return view('paybox.waiting')->with([
+        return view('customer.paybox.waiting')->with([
             'delivery' => $paiement->delivery()
         ]);
     }
@@ -159,7 +159,7 @@ class PayboxController extends Controller
     //affiche retour paiment refuse a l'utilisateur
     public static function annule_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        return view('paybox.aborted')->with([
+        return view('customer.paybox.aborted')->with([
             'delivery' => $paiement->delivery()
         ]);
     }
