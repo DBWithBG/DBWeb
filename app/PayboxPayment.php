@@ -11,7 +11,7 @@ class PayboxPayment extends Model
 
     protected $fillable = [
         'amount', 'authorization_number', 'payment_type', 'transaction_number', 'call_number', 'signature', 'created_at'
-        , 'updated_at', 'status', 'id_app', 'email', 'id_in_app', 'retour_url'
+        , 'updated_at', 'status', 'delivery_id', 'email'
     ];
 
     public function delivery()
