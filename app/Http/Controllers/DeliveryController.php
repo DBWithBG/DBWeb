@@ -144,7 +144,7 @@
             }
 
             Session::put('paiement', 'paiement');
-            return redirect('paybox/paiment_process')->with(['paiement' => $delivery->price, 'email' => Auth::user()->email]);
+            return redirect('paybox/paiment_process')->with(['paiement' => $delivery->price, 'delivery_id' => $delivery->id, 'email' => Auth::user()->email]);
         }
 
 

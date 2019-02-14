@@ -20,6 +20,7 @@ class PayboxController extends Controller
             $paiement->amount = session("paiement");
             $paiement->status='en cours';
             $paiement->email = session("email");
+            $paiement->delivery_id = session("delivery_id");
             $paiement->save();
             //dd($request, $paiement);
             $auth=$authorizationRequest->setAmount($paiement->amount)->setCustomerEmail($paiement->email)
