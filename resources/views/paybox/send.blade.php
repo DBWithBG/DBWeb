@@ -7,3 +7,4 @@
     </form>
     <script>
         document.getElementById("paybox-payment").submit();
+    </script>
