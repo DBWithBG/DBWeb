@@ -192,7 +192,7 @@
         }
 
         //Renvoie la page de paiement d'une delivery
-        public function getPaiement($id){
+        /*public function getPaiement($id){
             $delivery = Delivery::find($id);
             if($delivery->status == 'non payé'){
                 /*$authorizationRequest = \App::make(\Devpark\PayboxGateway\Requests\AuthorizationWithCapture::class);
@@ -200,12 +200,12 @@
                 return $authorizationRequest->setAmount(10)->setCustomerEmail('simon@sup.sarl')
                     ->setPaymentNumber(1)->send('paybox.send');
 
-                */
+
                 //TODO A REMPLACER AVEC CI-DESSUS
                 return view('');
             }
 
-        }
+        }*/
 
         public function getSaveDelivery($delivery_id){
             $delivery = Delivery::find($delivery_id);
