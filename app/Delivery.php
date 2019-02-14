@@ -106,7 +106,7 @@ class Delivery extends Model
     }
 
 
-    public static function computePrice($type_bags, $start_position, $end_position, $distance = null, $start_date = null){
+    public static function computePrice($type_bags, $start_position, $end_position, $distance = null, $start_date = null, $retour=false){
         $nb_bags = 0;
         foreach ($type_bags as $type_bag){
             $nb_bags += sizeof($type_bag);
@@ -135,7 +135,8 @@ class Delivery extends Model
         }
         $remuneration_driver = round(($priceLine->to_add_driver + $priceLine->coef_kilometers_driver * sqrt($distance)*($priceLine->coef_bags_driver * sqrt($priceLine->bags_min))) * $priceLine->coef_total_driver, 2);
         $remuneration_deliver = round($remuneration_driver * $priceLine->coef_deliver, 2);
-        $total = round($remuneration_driver + $remuneration_deliver, 2);
+        if($retour) $total = round($remuneration_driver + $remuneration_deliver + $priceLine->to_add_retour, 2);
+        else $total = round($remuneration_driver + $remuneration_deliver, 2);
         return [
             'remuneration_driver' => $remuneration_driver,
             'remuneration_deliver' => $remuneration_deliver,

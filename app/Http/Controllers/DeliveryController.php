@@ -57,10 +57,10 @@
             $request['delivery']['distance'] = str_replace(',', '.',$request['delivery']['distance']);
             if(empty($request['bagages'])) {
                 $request['bagages']= [['a'=>'a']];
-                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date']);
+                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
                 $request['bagages'] = null;
             }else{
-                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date']);
+                $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
             }
 
             $request['delivery']['price'] = $prices['total'];
@@ -112,12 +112,14 @@
                 $delivery->end_date = $start_date->addHours($delivery->time_consigne->hour)->addMinutes($delivery->time_consigne->minute);
             }
 
+            $retour = false;
             if(!empty($request['has_retour']) && !empty($request['date_retour'])){
                 $delivery->date_retour = Carbon::createFromTimeString($request['date_retour']);
+                $retour = true;
             }
 
 
-            $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance, $start_date);
+            $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance, $start_date, $retour);
             $delivery->price = $prices['total'];
             $delivery->remuneration_driver = $prices['remuneration_driver'];
             $delivery->remuneration_deliver = $prices['remuneration_deliver'];

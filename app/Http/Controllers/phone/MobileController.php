@@ -420,7 +420,7 @@ class MobileController extends Controller
         $start_date = Carbon::create(explode('/',$date_sliced)[2],explode('/',$date_sliced)[1],
             explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1])->format('Y-m-d H:m');
 
-        return response()->json(['price' => Delivery::computePrice($request->get('bagages'), $request->get('start_position'), $request->get('end_position'))['total']], $start_date);
+        return response()->json(['price' => Delivery::computePrice($request->get('bagages'), $request->get('start_position'), $request->get('end_position'), false)['total']], $start_date);
     }
 
 
