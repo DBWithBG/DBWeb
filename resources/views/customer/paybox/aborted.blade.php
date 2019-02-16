@@ -4,7 +4,8 @@
     <section class="section sec-padding">
         <div class="section-title">
             <div class="container">
-    You canceled the payment.
+                Vous avez annulé le paiement<br>
+                <a href="">Effectuer une nouvelle tentative de paiement</a>
             </div>
         </div>
     </section>

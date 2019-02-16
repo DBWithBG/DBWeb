@@ -4,7 +4,8 @@
     <section class="section sec-padding">
         <div class="section-title">
             <div class="container">
-It seems your payment has been refused.
+                Le paiement à été refusé<br>
+                <a href="">Effectuer une nouvelle tentative de paiement</a>
             </div>
         </div>
     </section>

@@ -4,7 +4,7 @@
     <section class="section sec-padding">
         <div class="section-title">
             <div class="container">
-                Your payment is waiting. It might take some time until it is completed.
+                Le paiement est en attente, vous vous recevrez un email de confirmation quand celui-ci sera accepté.
             </div>
         </div>
     </section>

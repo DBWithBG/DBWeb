@@ -4,7 +4,7 @@
     <section class="section sec-padding">
         <div class="section-title">
             <div class="container">
-Thank you for your payment. Your payment should be accepted soon.
+                Nous vous confirmons votre paiement, vous recevrez la facture par email dans quelques minutes.
             </div>
         </div>
     </section>
