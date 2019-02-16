@@ -20,7 +20,7 @@
                         @endif
 
                     </h4>
-                    <button type="submit" class="btn btn-primary btn-success">Aller au paiement</button><br><br>
+                    <button type="submit" class="btn btn-primary btn-success">Aller au paiement ({{$delivery->price}} €)</button><br><br>
                     <hr>
                 </div>
                 {{csrf_field()}}
