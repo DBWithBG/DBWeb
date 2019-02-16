@@ -13,7 +13,7 @@
                         Lieu de prise en charge : <strong>{{$delivery->startPosition->address}}</strong><br>
                         Lieu de livraison : <strong>{{$delivery->endPosition->address}}</strong><br>
                         Date de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:m')}}</strong><br>
-
+                    {{$delivery->time_consigne}}
                     @if(!empty($delivery->time_consigne))
                             Date de livraison après consignage : <strong>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:m')}}</strong>
                         @else
