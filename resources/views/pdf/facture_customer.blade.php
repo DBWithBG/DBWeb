@@ -46,7 +46,7 @@
                 <td>{{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i:s')}}</td>
             </tr>
         @endif
-        @if(!empty($delivery->time_consign))
+        @if(!empty($delivery->time_consigne))
             <tr>
                 <td>Dépôt des bagages (avec consignantion)</td>
                 <td>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:i:s')}}</td>

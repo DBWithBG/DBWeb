@@ -5,7 +5,7 @@ return [
 
     'GOOGLE_API_KEY' => 'AIzaSyCATTjk7-Kxr-Zzudmp-E9UXWnUVIgITpw',
 
-    'SENDER_EMAIL' => 'simon@sup.sarl',
+    'SENDER_EMAIL' => 'bordeaux@deliverbag.com',
 
     'PUB_MAILJET' => 'fdc1ac15ccb15003a9909e920469e9fe',
     'SEC_MAILJET' => '62cbd80c6479939641511964b2aeb56b',
