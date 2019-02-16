@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PayboxPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -133,7 +134,10 @@ class PayboxController extends Controller
     //affiche retour paiment accepte a l'utilisateur
     public static function confirmation_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        //dd($paiement, "OK");
+        $delivery = $paiement->delivery;
+        $delivery->status = Config::get('constants', 'EN_ATTENTE_DE_PRISE_EN_CHARGE');
+        $delivery->save();
+        MailController::send_customer_facture($delivery->id, Auth()->user());
         return redirect('delivery/paiement/success')->with([
             'delivery' => $paiement->delivery
         ]);

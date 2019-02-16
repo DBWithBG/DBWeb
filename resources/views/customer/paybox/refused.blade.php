@@ -3,11 +3,14 @@
 @section('content')
     <section class="section sec-padding">
         <div class="section-title">
-            <div class="container text-center">
-                <h2>
-                    Le paiement à été refusé<br>
-                    <a href="">Effectuer une nouvelle tentative de paiement</a>
-                </h2>
+            <div class="container" style="text-align: center">
+                <br><br>
+                <h1>Le paiement a été refusé</h1><br>
+                <form action="{{url("/delivery/paiement")}}" method="POST">
+                    {{csrf_field()}}
+                    <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
+                    <button type="submit" class="btn btn-primary btn-success">Réessayer et accéder au paiement de {{$delivery->price}} €</button>
+                </form>
             </div>
         </div>
     </section>
