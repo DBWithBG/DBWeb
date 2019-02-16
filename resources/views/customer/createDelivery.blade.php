@@ -182,8 +182,6 @@
             $('#datetimepicker4').datetimepicker({
                 locale: 'fr',
                 defaultDate: moment()
-            }).on('dp.change', function(e) {
-                console.log('changed');
             });
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
