@@ -115,7 +115,7 @@
 
             $retour = false;
             if(!empty($request['has_retour']) && !empty($request['date_retour'])){
-                $delivery->date_retour = Carbon::createFromTimeString($request['date_retour']);
+                $delivery->date_retour = Carbon::createFromFormat("d/m/Y H:i",$request['date_retour']);
                 $retour = true;
             }
 
