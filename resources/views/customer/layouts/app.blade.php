@@ -15,7 +15,7 @@
 
 
 </head>
-<body>
+<body style="min-height: 100vh">
 
 <div id="fb-root"></div>
 
