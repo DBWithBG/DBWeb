@@ -20,7 +20,7 @@
                         @endif
 
                     </h4>
-                    <button type="submit" class="btn btn-primary btn-success">Aller au paiement</button>
+                    <button type="submit" class="btn btn-primary btn-success">Aller au paiement</button><br><br>
                 </div>
                 {{csrf_field()}}
             </form>
