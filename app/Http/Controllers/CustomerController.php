@@ -29,7 +29,7 @@ class CustomerController extends Controller
             return redirect('driver/home');
         }
         //TODO TO CHANGE
-        return view('customer.tmphome')->with([
+        return view('customer.home')->with([
 
         ]);
     }
