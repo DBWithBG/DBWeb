@@ -9,7 +9,7 @@
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                     <h1>Le montant total de votre commande est de {{$delivery->price}} €</h1><br>
-                    <blockquote >
+                    <p>
                         Lieu de prise en charge : {{$delivery->startPosition->address}}<br>
                         Date de prise en charge : {{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:m')}}<br>
                         Lieu de livraison : {{$delivery->endPosition->address}}<br>
@@ -19,7 +19,7 @@
                             livraison dès que possible
                         @endif
 
-                    </blockquote>
+                    </p>
                     <button type="submit" class="btn btn-primary btn-success">Aller au paiement</button>
                 </div>
                 {{csrf_field()}}
