@@ -18,6 +18,9 @@
                         @else
                             <strong>livraison dès que possible</strong>
                         @endif
+                        @if(!empty($delivery->date_retour))
+                            Retour : {{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i')}}
+                        @endif
 
                     </h4>
                     <button type="submit" class="btn btn-primary btn-success">Aller au paiement ({{$delivery->price}} €)</button><br><br>
