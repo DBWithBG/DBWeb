@@ -135,7 +135,7 @@ class PayboxController extends Controller
     public static function confirmation_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
         $delivery = $paiement->delivery;
-        $delivery->status = Config::get('constants', 'EN_ATTENTE_DE_PRISE_EN_CHARGE');
+        $delivery->status = Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE');
         $delivery->save();
         MailController::send_customer_facture($delivery->id, Auth()->user());
         return redirect('delivery/paiement/success')->with([
