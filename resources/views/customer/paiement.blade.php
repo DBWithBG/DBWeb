@@ -9,6 +9,16 @@
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                     <h1>Le montant total de votre commande est de {{$delivery->price}} €</h1><br>
+                    <table>
+                        <tr>
+                            <td>Lieu de prise en charge</td>
+                            <td>{{$delivery->startPosition->address}}</td>
+                        </tr>
+                        <tr>
+                            <td>Lieu de livraison</td>
+                            <td>{{$delivery->endPosition->address}}</td>
+                        </tr>
+                    </table>
                     <button type="submit" class="btn btn-primary btn-success">Aller au paiement</button>
                 </div>
                 {{csrf_field()}}
