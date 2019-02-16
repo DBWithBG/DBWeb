@@ -1,6 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
+    <div class="clearfix"></div>
     <section>
         <div class="col-md-12">
     <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
