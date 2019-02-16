@@ -6,7 +6,10 @@
             <div class="container">
                     <br><br>
                     Vous avez abandonné le paiement<br>
-                    <a href="{{url("delivery/".$delivery->id."/paiement")}}">Effectuer une nouvelle tentative de paiement</a>
+                    <form action="{{url("/delivery/paiement")}}" method="POST">
+                        <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
+                        <button type="submit" class="btn btn-primary btn-success">Accéder au paiement de {{$delivery->price}} €</button>
+                    </form>
             </div>
         </div>
     </section>
