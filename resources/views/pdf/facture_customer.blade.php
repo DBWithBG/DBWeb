@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td>Adresse URL de paiement</td>
-            <td>{{url('/delivery/paiement')}}td>
+            <td>{{url('/delivery/paiement')}}</td>
         </tr>
         <tr>
             <td>Identifiant du marchand</td>
@@ -48,12 +48,12 @@
         @endif
         @if(!empty($delivery->time_consigne))
             <tr>
-                <td>Dépôt des bagages (avec consignantion)</td>
-                <td>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:i:s')}}</td>
+                <td>Temps de consignation des bagages : </td>
+                <td>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</td>
             </tr>
         @else
             <tr>
-                <td>Dépôt des bagages (sans consignantion)</td>
+                <td>Dépôt des bagages (sans consignantion) : </td>
                 <td>immédiat</td>
             </tr>
         @endif
