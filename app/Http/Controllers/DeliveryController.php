@@ -107,6 +107,7 @@
                 explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1]);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
+            dd($request['time_consigne'], $request['date_retour']);
             if(!empty($request['time_consigne'])){
                 $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
                 $delivery->end_date = $start_date->addHours($delivery->time_consigne->hour)->addMinutes($delivery->time_consigne->minute);
