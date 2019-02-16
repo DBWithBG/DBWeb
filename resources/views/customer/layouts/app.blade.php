@@ -15,13 +15,13 @@
 
 
 </head>
-<body style="min-height: 100vh">
+<body>
 
 <div id="fb-root"></div>
 
 
 <div class="wrapper-boxed">
-    <div class="site-wrapper">
+    <div class="site-wrapper" style="min-height: 100vh">
         @include('customer.layouts.topBarre')
 
         <!--end loading-->
