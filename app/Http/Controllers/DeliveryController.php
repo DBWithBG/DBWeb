@@ -307,7 +307,6 @@
         //affiche retour paiment refuse a l'utilisateur
         public function aborted(){
             $delivery=session('delivery');
-            dd($delivery);
             return view('customer.paybox.aborted')->with([
                 'delivery' => $delivery
             ]);
