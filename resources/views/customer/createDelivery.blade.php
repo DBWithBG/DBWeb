@@ -220,10 +220,8 @@
 
             $('#row-date-course-retour').hide();
             $('#checkbox-course-retour').on('click', function () {
-                console.log('plop');
                 if($(this).is(':checked')) {
-                    console.log(moment($('#datetimepicker4').val(), "DD/MM/YYYY"));
-                    $('#retour-datetimepicker').data("DateTimePicker").minDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY").add(2, "hours"));
+                    $('#retour-datetimepicker').data("DateTimePicker").minDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY H:m").add(2, "hours"));
                     $('#retour-datetimepicker').data("DateTimePicker").maxDate(moment().add(1, 'years'));
                     $('#row-date-course-retour').show();
                 } else {
