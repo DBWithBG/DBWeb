@@ -9,10 +9,10 @@
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                     <h1>Le montant total de votre commande est de {{$delivery->price}} €</h1><br>
-                    <blockquote>
-                        Lieu de prise en charge : {{$delivery->startPosition->address}}
-                        Date de prise en charge : {{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:m')}}
-                        Lieu de livraison : {{$delivery->endPosition->address}}
+                    <blockquote class="text-center" style="display: flex; align-content: center">
+                        Lieu de prise en charge : {{$delivery->startPosition->address}}<br>
+                        Date de prise en charge : {{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:m')}}<br>
+                        Lieu de livraison : {{$delivery->endPosition->address}}<br>
                         @if(!empty($delivery->end_date))
                             Date de livraison après consignage : {{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:m')}}
                         @else
