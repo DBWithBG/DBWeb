@@ -187,7 +187,10 @@
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
 
             $('#datetimepicker4').on('change', function(){
+                console.log("change");
                 if($('#checkbox-course-retour').is(':checked')){
+                    console.log("change, checked");
+
                     $('#checkbox-course-retour').trigger("click");
                     $('#retour-datetimepicker').val(null);
                 }
