@@ -9,7 +9,7 @@
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                     <h1>Le montant total de votre commande est de {{$delivery->price}} €</h1><br>
-                    <table>
+                    <table class="text-center" style="text-align: center">
                         <tr>
                             <td>Lieu de prise en charge</td>
                             <td>{{$delivery->startPosition->address}}</td>
