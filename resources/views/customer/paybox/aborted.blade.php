@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    <section class="section sec-padding vh-100">
+    <section class="section sec-padding" style="min-height: 100vh">
         <div class="section-title">
             <div class="container">
                 Vous avez annulé le paiement<br>
