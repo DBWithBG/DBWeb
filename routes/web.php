@@ -193,6 +193,7 @@ Route::post('/mobile/deliveries/computePrice', 'phone\MobileController@computePr
 
 //Facture
 Route::get('delivery/{id}/getFacture', 'FactureController@genererFactureDelivery');
+Route::get('delivery/{id}/showFacture', 'FactureController@getFacture');
 
 Route::get('delivery/{id}/save', 'DeliveryController@getSaveDelivery');
 
