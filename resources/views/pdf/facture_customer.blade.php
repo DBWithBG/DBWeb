@@ -5,62 +5,85 @@
     <title>Visionnage de facture</title>
 </head>
 <body>
-    <p></p>
-    <img src="{{asset('/img/logo.png')}}" WIDTH="30%" height="20%" style="margin-left: 34%">
+<p></p>
+<img src="{{asset('/img/logo.png')}}" WIDTH="28%" height="20%" style="margin-left: 34%">
 
-    <div class="row col-xs-12" style="margin-top: 10%">
-        <h3>Détails du paiement</h3>
-        <hr>
-        <table>
+<div class="row col-xs-12" style="margin-top: 10%">
+    <h3>Détails du paiement</h3>
+    <hr>
+    <table>
+        <tr>
+            <td style="width: 200px">SOCIETE</td>
+            <td>DELIVERBAG</td>
+        </tr>
+        <tr>
+            <td>Adresse URL de paiement</td>
+            <td>{{url('/delivery/paiement')}}td>
+        </tr>
+        <tr>
+            <td>Identifiant du marchand</td>
+            <td>1644823</td>
+        </tr>
+        <tr>
+            <td>Préstation</td>
+            <td>Prise en charge de bagages</td>
+        </tr>
+        <tr>
+            <td>Lieu de prise en charge</td>
+            <td>{{$delivery->startPosition->address}}</td>
+        </tr>
+        <tr>
+            <td>Lieu de livraison</td>
+            <td>{{$delivery->endPosition->address}}</td>
+        </tr>
+        <tr>
+            <td>Date de prise en charge</td>
+            <td>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i:s')}}</td>
+        </tr>
+        @if(!empty($delivery->date_retour))
             <tr>
-                <td style="width: 200px">SOCIETE</td>
-                <td>DELIVERBAG</td>
+                <td>Retour</td>
+                <td>{{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i:s')}}</td>
             </tr>
+        @endif
+        @if(!empty($delivery->time_consign))
             <tr>
-                <td>Adresse URL de paiement</td>
-                <td>xx</td>
+                <td>Dépôt des bagages (avec consignantion)</td>
+                <td>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:i:s')}}</td>
             </tr>
+        @else
             <tr>
-                <td>Identifiant du marchand</td>
-                <td>xx</td>
+                <td>Dépôt des bagages (sans consignantion)</td>
+                <td>immédiat</td>
             </tr>
-            <tr>
-                <td>Préstation</td>
-                <td>Prise en charge de bagages</td>
-            </tr>
-            <tr>
-                <td>Lieu de prise en charge</td>
-                <td>{{$delivery->startPosition->address}}</td>
-            </tr>
-            <tr>
-                <td>Lieu de livraison</td>
-                <td>{{$delivery->endPosition->address}}</td>
-            </tr>
-            <tr>
-                <td>Référence commande</td>
-                <td>{{$delivery->id}}</td>
-            </tr>
-        </table>
+        @endif
+        <tr>
+            <td>Référence commande</td>
+            <td>{{$delivery->id}}</td>
+        </tr>
 
-        <h3>CARTE BANCAIRE : {{$delivery->price}} EUR</h3>
-        <hr>
-        <table>
-            <tr>
-                <td style="width: 200px">Date / Heure</td>
-                <td>{{\Carbon\Carbon::now()->format('d/m/Y H:m:s')}}</td>
-            </tr>
-            <tr>
-                <td>Numéro d'autorisation</td>
-                <td>xx</td>
-            </tr>
-            <tr>
-                <td>N° transaction CB</td>
-                <td>xx</td>
-            </tr>
-        </table>
+    </table>
+
+    <h3>CARTE BANCAIRE : {{$delivery->price}} EUR</h3>
+    <hr>
+    <table>
+        <tr>
+            <td style="width: 200px">Date / Heure</td>
+            <td>{{\Carbon\Carbon::parse($delivery->paiement->created_at)->format('d/m/Y H:i:s')}}</td>
+        </tr>
+        <tr>
+            <td>Numéro d'autorisation</td>
+            <td>{{$delivery->paiement->authorization_number}}</td>
+        </tr>
+        <tr>
+            <td>N° transaction CB</td>
+            <td>{{$delivery->paiement->transaction_number}}</td>
+        </tr>
+
+    </table>
 
 
-    </div>
+</div>
 
 <footer style="margin-top: 30%">
     <p><strong>Informations : </strong><br/>
