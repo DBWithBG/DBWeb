@@ -282,33 +282,33 @@
         }
 
         public function success(){
-            $paiement=PayboxPayment::find(session('idPaiement'));
+            $delivery=session('delivery');
             return view('paybox.accepted')->with([
-                'delivery' => $paiement->delivery()
+                'delivery' => $delivery
             ]);
         }
 
         //affiche retour paiment refuse a l'utilisateur
         public function refused(){
-            $paiement=PayboxPayment::find(session('idPaiement'));
+            $delivery=session('delivery');
             return view('customer.paybox.refused')->with([
-                'delivery' => $paiement->delivery()
+                'delivery' => $delivery
             ]);
         }
 
         //affiche retour paiment en attente a l'utilisateur
         public function waiting(){
-            $paiement=PayboxPayment::find(session('idPaiement'));
+            $delivery=session('delivery');
             return view('customer.paybox.waiting')->with([
-                'delivery' => $paiement->delivery()
+                'delivery' => $delivery
             ]);
         }
 
         //affiche retour paiment refuse a l'utilisateur
         public function aborted(){
-            $paiement=PayboxPayment::find(session('idPaiement'));
+            $delivery=session('delivery');
             return view('customer.paybox.aborted')->with([
-                'delivery' => $paiement->delivery()
+                'delivery' => $delivery
             ]);
         }
 
