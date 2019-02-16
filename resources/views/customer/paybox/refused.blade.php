@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    <section class="section sec-padding" style="min-height: 80vh">
+    <section class="section sec-padding">
         <div class="section-title">
             <div class="container text-center">
                 <h2>
