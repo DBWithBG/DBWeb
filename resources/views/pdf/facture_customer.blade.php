@@ -85,7 +85,7 @@
 
 </div>
 
-<footer style="margin-top: 30%">
+<footer style="margin-top: 20%">
     <p><strong>Informations : </strong><br/>
         SARL DELIVERBAG
         SIRET  	82770547600014
