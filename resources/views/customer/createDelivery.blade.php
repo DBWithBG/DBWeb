@@ -222,7 +222,7 @@
             $('#checkbox-course-retour').on('click', function () {
                 console.log('plop');
                 if($(this).is(':checked')) {
-                    console.log(new Date($('#datetimepicker4').val()));
+                    console.log($('#datetimepicker4').val());
                     $('#retour-datetimepicker').data("DateTimePicker").minDate(moment(new Date($('#datetimepicker4').val())));
                     $('#retour-datetimepicker').data("DateTimePicker").maxDate(moment().add(1, 'years'));
                     $('#row-date-course-retour').show();
