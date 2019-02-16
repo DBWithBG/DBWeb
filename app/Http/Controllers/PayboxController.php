@@ -159,7 +159,7 @@ class PayboxController extends Controller
     //affiche retour paiment refuse a l'utilisateur
     public static function annule_paiement_paybox(){
         $paiement=PayboxPayment::find(session('idPaiement'));
-        dd($paiement->delivery());
+        dd($paiement->delivery);
         return redirect('delivery/paiement/aborted')->withInput([
             'delivery' => $paiement->delivery()
         ]);
