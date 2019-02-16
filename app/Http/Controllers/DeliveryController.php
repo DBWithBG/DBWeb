@@ -283,7 +283,7 @@
 
         public function success(){
             $delivery=session('delivery');
-            return view('paybox.accepted')->with([
+            return view('customer.paybox.accepted')->with([
                 'delivery' => $delivery
             ]);
         }
