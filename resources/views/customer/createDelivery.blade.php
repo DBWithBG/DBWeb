@@ -186,6 +186,12 @@
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
 
+            $('#datetimepicker4').on('change', function(){
+                if($('#checkbox-course-retour').is(':checked')){
+                    $('#checkbox-course-retour').trigger("click");
+                    $('#retour-datetimepicker').val(null);
+                }
+            });
             $('.js-add-bag').on('click', function () {
                 nb_bags ++;
                 real_number ++;
