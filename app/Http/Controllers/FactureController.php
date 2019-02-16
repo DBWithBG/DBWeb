@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Delivery;
 use App\Driver;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use Illuminate\Support\Facades\Config;
 
