@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="clearfix"></div>
-    <section>
-        <div class="col-md-12">
+    <section class="text-center">
+        <div class="col-md-12 text-center">
             <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
                 <div class="form-body">
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
