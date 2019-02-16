@@ -281,7 +281,7 @@
             NotificationController::sendNotification($tab);
         }
 
-        public function confirmation_paiement_paybox(){
+        public function success(){
             $paiement=PayboxPayment::find(session('idPaiement'));
             return view('paybox.accepted')->with([
                 'delivery' => $paiement->delivery()
@@ -289,7 +289,7 @@
         }
 
         //affiche retour paiment refuse a l'utilisateur
-        public function refus_paybox(){
+        public function refused(){
             $paiement=PayboxPayment::find(session('idPaiement'));
             return view('customer.paybox.refused')->with([
                 'delivery' => $paiement->delivery()
@@ -297,7 +297,7 @@
         }
 
         //affiche retour paiment en attente a l'utilisateur
-        public function attente_paiement_paybox(){
+        public function waiting(){
             $paiement=PayboxPayment::find(session('idPaiement'));
             return view('customer.paybox.waiting')->with([
                 'delivery' => $paiement->delivery()
@@ -305,7 +305,7 @@
         }
 
         //affiche retour paiment refuse a l'utilisateur
-        public function annule_paiement_paybox(){
+        public function aborted(){
             $paiement=PayboxPayment::find(session('idPaiement'));
             return view('customer.paybox.aborted')->with([
                 'delivery' => $paiement->delivery()
