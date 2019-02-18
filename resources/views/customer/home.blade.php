@@ -383,20 +383,20 @@
             var res = place.address_components;
             console.log(place.address_components[2]);
             var found = false;
-            // TODO CHANGE WITH SEARCH IN ALL res[i]
-            if(res[2] != null){
-                for (var k = 0; k < departments.length; k++) {
-                    //console.log(departments[k].number);
-                    console.log("search "+departments[k].name+ " "+res[2].long_name);
+            for(i=0; i< res.length; i++) {
+                if(res[i].type[0] == "administrative_area_level_2") {
+                    for (var k = 0; k < departments.length; k++) {
+                        //console.log(departments[k].number);
+                        console.log("search " + departments[k].name + " " + res[i].long_name);
 
-                    if (res[2].long_name == departments[k].name) {
-                        console.log("found "+departments[k].name+ " "+res[2].long_name);
-                        found = true;//On a trouvé une correspondance
-                        break;
+                        if (res[i].long_name == departments[k].name) {
+                            console.log("found " + departments[k].name + " " + res[i].long_name);
+                            found = true;//On a trouvé une correspondance
+                            break;
+                        }
                     }
-                    if(found) break;
                 }
-
+                if (found) break;
             }
             return found;
         }
