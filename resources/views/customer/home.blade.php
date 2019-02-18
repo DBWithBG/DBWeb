@@ -229,6 +229,7 @@
                 types: ['address'],
                 bounds: bounds_gironde,
                 language: 'fr',
+                strictBounds: false,
                 componentRestrictions: {country: 'fr'}
             });
 
