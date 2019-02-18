@@ -227,15 +227,12 @@
             // location types.
             autocompleteDepart = new google.maps.places.Autocomplete(input_depart, {
                 types: ['address'],
-                bounds: bounds_gironde,
                 language: 'fr',
-                strictBounds: false,
                 componentRestrictions: {country: 'fr'}
             });
 
             autocompleteArrivee = new google.maps.places.Autocomplete(input_arrivee, {
                 types: ['address'],
-                bounds: bounds_gironde,
                 language: 'fr',
                 componentRestrictions: {country: 'fr'}
             });
