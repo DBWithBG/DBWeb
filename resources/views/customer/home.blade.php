@@ -383,6 +383,7 @@
             var res = place.address_components;
             console.log(place.address_components[2]);
             var found = false;
+            // TODO CHANGE WITH SEARCH IN ALL res[i]
             if(res[2] != null){
                 for (var k = 0; k < departments.length; k++) {
                     //console.log(departments[k].number);
@@ -393,26 +394,9 @@
                         found = true;//On a trouvé une correspondance
                         break;
                     }
+                    if(found) break;
                 }
 
-            }
-            for (var i = 0; i < res.length; i++) {
-                console.log(res[i]);
-
-                for (var j = 0; j < res[i].types.length; j++) {
-                    if (res[i].types[j] == "postal_code" || res[i].types[j] == "administrative_area_level_2") {
-                        // We use FOUND to know if there is a postal code for the place
-                        // For exemple, there is no postal code for Paris
-                        var dep = res[i].long_name;
-                        for (var k = 0; k < departments.length; k++) {
-                            //console.log(departments[k].number);
-                            if (dep.substr(0, 2) == departments[k].number) {
-                                found = true;//On a trouvé une correspondance
-                                break;
-                            }
-                        }
-                    }
-                }
             }
             return found;
         }
