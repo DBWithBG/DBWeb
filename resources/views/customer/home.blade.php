@@ -384,7 +384,7 @@
             console.log(place);
             var found = false;
             for (var i = 0; i < res.length; i++) {
-                console.log(res[i][2]);
+                console.log(res[i]);
                 if(res[i][2] != null){
                     for (var k = 0; k < departments.length; k++) {
                         //console.log(departments[k].number);
