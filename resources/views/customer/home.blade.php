@@ -381,6 +381,7 @@
         function verifyDepartment(place) {
             //var bdx_metropole = {33130, 33370 ,33110,33170,33700,33185,33530,33127,33400,33810,33290,33150,33520,33160,33310,33440,33270,33140,33560,33600,33320,33800,33100,33000,33200,33300};
             var res = place.address_components;
+            console.log(place);
             var found = false;
             for (var i = 0; i < res.length; i++) {
                 for (var j = 0; j < res[i].types.length; j++) {
