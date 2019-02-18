@@ -388,7 +388,7 @@
                     //console.log(departments[k].number);
                     console.log("search "+departments[k].name+ " "+res[i][2].long_name);
 
-                    if (res[i][2].long_name == departments[k].name) {
+                    if (res[2].long_name == departments[k].name) {
                         console.log("found "+departments[k].name+ " "+res[i][2].long_name);
                         found = true;//On a trouvé une correspondance
                         break;
