@@ -226,12 +226,13 @@
             // Create the autocomplete object, restricting the search to geographical
             // location types.
             autocompleteDepart = new google.maps.places.Autocomplete(input_depart, {
+                bounds: bounds_gironde,
                 language: 'fr',
                 componentRestrictions: {country: 'fr'}
             });
 
             autocompleteArrivee = new google.maps.places.Autocomplete(input_arrivee, {
-                types: ['address'],
+                bounds: bounds_gironde,
                 language: 'fr',
                 componentRestrictions: {country: 'fr'}
             });
