@@ -19,7 +19,7 @@
                             <strong>livraison dès que possible</strong>
                         @endif
                         @if(!empty($delivery->date_retour))
-                            Retour : {{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i')}}
+                            <br>Retour : {{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i')}}
                         @endif
 
                     </h4>
