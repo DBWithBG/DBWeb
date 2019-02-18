@@ -384,6 +384,19 @@
             console.log(place);
             var found = false;
             for (var i = 0; i < res.length; i++) {
+                if(res[i][2] != null){
+                    for (var k = 0; k < departments.length; k++) {
+                        //console.log(departments[k].number);
+                        console.log("search "+departments[k].name+ " "+res[i][2].long_name);
+
+                        if (res[i][2].long_name == departments[k].name) {
+                            console.log("found "+departments[k].name+ " "+res[i][2].long_name);
+                            found = true;//On a trouvé une correspondance
+                            break;
+                        }
+                    }
+
+                }
                 for (var j = 0; j < res[i].types.length; j++) {
                     if (res[i].types[j] == "postal_code" || res[i].types[j] == "administrative_area_level_2") {
                         // We use FOUND to know if there is a postal code for the place
