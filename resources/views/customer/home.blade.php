@@ -386,10 +386,10 @@
             if(res[2] != null){
                 for (var k = 0; k < departments.length; k++) {
                     //console.log(departments[k].number);
-                    console.log("search "+departments[k].name+ " "+res[i][2].long_name);
+                    console.log("search "+departments[k].name+ " "+res[2].long_name);
 
                     if (res[2].long_name == departments[k].name) {
-                        console.log("found "+departments[k].name+ " "+res[i][2].long_name);
+                        console.log("found "+departments[k].name+ " "+res[2].long_name);
                         found = true;//On a trouvé une correspondance
                         break;
                     }
