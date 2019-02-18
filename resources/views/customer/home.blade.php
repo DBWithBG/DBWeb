@@ -383,7 +383,7 @@
             var res = place.address_components;
             console.log(place);
             var found = false;
-            if(res[i][2] != null){
+            if(res[2] != null){
                 for (var k = 0; k < departments.length; k++) {
                     //console.log(departments[k].number);
                     console.log("search "+departments[k].name+ " "+res[i][2].long_name);
