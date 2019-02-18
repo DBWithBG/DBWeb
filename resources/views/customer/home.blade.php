@@ -384,7 +384,7 @@
             console.log(place.address_components[2]);
             var found = false;
             for(i=0; i< res.length; i++) {
-                if(res[i].type[0] == "administrative_area_level_2") {
+                if(res[i].types.includes("administrative_area_level_2")) {
                     for (var k = 0; k < departments.length; k++) {
                         //console.log(departments[k].number);
                         console.log("search " + departments[k].name + " " + res[i].long_name);
