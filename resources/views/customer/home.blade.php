@@ -226,7 +226,6 @@
             // Create the autocomplete object, restricting the search to geographical
             // location types.
             autocompleteDepart = new google.maps.places.Autocomplete(input_depart, {
-                types: ['address'],
                 language: 'fr',
                 componentRestrictions: {country: 'fr'}
             });
