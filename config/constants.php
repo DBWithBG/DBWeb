@@ -7,9 +7,11 @@ return [
 
     'SENDER_EMAIL' => 'bordeaux@deliverbag.com',
 
-    'PUB_MAILJET' => 'fdc1ac15ccb15003a9909e920469e9fe',
+    'PUB_MAILJET' => '8cbe9ab556bef231296348e7c3a725f4',
+    'SEC_MAILJET' => 'aea42b610ee8ebbe4de460262566ad4f',
+   /* 'PUB_MAILJET' => 'fdc1ac15ccb15003a9909e920469e9fe',
     'SEC_MAILJET' => '62cbd80c6479939641511964b2aeb56b',
-
+    */
     'APP_ID_FLIGHT' => '95a4eb71',
     'APP_KEY_FLIGHT' => '84cb52736b8c4db53b753b8f87be34a8',
 

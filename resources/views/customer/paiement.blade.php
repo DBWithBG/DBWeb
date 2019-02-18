@@ -14,7 +14,7 @@
                         Lieu de livraison : <strong>{{$delivery->endPosition->address}}</strong><br>
                         Date de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
                         @if(!empty($delivery->time_consigne))
-                            Temps de consignage : <strong>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</strong>
+                            Temps de consigne : <strong>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</strong>
                         @else
                             <strong>livraison dès que possible</strong>
                         @endif
