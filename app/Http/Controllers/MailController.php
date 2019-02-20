@@ -120,6 +120,16 @@ class MailController
             'Attachments' => $attachments
         ];
 
+        $body2 = [
+            'fromEmail' => Config::get('constants.SENDER_EMAIL'),
+            'to' => 'bordeaux@deliverbag.com',
+            'Subject' => '[COPIE] Confirmation commande deliverbag n°'.$delivery->num_facture,
+            'html-part' => "<h3>Bonjour " . $o_user->name . "</h3><br />
+                    La commande n°".$delivery->num_facture." est confirmée. Vous trouverez ci-joint la facture.
+",
+            'Attachments' => $attachments
+        ];
+
         //Envoi de l'email
         $return[$o_user->id] =  $client->post('https://api.mailjet.com/v3/send', ['headers' => [
             'Content-type' => 'application/json',
@@ -128,6 +138,16 @@ class MailController
             'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
 
             'body' => json_encode($body)
+        ]);
+
+        //Envoi de l'email copie
+        $return[$o_user->id] =  $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body2)
         ]);
     }
 

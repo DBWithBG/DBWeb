@@ -63,7 +63,7 @@
                                         <tbody>
 
                                         @foreach($deliveries as $delivery)
-                                            <tr class="text-center">
+                                            <tr class="text-center delivery-{{$delivery->id}}">
 
                                                 <td>{{ $delivery->comment }}</td>
                                                 <td>{{$delivery->price}} € </td>
@@ -74,13 +74,13 @@
 
                                                 </td>
                                                 <td>{{$delivery->startPosition->address}}<br>
-                                                    <strong>{{date('d/m/y H:m', strtotime($delivery->start_date))}}</strong>
+                                                    <strong>{{date('d/m/y H:i', strtotime($delivery->start_date))}}</strong>
                                                 </td>
                                                 <td>{{$delivery->endPosition->address}}<br>
                                                     @if($delivery->time_consigne == NULL)
                                                         <strong>IMMEDIAT</strong>
                                                     @else
-                                                        <strong>{{date('d/m/y H:m', strtotime($delivery->end_date))}}</strong>
+                                                        <strong>{{date('d/m/y H:i', strtotime($delivery->end_date))}}</strong>
                                                     @endif
                                                 </td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
@@ -96,13 +96,9 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-right">
-                                                    <form id="delete_groupe_form_{{ $delivery->id }}" method="post"
-                                                          action="{{url('/backoffice/driver/delete')}}">
-                                                        <input type="hidden" name="id" value="{{ $delivery->id }}">
-                                                        {{ csrf_field() }}
-                                                    </form>
-                                                    <button onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette course ?')) { document.getElementById('delete_groupe_form_{{ $delivery->id }}').submit(); }"
-                                                            class="btn btn-link btn-danger btn-just-icon remove"><i
+                                                    <button data-idDelivery="{{$delivery->id}}"
+                                                            class="delete btn btn-link btn-danger btn-just-icon remove">
+                                                        <i
                                                                 class="material-icons">close</i></button>
                                                 </td>
                                             </tr>
@@ -161,6 +157,33 @@
                         "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
                     }
                 }
+            });
+
+            $('.delete').on('click', function () {
+
+                var id = $(this).attr("data-idDelivery");
+                $.ajax({
+                    type: "POST",
+                    url: '{{url('backoffice/deliveries/delete')}}',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        id: id
+                    },
+                    success: function (response) {
+                        $('.delivery-' + id).hide();
+                        swal({
+                            position: 'top-right',
+                            type: 'success',
+                            title: 'Suppression de la course ' + response.name + ' Ok',
+                            showConfirmButton: false,
+                            timer: 2500
+                        })
+
+
+                    }
+
+                });
+
             });
         });
     </script>
