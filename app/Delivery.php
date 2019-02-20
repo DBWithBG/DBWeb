@@ -126,7 +126,7 @@ class Delivery extends Model
 
         // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
         $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
-            ->where('promotion', '1')->where('end_date', '<=', $start_date->format('Y-m-d'))->first();
+            ->where('promotion', '1')->where('end_date', '>=', $start_date)->first();
         dd($priceLine);
         if(empty($priceLine)){
             $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
