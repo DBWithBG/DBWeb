@@ -175,7 +175,7 @@
                         swal({
                             position: 'top-right',
                             type: 'success',
-                            title: 'Suppression de la course ' + response.name + ' Ok',
+                            title: 'Suppression de la course ' + response.id + ' Ok',
                             showConfirmButton: false,
                             timer: 2500
                         })

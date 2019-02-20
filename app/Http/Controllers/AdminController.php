@@ -398,6 +398,13 @@ class AdminController extends Controller
         return $typebag;
     }
 
+    public function deleteDeliveries(Request $request)
+    {
+        $delivery = Delivery::find($request->id);
+        Price::destroy($delivery->id);
+        return $delivery;
+    }
+
 
     //Get vue des notifications
     public function getNotifications()
