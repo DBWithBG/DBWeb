@@ -125,6 +125,7 @@
 @section('custom-scripts')
     <script type="text/javascript">
         $(document).ready(function ($) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var $table4 = $("#datatables");
 
             $table4.DataTable({

@@ -162,6 +162,7 @@
             $('.delete').on('click', function () {
 
                 var id = $(this).attr("data-idDelivery");
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: "POST",
                     url: '{{url('backoffice/deliveries/delete')}}',
