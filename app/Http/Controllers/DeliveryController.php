@@ -114,6 +114,7 @@
                 $delivery->end_date = $delivery->end_date->addHours($delivery->time_consigne->hour)->addMinutes($delivery->time_consigne->minute);
             }
 
+            dd($delivery->end_date, $start_date);
             $retour = false;
             if(!empty($request['has_retour']) && !empty($request['date_retour'])){
                 $delivery->date_retour = Carbon::createFromFormat("d/m/Y H:i",$request['date_retour']);
