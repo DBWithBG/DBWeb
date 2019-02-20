@@ -129,6 +129,7 @@ class Delivery extends Model
         $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
             ->where('promotion', '1')->where('start_date', '>=', $start_date)
             ->where('end_date', '<=', $start_date)->first();
+        dd($priceLine);
         if(empty($priceLine)){
             $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
                 ->where('promotion', '0')->first();
