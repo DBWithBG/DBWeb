@@ -282,6 +282,7 @@
         function call_sncf() {
             var val = $('#input_train').val();
             var dateVoyage = $('#input_train_date').val();
+            console.log(dateVoyage);
             //  since=20170407T120000&until=20170407T120100
             if (dateVoyage != '') {
                 dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
