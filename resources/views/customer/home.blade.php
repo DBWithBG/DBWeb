@@ -294,7 +294,7 @@
                     }).fail(function () {
                         $('#infos-train').html('Train introuvable');
                         //swal("Ce numéro de train n'est pas valide");
-                        $('#input_train_date').val(null);
+                        //$('#input_train_date').val(null);
                     });
                 } else {
                     swal("Numéro de billet invalide");
