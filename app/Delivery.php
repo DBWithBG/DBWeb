@@ -126,11 +126,14 @@ class Delivery extends Model
 
         // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
         $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
-            ->where('promotion', '1')->first();
+            ->where('promotion', '1')->where('start_date', '<=',$start_date)->where('end_date', '>=', $start_date)->get();
+        dd($priceLine);
+
         if(empty($priceLine)){
             $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
                 ->where('promotion', '0')->first();
         }
+
         $remuneration_driver = round(($priceLine->to_add_driver + $priceLine->coef_kilometers_driver * sqrt($distance)*($priceLine->coef_bags_driver * sqrt($priceLine->bags_min))) * $priceLine->coef_total_driver, 2);
         $remuneration_deliver = round($remuneration_driver * $priceLine->coef_deliver, 2);
         if($retour) $total = round($remuneration_driver + $remuneration_deliver + $priceLine->to_add_retour, 2);
