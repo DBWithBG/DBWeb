@@ -125,7 +125,6 @@ class Delivery extends Model
         }
         $start_date_copy = $start_date->copy();
         $start_date_copy = $start_date_copy->addDays(1);
-        dd($start_date_copy);
         // =(3+2*RACINE(B14)*(1*RACINE($A$2)))*1,2
         $priceLine = Price::where('bags_min', '<=', $nb_bags)->where('bags_max', '>=', $nb_bags)
             ->where('promotion', '1')->where('start_date', '<=',$start_date)->where('end_date', '>=', $start_date_copy->addDays(-1))->first();
