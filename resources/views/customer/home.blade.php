@@ -104,7 +104,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <p id="infos"></p>
+                            <p id="infos-train" style="color: orangered;"></p>
 
 
                         </div><!-- end .smart-forms section -->
@@ -289,9 +289,11 @@
                 if (val.length >= 4) {
 
                     $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=' + key_sncf + ' ', function (data) {
+                        $('#infos-train').html('Recherche des trains ...');
                         traitement_gares(data);
                     }).fail(function () {
-                        swal("Ce numéro de train n'est pas valide");
+                        $('#infos-train').html('Train introuvable');
+                        //swal("Ce numéro de train n'est pas valide");
                         $('#input_train_date').val(null);
                     });
                 } else {
