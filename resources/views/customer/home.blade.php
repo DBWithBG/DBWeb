@@ -289,7 +289,7 @@
                 if (val.length >= 4) {
 
                     $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=' + key_sncf + ' ', function (data) {
-                        $('#infos-train').html('Recherche des trains ...');
+                        $('#infos-train').html('');
                         traitement_gares(data);
                     }).fail(function () {
                         $('#infos-train').html('Train introuvable');
