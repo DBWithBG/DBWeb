@@ -92,8 +92,9 @@
                     <div class="smart-wrap" style="min-height: 140px">
                         <div class="smart-forms">
 
-                            <p>Vous pouvez entrer ici votre numéro de train (généralement 4 chiffres) il vous sera ensuite proposer les gares compatibles avec Deliverbag
-                                Cela pré remplira votre adresse d'arrivée.
+                            <p>Vous pouvez entrer ici votre numéro de train (généralement 4 chiffres) il vous sera ensuite proposer les gares compatibles avec Deliverbag.
+                                Vous pourez ensuite choisir la date de départ de votre train.
+                                <br>Cela pré-remplira automatiquement votre adresse d'arrivée et <strong>nous serons au courant en cas de retard</strong>
                             </p>
                             <div class="form-body">
                                 <div class="">
