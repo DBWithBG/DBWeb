@@ -44,8 +44,7 @@
                                                     <input id="adresse_input_depart" type="search"
                                                            class="gui-input"
                                                            placeholder="Lieu de prise en charge">
-                                                    <span class="field-icon"><i
-                                                                class="fa fa-arrow-right"></i></span>
+                                                    <span class="field-icon"><i class="fa fa-arrow-right"></i></span>
                                                 </label>
                                             </div>
                                             <div class="row">
@@ -53,8 +52,14 @@
                                                     <input id="adresse_input_arrivee" type="search"
                                                            class="gui-input"
                                                            placeholder="Lieu de livraison">
-                                                    <span class="field-icon"><i
-                                                                class="fa fa-arrow-left"></i></span>
+                                                    <span class="field-icon"><i class="fa fa-arrow-left"></i></span>
+                                                </label>
+                                            </div>
+                                            <div class="row">
+
+                                                <label class="field prepend-icon" >
+                                                    <input id="input_nb_bags" type="number" class="gui-input" placeholder="Nombre de bagages">
+                                                    <span class="field-icon"><i class="fa fa-shopping-bag"></i></span>
                                                 </label>
                                             </div>
                                         </div>
@@ -194,6 +199,8 @@
         var place_arrivee;
         var place_depart;
         var tabGeocSNCF = {};
+        var num_train = null;
+        var num_vol = null;
 
         /**
          * Ouverture de la modal train
@@ -290,6 +297,7 @@
 
                     $.get('https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/?headsign=' + val + '&since=' + dateVoyage + '&key=' + key_sncf + ' ', function (data) {
                         $('#infos-train').html('');
+                        data['num_train'] = val;
                         traitement_gares(data);
                     }).fail(function () {
                         $('#infos-train').html('Train introuvable');
@@ -308,7 +316,6 @@
          * Traitement des gares récupérées avec l'api SNCF
          **/
         function traitement_gares(data) {
-            console.log(data);
             var stops = data.vehicle_journeys[0].stop_times;
             var geocoders_promises = [];
             for (var i = 0; i < stops.length; i++) {
@@ -336,12 +343,18 @@
                 }).then((value) => {
                     $('#adresse_input_depart').val(value);
 
+                    num_vol = null;
+
                     if (value == null) {
+                        num_train = null;
                         swal("Aucune gare choisie");
+                    } else {
+                        num_train = data['num_train'];
+                        pos_depart_ok = true;
+                        place_depart = tabGeocSNCF[value];
+                        $('#trainModal').modal('hide');
                     }
-                    pos_depart_ok = true;
-                    place_depart = tabGeocSNCF[value];
-                    $('#trainModal').modal('hide');
+
                 });
 
 
@@ -406,6 +419,8 @@
          **/
         function flightStats() {
 
+            console.log('flights stats');
+
             var vol = $('#input_flight').val();
             var airport = $('#input_airport').val();
             var dateVoyage = $('#date').val();
@@ -434,6 +449,9 @@
                         if (res.operationalTimes.estimatedGateArrival) {
                             dateGate = new Date(res.operationalTimes.estimatedGateArrival.dateLocal); //RUNWAY OR GATE
                         }
+
+                        num_train = null;
+                        num_vol = vol;
 
                         /* var minRunway = dateRunway.getMinutes();
                          if (minRunway<10){
@@ -537,11 +555,31 @@
                 });
 
                 $('.js_valid_deliver').on('click', function () {
-                    if (pos_depart_ok && pos_arrivee_ok) {
+                    console.log("Val is " + $('#input_nb_bags').val());
+
+                    var nb_bags = parseInt($('#input_nb_bags').val());
+
+                    console.log("Nb bags is " + nb_bags);
+
+
+                    if (!(nb_bags > 0)) {
+                        swal("Veuillez saisir le nombre de bagages à transporter");
+                    }
+
+                    if (nb_bags > 0 && pos_depart_ok && pos_arrivee_ok) {
+
+                        bagages = [];
+                        for (var i = 0; i < nb_bags; i++) {
+                            bagages.push({i: {name: 'Bagage' + i, desc: ''}});
+                        }
 
                         delivery = {
-                            customer_id: "{{$customer}}"
+                            customer_id: "{{$customer}}",
+                            bagages: {
+                                2: bagages
+                            },
                         };
+
                         start_position = {
                             lat: place_depart.geometry.location.lat(),
                             lng: place_depart.geometry.location.lng(),
@@ -583,7 +621,12 @@
                                 }).then((result) => {
 
                                     if (result === 'confirm') {
-                                        document.location.href = "{{url('delivery')}}" + '/' + response.id + '/save'
+                                        var url = "{{url('delivery')}}" + '/' + response.id + '/save';
+
+                                        if (num_train != null) url += '?num_train=' + num_train;
+                                        else if (num_vol != null) url += '?num_vol=' + num_vol;
+
+                                        document.location.href = url;
                                     } else if (result === 'cancel') {
                                         swal({
                                             icon: 'success',
@@ -597,7 +640,13 @@
 
                         });
                     } else {
-                        swal("Pos départ : " + pos_depart_ok + " Pos arrivée : " + pos_arrivee_ok);
+                        if (!pos_depart_ok) {
+                            swal("Veuillez vérifier la position de départ");
+                        }
+
+                        if (!pos_arrivee_ok) {
+                            swal("Veuillez vérifier la position d'arrivée");
+                        }
                     }
 
 

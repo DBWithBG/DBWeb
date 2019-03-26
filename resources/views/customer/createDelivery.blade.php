@@ -18,6 +18,36 @@
                                                 @if(sizeof($errors->all())>0)
                                                     <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
                                                 @endif
+
+                                                @if($num_train != null)
+                                                    <div class="row row-margin">
+                                                        <div class="col-md-12">
+                                                            <label for="email" class="field-label"><strong>Numéro de train</strong></label>
+                                                            <label class="field prepend-icon">
+                                                                <input type="text" id="num_train_input"
+                                                                       class="gui-input" disabled style="color : black"
+                                                                       value="{{$num_train}}">
+                                                                <span class="field-icon"><i class="fa fa-train" style="color : black"></i></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                @if($num_vol != null)
+                                                    <div class="row row-margin">
+                                                        <div class="col-md-12">
+                                                            <label for="email" class="field-label"><strong>Numéro de vol</strong></label>
+                                                            <label class="field prepend-icon">
+                                                                <input type="text" id="num_vol_input"
+                                                                       class="gui-input" disabled style="color : black"
+                                                                       value="{{$num_vol}}">
+                                                                <span class="field-icon"><i class="fa fa-plane" style="color : black"></i></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label"><strong>Lieu de prise en charge</strong></label>
@@ -41,6 +71,15 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
+                                                        <label for="email" class="field-label" ><strong>Nombre de bagages</strong></label>
+                                                        <label class="field prepend-icon">
+                                                            <input required type="number" class="gui-input" id="input_nb_bags" name="datetimevalue" value="{{$nb_bags}}" disabled/>
+                                                            <span class="field-icon"><i class="fa fa-shopping-bag" style="color : black"></i></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-margin">
+                                                    <div class="col-md-12">
                                                         <label for="email" class="field-label" ><strong>Date et heure de prise en charge</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input required type='text' class="datepicker-input gui-input" id='datetimepicker4' name="datetimevalue"
@@ -49,6 +88,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
+
                                                 <div class="row row-margin">
                                                     <div class="col-md-12 switch-1" style="margin-top: 2px">
 
@@ -98,51 +138,21 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="row row-margin">
+                                                    <div class="col-md-12">
+                                                        <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
-                                                <div class="row col-md-12">
-                                                    <!-- end section --><br>
-                                                    <div class="text-center col-md-12">
-                                                        <div class="btn-group " role="group">
-                                                            <div class="frm-row">
-                                                                <div class="tagline" style="margin-top: 30px; margin-bottom: 20px"><span>Bagages</span></div><!-- .tagline -->
-
-
-                                                                @foreach(\App\TypeBag::all() as $type_bag)
-                                                                    <div class="col-md-4 js-{{$type_bag->id}}"  style="border-right-color: black;">
-                                                                        <span style="font-size: 20px; font-weight: bold">{{$type_bag->name}}<br><span style="font-weight: lighter; !important;">{{$type_bag->length}}x{{$type_bag->width}}x{{$type_bag->height}}cm</span></span>
-                                                                        <br>
-                                                                        <a id="{{$type_bag->id.'-'.$type_bag->name}}" class="js-add-bag btn btn-small light uppercase btn-success"><i class="fa fa-plus-circle"></i> Ajouter</a>
-                                                                        <?php $my_bags = \App\Bag::where('type_id', $type_bag->id)->where('customer_id', \Illuminate\Support\Facades\Auth::user()->customer->id)->get(); ?>
-                                                                        @foreach($my_bags as $my_bag)
-                                                                            <span class="js-delete-{{$my_bag->id}}">
-                                                                                <input type="text" class="gui-input" style="margin-top: 10px"
-                                                                                       name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][name]"
-                                                                                       value="{{$my_bag->name}}" placeholder="nom">
-                                                                                <input type="text" class="gui-input"
-                                                                                       name="bagages[{{$type_bag->id}}][{{$my_bag->id}}][descr]"
-                                                                                       value="{{$my_bag->details}}" placeholder="description">
-                                                                                <a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336"
-                                                                                   id="{{$my_bag->id}}">
-                                                                                    <i class="fa fa-remove"></i> Ne pas utiliser</a>
-                                                                                    </span>
-                                                                    @endforeach
-                                                                    <!--end item-->
-                                                                    </div>
-                                                                @endforeach
-                                                            </div>
-
+                                                        <div class="form-footer js-finalise" style="text-align: center" hidden>
+                                                            <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>
+                                                        </div><!-- end .form-footer section -->
+                                                        <div class="form-footer js-unfinalise" style="text-align: center" hidden>
+                                                            <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
                                                         </div>
+                                                        {{csrf_field()}}
                                                     </div>
-                                                    <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
-
-                                                    <div class="form-footer js-finalise" style="text-align: center" hidden>
-                                                        <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>
-                                                    </div><!-- end .form-footer section -->
-                                                    <div class="form-footer js-unfinalise" style="text-align: center" hidden>
-                                                        <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
-                                                    </div>
-                                                    {{csrf_field()}}
                                                 </div>
+
+
                                             </form>
                                         </div>
                                     </div>

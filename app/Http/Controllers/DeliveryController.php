@@ -39,13 +39,17 @@
 
             if(empty($request['delivery']['start_date']))
                 $request['delivery']['start_date'] = Carbon::now();
+
             $start_position = Position::create($request['start_position']);
             $end_position = Position::create($request['end_position']);
+
             //TODO Calcul du statut selon l'heure envoyée
             if(!empty($request['delivery']['time_consigne'])){
                 //TODO TIME CONSIGNE ENVOYER EN MINUTE
             }
+
             $request['delivery']['status'] = Config::get('constants.NON_FINALISE');
+
             //TODO Calcul du prix
             /******* CALCUL DU PRIX ************/
             $distanceMatrix = new GoogleDistanceMatrix('AIzaSyDOS-liFW3p5AkwwvO9XlFY8YimZJjpPmE');
@@ -53,13 +57,15 @@
                 ->addOrigin($start_position->lat.', '.$start_position->lng)
                 ->addDestination($end_position->lat.', '.$end_position->lng)
                 ->sendRequest();
+
             $request['delivery']['distance'] = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
             $request['delivery']['distance'] = str_replace(',', '.',$request['delivery']['distance']);
+
             if(empty($request['bagages'])) {
                 $request['bagages']= [['a'=>'a']];
                 $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
                 $request['bagages'] = null;
-            }else{
+            } else {
                 $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
             }
 
@@ -88,7 +94,7 @@
             //if(!isset($request['customer_id']))
                 //$request['customer_id']=Auth::user()->customer->id;
 
-            $this->saveBags($request, $delivery->id,$request['customer_id']);
+            $this->saveBags($request, $delivery->id, $request['customer_id']);
 
             return $delivery;
 
@@ -132,7 +138,7 @@
 
 
 
-            $this->saveBags($request, $delivery->id,Auth()->user()->customer->id);
+            $this->saveBags($request, $delivery->id, Auth()->user()->customer->id);
 
             //TODO A RETIRER QUAND PAIEMENT
             //MailController::send_customer_facture($delivery->id, Auth()->user());
@@ -228,7 +234,10 @@
                 return redirect('connexion');
             }
             return view('customer.createDelivery')->with([
-                'delivery' => $delivery
+                'delivery' => $delivery,
+                'nb_bags' => $delivery->bags->count(),
+                'num_train' => Input::get('num_train', null),
+                'num_vol' => Input::get('num_vol', null)
             ]);
         }
 
