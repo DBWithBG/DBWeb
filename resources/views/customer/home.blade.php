@@ -570,13 +570,13 @@
 
                         bagages = [];
                         for (var i = 0; i < nb_bags; i++) {
-                            bagages.push({i: {name: 'Bagage' + i, desc: ''}});
+                            bagages.push({name: 'Bagage' + i, desc: ''});
                         }
 
                         delivery = {
                             customer_id: "{{$customer}}",
                             bagages: {
-                                2: bagages
+                                1: bagages
                             },
                         };
 
