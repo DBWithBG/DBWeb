@@ -141,6 +141,10 @@
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
                                                         <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
+                                                        @for($i = 0; $i < $nb_bags; $i++)
+                                                            <input type="hidden" name="bagages[1][{{$i}}][name]" value="{{'BAGS ' . $i}}">
+                                                            <input type="hidden" name="bagages[1][{{$i}}][descr]" value="">
+                                                        @endfor
 
                                                         <div class="form-footer js-finalise" style="text-align: center" hidden>
                                                             <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>

@@ -28,6 +28,8 @@
 
         //Enregistrement d'une delivery (Mobile + 1ere étape web
         public function postDelivery(Request $request, $customer_id = null){
+
+
             //$request=HomeController::checkCustomerMobile($request);
             $request = $request->toArray();
             if(isset($customer_id)) {
@@ -169,6 +171,7 @@
          * @param $delivery_id
          */
         private function saveBags($request, $delivery_id,$customerid){
+
             foreach($request['bagages'] as $k=>$bags){
                 foreach($bags as $key=>$b){
                     if(!isset($b['name'])) {
@@ -233,9 +236,15 @@
                 Session::flash('message', 'Connectez-vous pour finaliser la demande de prise en charge');
                 return redirect('connexion');
             }
+
+            $nb_bags = Input::get('nb_bags', 0);
+
+            // Si quelqu'un bidouille l'URL :
+            if ($nb_bags < 1) return redirect('/');
+
             return view('customer.createDelivery')->with([
                 'delivery' => $delivery,
-                'nb_bags' => $delivery->bags->count(),
+                'nb_bags' => $nb_bags,
                 'num_train' => Input::get('num_train', null),
                 'num_vol' => Input::get('num_vol', null)
             ]);

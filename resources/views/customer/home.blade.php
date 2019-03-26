@@ -575,9 +575,6 @@
 
                         delivery = {
                             customer_id: "{{$customer}}",
-                            bagages: {
-                                1: bagages
-                            },
                         };
 
                         start_position = {
@@ -621,10 +618,10 @@
                                 }).then((result) => {
 
                                     if (result === 'confirm') {
-                                        var url = "{{url('delivery')}}" + '/' + response.id + '/save';
+                                        var url = "{{url('delivery')}}" + '/' + response.id + '/save?nb_bags=' + nb_bags;
 
-                                        if (num_train != null) url += '?num_train=' + num_train;
-                                        else if (num_vol != null) url += '?num_vol=' + num_vol;
+                                        if (num_train != null) url += '&num_train=' + num_train;
+                                        else if (num_vol != null) url += '&num_vol=' + num_vol;
 
                                         document.location.href = url;
                                     } else if (result === 'cancel') {
