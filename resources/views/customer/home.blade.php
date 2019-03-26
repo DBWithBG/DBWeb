@@ -27,14 +27,14 @@
 
                                         <div class="form-body">
                                             <div class="row">
-                                                <span class="voyage-train">Voyage en avion ou train ?</span>
+                                                <span class="voyage-train">Voyage en train ?</span>
                                                 <div class="modal-buttons">
                                                     <label onclick="openTrainModal()"
                                                            class="button btn-primary"><i
                                                                 class="fa fa-train"></i></label>
-                                                    <label onclick="openPlaneModal()"
+                                                    <!--<label onclick="openPlaneModal()"
                                                            class="button btn-primary"><i
-                                                                class="fa fa-plane"></i></label><br>
+                                                                class="fa fa-plane"></i></label><br>-->
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -92,7 +92,9 @@
                     <div class="smart-wrap" style="min-height: 140px">
                         <div class="smart-forms">
 
-
+                            <p>Vous pouvez entrer ici votre numéro de train (généralement 4 chiffres) il vous sera ensuite proposer les gares compatibles avec Deliverbag
+                                Cela pré remplira votre adresse d'arrivée.
+                            </p>
                             <div class="form-body">
                                 <div class="">
                                     <label class="field prepend-icon">
