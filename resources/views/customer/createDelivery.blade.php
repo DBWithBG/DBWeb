@@ -182,7 +182,7 @@
         bag_number++;
         var real_number = 0;
         $(document).ready(function ($) {
-            if(nb_bags > 0){
+            if("{{$nb_bags}}" > 0){
                 $('.js-finalise').show();
             }else{
                 $('.js-unfinalise').show();
