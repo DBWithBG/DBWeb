@@ -63,11 +63,24 @@
             $request['delivery']['distance'] = explode(' ', $distance->getRows()[0]->getElements()[0]->getDistance()->getText())[0];
             $request['delivery']['distance'] = str_replace(',', '.',$request['delivery']['distance']);
 
-            if(empty($request['bagages'])) {
+            if (!empty($request['nb_bags'])) {
+                $nb_bags = $request['nb_bags'];
+                $bagages = [];
+                for ($i = 0; $i < $nb_bags; $i++) {
+                    array_push($bagages, ['a' => 'a']);
+                }
+
+
+                $prices = Delivery::computePrice($bagages, $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
+            }
+
+            else if(empty($request['bagages'])) {
                 $request['bagages']= [['a'=>'a']];
                 $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
                 $request['bagages'] = null;
-            } else {
+            }
+
+            else {
                 $prices = Delivery::computePrice($request['bagages'], $start_position, $end_position, $distance, $request['delivery']['start_date'], false);
             }
 

@@ -596,13 +596,14 @@
                                 start_position: start_position,
                                 end_position: end_position,
                                 delivery: delivery,
+                                nb_bags: nb_bags,
                                 _token: CSRF_TOKEN
 
                             },
                             success: function (response) {
                                 swal({
                                     title: 'Confirmer la prise en charge ?',
-                                    text: "Avec un bagage, cette course coûterait " + parseFloat(response.price).toFixed(2) + " €",
+                                    text: "Le prix de cette course est de " + parseFloat(response.price).toFixed(2) + " €",
                                     icon: 'success',
                                     buttons: {
                                         cancel: false,
