@@ -138,7 +138,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 /*************************** FRONT CUSTOMER **************************************/
 
 
-Route::get('/home', 'CustomerController@home');
+//Route::get('/home', 'CustomerController@home');
 
 
 Route::get('/regles', function() { return view('customer.regles');});
