@@ -37,7 +37,7 @@ class HomeController extends Controller
 
     public function maintenance()
     {
-        return redirect('customer.tmphome');
+        return view('customer.tmphome');
         //return view('home');
     }
 
