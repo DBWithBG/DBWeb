@@ -22,6 +22,7 @@ $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/login', 'HomeController@maintenance');
+Route::get('/home', 'HomeController@maintenance');
 
 // Registration Routes...
 $this->post('register', 'Auth\RegisterController@register');
