@@ -21,6 +21,8 @@ Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('prov
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('/login', 'HomeController@maintenance');
+
 // Registration Routes...
 $this->post('register', 'Auth\RegisterController@register');
 
