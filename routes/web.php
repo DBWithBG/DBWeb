@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@maintenance');
+Route::get('/home', 'HomeController@maintenance');
 
 /******* LOGIN FB GOOGLE TWITTER **************/
 Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
@@ -22,7 +23,6 @@ $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/login', 'HomeController@maintenance');
-Route::get('/home', 'HomeController@maintenance');
 
 // Registration Routes...
 $this->post('register', 'Auth\RegisterController@register');
