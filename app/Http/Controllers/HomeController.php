@@ -35,6 +35,14 @@ class HomeController extends Controller
         //return view('home');
     }
 
+    public function maintenance()
+    {
+        return redirect('customer.tmphome');
+        //return view('home');
+    }
+
+
+
 
     public function getProfile(Request $request){
         $request=self::checkCustomerMobile($request);
