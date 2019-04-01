@@ -11,9 +11,9 @@
 |
 */
 
-//Route::get('/', 'HomeController@maintenance');
-Route::get('/', 'CustomerController@home');
-//Route::get('/home', 'HomeController@maintenance');
+Route::get('/', 'HomeController@maintenance');
+//Route::get('/', 'CustomerController@home');
+Route::get('/home', 'HomeController@maintenance');
 
 /******* LOGIN FB GOOGLE TWITTER **************/
 Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
@@ -139,7 +139,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 /*************************** FRONT CUSTOMER **************************************/
 
 
-Route::get('/home', 'CustomerController@home');
+//Route::get('/home', 'CustomerController@home');
 
 
 Route::get('/regles', function() { return view('customer.regles');});
