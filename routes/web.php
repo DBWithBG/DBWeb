@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@maintenance');
-Route::get('/home', 'HomeController@maintenance');
+//Route::get('/', 'HomeController@maintenance');
+//Route::get('/home', 'HomeController@maintenance');
 
 /******* LOGIN FB GOOGLE TWITTER **************/
 Route::get('{provider}', 'Auth\SocialController@redirect')->where('provider', '(facebook|twitter|google)');
@@ -22,7 +22,7 @@ Route::get('{provider}/callback', 'Auth\SocialController@callback')->where('prov
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/login', 'HomeController@maintenance');
+//Route::get('/login', 'HomeController@maintenance');
 
 // Registration Routes...
 $this->post('register', 'Auth\RegisterController@register');
@@ -138,7 +138,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 /*************************** FRONT CUSTOMER **************************************/
 
 
-//Route::get('/home', 'CustomerController@home');
+Route::get('/home', 'CustomerController@home');
 
 
 Route::get('/regles', function() { return view('customer.regles');});
