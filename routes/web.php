@@ -12,6 +12,7 @@
 */
 
 //Route::get('/', 'HomeController@maintenance');
+Route::get('/', 'CustomerController@home');
 //Route::get('/home', 'HomeController@maintenance');
 
 /******* LOGIN FB GOOGLE TWITTER **************/
