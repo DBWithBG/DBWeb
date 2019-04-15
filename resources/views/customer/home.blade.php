@@ -36,8 +36,8 @@
                                                            class="button btn-primary"><i
                                                                 class="fa fa-plane"></i></label><br>
                                                 </div>
-                                            </div>-
-                                            <div class="row">-->
+                                            </div>-->
+                                            <div class="row">
 
                                                 <label class="field prepend-icon" style="margin-top: 0px">
 
