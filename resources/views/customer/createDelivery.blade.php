@@ -181,7 +181,21 @@
         var nb_bags = bag_number;
         bag_number++;
         var real_number = 0;
+        var departments
         $(document).ready(function ($) {
+            //Récupération des departements autorisés
+            $.ajax({
+                type: "POST",
+                url: '{{url('ajax/departments')}}',
+                data: {
+                    _token: CSRF_TOKEN,
+                },
+                success: function (response) {
+                    departments = response;
+
+                }
+
+            });
 
             function verifyDepartment(place) {
                 //var bdx_metropole = {33130, 33370 ,33110,33170,33700,33185,33530,33127,33400,33810,33290,33150,33520,33160,33310,33440,33270,33140,33560,33600,33320,33800,33100,33000,33200,33300};
