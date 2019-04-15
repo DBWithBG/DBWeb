@@ -53,7 +53,7 @@
                                                         <label for="email" class="field-label"><strong>Lieu de prise en charge</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text" name="start_position[address]" id="firstname"
-                                                                   class="gui-input" disabled style="color : black"
+                                                                   class="gui-input" style="color : black"
                                                                    placeholder="Adresse" value="{{$delivery->startPosition->address}}">
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                                         </label>
@@ -64,7 +64,7 @@
                                                         <label for="email" class="field-label"><strong>Lieu de livraison</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text"  name="end_position[address]" id="firstname" class="gui-input" style="color : black"
-                                                                   placeholder="Adresse" value="{{$delivery->endPosition->address}}" disabled>
+                                                                   placeholder="Adresse" value="{{$delivery->endPosition->address}}">
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                                         </label>
                                                     </div>
@@ -73,7 +73,7 @@
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label" ><strong>Nombre de bagages</strong></label>
                                                         <label class="field prepend-icon">
-                                                            <input required type="number" class="gui-input" id="input_nb_bags" name="datetimevalue" value="{{$nb_bags}}" disabled/>
+                                                            <input required type="number" class="gui-input" id="input_nb_bags" name="datetimevalue" value="{{$nb_bags}}"/>
                                                             <span class="field-icon"><i class="fa fa-shopping-bag" style="color : black"></i></span>
                                                         </label>
                                                     </div>
@@ -90,11 +90,11 @@
                                                 </div>
 
                                                 <div class="row row-margin">
-                                                    <div class="col-md-12 switch-1" style="margin-top: 2px">
+                                                    <div class="col-md-12 switch-1" style="margin-top: 2px" hidden>
 
 
                                                         <label for="checkbox">
-                                                            <input id="checkbox-consigne" checked class="check_boxes optional" name="my-checkbox" type="checkbox">
+                                                            <input id="checkbox-consigne" class="check_boxes optional" name="my-checkbox" type="checkbox">
                                                             Voulez-vous que nous gardions vos bagages quelques heures ? Indiquer une durée :
                                                         </label>
                                                         <span class="js-hide-time">
