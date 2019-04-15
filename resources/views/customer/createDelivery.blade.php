@@ -100,7 +100,7 @@
                                                         <span class="js-hide-time">
                                                     <label class="field prepend-icon">
                                                         <input type="time" name="time_consigne" id="time_consigne" class="gui-input"
-                                                               placeholder="" value="2:00" min="2:00" max="24:00" step="0:30">
+                                                               placeholder="" value="--:--" min="2:00" max="24:00" step="0:30">
                                                         <span class="field-icon"><i class="fa fa-hourglass"></i></span>
                                                     </label>
                                                 </span>
