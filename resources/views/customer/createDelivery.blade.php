@@ -181,7 +181,8 @@
         var nb_bags = bag_number;
         bag_number++;
         var real_number = 0;
-        var departments
+        var departments;
+        const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function ($) {
             //Récupération des departements autorisés
             $.ajax({
