@@ -98,7 +98,7 @@
                                 <br>Cela pré-remplira automatiquement votre adresse d'arrivée et <strong>nous serons au courant en cas de retard</strong>
                             </p>
                             <div class="form-body">
-                                <!--<div class="">
+                                <div class="">
                                     <label class="field prepend-icon">
                                         <input id="input_train" type="search" class="gui-input"
                                                placeholder="Numéro de train">
@@ -113,7 +113,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <p id="infos-train" style="color: orangered;"></p>-->
+                            <p id="infos-train" style="color: orangered;"></p>
 
 
                         </div><!-- end .smart-forms section -->
