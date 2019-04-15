@@ -52,7 +52,7 @@
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label"><strong>Lieu de prise en charge</strong></label>
                                                         <label class="field prepend-icon">
-                                                            <input type="text" name="start_position[address]" id="firstname"
+                                                            <input type="text" name="start_position[address]" id="adresse_input_depart"
                                                                    class="gui-input" style="color : black"
                                                                    placeholder="Adresse" value="{{$delivery->startPosition->address}}">
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
@@ -63,7 +63,7 @@
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label"><strong>Lieu de livraison</strong></label>
                                                         <label class="field prepend-icon">
-                                                            <input type="text"  name="end_position[address]" id="firstname" class="gui-input" style="color : black"
+                                                            <input type="text"  name="end_position[address]" id="adresse_input_arrivee" class="gui-input" style="color : black"
                                                                    placeholder="Adresse" value="{{$delivery->endPosition->address}}">
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                                         </label>
@@ -182,6 +182,8 @@
         bag_number++;
         var real_number = 0;
         $(document).ready(function ($) {
+
+            initAutocomplete();
             if("{{$nb_bags}}" > 0){
                 $('.js-finalise').show();
             }else{
@@ -276,6 +278,60 @@
                 }
                 $('.js-delete-' + id).remove();
             })
+
+            /**
+             * Init de Google maps autocomplete
+             **/
+            function initAutocomplete() {
+
+                const bounds_gironde = new google.maps.LatLngBounds(
+                    new google.maps.LatLng(44.1939019, -1.2614241),
+                    new google.maps.LatLng(45.573636, 0.315137)
+                );
+
+                const input_depart = document.getElementById('adresse_input_depart');
+                const input_arrivee = document.getElementById('adresse_input_arrivee');
+
+                // Create the autocomplete object, restricting the search to geographical
+                // location types.
+                autocompleteDepart = new google.maps.places.Autocomplete(input_depart, {
+                    bounds: bounds_gironde,
+                    language: 'fr',
+                    componentRestrictions: {country: 'fr'}
+                });
+
+                autocompleteArrivee = new google.maps.places.Autocomplete(input_arrivee, {
+                    bounds: bounds_gironde,
+                    language: 'fr',
+                    componentRestrictions: {country: 'fr'}
+                });
+
+
+                autocompleteDepart.addListener('place_changed', function () {
+                    if (this.getPlace().geometry.location) {
+                        start_pos = this.getPlace().geometry.location;
+                        if (verifyDepartment(this.getPlace())) {
+                            pos_depart_ok = true;
+                            place_depart = this.getPlace();
+                        } else {
+                            printErrorDepartments(true);
+                            input_depart.value = '';
+                        }
+                    }
+                });
+
+                autocompleteArrivee.addListener('place_changed', function () {
+                    end_pos = this.getPlace().geometry.location;
+                    if (verifyDepartment(this.getPlace())) {
+                        pos_arrivee_ok = true;
+                        place_arrivee = this.getPlace();
+                    } else {
+                        printErrorDepartments(false);
+                        input_arrivee.value = '';
+                    }
+                });
+
+            }
         });
     </script>
 @endsection
