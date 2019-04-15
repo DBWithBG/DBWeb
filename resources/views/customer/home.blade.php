@@ -34,8 +34,8 @@
                                                                 class="fa fa-train"></i></label>-->
                                                     <!--<label onclick="openPlaneModal()"
                                                            class="button btn-primary"><i
-                                                                class="fa fa-plane"></i></label><br>-->
-                                                </div>
+                                                                class="fa fa-plane"></i></label><br>
+                                                </div>-->
                                             </div>
                                             <div class="row">
 
