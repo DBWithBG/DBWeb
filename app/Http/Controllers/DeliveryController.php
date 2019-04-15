@@ -28,7 +28,6 @@
 
         //Enregistrement d'une delivery (Mobile + 1ere étape web
         public function postDelivery(Request $request, $customer_id = null){
-            dd($request);
 
 
             //$request=HomeController::checkCustomerMobile($request);
@@ -153,7 +152,7 @@
 
             $delivery->start_date = $start_date;
             $delivery->save();
-
+            dd($request);
 
 
             $this->saveBags($request, $delivery->id, Auth()->user()->customer->id);
