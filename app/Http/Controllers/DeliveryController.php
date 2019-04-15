@@ -28,6 +28,7 @@
 
         //Enregistrement d'une delivery (Mobile + 1ere étape web
         public function postDelivery(Request $request, $customer_id = null){
+            dd($request);
 
 
             //$request=HomeController::checkCustomerMobile($request);
