@@ -182,7 +182,8 @@
         bag_number++;
         var real_number = 0;
         $(document).ready(function ($) {
-
+                // On est sur que la lib google maps est load
+            $(window).load(function () {
             initAutocomplete();
             if("{{$nb_bags}}" > 0){
                 $('.js-finalise').show();
@@ -332,6 +333,7 @@
                 });
 
             }
+            })
         });
     </script>
 @endsection
