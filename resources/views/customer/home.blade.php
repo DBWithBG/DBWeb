@@ -26,9 +26,9 @@
                                         {{csrf_field()}}
 
                                         <div class="form-body">
-                                             <div class="row">
+                                            <!-- <div class="row">
                                                 <span class="voyage-train">Laissez vous guider</span>
-                                              <!-- <div class="modal-buttons">
+                                               <div class="modal-buttons">
                                                     <label onclick="openTrainModal()"
                                                            class="button btn-primary"><i
                                                                 class="fa fa-train"></i></label>-->
@@ -36,8 +36,8 @@
                                                            class="button btn-primary"><i
                                                                 class="fa fa-plane"></i></label><br>
                                                 </div>
-                                            </div>-->
-                                            <div class="row">
+                                            </div>-
+                                            <div class="row">-->
 
                                                 <label class="field prepend-icon" style="margin-top: 0px">
 
