@@ -141,7 +141,7 @@
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
                                                         <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
-                                                        <div id="js-bags-add">
+                                                        <div id="js-bags-add" hidden>
                                                         @for($i = 0; $i < $nb_bags; $i++)
                                                             <input type="hidden" name="bagages[1][{{$i}}][name]" value="{{'BAGS ' . $i}}">
                                                             <input type="hidden" name="bagages[1][{{$i}}][descr]" value="">
@@ -269,12 +269,11 @@
                 div = $('#js-bags-add').html(" ");
                 for(let i=0; i<nb_bags; i++){
                     div.append('<span class=" js-delete-' + bag_number + ' ">' +
-                        '<input type="text" class="gui-input" name="bagages[' + i + '][' + bag_number + '][name]" value="'+ i +' '+ real_number+'" placeholder="nom" style="margin-top: 10px">' +
-                        '<input type="text" class="gui-input" name="bagages[' + i + '][' + bag_number + '][descr]" value="" placeholder="description">' +
+                        '<input type="text" class="gui-input" name="bagages[Bag' + i + '][' + bag_number + '][name]" value="'+ i +' '+ real_number+'" placeholder="nom" style="margin-top: 10px">' +
+                        '<input type="text" class="gui-input" name="bagages[Bag' + i + '][' + bag_number + '][descr]" value="" placeholder="description">' +
                         '<a class="btn btn-medium light uppercase js-press-delete btn-error" style="color: #F44336" id='+bag_number+'><i class="fa fa-remove"></i> Ne pas utiliser</a></span>');
 
                 }
-
             }
 
             $('#time_consigne').val('02:00');
