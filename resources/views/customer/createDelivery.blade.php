@@ -141,11 +141,12 @@
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
                                                         <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
+                                                        <div id="js-bags-add">
                                                         @for($i = 0; $i < $nb_bags; $i++)
                                                             <input type="hidden" name="bagages[1][{{$i}}][name]" value="{{'BAGS ' . $i}}">
                                                             <input type="hidden" name="bagages[1][{{$i}}][descr]" value="">
                                                         @endfor
-
+                                                        </div>
                                                         <div class="form-footer js-finalise" style="text-align: center" hidden>
                                                             <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>
                                                         </div><!-- end .form-footer section -->
@@ -257,6 +258,17 @@
                 $('.js-unfinalise').hide();
                 $('.js-finalise').show();
             });
+
+                $('#input_nb_bags').on('change', function() {
+                   add_bag();
+                });
+
+            function add_bag(){
+                nb_bags = $('#input_nb_bags').val();
+                console.log(nb_bags);
+                div = $('#js-bags-add').html(" ");
+
+            }
 
             $('#time_consigne').val('02:00');
             $('#checkbox-consigne').on('click', function () {
