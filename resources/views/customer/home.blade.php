@@ -28,7 +28,7 @@
                                         <div class="form-body">
                                             <div class="row">
                                                 <span class="voyage-train">Laissez vous guider</span>
-                                                <div class="modal-buttons">
+                                               <!-- <div class="modal-buttons">
                                                     <label onclick="openTrainModal()"
                                                            class="button btn-primary"><i
                                                                 class="fa fa-train"></i></label>-->
