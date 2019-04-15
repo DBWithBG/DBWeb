@@ -128,7 +128,9 @@
                 explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1]);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
+            $request['time_consigne'] = null;
             if(!empty($request['time_consigne'])){
+                //REmove because of pierre Mail
                 $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
                 $delivery->end_date = $start_date->copy();
 
