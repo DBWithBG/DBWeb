@@ -76,6 +76,9 @@ class SocialController extends Controller
                 !empty($user->driver) ? $type= 'driver' : $type = 'customer';
                 return response()->json(compact('token', 'type'));
             } else if(Session::get('from_type') == 'web'){
+                if(Session::get('delivery_id')){
+                    return redirect('delivery/'.Session::get('delivery_id').'/save');
+                }
                 Auth::guard()->login($user, true);
                 return redirect('/');
             }
