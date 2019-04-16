@@ -388,7 +388,7 @@
                             place_depart = this.getPlace();
                         } else {
                             printErrorDepartments(true);
-                            input_depart.value = '';
+                            $('#adresse_input_depart').val('');
                         }
                     }
                 });
@@ -400,11 +400,22 @@
                         place_arrivee = this.getPlace();
                     } else {
                         printErrorDepartments(false);
-                        input_arrivee.value = '';
+                        $('#adresse_input_arrivee').val('');
                     }
                 });
 
             }
+                /**
+                 * Affichage de l'erreur quand le département n'est pas pris en charge
+                 **/
+                function printErrorDepartments(depart) {
+                    var dep_string = "";
+                    for (var k = 0; k < departments.length; k++) {
+                        dep_string += departments[k].name + " (" + departments[k].number + ") "
+                    }
+                    if (depart) swal("Départ : Le service n'est disponible que dans les départements suivants : " + dep_string);
+                    else swal("Arrivée : Le service n'est disponible que dans les départements suivants : " + dep_string);
+                }
             })
         });
     </script>
