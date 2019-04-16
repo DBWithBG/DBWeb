@@ -14,7 +14,7 @@
                         Date et heure de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
                         Lieu de livraison : <strong>{{$delivery->endPosition->address}}</strong><br>
                         Date et heure de livraison : <strong>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:i')}}</strong><br>
-                        Nombre de bagages : <strong>{{$delivery->nb_bags}}</strong>
+                        Nombre de bagages : <strong>{{sizeof($delivery->bags)}}</strong>
                     <!--@if(!empty($delivery->time_consigne))
                             Temps de consigne : <strong>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</strong>
                         @else
