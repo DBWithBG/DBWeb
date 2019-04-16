@@ -76,11 +76,11 @@ class SocialController extends Controller
                 !empty($user->driver) ? $type= 'driver' : $type = 'customer';
                 return response()->json(compact('token', 'type'));
             } else if(Session::get('from_type') == 'web'){
-                dd(Session::get('delivery_id'));
+                Auth::guard()->login($user, true);
+
                 if(Session::get('delivery_id')){
                     return redirect('delivery/'.Session::get('delivery_id').'/save');
                 }
-                Auth::guard()->login($user, true);
                 return redirect('/');
             }
         }
@@ -100,10 +100,11 @@ class SocialController extends Controller
                     !empty($user->driver) ? $type= 'driver' : $type = 'customer';
                     return response()->json(compact('token', 'type'));
                 } else if(Session::get('from_type') == 'web'){
+                    Auth::guard()->login($user, true);
+
                     if(Session::get('delivery_id')){
                         return redirect('delivery/'.Session::get('delivery_id').'/save');
                     }
-                    Auth::guard()->login($user, true);
                     return redirect('/');
                 }
             }
