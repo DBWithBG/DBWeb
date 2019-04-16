@@ -54,7 +54,7 @@
                                                         <label class="field prepend-icon">
                                                             <input type="text" name="start_position[address]" id="adresse_input_depart"
                                                                    class="gui-input" style="color : black"
-                                                                   placeholder="Adresse" value="{{$delivery->startPosition->address}}">
+                                                                   placeholder="Adresse" value="{{$delivery->startPosition->address}}" required>
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                                         </label>
                                                     </div>
@@ -74,7 +74,7 @@
                                                         <label for="email" class="field-label"><strong>Lieu de livraison</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text"  name="end_position[address]" id="adresse_input_arrivee" class="gui-input" style="color : black"
-                                                                   placeholder="Adresse" value="{{$delivery->endPosition->address}}">
+                                                                   placeholder="Adresse" value="{{$delivery->endPosition->address}}" required>
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
                                                         </label>
                                                     </div>
