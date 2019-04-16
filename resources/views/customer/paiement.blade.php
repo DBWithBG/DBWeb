@@ -11,13 +11,15 @@
                     <h1>Le montant total de votre commande est de {{$delivery->price}} €</h1><br>
                     <h4>
                         Lieu de prise en charge : <strong>{{$delivery->startPosition->address}}</strong><br>
+                        Date et heure de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
                         Lieu de livraison : <strong>{{$delivery->endPosition->address}}</strong><br>
-                        Date de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
-                        @if(!empty($delivery->time_consigne))
+                        Date et heure de livraison : <strong>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:i')}}</strong><br>
+                        Nombre de bagages : <strong>{{$delivery->nb_bags}}</strong>
+                    <!--@if(!empty($delivery->time_consigne))
                             Temps de consigne : <strong>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</strong>
                         @else
                             <strong>livraison dès que possible</strong>
-                        @endif
+                        @endif-->
                         @if(!empty($delivery->date_retour))
                             <br>Retour : {{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i')}}
                         @endif
