@@ -247,6 +247,10 @@
                 locale: 'fr',
                 defaultDate: moment()
             });
+            $('#datetimepicker5').datetimepicker({
+                    locale: 'fr',
+                    defaultDate: moment()
+            });
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
 
@@ -255,6 +259,8 @@
                     $('#checkbox-course-retour').trigger("click");
                     $('#retour-datetimepicker').val(null);
                 }
+                $('#datetimepicker5').data("DateTimePicker").minDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY H:m"));
+                $('#datetimepicker5').data("DateTimePicker").maxDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY H:m").add(24, 'hours'));
             });
             $('.js-add-bag').on('click', function () {
                 nb_bags ++;
