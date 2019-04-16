@@ -32,7 +32,6 @@ class LoginController extends Controller
 
 
     protected function redirectTo(){
-        dd(Session::get('delivery_id'));
         if(Session::get('delivery_id')){
             return 'delivery/'.Session::get('delivery_id').'/save';
         }
