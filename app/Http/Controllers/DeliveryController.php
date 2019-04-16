@@ -121,6 +121,14 @@
             $delivery = Delivery::find($request['delivery_id']);
             $date_sliced = explode(' ',$request['datetimevalue'])[0];
             $time_sliced = explode(' ',$request['datetimevalue'])[1];
+            if($request['datetimeend']) {
+                $date_sliced_end = explode(' ',$request['datetimeend'])[0];
+                $time_sliced_end = explode(' ',$request['datetimeend'])[1];
+                $end_date = Carbon::create(explode('/',$date_sliced_end)[2],explode('/',$date_sliced_end)[1],
+                    explode('/',$date_sliced_end)[0],explode(':',$time_sliced_end)[0], explode(':',$time_sliced_end)[1]);
+                $delivery->end_date = $end_date;
+            }
+
             if(empty($request['bagages'])){
                 throw new \Error('Please enter a least a bag');
             }

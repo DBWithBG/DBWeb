@@ -61,11 +61,31 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
+                                                        <label for="email" class="field-label" ><strong>Date et heure de prise en charge</strong></label>
+                                                        <label class="field prepend-icon">
+                                                            <input required type='text' class="datepicker-input gui-input" id='datetimepicker4' name="datetimevalue"
+                                                                   placeholder="JJ/MM/AAAA" value=""/>
+                                                            <span class="field-icon"><i class="fa fa-calendar" style="color : black"></i></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-margin">
+                                                    <div class="col-md-12">
                                                         <label for="email" class="field-label"><strong>Lieu de livraison</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text"  name="end_position[address]" id="adresse_input_arrivee" class="gui-input" style="color : black"
                                                                    placeholder="Adresse" value="{{$delivery->endPosition->address}}">
                                                             <span class="field-icon"><i class="fa fa-location-arrow" style="color : black"></i></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row row-margin">
+                                                    <div class="col-md-12">
+                                                        <label for="email" class="field-label" ><strong>Date et heure de livraison</strong></label>
+                                                        <label class="field prepend-icon">
+                                                            <input required type='text' class="datepicker-input gui-input" id='datetimepicker5' name="datetimeend"
+                                                                   placeholder="JJ/MM/AAAA" value=""/>
+                                                            <span class="field-icon"><i class="fa fa-calendar" style="color : black"></i></span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -78,16 +98,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div class="row row-margin">
-                                                    <div class="col-md-12">
-                                                        <label for="email" class="field-label" ><strong>Date et heure de prise en charge</strong></label>
-                                                        <label class="field prepend-icon">
-                                                            <input required type='text' class="datepicker-input gui-input" id='datetimepicker4' name="datetimevalue"
-                                                                   placeholder="JJ/MM/AAAA" value=""/>
-                                                            <span class="field-icon"><i class="fa fa-calendar" style="color : black"></i></span>
-                                                        </label>
-                                                    </div>
-                                                </div>
+
 
                                                 <div class="row row-margin">
                                                     <div class="col-md-12 switch-1" style="margin-top: 2px" hidden>
