@@ -118,6 +118,8 @@
         //Enregistrement d'une demande 2eme étape (saisie des bagages en plus)
         public function postBagsWithDelivery(Request $request){
             $request = $request->toArray();
+
+            dd($request);
             $delivery = Delivery::find($request['delivery_id']);
             $date_sliced = explode(' ',$request['datetimevalue'])[0];
             $time_sliced = explode(' ',$request['datetimevalue'])[1];
