@@ -9,10 +9,10 @@
                     <div class="smart-forms smart-container wrap-3">
 
 
-                        <form method="POST" action="{{ url("password/reset") }}">
+                        <form method="POST" action="{{ url("password/email") }}">
                             {{csrf_field()}}
 
-                            <div class="form-body">
+                            <div class="form-body" style="background-color: lightgrey">
 
                                 <div class="spacer-t30 spacer-b30">
                                     <div class="tagline"><span> Mot de passe oublié </span></div><!-- .tagline -->
