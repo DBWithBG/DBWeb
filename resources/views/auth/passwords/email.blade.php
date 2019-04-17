@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    <section class="padding-top-3 " style="background-color: #d8ecff">
+    <section class="padding-top-3 " style="background-color: #F5F5F5; margin-top: 20%">
         <div class="container">
             <div class="row">
 
