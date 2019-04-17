@@ -261,6 +261,7 @@ class MailController
     //Reset du password d'un ut
     public static function reset_password_email($token, $user) {
         $client = new Client();
+        dd($user);
         $body = [
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
