@@ -44,7 +44,6 @@ Route::get('/old_home', 'HomeController@index')->name('old_home');
 Route::get('backoffice/login', 'AdminController@login');
 
 
-
 Route::get('backoffice/password', 'AdminController@getForgotPassword');
 
 Route::post('backoffice/password-send', 'MailController@sendPassword');

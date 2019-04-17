@@ -58,7 +58,7 @@
                                             <div class="row">
 
                                                 <label class="field prepend-icon" >
-                                                    <input id="input_nb_bags" type="number" class="gui-input" placeholder="Nombre de bagages">
+                                                    <input id="input_nb_bags" type="number" min="1" class="gui-input" placeholder="Nombre de bagages">
                                                     <span class="field-icon"><i class="fa fa-shopping-bag"></i></span>
                                                 </label>
                                             </div>
