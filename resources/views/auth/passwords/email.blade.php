@@ -9,7 +9,7 @@
                     <div class="smart-forms smart-container wrap-3">
 
 
-                        <form method="POST" action="{{ route('password.email') }}">
+                        <form method="POST" action="{{ url("password/reset") }}">
                             {{csrf_field()}}
 
                             <div class="form-body">
