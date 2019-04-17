@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    <section class="padding-top-3">
+    <section class="padding-top-3 " style="background-color: #d8ecff">
         <div class="container">
             <div class="row">
 
@@ -12,7 +12,7 @@
                         <form method="POST" action="{{ url("password/email") }}">
                             {{csrf_field()}}
 
-                            <div class="form-body" style="background-color: lightgrey">
+                            <div class="form-body">
 
                                 <div class="spacer-t30 spacer-b30">
                                     <div class="tagline"><span> Mot de passe oublié </span></div><!-- .tagline -->
