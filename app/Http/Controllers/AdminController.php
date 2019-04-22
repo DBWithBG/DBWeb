@@ -358,7 +358,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function getOldPrices() {
+    public function getoldPrice() {
         $price = Price::all()->first();
         return view('admin.config.prices_att')->with(['price' => $price]);
     }

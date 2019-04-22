@@ -80,6 +80,7 @@ Route::get('backoffice/dispute/{id}', 'AdminController@dispute');
 Route::post('backoffice/dispute/{id}/update', 'AdminController@update');
 
 Route::post('/backoffice/configuration/addPrice/old', 'AdminController@oldPrice');
+Route::get('/backoffice/configuration/addPrice/old', 'AdminController@getoldPrice');
 //Prices
 Route::get('backoffice/configuration/prices', 'AdminController@getPrice');
 Route::post('backoffice/configuration/addPrice', 'AdminController@addPrice');
