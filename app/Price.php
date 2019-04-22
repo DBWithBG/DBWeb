@@ -16,6 +16,7 @@ class Price extends Model
      */
     protected $fillable = [
         'createur', 'bags_min', 'bags_max', 'to_add_driver', 'coef_kilometers_driver', 'coef_bags_driver',
+        'price_per_bags', 'price_ret_per_bags',
         'coef_total_driver', 'coef_total_driver', 'coef_deliver', 'start_date', 'end_date', 'promotion', 'to_add_retour'
     ];
     public $timestamps = true;

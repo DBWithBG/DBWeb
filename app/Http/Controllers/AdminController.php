@@ -348,6 +348,22 @@ class AdminController extends Controller
     /************************ END DEPARTMENTS *******************/
 
     /***************** PRICES ************************/
+    public function oldPrice(Request $request) {
+        $prices = Price::all();
+        foreach ($prices as $price){
+            $price->delete();
+            $price->save();
+        }
+        Price::create($request->toArray());
+        return redirect()->back();
+    }
+
+    public function getOldPrices() {
+        $price = Price::all()->first();
+        return view('admin.config.prices_att')->with(['price' => $price]);
+    }
+
+
     public function getPrice()
     {
         $prices = Price::all();

@@ -79,7 +79,7 @@ Route::post('backoffice/dispute/delete', 'AdminController@deleteDispute');
 Route::get('backoffice/dispute/{id}', 'AdminController@dispute');
 Route::post('backoffice/dispute/{id}/update', 'AdminController@update');
 
-
+Route::post('/backoffice/configuration/addPrice/old', 'AdminController@oldPrice');
 //Prices
 Route::get('backoffice/configuration/prices', 'AdminController@getPrice');
 Route::post('backoffice/configuration/addPrice', 'AdminController@addPrice');
