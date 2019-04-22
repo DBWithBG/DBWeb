@@ -103,7 +103,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <h3>Pour le calcul de la rémunération de deliverbag</h3>
+                                    <h3>Pour le calcul de la rémunération de deliverbag (Prix pour 1 bagage en attendant)</h3>
                                     <div class="row">
                                         <label class="col-sm-5 col-form-label">Coefficient multipliant la rémunération driver :</label>
                                         <div class="col-sm-5">
