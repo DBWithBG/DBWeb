@@ -351,8 +351,7 @@ class AdminController extends Controller
     public function oldPrice(Request $request) {
         $prices = Price::all();
         foreach ($prices as $price){
-            $price->delete();
-            $price->save();
+            Price::destroy($price->id);
         }
         Price::create($request->toArray());
         return redirect()->back();
