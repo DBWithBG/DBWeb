@@ -176,7 +176,7 @@
                         <p> Configuration
                             <b class="caret"></b>
                         </p>
-                    </a>/backoffice/configuration/addPrice/old
+                    </a>
 
                     <div class="collapse {{ Request::is('backoffice/configuration*') ? 'show' : '' }}"
                          id="configurationCollapse">
