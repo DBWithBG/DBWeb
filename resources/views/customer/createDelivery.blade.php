@@ -232,6 +232,7 @@
                 // On est sur que la lib google maps est load
             $(window).load(function () {
             initAutocomplete();
+                add_bag();
             if("{{$nb_bags}}" > 0){
                 $('.js-finalise').show();
             }else{
