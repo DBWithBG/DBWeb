@@ -182,6 +182,11 @@
             if(Auth::user()->id != $delivery->customer->user->id){
                 return "OPERATION_NOT_ALLOWED";
             }
+            $user = $delivery->customer->user;
+            if(empty($user->id) || (!$user->is_confirmed)) {
+                Session::flash('message', 'Veuillez valider votre email avant de pouvoir procéder au paiement');
+                return redirect('/profil');
+            }
 
             Session::put('paiement', 'paiement');
             return redirect('paybox/paiment_process')->with(['paiement' => $delivery->price, 'delivery_id' => $delivery->id, 'email' => Auth::user()->email]);

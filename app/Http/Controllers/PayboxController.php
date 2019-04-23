@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PayboxPayment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -14,6 +15,7 @@ class PayboxController extends Controller
     //TODO MODIFICATION AVEC LA BONNE TABLE
     public static function process(Request $request){
         $log = new Logger('reception_paiement');
+
 
         if(session("paiement")){
             $authorizationRequest = \App::make(\Devpark\PayboxGateway\Requests\AuthorizationWithCapture::class);
