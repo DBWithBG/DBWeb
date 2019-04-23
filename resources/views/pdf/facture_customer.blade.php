@@ -9,7 +9,7 @@
 <img src="{{asset('/img/logo.png')}}" WIDTH="28%" height="20%" style="margin-left: 34%">
 
 <div class="row col-xs-12" style="margin-top: 10%">
-    <h3>Détails du paiement</h3>
+    <h3>Détails du paiement                    <span class="pull-right">{{$delivery->customer->surname}} {{$delivery->customer->name}}</span></h3>
     <hr>
     <table>
         <tr>
@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <td>Préstation</td>
-            <td>Prise en charge de bagages</td>
+            <td>Prise en charge de {{sizeof($delivery->bags)}} bagages</td>
         </tr>
         <tr>
             <td>Lieu de prise en charge</td>
@@ -48,7 +48,7 @@
         @endif
         @if(!empty($delivery->time_consigne))
             <tr>
-                <td>Temps de consignation des bagages : </td>
+                <td>Temps de consigne des bagages : </td>
                 <td>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</td>
             </tr>
         @else
