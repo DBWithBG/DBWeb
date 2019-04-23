@@ -580,17 +580,16 @@
                         delivery = {
                             customer_id: "{{$customer}}",
                         };
-                        console.log(place_depart);
                         start_position = {
 
                             lat: place_depart.geometry.location.lat(),
                             lng: place_depart.geometry.location.lng(),
-                            address: place_depart.formatted_address
+                            address: $('#adresse_input_depart').val()
                         };
                         end_position = {
                             lat: place_arrivee.geometry.location.lat(),
                             lng: place_arrivee.geometry.location.lng(),
-                            address: place_arrivee.formatted_address
+                            address: $('#adresse_input_arrivee').val()
                         };
 
 
