@@ -54,10 +54,7 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-2 col-form-label"></label>
-                                        <!--@if($groupe->chemin_logo != null)
-                                            <a href="{{url('/logos/' . $groupe->id)}}"
-                                               class="btn btn-info col-sm-2 text-white">Voir</a>
-                                        @endif-->
+
                                         <label class="col-sm-3 btn btn-info" for="my-file-selector">
                                             <input name="logo" id="my-file-selector" type="file" style="display:none"
                                                    onchange="$('#upload-file-info').html(this.files[0].name)">
