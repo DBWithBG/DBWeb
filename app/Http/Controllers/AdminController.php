@@ -510,7 +510,10 @@ class AdminController extends Controller
 
     /****************** PARTNERS ************************/
     public function getPartners(){
-        return view('admin.partner.partners');
+        $partners = Partner::all();
+        return view('admin.partner.partners')->with([
+            'partners' => $partners
+        ]);
     }
 
     public function addPartner(Request $request){
