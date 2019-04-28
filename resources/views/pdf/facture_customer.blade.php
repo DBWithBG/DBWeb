@@ -46,17 +46,7 @@
                 <td>{{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i:s')}}</td>
             </tr>
         @endif
-        @if(!empty($delivery->time_consigne))
-            <tr>
-                <td>Temps de consigne des bagages : </td>
-                <td>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</td>
-            </tr>
-        @else
-            <tr>
-                <td>Dépôt des bagages (sans consignantion) : </td>
-                <td>immédiat</td>
-            </tr>
-        @endif
+
         <tr>
             <td>Référence commande</td>
             <td>{{$delivery->id}}</td>
