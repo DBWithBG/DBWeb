@@ -119,7 +119,7 @@
         public function postBagsWithDelivery(Request $request){
             if(! Auth::user()->is_confirmed){
                 Session::flash('success', 'Veuillez cliquer sur le lien envoyé par email pour continuer');
-                return redirect()->back()->withInput($request);
+                return redirect()->back()->withInput($request->toArray());
             }
             $request = $request->toArray();
 
