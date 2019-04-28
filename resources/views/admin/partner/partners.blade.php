@@ -78,7 +78,7 @@
                         <div class="card">
                             <div class="card-header card-header-primary card-header-icon">
                                 <div class="card-text">
-                                    <h4 class="card-title">Départements autorisés pour les demandes</h4>
+                                    <h4 class="card-title">Liste des partenaires</h4>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -102,9 +102,9 @@
                                             <tr class="text-center partner-{{$partner->id}}">
                                                 <td>{{ $partner->name }}</td>
                                                 <td>
-
-                                                </td>
+                                                    <img >
                                                     {{$partner->logo}}
+                                                </td>
                                                 <td class="text-right">
 
                                                     <button data-idPartner="{{$partner->id}}"

@@ -416,7 +416,8 @@ class AdminController extends Controller
     public function deleteDeliveries(Request $request)
     {
         $delivery = Delivery::find($request->id);
-        Delivery::destroy($delivery->id);
+        $delivery->deleted = true;
+        $delivery->save();
         return $delivery;
     }
 
