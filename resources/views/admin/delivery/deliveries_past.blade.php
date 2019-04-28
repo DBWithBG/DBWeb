@@ -57,7 +57,7 @@
                                             <th>Date de création</th>
                                             <th>Client</th>
                                             <th>Statut</th>
-                                            <th class="disabled-sorting text-right">Actions jj</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
