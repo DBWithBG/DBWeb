@@ -90,7 +90,7 @@
                                                 </td>
                                                 <td>
                                                     @if(empty($delivery->takeOverDelivery))
-                                                        En recherche de chauffeur
+                                                        Traitée directement depuis l'admin
                                                     @else
                                                         {{$delivery->takeOverDelivery->status}}
                                                     @endif
