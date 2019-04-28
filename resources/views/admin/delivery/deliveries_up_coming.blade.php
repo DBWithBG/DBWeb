@@ -90,7 +90,8 @@
                                                 </td>
                                                 <td>
                                                     @if(empty($delivery->takeOverDelivery))
-                                                        En recherche de chauffeur
+                                                        En recherche de chauffeur<br>
+                                                        <a href="{{url('backoffice/deliveries/'.$delivery->id.'/endit')}}">Terminer la course</a>
                                                     @else
                                                         {{$delivery->takeOverDelivery->status}}
                                                     @endif

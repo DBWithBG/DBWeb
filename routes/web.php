@@ -71,6 +71,7 @@ Route::get('backoffice/deliveries/inProgress', 'AdminController@getDeliveriesInP
 Route::get('backoffice/deliveries/past', 'AdminController@getDeliveriesPast');
 Route::get('backoffice/deliveries/upComing', 'AdminController@getDeliveriesUpComing');
 Route::post('backoffice/deliveries/delete', 'AdminController@deleteDeliveries');
+Route::get('backoffice/deliveries/{id}/endit', 'AdminController@endDelivery');
 
 Route::get('backoffice/disputes_ouvertes', 'AdminController@getDisputesOuvertes');
 Route::get('backoffice/disputes_traitement', 'AdminController@getDisputesTraitement');

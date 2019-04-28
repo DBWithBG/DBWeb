@@ -16,6 +16,7 @@ use App\Price;
 use App\TypeBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Validator;
 
@@ -419,6 +420,13 @@ class AdminController extends Controller
         $delivery->deleted = true;
         $delivery->save();
         return $delivery;
+    }
+
+    public function endDelivery($id) {
+        $delivery = Delivery::find($id);
+        $delivery->status = Config::get('constants.TERMINE');
+        $delivery->save();
+        return redirect()->back();
     }
 
 
