@@ -272,7 +272,7 @@
             $nb_bags = Input::get('nb_bags', 0);
 
             // Si quelqu'un bidouille l'URL :
-            if ($nb_bags < 1) return redirect('/');
+            //if ($nb_bags < 1) return redirect('/');
 
             return view('customer.createDelivery')->with([
                 'delivery' => $delivery,
