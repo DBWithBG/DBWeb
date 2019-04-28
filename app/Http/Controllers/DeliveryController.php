@@ -117,6 +117,10 @@
 
         //Enregistrement d'une demande 2eme étape (saisie des bagages en plus)
         public function postBagsWithDelivery(Request $request){
+            if(! Auth::user()->is_confirmed){
+                Session::flash('success', 'Veuillez cliquer sur le lien envoyé par email pour continuer');
+                return redirect()->back()->withInput($request);
+            }
             $request = $request->toArray();
 
             $delivery = Delivery::find($request['delivery_id']);

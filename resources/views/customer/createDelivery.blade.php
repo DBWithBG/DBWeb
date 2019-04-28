@@ -13,7 +13,6 @@
                                     <div class="smart-forms smart-container transparent wrap-full">
                                         <div class="form-body no-padd">
                                             <form method="post" action="{{url("savebags/delivery")}}" id="account">
-
                                                 <div class="tagline"><span>Vérification des informations</span></div><!-- .tagline -->
                                                 @if(sizeof($errors->all())>0)
                                                     <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
