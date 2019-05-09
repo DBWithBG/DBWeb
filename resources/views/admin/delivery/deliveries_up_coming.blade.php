@@ -53,6 +53,7 @@
                                             <th>Bagages</th>
                                             <th>Départ</th>
                                             <th>Arrivée</th>
+                                            <th>Retour</th>
                                             <th>Distance (en km)</th>
                                             <th>Date de création</th>
                                             <th>Client</th>
@@ -86,6 +87,9 @@
                                                     @else
                                                         <strong>{{date('d/m/y H:i', strtotime($delivery->end_date))}}</strong>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    {{$delivery->date_retour}}
                                                 </td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
