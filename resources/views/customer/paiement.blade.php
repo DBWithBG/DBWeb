@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="clearfix"></div>
-    <section class="text-center">
-        <div class="col-md-12 text-center">
+    <section class="">
+        <div class="col-md-12">
             <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
                 <div class="form-body">
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
-                    <h1>Le montant total de votre commande est de {{$delivery->price}} €</h1><br>
+                    <h1>Récapitulatif de votre commande</h1><br>
                     <h4>
                         Lieu de prise en charge : <strong>{{$delivery->startPosition->address}}</strong><br>
                         Date et heure de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
@@ -25,7 +25,7 @@
                         @endif
 
                     </h4>
-                    <button type="submit" class="btn btn-primary btn-success">Aller au paiement ({{$delivery->price}} €)</button><br><br>
+                    <button type="submit" class="btn btn-primary btn-success">Accéder au paiement ({{$delivery->price}} €)</button><br><br>
                     <hr>
                 </div>
                 {{csrf_field()}}
