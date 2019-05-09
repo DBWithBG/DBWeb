@@ -9,7 +9,7 @@
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
                     <h1 style="margin-left: 30%">Récapitulatif de votre commande</h1><br>
-                    <h4>
+                    <h4 style="margin-left: 30%">
                         Lieu de prise en charge : <strong>{{$delivery->startPosition->address}}</strong><br>
                         Date et heure de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
                         Lieu de livraison : <strong>{{$delivery->endPosition->address}}</strong><br>
@@ -25,7 +25,7 @@
                         @endif
 
                     </h4>
-                    <button type="submit" class="btn btn-primary btn-success">Accéder au paiement ({{$delivery->price}} €)</button><br><br>
+                    <button type="submit" class="btn btn-primary btn-success" style="margin-left: 50%">Accéder au paiement ({{$delivery->price}} €)</button><br><br>
                     <hr>
                 </div>
                 {{csrf_field()}}
