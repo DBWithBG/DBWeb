@@ -207,6 +207,7 @@
          * @param $delivery_id
          */
         private function saveBags($request, $delivery_id,$customerid){
+            dd($request['bagages']);
 
             foreach($request['bagages'] as $k=>$bags){
                 foreach($bags as $key=>$b){
