@@ -168,6 +168,7 @@
             if(!empty($delivery->bags)) {
                 foreach ($delivery->bags as $bag) {
                     $bag->delete();
+                    $bag->save();
                 }
             }
 
