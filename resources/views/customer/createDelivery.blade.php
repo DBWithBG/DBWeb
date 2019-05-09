@@ -92,7 +92,7 @@
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label" ><strong>Nombre de bagages</strong></label>
                                                         <label class="field prepend-icon">
-                                                            <input required type="number" class="gui-input" id="input_nb_bags" name="nb_bags" value="{{$nb_bags}}"/>
+                                                            <input required type="number" min="1" class="gui-input" id="input_nb_bags" name="nb_bags" value="{{$nb_bags}}"/>
                                                             <span class="field-icon"><i class="fa fa-shopping-bag" style="color : black"></i></span>
                                                         </label>
                                                     </div>
