@@ -228,6 +228,7 @@
                         $bnew->details = $b['descr'];
                         $bnew->save();
                     }else {
+                        dd($k);
                         $bnew = new Bag;
                         $bnew->customer_id = $customerid;
                         $bnew->name = $b['name'];
