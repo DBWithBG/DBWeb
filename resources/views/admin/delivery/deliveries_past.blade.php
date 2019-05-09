@@ -68,9 +68,7 @@
                                                 <td>{{ $delivery->comment }}</td>
                                                 <td>{{$delivery->price}} € </td>
                                                 <td>
-                                                    @foreach($delivery->bagsWithTypes() as $key => $bagWithType)
-                                                        {{$bagWithType}} {{$key}}
-                                                    @endforeach
+                                                    {{$delivery->nb_bags}}
 
                                                 </td>
                                                 <td>{{$delivery->startPosition->address}}<br>
