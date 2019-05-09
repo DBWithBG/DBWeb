@@ -165,7 +165,11 @@
 
             $delivery->start_date = $start_date;
             $delivery->save();
-
+            if(!empty($delivery->bags)) {
+                foreach ($delivery->bags as $bag) {
+                    $bag->delete();
+                }
+            }
 
             $this->saveBags($request, $delivery->id, Auth()->user()->customer->id);
 
