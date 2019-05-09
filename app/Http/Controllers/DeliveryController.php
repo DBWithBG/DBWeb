@@ -207,7 +207,6 @@
          * @param $delivery_id
          */
         private function saveBags($request, $delivery_id,$customerid){
-            dd($request['bagages']);
 
             foreach($request['bagages'] as $k=>$bags){
                 foreach($bags as $key=>$b){
@@ -229,6 +228,9 @@
                         $bnew->details = $b['descr'];
                         $bnew->save();
                     }else {
+                        if($k == 0) {
+                            $k = 2;
+                        }
                         $bnew = new Bag;
                         $bnew->customer_id = $customerid;
                         $bnew->name = $b['name'];
