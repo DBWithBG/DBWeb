@@ -164,15 +164,16 @@
             $delivery->status = Config::get('constants.NON_FINALISE');
 
             $delivery->start_date = $start_date;
+
+            $delivery->nb_bags = $request['nb_bags'];
             $delivery->save();
-            if(!empty($delivery->bags)) {
+            /*if(!empty($delivery->bags)) {
                 foreach ($delivery->bags as $bag) {
                     $bag->delete();
-                    $bag->save();
                 }
-            }
+            }*/
 
-            $this->saveBags($request, $delivery->id, Auth()->user()->customer->id);
+            //$this->saveBags($request, $delivery->id, Auth()->user()->customer->id);
 
             //TODO A RETIRER QUAND PAIEMENT
             //MailController::send_customer_facture($delivery->id, Auth()->user());

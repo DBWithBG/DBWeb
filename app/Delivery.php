@@ -19,7 +19,7 @@ class Delivery extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'remuneration_driver', 'remuneration_deliver',
+        'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'remuneration_driver', 'remuneration_deliver', 'nb_bags',
 
         'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance', 'no_train', 'no_flight', 'time_consigne', 'end_date', 'promo_code_id'
     ];
