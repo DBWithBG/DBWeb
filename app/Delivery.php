@@ -140,7 +140,6 @@ class Delivery extends Model
         //if($retour) $total = round($remuneration_driver + $remuneration_deliver + $priceLine->to_add_retour, 2);
         if($retour) {
             $total = round($remuneration_deliver + ($priceLine->price_ret_per_bag * $nb_bags), 2);
-            dd($total);
         }
         else $total = round($remuneration_driver + $remuneration_deliver, 2);
 
