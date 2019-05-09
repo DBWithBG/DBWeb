@@ -261,7 +261,7 @@
                     $('#checkbox-course-retour').trigger("click");
                     $('#retour-datetimepicker').val(null);
                 }
-                $('#datetimepicker5').data("DateTimePicker").minDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY H:m"));
+                $('#datetimepicker5').data("DateTimePicker").minDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY H:m").add(2, 'hours'));
                 $('#datetimepicker5').data("DateTimePicker").maxDate(moment($('#datetimepicker4').val(), "DD/MM/YYYY H:m").add(24, 'hours'));
             });
             $('.js-add-bag').on('click', function () {
