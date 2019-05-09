@@ -1,6 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
+    {{dd($delivery)}}
     <section class="sec-padding section-light">
 
         <div class="container-fluid" >
