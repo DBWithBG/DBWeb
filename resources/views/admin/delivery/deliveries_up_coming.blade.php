@@ -89,7 +89,9 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{$delivery->date_retour}}
+                                                    @if(!empty($delivery->date_retour))
+                                                        {{date('d/m/y H:i', strtotime($delivery->date_retour))}}
+                                                    @endif
                                                 </td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>

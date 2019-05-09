@@ -53,6 +53,7 @@
                                             <th>Bagages</th>
                                             <th>Départ</th>
                                             <th>Arrivée</th>
+                                            <th>Retour</th>
                                             <th>Distance (en km)</th>
                                             <th>Date de création</th>
                                             <th>Client</th>
@@ -85,6 +86,11 @@
                                                         <strong>IMMEDIAT</strong>
                                                     @else
                                                         <strong>{{date('d/m/y H:i', strtotime($delivery->end_date))}}</strong>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if(!empty($delivery->date_retour))
+                                                        {{date('d/m/y H:i', strtotime($delivery->date_retour))}}
                                                     @endif
                                                 </td>
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
