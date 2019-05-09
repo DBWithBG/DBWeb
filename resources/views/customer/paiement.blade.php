@@ -1,8 +1,8 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    <div class="clearfix"></div>
-    <section class="">
+    <section class="section sec-padding">
+        <div class="containter">
         <div class="col-md-12">
             <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
                 <div class="form-body">
@@ -31,6 +31,7 @@
                 {{csrf_field()}}
             </form>
         </div>
+        </div>
+
     </section>
-    </div>
 @endsection
