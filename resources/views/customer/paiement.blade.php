@@ -8,7 +8,7 @@
                 <div class="form-body">
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
-                    <h1>Récapitulatif de votre commande</h1><br>
+                    <h1 style="margin-left: 30%">Récapitulatif de votre commande</h1><br>
                     <h4>
                         Lieu de prise en charge : <strong>{{$delivery->startPosition->address}}</strong><br>
                         Date et heure de prise en charge : <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
