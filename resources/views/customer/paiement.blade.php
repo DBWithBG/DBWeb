@@ -25,7 +25,7 @@
                         @endif
 
                     </h4>
-                    <button type="submit" class="btn btn-primary btn-success" style="margin-left: 55%">Accéder au paiement ({{$delivery->price}} €)</button><br><br>
+                    <button type="submit" class="btn btn-primary btn-success" style="margin-left: 53%; margin-top: 50px">Accéder au paiement ({{$delivery->price}} €)</button><br><br>
                     <hr>
                 </div>
                 {{csrf_field()}}
