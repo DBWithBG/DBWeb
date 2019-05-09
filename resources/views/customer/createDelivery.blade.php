@@ -1,7 +1,7 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    {{dd($delivery)}}
+    {{dd($delivery->bags)}}
     <section class="sec-padding section-light">
 
         <div class="container-fluid" >
