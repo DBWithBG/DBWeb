@@ -234,7 +234,7 @@
                         $bnew = new Bag;
                         $bnew->customer_id = $customerid;
                         $bnew->name = $b['name'];
-                        $bnew->type_id = $k;
+                        $bnew->type_id = 2;
                         $bnew->details = $b['descr'];
                         $bnew->save();
                     }
