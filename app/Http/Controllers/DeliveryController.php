@@ -124,9 +124,6 @@
             $request = $request->toArray();
 
             $delivery = Delivery::find($request['delivery_id']);
-            if($delivery->customer->id != Auth::user()->customer->id) {
-                return redirect('/');
-            }
             $date_sliced = explode(' ',$request['datetimevalue'])[0];
             $time_sliced = explode(' ',$request['datetimevalue'])[1];
             if($request['datetimeend']) {
@@ -271,6 +268,7 @@
 
         public function getSaveDelivery($delivery_id){
             $delivery = Delivery::find($delivery_id);
+            dd($delivery);
             if(Auth::check()){//S'il s'est connecté entre temps
                 $delivery->customer_id = Auth::user()->customer->id;
                 $delivery->save();
