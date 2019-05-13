@@ -124,6 +124,9 @@
             $request = $request->toArray();
 
             $delivery = Delivery::find($request['delivery_id']);
+            if($delivery->customer->id != Auth::user()->customer->id) {
+                return redirect('/');
+            }
             $date_sliced = explode(' ',$request['datetimevalue'])[0];
             $time_sliced = explode(' ',$request['datetimevalue'])[1];
             if($request['datetimeend']) {
