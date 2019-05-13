@@ -268,8 +268,10 @@
 
         public function getSaveDelivery($delivery_id){
             $delivery = Delivery::find($delivery_id);
-            dd($delivery);
             if(Auth::check()){//S'il s'est connecté entre temps
+                if(!empty($delivery->customer_id) && ($delivery->customer_id != Auth::user()->customer->id)) {
+                    return redirect('/');
+                }
                 $delivery->customer_id = Auth::user()->customer->id;
                 $delivery->save();
                 Session::forget('delivery_id');
