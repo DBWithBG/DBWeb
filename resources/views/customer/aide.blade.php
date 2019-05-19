@@ -5,11 +5,11 @@
 <section class="section sec-padding">
     <div class="section-title">
         <div class="container">
-            <h2 class="title">Aide</h2>
+            <h2 class="title">{{trans('aide.aide')}}</h2>
 
-            <p>Pour toute demande particuli&egrave;re (groupe, service&nbsp;&agrave; la carte, autre&nbsp;zone g&eacute;ographique...), merci de&nbsp;nous contacter par&nbsp;e-mail :&nbsp;<a href="mailto:bordeaux@deliverbag.com">bordeaux@deliverbag.com</a> ou par téléphone au : <strong>+33 5 57 87 01 11</strong></p>
+            <p>{{trans('aide.demande')}}&nbsp;<a href="mailto:bordeaux@deliverbag.com">bordeaux@deliverbag.com</a> ou par téléphone au : <strong>+33 5 57 87 01 11</strong></p>
 
-            <p>Nous nous efforcerons de r&eacute;pondre dans les meilleurs d&eacute;lais.</p>
+            <p>{{trans('aide.delais')}}</p>
         </div>
     </div>
 </section>

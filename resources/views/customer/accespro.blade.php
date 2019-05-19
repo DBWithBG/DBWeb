@@ -11,8 +11,8 @@
                     </div>
                     <div class="col-md-6">
                         <ol class="breadcrumb">
-                            <li><a href="{{url('/')}}">Accueil</a></li>
-                            <li class="current"><a href="{{url('/contact')}}">Contact</a></li>
+                            <li><a href="{{url('/')}}">{{trans('accespro.accueil')}}</a></li>
+                            <li class="current"><a href="{{url('/contact')}}">{{trans('accespro.contact')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -45,9 +45,8 @@
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Demander un accès professionnel</h3>
-                                <p>Pour toute question, n'hésitez pas à nous contacter via ce formulaire. Nous vous
-                                    répondrons dans les plus brefs délais.</p>
+                                <h3 class="uppercase">{{trans('accespro.demande')}}</h3>
+                                <p>{{trans('accespro.question')}}</p>
                                 <br/>
                                 <br/>
 
@@ -64,7 +63,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" name="name" id="sendername"
-                                                                       class="gui-input" placeholder="Nom">
+                                                                       class="gui-input" placeholder="{{trans('accespro.nom')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-user"></i></span>
                                                             </label>
@@ -75,7 +74,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" name="surname"
                                                                        id="sendername" class="gui-input"
-                                                                       placeholder="Prénom">
+                                                                       placeholder="{{trans('accespro.prenom')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-user"></i></span>
                                                             </label>
@@ -86,7 +85,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="email" name="email"
                                                                        id="emailaddress" class="gui-input"
-                                                                       placeholder="Adresse mail">
+                                                                       placeholder="{{trans('accespro.aemail')}}">
                                                                 <span class="field-icon"><i class="fa fa-envelope"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
@@ -97,7 +96,7 @@
                                                             <label class="field prepend-icon">
                                                                 <textarea class="gui-textarea" id="sendermessage"
                                                                           name="message"
-                                                                          placeholder="Votre message"></textarea>
+                                                                          placeholder="{{trans('accespro.votremessage')}}"></textarea>
                                                                 <span class="field-icon"><i class="fa fa-comments"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
@@ -108,7 +107,7 @@
                                                         <!-- end .form-body section -->
                                                         <div class="form-footer text-left">
                                                             <button type="submit" data-btntext-sending="Sending..."
-                                                                    class="button btn-primary">Envoyer
+                                                                    class="button btn-primary">{{trans('accespro.envoyer')}}
                                                             </button>
                                                         </div><!-- end .form-footer section -->
                                                     </form>
@@ -124,13 +123,13 @@
 
                             <div class="col-md-4 col-sm-12 col-xs-12 text-left">
                                 <div style="padding-top: 10px">
-                                    <h4>Adresse</h4>
+                                    <h4>{{trans('accespro.adresse')}}</h4>
                                     <h6>DELIVERBAG</h6>
                                     <p>45 avenue de la Liberation, 33110 Le Bouscat</p>
                                     <br/>
-                                    <p>T&eacute;l : + 33 (0)5.57.87.01.11</p>
+                                    <p>{{trans('accespro.tel')}} : + 33 (0)5.57.87.01.11</p>
                                     <p>827 705 476 R.C.S Bordeaux &nbsp;</p>
-                                    <p>E-mail: bordeaux@deliverbag.fr</p>
+                                    <p>{{trans('accespro.email')}}: bordeaux@deliverbag.fr</p>
                                 </div>
                             </div>
                             <!--end item-->

@@ -5,16 +5,13 @@
     <section class="section sec-padding">
     <div class="section-title">
         <div class="container">
-            <h2 class="title">À propos</h2>
+            <h2 class="title">{{trans('apropos.apropos')}}</h2>
 
-            <p>Gr&acirc;ce &agrave; Deliverbag, d&eacute;placez-vous sans bagage, libre et sans contrainte !&nbsp;</p>
+            <p>{{trans('apropos.graced')}}</p>
 
-            <p>&Agrave; Bordeaux et en r&eacute;gion Aquitaine, faites confiance &agrave; notre &eacute;quipe de
-                professionnels Deliverbag pour <strong>assurer la livraison de vos bagages, qu&rsquo;importe l&rsquo;endroit
-                    et l&rsquo;heure.</strong> Un luxe abordable gr&acirc;ce &agrave; notre service innovant.</p>
+            <p>{{trans('apropos.abordeaux')}} <strong>{{trans('apropos.assurer')}}</strong> {{trans('apropos.luxe')}}</p>
 
-            <p>Ce service va vous simplifier la vie et vous offrir un gain de temps lors de vos d&eacute;placements
-                professionnels, comme lors de vos vacances.</p>
+            <p>{{trans('apropos.luxe')}}</p>
 
             <p>Nous vous lib&eacute;rons de vos bagages et les prenons en charge lors de votre arriv&eacute;e comme de
                 votre d&eacute;part quel que soit le&nbsp;lieu.</p>
