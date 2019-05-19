@@ -12,7 +12,7 @@
         background-color: #FFF;
         display: inline-block;
         padding: 0;
-        height: 40px;
+        height: 20px;
         overflow: hidden;
         transition: all .3s ease;
         margin: 0 0px 10px 0;
@@ -32,8 +32,8 @@
 
     .languagepicker li {
         display: block;
-        padding: 0px 20px;
-        line-height: 40px;
+        padding: 0px 0px;
+        line-height: 20px;
         border-top: 1px solid #EEE;
     }
 
