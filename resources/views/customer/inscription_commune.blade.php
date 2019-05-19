@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row sec-padding hl-more-top-padd">
 
-                <div class="col-md-12 text-center"><h3 class="uppercase less-mar-1 font-weight-5 raleway">Vous êtes</h3>
+                <div class="col-md-12 text-center"><h3 class="uppercase less-mar-1 font-weight-5 raleway">{{trans('inscription.vous')}}</h3>
                 </div>
                 <div class="clearfix"></div>
                 <br/><br/>
@@ -20,11 +20,11 @@
                                     <li class="js-customer"><a href="#tab-customer"
                                                                target="_self"><span
                                                     class="fa fa-user"></span> <br/>
-                                            Client</a></li>
+                                            {{trans('inscription.client')}}</a></li>
                                     <li class="js-driver"><a href="#tab-driver" class="click-js-driver"
                                                              target="_self"><span
                                                     class="fa fa-car"></span> <br/>
-                                            Chauffeur</a></li>
+                                            {{trans('inscription.chauffeur')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">
-                                                                <div class="tagline"><span>S'inscrire avec </span></div>
+                                                                <div class="tagline"><span>{{trans('inscription.signin')}}</span></div>
                                                                 <!-- .tagline -->
                                                             </div>
                                                             <a href="{{url('facebook?from_type=web&type=customer')}}"
@@ -72,26 +72,26 @@
                                                                 Google </a>
                                                         </div><!-- end section -->
                                                         <div class="spacer-b30" style="padding-top: 20px">
-                                                            <div class="tagline"><span>OU Classiquement </span></div>
+                                                            <div class="tagline"><span>{{trans('inscription.ou')}}</span></div>
                                                             <!-- .tagline -->
                                                         </div>
-                                                        <label for="names" class="field-label">Identité du client</label>
+                                                        <label for="names" class="field-label">{{trans('inscription.idClient')}}</label>
                                                         <div class="frm-row">
 
                                                             <div class="colm colm6">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="text" name="surname" id="firstname"
+                                                                    <input required type="text" name="surname" id="firstname"
                                                                            class="gui-input"
-                                                                           placeholder="Prénom">
+                                                                           placeholder="{{trans('inscription.prenom')}}">
                                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
 
                                                             <div class="colm colm6">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="text" name="name" id="lastname"
+                                                                    <input required type="text" name="name" id="lastname"
                                                                            class="gui-input"
-                                                                           placeholder="Nom">
+                                                                           placeholder="{{trans('inscription.nom')}}">
                                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
@@ -99,9 +99,9 @@
                                                         </div><!-- end frm-row section -->
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="email" class="field-label">Adresse email</label>
+                                                            <label for="email" class="field-label">{{trans('inscription.email')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="email" name="email" id="email"
+                                                                <input required type="email" name="email" id="email"
                                                                        class="gui-input"
                                                                        placeholder="example@domain.com...">
                                                                 <span class="field-icon"><i class="fa fa-envelope"></i></span>
@@ -109,10 +109,9 @@
                                                         </div><!-- end section -->
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="password" class="field-label">Mot de
-                                                                passe</label>
+                                                            <label for="password" class="field-label">{{trans('inscription.mdp')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="password" name="password" id="password"
+                                                                <input required type="password" name="password" id="password"
                                                                        class="gui-input">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-lock"></i></span>
@@ -120,10 +119,9 @@
                                                         </div><!-- end section -->
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="confirmPassword" class="field-label">Confirmer
-                                                                le mot de passe</label>
+                                                            <label for="confirmPassword" class="field-label">{{trans('inscription.confmdp')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="password" name="password_confirmation"
+                                                                <input required type="password" name="password_confirmation"
                                                                        id="confirmPassword"
                                                                        class="gui-input">
                                                                 <span class="field-icon"><i
@@ -133,10 +131,9 @@
 
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="mobile" class="field-label">Numéro de
-                                                                téléphone</label>
+                                                            <label for="mobile" class="field-label">{{trans('inscription.tel')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="tel" name="phone" id="mobile"
+                                                                <input required type="tel" name="phone" id="mobile"
                                                                        class="gui-input" placeholder="+33">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-phone-square"></i></span>
@@ -147,21 +144,18 @@
                                                             <label class="option">
                                                                 <input type="checkbox" name="cgu">
                                                                 <span class="checkbox"></span>
-                                                                J'accepte <a href="#" class="smart-link"> les conditions
-                                                                    d'utilisation </a>
+                                                                <a href="#" class="smart-link">{{trans('inscription.cgu')}}</a>
                                                             </label>
                                                         </div><!-- end section -->
 
                                                     </div><!-- end .form-body section -->
                                                     <div class="form-footer">
-                                                        <button type="submit" class="button btn-primary">Créer mon
-                                                            compte
+                                                        <button type="submit" class="button btn-primary">{{trans('inscription.create')}}
                                                         </button>
                                                         <div class="spacer-t30 spacer-b30">
-                                                            <div class="tagline" style="padding-bottom: 15px"><span> J'ai déjà un compte </span>
+                                                            <div class="tagline" style="padding-bottom: 15px"><span>{{trans('inscription.already')}}</span>
                                                             </div><!-- .tagline -->
-                                                            <a href="{{url('connexion')}}" class="button btn-primary">Se
-                                                                connecter</a>
+                                                            <a href="{{url('connexion')}}" class="button btn-primary">{{trans('inscription.connexion')}}</a>
                                                         </div>
                                                     </div><!-- end .form-footer section -->
                                                     <input type="hidden" name="type" value="Customer">
@@ -205,7 +199,7 @@
                                                     <div class="form-body">
                                                         <div class="text-center">
                                                             <div class="spacer-b30">
-                                                                <div class="tagline"><span>S'inscrire avec </span></div>
+                                                                <div class="tagline"><span>{{trans('inscription.signin')}} </span></div>
                                                                 <!-- .tagline -->
                                                             </div>
                                                             <a href="{{url('facebook?from_type=web&type=driver')}}"
@@ -218,26 +212,26 @@
                                                                 Google </a>
                                                         </div><!-- end section -->
                                                         <div class="spacer-b30" style="padding-top: 20px">
-                                                            <div class="tagline"><span>OU Classiquement </span></div>
+                                                            <div class="tagline"><span>{{trans('inscription.ou')}} </span></div>
                                                             <!-- .tagline -->
                                                         </div>
-                                                        <label for="names" class="field-label">Identité</label>
+                                                        <label for="names" class="field-label">{{trans('inscription.identite')}}</label>
                                                         <div class="frm-row">
 
                                                             <div class="colm colm6">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="text" name="surname" id="firstname"
+                                                                    <input required type="text" name="surname" id="firstname"
                                                                            class="gui-input"
-                                                                           placeholder="Prénom">
+                                                                           placeholder="{{trans('inscription.prenom')}}">
                                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
 
                                                             <div class="colm colm6">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="text" name="name" id="lastname"
+                                                                    <input required type="text" name="name" id="lastname"
                                                                            class="gui-input"
-                                                                           placeholder="Nom">
+                                                                           placeholder="{{trans('inscription.nom')}}">
                                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
@@ -245,9 +239,9 @@
                                                         </div><!-- end frm-row section -->
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="email" class="field-label">Adresse email</label>
+                                                            <label for="email" class="field-label"{{trans('inscription.email')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="email" name="email" id="email"
+                                                                <input required type="email" name="email" id="email"
                                                                        class="gui-input"
                                                                        placeholder="example@domain.com...">
                                                                 <span class="field-icon"><i class="fa fa-envelope"></i></span>
@@ -255,10 +249,9 @@
                                                         </div><!-- end section -->
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="password" class="field-label">Mot de
-                                                                passe</label>
+                                                            <label for="password" class="field-label">{{trans('inscription.mdp')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="password" name="password" id="password"
+                                                                <input required type="password" name="password" id="password"
                                                                        class="gui-input">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-lock"></i></span>
@@ -266,10 +259,9 @@
                                                         </div><!-- end section -->
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="confirmPassword" class="field-label">Confirmer
-                                                                le mot de passe</label>
+                                                            <label for="confirmPassword" class="field-label">{{trans('inscription.confmdp')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="password" name="password_confirmation"
+                                                                <input required type="password" name="password_confirmation"
                                                                        id="confirmPassword"
                                                                        class="gui-input">
                                                                 <span class="field-icon"><i
@@ -279,10 +271,9 @@
 
 
                                                         <div style="padding-top: 6px" class="">
-                                                            <label for="mobile" class="field-label">Numéro de
-                                                                téléphone</label>
+                                                            <label for="mobile" class="field-label">{{trans('inscription.tel')}}</label>
                                                             <label class="field prepend-icon">
-                                                                <input type="tel" name="phone" id="mobile"
+                                                                <input required type="tel" name="phone" id="mobile"
                                                                        class="gui-input" placeholder="+33">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-phone-square"></i></span>
@@ -293,21 +284,18 @@
                                                             <label class="option">
                                                                 <input type="checkbox" name="cgu">
                                                                 <span class="checkbox"></span>
-                                                                J'accepte <a href="#" class="smart-link"> les conditions
-                                                                    d'utilisation </a>
+                                                                <a href="#" class="smart-link"> {{trans('inscription.cgu')}}</a>
                                                             </label>
                                                         </div><!-- end section -->
 
                                                     </div><!-- end .form-body section -->
                                                     <div class="form-footer">
-                                                        <button type="submit" class="button btn-primary">Créer mon
-                                                            compte
+                                                        <button type="submit" class="button btn-primary">{{trans('inscription.create')}}
                                                         </button>
                                                         <div class="spacer-t30 spacer-b30">
-                                                            <div class="tagline" style="padding-bottom: 15px"><span> J'ai déjà un compte </span>
+                                                            <div class="tagline" style="padding-bottom: 15px"><span> {{trans('inscription.already')}} </span>
                                                             </div><!-- .tagline -->
-                                                            <a href="{{url('connexion')}}" class="button btn-primary">Se
-                                                                connecter</a>
+                                                            <a href="{{url('connexion')}}" class="button btn-primary">{{trans('inscription.connexion')}}</a>
                                                         </div>
                                                     </div><!-- end .form-footer section -->
                                                     <input type="hidden" name="type" value="Driver">

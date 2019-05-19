@@ -8,13 +8,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Litiges</h4>
+                        <h4>{{trans('litige.litige')}}</h4>
                     </div>
                     <div class="col-md-6">
                         <ol class="breadcrumb">
-                            <li><a href="{{url('/')}}">Accueil</a></li>
-                            <li><a href="{{url('/profil')}}">Profil</a></li>
-                            <li class="current"><a href="{{url('/litiges/' . $delivery->id)}}">Litiges</a></li>
+                            <li><a href="{{url('/')}}">{{trans('litige.accueil')}}</a></li>
+                            <li><a href="{{url('/profil')}}">{{trans('litige.profil')}}</a></li>
+                            <li class="current"><a href="{{url('/litiges/' . $delivery->id)}}">{{trans('litige.litige')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Déclarer un litige</h3>
+                                <h3 class="uppercase">{{trans('litige.dec')}}</h3>
                                 <br/>
                                 <br/>
 
@@ -65,7 +65,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" name="title" id="title"
-                                                                       class="gui-input" placeholder="Titre">
+                                                                       class="gui-input" placeholder="{{trans('litige.titre')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-user"></i></span>
                                                             </label>
@@ -77,7 +77,7 @@
                                                             <label class="field prepend-icon">
                                                                 <textarea class="gui-textarea" id="reason"
                                                                           name="reason"
-                                                                          placeholder="Description du litige"></textarea>
+                                                                          placeholder="{{trans('litige.desc')}}"></textarea>
                                                                 <span class="field-icon"><i class="fa fa-comments"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
@@ -88,7 +88,7 @@
                                                         <!-- end .form-body section -->
                                                         <div class="form-footer text-left">
                                                             <button type="submit" data-btntext-sending="Sending..."
-                                                                    class="button btn-primary">Envoyer
+                                                                    class="button btn-primary">{{trans('litige.envoyer')}}
                                                             </button>
                                                         </div><!-- end .form-footer section -->
                                                     </form>
@@ -110,7 +110,7 @@
                                             <input type="hidden" name="dispute_id" value="{{$dispute->id}}">
                                         </form>
 
-                                        <a onclick="document.getElementById('close_dispute_{{$dispute->id}}').submit()"><i data-toggle="tooltip" title="Fermer le litige" style="float: right"
+                                        <a onclick="document.getElementById('close_dispute_{{$dispute->id}}').submit()"><i data-toggle="tooltip" title="{{trans('litige.close')}}" style="float: right"
                                            class="fa fa-close"></i></a>
                                         <p class="font-weight-3">{{$dispute->title}}</p>
                                         <p class="font-weight-2">{{$dispute->reason}}</p>

@@ -7,13 +7,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Historique de vos courses</h4>
+                        <h4>{{trans('historique.historiqueCourses')}}</h4>
                     </div>
                     <div class="col-md-6">
                         <ol class="breadcrumb">
-                            <li><a href="{{url('/')}}">Accueil</a></li>
-                            <li><a href="{{url('/profil')}}">Profil</a></li>
-                            <li class="current"><a href="{{url('/historique')}}">Historique</a></li>
+                            <li><a href="{{url('/')}}">{{trans('historique.accueil')}}</a></li>
+                            <li><a href="{{url('/profil')}}">{{trans('historique.profil')}}</a></li>
+                            <li class="current"><a href="{{url('/historique')}}">{{trans('historique.historique')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -26,19 +26,19 @@
     <section class="sec-padding">
         <div class="container">
             <div class="row">
-                <h3 class="uppercase">Courses en cours</h3>
+                <h3 class="uppercase">{{trans('historique.coursesc')}}</h3>
                 <br/>
                 <br/>
                 <div class="domain-pricing-table">
                     <table id="datatable_en_cours" class="table-style-2">
                         <thead>
                         <tr>
-                            <th>Date de création</th>
-                            <th>Statut</th>
-                            <th>Départ</th>
-                            <th>Arrivée</th>
-                            <th>Informations</th>
-                            <th>Actions</th>
+                            <th>{{trans('historique.datecrea')}}</th>
+                            <th>{{trans('historique.statut')}}</th>
+                            <th>{{trans('historique.depart')}}</th>
+                            <th>{{trans('historique.arrivee')}}</th>
+                            <th>{{trans('historique.informations')}}</th>
+                            <th>{{trans('historique.actions')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,19 +48,19 @@
                                 <td>
                                     {{\Illuminate\Support\Facades\Config::get('constants.STATUS_' . $delivery->status)}}
                                     @if($delivery->status == Config::get('constants.NON_FINALISE'))
-                                        <br><a href="{{url('/delivery/' . $delivery->id . '/save')}}">Finaliser cette course</a>
+                                        <br><a href="{{url('/delivery/' . $delivery->id . '/save')}}">{{trans('historique.finaliser')}}</a>
                                     @endif
                                 </td>
                                 <td>{{$delivery->startPosition->address}}</td>
                                 <td>{{$delivery->endPosition->address}}</td>
-                                <td>Distance : {{$delivery->distance}} km<br>
-                                    Prix : {{$delivery->price}} €</td>
+                                <td>{{trans('historique.distance')}} : {{$delivery->distance}} km<br>
+                                    {{trans('historique.prix')}} : {{$delivery->price}} €</td>
                                 <td>
                                 <!--<a data-toggle="modal" data-target="#modal_comment_{{$delivery->id}}"
                                        class="text-warning" href="#">Commentaire</a>-->
-                                    <button class="btn btn-link" onclick="modal_comment({{$delivery->id}})">Commentaire</button>
+                                    <button class="btn btn-link" onclick="modal_comment({{$delivery->id}})">{{trans('historique.commentaire')}}</button>
                                     @if($delivery->takeOverDelivery != null && \Carbon\Carbon::parse($delivery->start_date)->addDays(1) > Carbon\Carbon::now())
-                                        <a href="{{url('/litiges/' . $delivery->id)}}">Litiges</a>
+                                        <a href="{{url('/litiges/' . $delivery->id)}}">{{trans('historique.litiges')}}</a>
                                     @endif
                                 </td>
                             </tr>
@@ -77,19 +77,19 @@
     <section>
         <div class="container">
             <div class="row">
-                <h3 class="uppercase">Courses terminées</h3>
+                <h3 class="uppercase">{{trans('historique.coursesend')}}</h3>
                 <br/>
                 <br/>
                 <div class="domain-pricing-table">
                     <table id="datatable_terminees" class="table-style-2">
                         <thead>
                         <tr>
-                            <th>Date de création</th>
-                            <th>Statut</th>
-                            <th>Départ</th>
-                            <th>Arrivée</th>
-                            <th>Informations</th>
-                            <th>Actions</th>
+                            <th>{{trans('historique.datecrea')}}</th>
+                            <th>{{trans('historique.statut')}}</th>
+                            <th>{{trans('historique.depart')}}</th>
+                            <th>{{trans('historique.arrivee')}}</th>
+                            <th>{{trans('historique.informations')}}</th>
+                            <th>{{trans('historique.actions')}}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,12 +99,12 @@
                                 <td>{{$delivery->status}}</td>
                                 <td>{{$delivery->startPosition->address}}</td>
                                 <td>{{$delivery->endPosition->address}}</td>
-                                <td>Distance : {{$delivery->distance}} km<br>
-                                    Prix : {{$delivery->price}} €</td>
+                                <td>{{trans('historique.distance')}} : {{$delivery->distance}} km<br>
+                                    {{trans('historique.prix')}} : {{$delivery->price}} €</td>
                                 <td>
                                     <!--<a data-toggle="modal" data-target="#modal_rate_{{$delivery->id}}"
                                        class="text-warning" href="#">Noter</a>-->
-                                    <button class="btn btn-link" onclick="modal_rating({{$delivery->id}})">Noter</button>
+                                    <button class="btn btn-link" onclick="modal_rating({{$delivery->id}})">{{trans('historique.noter')}}</button>
                                 </td>
                             </tr>
                         @endforeach

@@ -13,7 +13,7 @@
                                     <div class="smart-forms smart-container transparent wrap-full">
                                         <div class="form-body no-padd">
                                             <form method="post" action="{{url("savebags/delivery")}}" id="account">
-                                                <div class="tagline"><span>Vérification des informations</span></div><!-- .tagline -->
+                                                <div class="tagline"><span>{{trans('createDelivery.verifInfo')}}</span></div><!-- .tagline -->
                                                 @if(sizeof($errors->all())>0)
                                                     <h3 style="color: #bf3924">{{$errors->all()[0]}}</h3>
                                                 @endif
@@ -49,7 +49,7 @@
 
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="email" class="field-label"><strong>Lieu de prise en charge</strong></label>
+                                                        <label for="email" class="field-label"><strong>{{trans('createDelivery.lieupc')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text" name="start_position[address]" id="adresse_input_depart"
                                                                    class="gui-input" style="color : black"
@@ -60,7 +60,7 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="email" class="field-label" ><strong>Date et heure de prise en charge</strong></label>
+                                                        <label for="email" class="field-label" ><strong>{{trans('createDelivery.datepc')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input required type='text' class="datepicker-input gui-input" id='datetimepicker4' name="datetimevalue"
                                                                    placeholder="JJ/MM/AAAA" value=""/>
@@ -70,7 +70,7 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="email" class="field-label"><strong>Lieu de livraison</strong></label>
+                                                        <label for="email" class="field-label"><strong>{{trans('createDelivery.lieuLivraison')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text"  name="end_position[address]" id="adresse_input_arrivee" class="gui-input" style="color : black"
                                                                    placeholder="Adresse" value="{{$delivery->endPosition->address}}" required>
@@ -80,7 +80,7 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="email" class="field-label" ><strong>Date et heure de livraison</strong></label>
+                                                        <label for="email" class="field-label" ><strong>{{trans('createDelivery.dateLivraison')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input required type='text' class="datepicker-input gui-input" id='datetimepicker5' name="datetimeend"
                                                                    placeholder="JJ/MM/AAAA" value=""/>
@@ -90,7 +90,7 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="email" class="field-label" ><strong>Nombre de bagages</strong></label>
+                                                        <label for="email" class="field-label" ><strong>{{trans('createDelivery.nbbags')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input required type="number" min="1" class="gui-input" id="input_nb_bags" name="nb_bags" value="{{$nb_bags}}"/>
                                                             <span class="field-icon"><i class="fa fa-shopping-bag" style="color : black"></i></span>
@@ -122,7 +122,7 @@
                                                 </div>
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="promo_code" class="field-label"><strong>Code promotion</strong></label>
+                                                        <label for="promo_code" class="field-label"><strong>{{trans('createDelivery.promo')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type="text"  name="promo_code" id="promo_code" class="gui-input js-promo-code" style="color : black">
                                                         </label>
@@ -132,14 +132,14 @@
                                                     <div class="col-md-12">
                                                         <label for="checkbox">
                                                             <input id="checkbox-course-retour" class="check_boxes optional" type="checkbox" value="Voulez-vous la course retour" name="has_retour">
-                                                            Voulez-vous la course retour
+                                                            {{trans('createDelivery.retour')}}
                                                         </label>
                                                     </div>
                                                 </div>
 
                                                 <div id="row-date-course-retour" class="row row-margin">
                                                     <div class="col-md-12">
-                                                        <label for="retour-datetimepicker" class="field-label" ><strong>Date et heure de la course retour</strong></label>
+                                                        <label for="retour-datetimepicker" class="field-label" ><strong>{{trans('createDelivery.dateretour')}}</strong></label>
                                                         <label class="field prepend-icon">
                                                             <input type='text' class="datepicker-input gui-input" id='retour-datetimepicker' name="date_retour"
                                                                    placeholder="JJ/MM/AAAA" value=""/>
@@ -158,10 +158,10 @@
                                                         @endfor
                                                         </div>
                                                         <div class="form-footer js-finalise" style="text-align: center" hidden>
-                                                            <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>Finaliser ma prise en charge</button>
+                                                            <button type="submit" class="btn btn-medium light uppercase btn-primary " hidden>{{trans('createDelivery.finaliser')}}</button>
                                                         </div><!-- end .form-footer section -->
                                                         <div class="form-footer js-unfinalise" style="text-align: center" hidden>
-                                                            <strong style="color: orangered" class="js-unfinalise">Veuillez ajouter au moins un bagage pour finaliser.</strong>
+                                                            <strong style="color: orangered" class="js-unfinalise">{{trans('createDelivery.addOneBag')}}</strong>
                                                         </div>
                                                         {{csrf_field()}}
                                                     </div>

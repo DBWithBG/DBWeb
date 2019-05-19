@@ -9,8 +9,8 @@
             <div class="container">
                 <div class="row">
                     <div class="hero-text align-center">
-                        <h1>Vos bagages</h1>
-                        <p>Notre mission</p>
+                        <h1>{{trans('home.vosbags')}}</h1>
+                        <p>{{trans('home.mission')}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +43,7 @@
 
                                                     <input id="adresse_input_depart" type="search"
                                                            class="gui-input"
-                                                           placeholder="Lieu de prise en charge">
+                                                           placeholder="{{trans('home.pc')}}">
                                                     <span class="field-icon"><i class="fa fa-arrow-right"></i></span>
                                                 </label>
                                             </div>
@@ -51,21 +51,21 @@
                                                 <label class="field prepend-icon">
                                                     <input id="adresse_input_arrivee" type="search"
                                                            class="gui-input"
-                                                           placeholder="Lieu de livraison">
+                                                           placeholder="{{trans('home.lv')}}">
                                                     <span class="field-icon"><i class="fa fa-arrow-left"></i></span>
                                                 </label>
                                             </div>
                                             <div class="row">
 
                                                 <label class="field prepend-icon" >
-                                                    <input id="input_nb_bags" type="number" min="1" class="gui-input" placeholder="Nombre de bagages">
+                                                    <input id="input_nb_bags" type="number" min="1" class="gui-input" placeholder="{{trans('home.nbBags')}}">
                                                     <span class="field-icon"><i class="fa fa-shopping-bag"></i></span>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-footer">
                                             <label class="js_valid_deliver button btn-primary">
-                                                Valider
+                                                {{trans('home.valider')}}
                                             </label>
 
                                         </div>

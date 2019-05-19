@@ -16,7 +16,7 @@
                             <p>{{json_encode($delivery)}}</p>
                         </div>
                 </div><!-- end .smart-wrap section -->
-
+et
             </div>
         </div>
     </section>
