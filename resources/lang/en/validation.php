@@ -1,4 +1,4 @@
-<?php
+composer require caouecs/laravel-lang:~2.0<?php
 
 return [
 
