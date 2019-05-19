@@ -91,7 +91,7 @@
                                     @else
                                         <li class="right"><a href="{{url("connexion")}}">Connexion</a></li>
                                     @endif
-                                        <ul class="languagepicker" style="margin-top: 10px">
+                                        <ul class="languagepicker" style="margin-top: 20px">
                                             <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/> Français</li></a>
                                             <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/> English</li></a>
                                         </ul>
