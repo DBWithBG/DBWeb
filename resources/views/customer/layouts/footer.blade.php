@@ -5,7 +5,7 @@
                 <!--end item-->
 
                 <div class="col-md-4 col-xs-12 clearfix margin-bottom">
-                    <h4 class="less-mar3 font-weight-5">{{trans('layout.apropos'}}</h4>
+                    <h4 class="less-mar3 font-weight-5">{{trans('layout.apropos')}}</h4>
                     <div class="clearfix"></div>
                     <br/>
                     <ul class="footer-quick-links-5">
