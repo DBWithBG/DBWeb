@@ -187,7 +187,7 @@ class MailController
                 $user->save();
             }
         }
-        return redirect('backoffice/login');
+        return redirect('login');
     }
 
     //TODO DEPRECATED I THINK
