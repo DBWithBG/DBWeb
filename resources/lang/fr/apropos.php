@@ -3,7 +3,8 @@
 return [
     'apropos' => 'À propos',
     'graced' => 'Gr&acirc;ce &agrave; Deliverbag, d&eacute;placez-vous sans bagage, libre et sans contrainte !&nbsp;',
-    'abordeaux' => 'Gr&acirc;ce &agrave; Deliverbag, d&eacute;placez-vous sans bagage, libre et sans contrainte !&nbsp;',
+    'abordeaux' => '&Agrave; Bordeaux et en r&eacute;gion Aquitaine, faites confiance &agrave; notre &eacute;quipe de
+                professionnels Deliverbag pour',
     'assurer' => 'assurer la livraison de vos bagages, qu&rsquo;importe l&rsquo;endroit
                     et l&rsquo;heure.',
     'luxe' => ' Un luxe abordable gr&acirc;ce &agrave; notre service innovant.',
