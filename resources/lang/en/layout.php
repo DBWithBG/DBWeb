@@ -2,8 +2,8 @@
 
 return [
     // footer
-    'aproposnous' => 'À propos de nous',
-    'apropos' => 'À propos',
+    'aproposnous' => 'About us',
+    'apropos' => 'About',
     'mentionslegales' => 'Mentions légales',
     'regles' => 'Règles',
     'aide' => 'Aide',
