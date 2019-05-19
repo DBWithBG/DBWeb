@@ -12,10 +12,10 @@
         background-color: #FFF;
         display: inline-block;
         padding: 0;
-        height: 20px;
+        height: 40px;
         overflow: hidden;
         transition: all .3s ease;
-        margin: 0 0px 10px 0;
+        margin: 0 50px 10px 0;
         vertical-align: top;
         float: left;
     }
@@ -32,8 +32,8 @@
 
     .languagepicker li {
         display: block;
-        padding: 0px 0px;
-        line-height: 20px;
+        padding: 0px 20px;
+        line-height: 40px;
         border-top: 1px solid #EEE;
     }
 
@@ -91,10 +91,12 @@
                                     @else
                                         <li class="right"><a href="{{url("connexion")}}">Connexion</a></li>
                                     @endif
-                                    <ul class="languagepicker">
-                                        <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/>Français</li></a>
-                                        <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>English</li></a>
-                                    </ul>
+                                    <li class="right">
+                                        <ul class="languagepicker">
+                                            <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/>Français</li></a>
+                                            <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>English</li></a>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
