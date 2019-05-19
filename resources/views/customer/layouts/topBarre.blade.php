@@ -15,7 +15,7 @@
         height: 40px;
         overflow: hidden;
         transition: all .3s ease;
-        margin: 0 50px 10px 0;
+        margin: 0 0px 10px 0;
         vertical-align: top;
         float: left;
     }
