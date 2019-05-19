@@ -28,7 +28,6 @@ $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 $this->post('register', 'Auth\RegisterController@register');
 
-Route::post('password/reset', 'MailController@sendPassword');
 
 // Password Reset Routes...
 //$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
