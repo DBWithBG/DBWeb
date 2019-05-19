@@ -12,8 +12,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <ol class="breadcrumb">
-                                        <li><a href="{{url('/')}}">Accueil</a></li>
-                                        <li class="current"><a href="{{url('/contact')}}">Contact</a></li>
+                                        <li><a href="{{url('/')}}">{{trans('contact.confiance')}}</a></li>
+                                        <li class="current"><a href="{{url('/contact')}}">{{trans('contact.contact')}}</a></li>
                                     </ol>
                                 </div>
                             </div>
@@ -46,9 +46,8 @@
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Formulaire de contact</h3>
-                                <p>Pour toute question, n'hésitez pas à nous contacter via ce formulaire. Nous vous
-                                    répondrons dans les plus brefs délais.</p>
+                                <h3 class="uppercase">{{trans('contact.formcontact')}}</h3>
+                                <p>{{trans('contact.question')}}</p>
                                 <br/>
                                 <br/>
 
@@ -65,7 +64,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" name="name" id="sendername"
-                                                                       class="gui-input" placeholder="Nom">
+                                                                       class="gui-input" placeholder="{{trans('contact.nom')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-user"></i></span>
                                                             </label>
@@ -76,7 +75,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" name="surname"
                                                                        id="sendername" class="gui-input"
-                                                                       placeholder="Prénom">
+                                                                       placeholder="{{trans('contact.prenom')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-user"></i></span>
                                                             </label>
@@ -87,7 +86,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="email" name="email"
                                                                        id="emailaddress" class="gui-input"
-                                                                       placeholder="Adresse mail">
+                                                                       placeholder="{{trans('contact.mail')}}">
                                                                 <span class="field-icon"><i class="fa fa-envelope"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
@@ -98,7 +97,7 @@
                                                             <label class="field prepend-icon">
                                                                 <textarea class="gui-textarea" id="sendermessage"
                                                                           name="message"
-                                                                          placeholder="Votre message"></textarea>
+                                                                          placeholder="{{trans('contact.message')}}"></textarea>
                                                                 <span class="field-icon"><i class="fa fa-comments"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
@@ -109,7 +108,7 @@
                                                         <!-- end .form-body section -->
                                                         <div class="form-footer text-left">
                                                             <button type="submit" data-btntext-sending="Sending..."
-                                                                    class="button btn-primary">Envoyer
+                                                                    class="button btn-primary">{{trans('contact.envoyer')}}
                                                             </button>
                                                         </div><!-- end .form-footer section -->
                                                     </form>
