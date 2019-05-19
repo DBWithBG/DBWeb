@@ -77,27 +77,27 @@
                             </ul>
                             <div id="menu" class="collapse" aria-expanded="false" style="height: 35px;">
                                 <ul class="nav navbar-nav">
-                                    <li class="right"> <a href="{{url('/')}}">{{trans('accueil')}}</a> </li>
+                                    <li class="right"> <a href="{{url('/')}}">{{trans('layout.accueil')}}</a> </li>
 
                                     @if (\Illuminate\Support\Facades\Auth::check())
                                         <li class="right"> <a href="#">{{\Illuminate\Support\Facades\Auth::user()->customer->surname}}</a> <span class="arrow"></span>
                                             <ul>
-                                                <li> <a href="{{url("/profil")}}">{{trans('monprofil')}}</a></li>
+                                                <li> <a href="{{url("/profil")}}">{{trans('layout.monprofil')}}</a></li>
                                                 <li> <a href="{{url("logout")}}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit()">{{trans('sedeconnecter')}}</a></li>
+                                                     document.getElementById('logout-form').submit()">{{trans('layout.sedeconnecter')}}</a></li>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"style="display: none;">{{ csrf_field() }}</form>
                                             </ul>
                                         </li>
                                     @else
-                                        <li class="right"><a href="{{url("connexion")}}">{{trans('connexion')}}</a></li>
+                                        <li class="right"><a href="{{url("connexion")}}">{{trans('layout.connexion')}}</a></li>
                                     @endif
                                     <ul class="languagepicker" style="margin-top: 20px">
                                         @if(\Illuminate\Support\Facades\App::isLocale('fr'))
-                                            <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/>{{trans('francais')}}</li></a>
-                                            <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>{{trans('anglais')}}</li></a>
+                                            <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/>{{trans('layout.francais')}}</li></a>
+                                            <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>{{trans('layout.anglais')}}</li></a>
                                         @else
-                                            <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>{{trans('anglais')}}</li></a>
-                                            <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/> {{trans('francais')}}</li></a>
+                                            <a href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>{{trans('layout.anglais')}}</li></a>
+                                            <a href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/> {{trans('layout.francais')}}</li></a>
                                         @endif
                                     </ul>
                                 </ul>
