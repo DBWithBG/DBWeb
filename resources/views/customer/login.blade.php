@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row sec-padding hl-more-top-padd">
 
-                <div class="col-md-12 text-center"><h3 class="uppercase less-mar-1 font-weight-5 raleway">Vous êtes</h3>
+                <div class="col-md-12 text-center"><h3 class="uppercase less-mar-1 font-weight-5 raleway">{{trans('login.vous')}}</h3>
                 </div>
                 <div class="clearfix"></div>
                 <br/><br/>
@@ -20,11 +20,11 @@
                                 <li class="js-customer"><a href="#tab-customer"
                                                            target="_self"><span
                                                 class="fa fa-user"></span> <br/>
-                                        Client</a></li>
+                                        {{trans('login.client')}}</a></li>
                                 <li class="js-driver"><a href="#tab-driver" class="click-js-driver"
                                                          target="_self"><span
                                                 class="fa fa-car"></span> <br/>
-                                        Chauffeur</a></li>
+                                        {{trans('login.chauffeur')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                                                         <div class="form-body">
 
                                                             <div class="spacer-b30">
-                                                                <div class="tagline"><span>Se connecter avec </span></div><!-- .tagline -->
+                                                                <div class="tagline"><span>{{trans('login.signin')}}</span></div><!-- .tagline -->
                                                             </div>
 
                                                             <div class="row text-center">
@@ -77,19 +77,19 @@
                                                             </div>
 
                                                             <div class="spacer-t30 spacer-b30">
-                                                                <div class="tagline"><span> OU classiquement </span></div><!-- .tagline -->
+                                                                <div class="tagline"><span> {{trans('login.ou')}} </span></div><!-- .tagline -->
                                                             </div>
 
                                                             <div class="">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="text" name="email" id="email" class="gui-input" placeholder="Email">
+                                                                    <input type="text" name="email" id="email" class="gui-input" placeholder="{{trans('login.email')}}">
                                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
 
                                                             <div class="">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="password" name="password" id="password" class="gui-input" placeholder="Mot de passe">
+                                                                    <input type="password" name="password" id="password" class="gui-input" placeholder="{{trans('login.mdp')}}">
                                                                     <span class="field-icon"><i class="fa fa-lock"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
@@ -98,19 +98,19 @@
                                                                 <label class="switch block">
                                                                     <input type="checkbox" name="remember" id="remember" checked>
                                                                     <span class="switch-label" for="remember" data-on="OUI" data-off="NON"></span>
-                                                                    <span> Rester connecté ?</span>
+                                                                    <span> {{trans('login.stayAct')}}</span>
                                                                 </label>
                                                             </div><!-- end section -->
                                                         </div><!-- end .form-body section -->
                                                         <div class="form-footer">
 
                                                             <div class="row text-center">
-                                                                <button type="submit" class="button btn-primary">Connexion</button>
+                                                                <button type="submit" class="button btn-primary">{{trans('login.connexion')}}</button>
                                                             </div>
 
 
                                                             <div class="row text-center">
-                                                                <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
+                                                                <a href="{{url('/password/reset')}}">{{trans('login.mdpforg')}}</a>
                                                             </div>
                                                         </div>
 
@@ -119,10 +119,10 @@
                                                         <p id="infos"></p>
 
                                                         <div class="row text-center">
-                                                            <span><a href="{{url('inscription')}}"> Pas encore inscrit ? </a></span>
+                                                            <span><a href="{{url('inscription')}}"> {{trans('login.insc')}} </a></span>
                                                         </div>
                                                         <div class="row text-center">
-                                                            <a href="{{url('inscription')}}">S'enregistrer</a>
+                                                            <a href="{{url('inscription')}}">{{trans('login.save')}}</a>
                                                         </div>
                                                     </form>
 
@@ -164,7 +164,7 @@
                                                         <div class="form-body">
 
                                                             <div class="spacer-b30">
-                                                                <div class="tagline"><span>Se connecter avec </span></div><!-- .tagline -->
+                                                                <div class="tagline"><span>{{trans('login.signin')}} </span></div><!-- .tagline -->
                                                             </div>
 
                                                             <div class="row text-center">
@@ -179,19 +179,19 @@
                                                             </div>
 
                                                             <div class="spacer-t30 spacer-b30">
-                                                                <div class="tagline"><span> OU classiquement </span></div><!-- .tagline -->
+                                                                <div class="tagline"><span> {{trans('login.ou')}} </span></div><!-- .tagline -->
                                                             </div>
 
                                                             <div class="">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="text" name="email" id="email" class="gui-input" placeholder="Email">
+                                                                    <input type="text" name="email" id="email" class="gui-input" placeholder="{{trans('login.email')}}">
                                                                     <span class="field-icon"><i class="fa fa-user"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
 
                                                             <div class="">
                                                                 <label class="field prepend-icon">
-                                                                    <input type="password" name="password" id="password" class="gui-input" placeholder="Mot de passe">
+                                                                    <input type="password" name="password" id="password" class="gui-input" placeholder="{{trans('login.mdp')}}">
                                                                     <span class="field-icon"><i class="fa fa-lock"></i></span>
                                                                 </label>
                                                             </div><!-- end section -->
@@ -200,19 +200,19 @@
                                                                 <label class="switch block">
                                                                     <input type="checkbox" name="remember" id="remember" checked>
                                                                     <span class="switch-label" for="remember" data-on="OUI" data-off="NON"></span>
-                                                                    <span> Rester connecté ?</span>
+                                                                    <span> {{trans('login.stayAct')}}</span>
                                                                 </label>
                                                             </div><!-- end section -->
                                                         </div><!-- end .form-body section -->
                                                         <div class="form-footer">
 
                                                             <div class="row text-center">
-                                                                <button type="submit" class="button btn-primary">Connexion</button>
+                                                                <button type="submit" class="button btn-primary">{{trans('login.connexion')}}</button>
                                                             </div>
 
 
                                                             <div class="row text-center">
-                                                                <a href="{{url('/password/reset')}}">Mot de passe oublié ?</a>
+                                                                <a href="{{url('/password/reset')}}">{{trans('login.mdpforg')}}</a>
                                                             </div>
                                                         </div>
 
@@ -221,10 +221,10 @@
                                                         <p id="infos"></p>
 
                                                         <div class="row text-center">
-                                                            <span><a href="{{url('inscription?type=driver')}}"> Pas encore inscrit ? </a></span>
+                                                            <span><a href="{{url('inscription?type=driver')}}"> {{trans('login.insc')}} </a></span>
                                                         </div>
                                                         <div class="row text-center">
-                                                            <a href="{{url('inscription?type=driver')}}">S'enregistrer</a>
+                                                            <a href="{{url('inscription?type=driver')}}">{{trans('login.save')}}</a>
                                                         </div>
                                                     </form>
 
