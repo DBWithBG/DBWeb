@@ -127,7 +127,7 @@
             $delivery = Delivery::find($request['delivery_id']);
 
                 // EN 05/22/2019 3:32 AM
-            $delivery->end_date = Carbon::createFromFormat('m/d/Y h:m A', $request['datetimeend']);
+            $delivery->end_date = Carbon::createFromFormat('m/d/Y h:m A', $request['datetimeend'])->format('d/m/Y h:m');
 
             if(empty($request['bagages'])){
                 throw new \Error('Please enter a least a bag');
