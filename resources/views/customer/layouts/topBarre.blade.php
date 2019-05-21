@@ -26,7 +26,7 @@
     }
 
     .languagepicker a{
-        color: #000;
+        color: #ffffff;
         text-decoration: none;
     }
 
@@ -38,12 +38,10 @@
     }
 
     .languagepicker li:hover{
-        background-color: #EEE;
     }
 
     .languagepicker a:first-child li {
         border: none;
-        background: #FFF !important;
     }
 
     .languagepicker li img {
