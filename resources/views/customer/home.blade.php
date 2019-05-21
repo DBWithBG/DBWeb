@@ -408,7 +408,7 @@
                 if(res[i].types.includes("administrative_area_level_2")) {
                     for (var k = 0; k < departments.length; k++) {
                         console.log(departments[k].number);
-
+                        console.log(res[i].long_name, departments[k].name)
                         if (res[i].long_name == departments[k].name) {
                             found = true;//On a trouvé une correspondance
                             break;
