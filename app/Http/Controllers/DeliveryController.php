@@ -136,13 +136,13 @@
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
             $request['time_consigne'] = null;
-            if(!empty($request['time_consigne'])){
+            /*if(!empty($request['time_consigne'])){
                 //REmove because of pierre Mail
                 $delivery->time_consigne = Carbon::createFromTimeString($request['time_consigne']);
                 $delivery->end_date = $start_date->copy();
 
                 $delivery->end_date = $delivery->end_date->addHours($delivery->time_consigne->hour)->addMinutes($delivery->time_consigne->minute);
-            }
+            }*/
 
             $retour = false;
             if(!empty($request['has_retour']) && !empty($request['date_retour'])){
