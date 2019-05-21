@@ -127,12 +127,12 @@
             $delivery = Delivery::find($request['delivery_id']);
 
                 // EN 05/22/2019 3:32 AM
-            $delivery->end_date = Carbon::createFromFormat('m/d/Y h:m A', $request['datetimeend']);
+            $delivery->end_date = Carbon::createFromFormat('m/d/Y H:i A', $request['datetimeend'])->format('d/m/Y H:i');
 
             if(empty($request['bagages'])){
                 throw new \Error('Please enter a least a bag');
             }
-            $start_date = Carbon::createFromFormat('m/d/Y h:m A', $request['datetimevalue']);
+            $start_date = Carbon::createFromFormat('m/d/Y H:i A', $request['datetimevalue'])->format('d/m/Y H:i');
             dd($delivery->end_date, $start_date);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
