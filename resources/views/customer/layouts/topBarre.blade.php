@@ -91,7 +91,7 @@
                                     @else
                                         <li class="right"><a href="{{url("connexion")}}">{{trans('layout.connexion')}}</a></li>
                                     @endif
-                                    <ul class="languagepicker" style="margin-top: 20px;">
+                                    <ul class="languagepicker" style="margin-top: 20px;opacity: 0.2">
                                         @if(\Illuminate\Support\Facades\App::isLocale('fr'))
                                             <a style="opacity: 0.2" href="{{url('language/fr')}}"><li><img src="http://i65.tinypic.com/300b30k.png"/>{{trans('layout.francais')}}</li></a>
                                             <a style="opacity: 0.2" href="{{url('language/en')}}"><li><img src="http://i64.tinypic.com/fd60km.png"/>{{trans('layout.anglais')}}</li></a>
