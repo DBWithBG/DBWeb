@@ -245,12 +245,12 @@
             });
 
             $('#datetimepicker4').datetimepicker({
-                format: 'd/M/Y H:m',
+                format: 'dd/M/Y H:m',
                 locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                 defaultDate: moment()
             });
             $('#datetimepicker5').datetimepicker({
-                    format: 'mm/d/y H:i',
+                    format: 'mm/d/y H:m',
                     locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                     defaultDate: moment().add(2, 'hours')
             });
