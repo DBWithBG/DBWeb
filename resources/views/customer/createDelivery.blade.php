@@ -248,7 +248,7 @@
             $('#datetimepicker5').datetimepicker({
                     defaultDate: moment().add(2, 'hours')
             });
-            $.datetimepicker.setDefaults( $.datepicker.regional[ "{{\Illuminate\Support\Facades\App::getLocale()}}" ] );
+            $.datetimepicker.setDefaults( $.datetimepicker.regional[ "{{\Illuminate\Support\Facades\App::getLocale()}}" ] );
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
                 $('#datetimepicker5').data("DateTimePicker").minDate(moment().add(4, 'hours'));
