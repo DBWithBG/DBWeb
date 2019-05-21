@@ -93,7 +93,7 @@
                                     @endif
                                     <ul class="languagepicker" style="margin-top: 20px;background-color: transparent;color: white">
                                         @if(\Illuminate\Support\Facades\App::isLocale('fr'))
-                                            <a  href="{{url('language/fr')}}"><li><img src="{!! asset("img/minifr.png") !!}"/>{{trans('layout.francais')}}</li></a>
+                                            <a  href="{{url('language/fr')}}"><li><img src="{!! asset("img/minifr.png") !!}" style="color: white"/>{{trans('layout.francais')}}</li></a>
                                             <a href="{{url('language/en')}}"><li><img src="{!! asset("img/minien.png") !!}"/>{{trans('layout.anglais')}}</li></a>
                                         @else
                                             <a href="{{url('language/en')}}"><li><img src="{!! asset("img/minien.png") !!}"/>{{trans('layout.anglais')}}</li></a>
