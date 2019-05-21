@@ -405,7 +405,7 @@
             for(i=0; i< res.length; i++) {
                 if(res[i].types.includes("administrative_area_level_2")) {
                     for (var k = 0; k < departments.length; k++) {
-                        if (res[i].long_name == departments[k].name) {
+                        if (res[i].long_name.toUpperCase() == departments[k].name.toUpperCase()) {
                             found = true;//On a trouvé une correspondance
                             break;
                         }
