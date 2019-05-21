@@ -11,9 +11,9 @@
                     <h1 style="margin-left: 32%">{{trans('paiement.recap')}}</h1><br>
                     <h4 style="margin-left: 30%">
                         {{trans('paiement.lp')}}: <strong>{{$delivery->startPosition->address}}</strong><br>
-                        {{trans('paiement.datepc')}}: <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format('d/m/Y H:i')}}</strong><br>
+                        {{trans('paiement.datepc')}}: <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format(App::isLocale('en') ?'m/d/Y H:i A' : 'd/m/Y H:i')}}</strong><br>
                         {{trans('paiement.ll')}}: <strong>{{$delivery->endPosition->address}}</strong><br>
-                        {{trans('paiement.dl')}}: <strong>{{\Carbon\Carbon::parse($delivery->end_date)->format('d/m/Y H:i')}}</strong><br>
+                        {{trans('paiement.dl')}}: <strong>{{\Carbon\Carbon::parse($delivery->end_date)->format(App::isLocale('en') ?'m/d/Y H:i A' : 'd/m/Y H:i')}}</strong><br>
                         {{trans('paiement.nbBags')}}: <strong>{{$delivery->nb_bags}}</strong>
                     <!--@if(!empty($delivery->time_consigne))
                             Temps de consigne : <strong>{{\Carbon\Carbon::parse($delivery->time_consigne)->format('H:i')}}</strong>
@@ -21,7 +21,7 @@
                             <strong>livraison dès que possible</strong>
                         @endif-->
                         @if(!empty($delivery->date_retour))
-                            <br>{{trans('paiement.retour')}}: {{\Carbon\Carbon::parse($delivery->date_retour)->format('d/m/Y H:i')}}
+                            <br>{{trans('paiement.retour')}}: {{\Carbon\Carbon::parse($delivery->date_retour)->format(App::isLocale('en') ?'m/d/Y H:i A' : 'd/m/Y H:i')}}
                         @endif
 
                     </h4>
