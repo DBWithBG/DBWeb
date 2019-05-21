@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Laisser un commentaire</h5>
+    <h5 class="modal-title">{{trans('modals.letcom')}}</h5>
 </div>
 <form method="post" action="{{url('/comment')}}">
     <div class="modal-body">
@@ -11,13 +11,13 @@
                     {{csrf_field()}}
 
                     <input type="hidden" name="delivery_id" value="{{$delivery->id}}">
-                    Ce commentaire sera visible par deliverbag ainsi que le chauffeur.
+                    {{trans('modals.commvisible')}}
                     <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
                          class="section">
                         <label class="field prepend-icon">
                                                                 <textarea class="gui-textarea" id="comment"
                                                                           name="comment"
-                                                                          placeholder="Votre commentaire">{{$delivery->comment}}</textarea>
+                                                                          placeholder="{{trans('modals.commplaceholder')}}">{{$delivery->comment}}</textarea>
                             <span class="field-icon"><i class="fa fa-comments"></i></span>
                         </label>
                     </div><!-- end section -->
@@ -31,7 +31,7 @@
         </div><!-- end .smart-wrap section -->
     </div>
     <div class="modal-footer smart-forms">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" class="button btn-primary">Commenter</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('modals.fermer')}}</button>
+        <button type="submit" class="button btn-primary">{{trans('modals.commenter')}}</button>
     </div>
 </form>

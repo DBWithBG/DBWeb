@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Modifier le bagage</h5>
+    <h5 class="modal-title">{{trans('modals.editbag')}}</h5>
 </div>
 <form method="post" action="{{url('/bagages/'.$bag->id.'/edit')}}">
     <div class="modal-body">
@@ -9,15 +9,15 @@
 
 
                     {{csrf_field()}}
-                    Nom du bagage :
+                    {{trans('modals.bagname')}} :
                     <input required type="text" name="name"
                            id="name" class="gui-input"
-                           placeholder="Nom du bagage" value="{{$bag->name}}">
+                           placeholder="{{trans('modals.bagname')}}" value="{{$bag->name}}">
 
-                    Description du bagage :
+                    {{trans('modals.bagdesc')}} :
                     <input required type="text" name="details"
                            id="name" class="gui-input"
-                           placeholder="Description du bagage" value="{{$bag->details}}">
+                           placeholder="{{trans('modals.bagdesc')}}" value="{{$bag->details}}">
 
                     <div class="result"></div><!-- end .result  section -->
 
@@ -27,7 +27,7 @@
         </div><!-- end .smart-wrap section -->
     </div>
     <div class="modal-footer smart-forms">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" class="button btn-primary">Sauvegarder</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('modals.fermer')}}</button>
+        <button type="submit" class="button btn-primary">{{trans('modals.save')}}</button>
     </div>
 </form>

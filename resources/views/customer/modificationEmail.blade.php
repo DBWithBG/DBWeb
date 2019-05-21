@@ -6,13 +6,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Adresse email</h4>
+                        <h4>{{trans('modifEmail.mail')}}</h4>
                     </div>
                     <div class="col-md-6">
                         <ol class="breadcrumb">
-                            <li><a href="{{url('/')}}">Accueil</a></li>
-                            <li><a href="{{url('/profil')}}">Profil</a></li>
-                            <li class="current"><a href="{{url('/modificationEmail')}}">Adresse email</a></li>
+                            <li><a href="{{url('/')}}">{{trans('modifEmail.accueil')}}</a></li>
+                            <li><a href="{{url('/profil')}}">{{trans('modifEmail.profil')}}</a></li>
+                            <li class="current"><a href="{{url('/modificationEmail')}}">{{trans('modifEmail.mail')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Modification de votre adresse email ({{\Illuminate\Support\Facades\Auth::user()->email}})</h3>
-                                <p>Une fois votre adresse email modifiée, un mail de confirmation vous sera envoyé afin de procéder à sa vérification.</p>
+                                <h3 class="uppercase">{{trans('modifEmail.modifmail')}} ({{\Illuminate\Support\Facades\Auth::user()->email}})</h3>
+                                <p>{{trans('modifEmail.unefois')}}</p>
                                 <br/>
                                 <br/>
 
@@ -65,7 +65,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="email" name="email"
                                                                        id="email" class="gui-input"
-                                                                       placeholder="Nouvelle adresse email">
+                                                                       placeholder="{{trans('modifEmail.newmail')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-envelope"></i></span>
                                                             </label>
@@ -77,7 +77,7 @@
                                                         <!-- end .form-body section -->
                                                         <div class="form-footer text-left">
                                                             <button type="submit" data-btntext-sending="Sending..."
-                                                                    class="button btn-primary">Modifier
+                                                                    class="button btn-primary">{{trans('modifEmail.modifier')}}
                                                             </button>
                                                         </div><!-- end .form-footer section -->
                                                     </form>

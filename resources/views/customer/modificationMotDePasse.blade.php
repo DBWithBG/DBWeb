@@ -6,13 +6,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Mot de passe</h4>
+                        <h4>{{trans('modifMdp.mdp')}}</h4>
                     </div>
                     <div class="col-md-6">
                         <ol class="breadcrumb">
-                            <li><a href="{{url('/')}}">Accueil</a></li>
-                            <li><a href="{{url('/profil')}}">Profil</a></li>
-                            <li class="current"><a href="{{url('/modificationMotDePasse')}}">Mot de passe</a></li>
+                            <li><a href="{{url('/')}}">{{trans('modifMdp.accueil')}}</a></li>
+                            <li><a href="{{url('/profil')}}">{{trans('modifMdp.profil')}}</a></li>
+                            <li class="current"><a href="{{url('/modificationMotDePasse')}}">{{trans('modifMdp.mdp')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
 
                             <div class="col-md-8 col-sm-12 col-xs-12">
 
-                                <h3 class="uppercase">Modification de votre mot de passe</h3>
-                                <p>Choisissez un mot de passe fort, si possible avec des lettres majuscules, minuscules ainsi que des caractères spéciaux.</p>
+                                <h3 class="uppercase">{{trans('modifMdp.modifMdp')}}</h3>
+                                <p>{{trans('modifMdp.choixMdp')}}</p>
                                 <br/>
                                 <br/>
 
@@ -65,7 +65,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="password" name="current_password"
                                                                        id="current_password" class="gui-input"
-                                                                       placeholder="Mot de passe actuel">
+                                                                       placeholder="{{trans('modifMdp.actuelMdp')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-lock"></i></span>
                                                             </label>
@@ -76,7 +76,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="password" name="new_password"
                                                                        id="new_password" class="gui-input"
-                                                                       placeholder="Nouveau mot de passe">
+                                                                       placeholder="{{trans('modifMdp.newMdp')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-lock"></i></span>
                                                             </label>
@@ -87,7 +87,7 @@
                                                             <label class="field prepend-icon">
                                                                 <input required type="password" name="new_password_again"
                                                                        id="new_password_again" class="gui-input"
-                                                                       placeholder="Répéter nouveau mot de passe">
+                                                                       placeholder="{{trans('modifMdp.repeatMdp')}}">
                                                                 <span class="field-icon"><i
                                                                             class="fa fa-lock"></i></span>
                                                             </label>
@@ -99,7 +99,7 @@
                                                         <!-- end .form-body section -->
                                                         <div class="form-footer text-left">
                                                             <button type="submit" data-btntext-sending="Sending..."
-                                                                    class="button btn-primary">Modifier
+                                                                    class="button btn-primary">{{trans('modifMdp.modifier')}}
                                                             </button>
                                                         </div><!-- end .form-footer section -->
                                                     </form>

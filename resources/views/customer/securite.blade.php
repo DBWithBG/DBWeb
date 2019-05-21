@@ -5,13 +5,13 @@
     <section class="section sec-padding">
         <div class="section-title">
             <div class="container">
-                <h2 class="title">Sécurité</h2>
+                <h2 class="title">{{trans('securite.securite')}}</h2>
 
-                <p>Parce que vos bagages sont pr&eacute;cieux&nbsp;et indispensables, nous attachons une importance toute particuli&egrave;re &agrave; leur s&eacute;curit&eacute;.</p>
+                <p>{{trans('securite.parceque')}}</p>
 
-                <p>Nous &eacute;tiquetons chaque bagage avec un num&eacute;ro unique, votre nom et son lieu de destination.</p>
+                <p>{{trans('securite.nous')}}</p>
 
-                <p>Comptez sur notre plus grande vigilence et bienveillance !</p>
+                <p>{{trans('securite.comptez')}}</p>
 
                 <p>&nbsp;</p>
             </div>
