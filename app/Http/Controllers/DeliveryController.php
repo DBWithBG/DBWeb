@@ -123,24 +123,16 @@
                 return redirect()->back()->withInput($request->toArray());
             }
             $request = $request->toArray();
-            dd($request);
 
             $delivery = Delivery::find($request['delivery_id']);
-            $date_sliced = explode(' ',$request['datetimevalue'])[0];
-            $time_sliced = explode(' ',$request['datetimevalue'])[1];
-            if($request['datetimeend']) {
-                $date_sliced_end = explode(' ',$request['datetimeend'])[0];
-                $time_sliced_end = explode(' ',$request['datetimeend'])[1];
-                $end_date = Carbon::create(explode('/',$date_sliced_end)[2],explode('/',$date_sliced_end)[1],
-                    explode('/',$date_sliced_end)[0],explode(':',$time_sliced_end)[0], explode(':',$time_sliced_end)[1]);
-                $delivery->end_date = $end_date;
-            }
+
+                // EN 05/22/2019 3:32 AM
+            $delivery->end_date = Carbon::createFromFormat('m/d/Y h:m A', $request['datetimeend']);
 
             if(empty($request['bagages'])){
                 throw new \Error('Please enter a least a bag');
             }
-            $start_date = Carbon::create(explode('/',$date_sliced)[2],explode('/',$date_sliced)[1],
-                explode('/',$date_sliced)[0],explode(':',$time_sliced)[0], explode(':',$time_sliced)[1]);
+            $start_date = Carbon::createFromFormat('m/d/Y h:m A', $request['datetimevalue']);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
             $request['time_consigne'] = null;
