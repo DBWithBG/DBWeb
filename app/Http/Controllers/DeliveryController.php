@@ -132,7 +132,7 @@
             if(empty($request['bagages'])){
                 throw new \Error('Please enter a least a bag');
             }
-            $start_date = Carbon::createFromFormat('mm/dd/Y h:m A', $request['datetimevalue']);
+            $start_date = Carbon::createFromFormat('MM/DD/Y h:m A', $request['datetimevalue']);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
             $request['time_consigne'] = null;
