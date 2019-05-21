@@ -123,6 +123,7 @@
                 return redirect()->back()->withInput($request->toArray());
             }
             $request = $request->toArray();
+            dd($request);
 
             $delivery = Delivery::find($request['delivery_id']);
             $date_sliced = explode(' ',$request['datetimevalue'])[0];
