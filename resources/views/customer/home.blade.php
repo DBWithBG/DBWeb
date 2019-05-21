@@ -565,7 +565,7 @@
 
 
                     if (!(nb_bags > 0)) {
-                        swal("Veuillez saisir le nombre de bagages à transporter");
+                        swal("{{trans('home.bagsaisie')}}");
                     }
 
                     if (nb_bags > 0 && pos_depart_ok && pos_arrivee_ok) {
@@ -604,17 +604,17 @@
                             },
                             success: function (response) {
                                 swal({
-                                    title: 'Confirmer la prise en charge ?',
-                                    text: "Le prix de cette course est de " + parseFloat(response.price).toFixed(2) + " €",
+                                    title: '{{trans('home.conf')}}',
+                                    text: "{{trans('home.price')}} " + parseFloat(response.price).toFixed(2) + " €",
                                     icon: 'success',
                                     buttons: {
                                         cancel: false,
                                         canceled: {
-                                            text: "Annuler",
+                                            text: "{{trans('home.annuler')}}",
                                             value: "cancel"
                                         },
                                         roll: {
-                                            text: "Finaliser ma demande !",
+                                            text: "{{trans('home.finaliser')}}",
                                             value: "confirm",
                                         },
                                     },
@@ -631,7 +631,7 @@
                                         swal({
                                             icon: 'success',
                                             title: 'Annulation',
-                                            text: 'La prise en charge est annulée'
+                                            text: '{{trans('home.pa')}}'
                                         });
                                     }
                                 })
