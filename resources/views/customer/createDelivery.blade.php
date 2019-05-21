@@ -239,19 +239,16 @@
             }
 
             $('#retour-datetimepicker').datetimepicker({
-                format: 'mm/dd/yyyy H:i',
-                locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
+                language: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                 defaultDate: moment()
             });
 
             $('#datetimepicker4').datetimepicker({
-                format: 'dd/M/Y H:m',
-                locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
+                language: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                 defaultDate: moment()
             });
             $('#datetimepicker5').datetimepicker({
-                    format: 'mm/d/y H:m',
-                    locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
+                    language: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                     defaultDate: moment().add(2, 'hours')
             });
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
