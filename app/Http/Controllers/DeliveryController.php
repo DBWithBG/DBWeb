@@ -12,6 +12,7 @@
     use Carbon\Carbon;
     use CiroVargas\GoogleDistanceMatrix\GoogleDistanceMatrix;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Config;
     use Illuminate\Support\Facades\Input;
@@ -152,7 +153,7 @@
 
             $retour = false;
             if(!empty($request['has_retour']) && !empty($request['date_retour'])){
-                $delivery->date_retour = Carbon::createFromFormat("d/m/Y H:i",$request['date_retour']);
+                $delivery->date_retour = Carbon::createFromFormat(App::isLocale('fr') ? "d/m/Y H:i" : "m/d/Y H:i",$request['date_retour']);
                 $retour = true;
             }
 

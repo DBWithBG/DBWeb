@@ -239,16 +239,18 @@
             }
 
             $('#retour-datetimepicker').datetimepicker({
+                locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                 defaultDate: moment()
             });
 
             $('#datetimepicker4').datetimepicker({
+                locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                 defaultDate: moment()
             });
             $('#datetimepicker5').datetimepicker({
+                    locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                     defaultDate: moment().add(2, 'hours')
             });
-            $.datetimepicker.setDefaults( $.datetimepicker.regional[ "{{\Illuminate\Support\Facades\App::getLocale()}}" ] );
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
             $('#datetimepicker4').data("DateTimePicker").maxDate(moment().add(1, 'years'));
                 $('#datetimepicker5').data("DateTimePicker").minDate(moment().add(4, 'hours'));
