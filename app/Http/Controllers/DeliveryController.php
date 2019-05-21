@@ -133,7 +133,6 @@
                 throw new \Error('Please enter a least a bag');
             }
             $start_date = Carbon::createFromFormat('m/d/Y H:i A', $request['datetimevalue'])->format('d/m/Y H:i');
-            dd($delivery->end_date, $start_date);
             //$start_date = Carbon::createFromFormat('Y-m-j',$request['date_prise_en_charge']);
             //$start_date->setTimeFromTimeString($request['time_prise_en_charge']);
             $request['time_consigne'] = null;
