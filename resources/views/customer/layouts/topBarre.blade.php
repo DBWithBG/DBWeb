@@ -93,11 +93,11 @@
                                     @endif
                                     <ul class="languagepicker" style="margin-top: 20px;opacity: 0.6;background-color: transparent ">
                                         @if(\Illuminate\Support\Facades\App::isLocale('fr'))
-                                            <a  href="{{url('language/fr')}}"><li><img src="https://i65.tinypic.com/300b30k.png"/>{{trans('layout.francais')}}</li></a>
-                                            <a href="{{url('language/en')}}"><li><img src="https://i64.tinypic.com/fd60km.png"/>{{trans('layout.anglais')}}</li></a>
+                                            <a  href="{{url('language/fr')}}"><li><img src="{!! asset("img/minifr.png") !!}"/>{{trans('layout.francais')}}</li></a>
+                                            <a href="{{url('language/en')}}"><li><img src="{!! asset("img/minien.png") !!}"/>{{trans('layout.anglais')}}</li></a>
                                         @else
-                                            <a href="{{url('language/en')}}"><li><img src="https://i64.tinypic.com/fd60km.png"/>{{trans('layout.anglais')}}</li></a>
-                                            <a href="{{url('language/fr')}}"><li><img src="https://i65.tinypic.com/300b30k.png"/> {{trans('layout.francais')}}</li></a>
+                                            <a href="{{url('language/en')}}"><li><img src="{!! asset("img/minien.png") !!}"/>{{trans('layout.anglais')}}</li></a>
+                                            <a href="{{url('language/fr')}}"><li><img src="{!! asset("img/minifr.png") !!}"/> {{trans('layout.francais')}}</li></a>
                                         @endif
                                     </ul>
                                 </ul>
