@@ -248,7 +248,7 @@
                 defaultDate: moment()
             });
             $('#datetimepicker5').datetimepicker({
-                    locale: '{{\Illuminate\Support\Facades\App::getLocale()'}}',
+                    locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                     defaultDate: moment().add(2, 'hours')
             });
             $('#datetimepicker4').data("DateTimePicker").minDate(moment().add(2, 'hours'));
