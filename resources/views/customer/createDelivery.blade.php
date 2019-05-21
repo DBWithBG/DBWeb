@@ -245,7 +245,7 @@
             });
 
             $('#datetimepicker4').datetimepicker({
-                format: 'm/dd/yy H:m',
+                format: 'd/M/Y H:m',
                 locale: '{{\Illuminate\Support\Facades\App::getLocale()}}',
                 defaultDate: moment()
             });
