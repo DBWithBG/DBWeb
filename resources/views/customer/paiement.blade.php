@@ -1,7 +1,6 @@
 @extends('customer.layouts.app')
 
 @section('content')
-    {{dd($delivery)}}
     <section class="section sec-padding">
         <div class="containter">
         <div class="col-md-12">
