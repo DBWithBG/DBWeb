@@ -128,7 +128,7 @@
                                 <tr>
                                     <td style="font-size: 30px; text-align:center;">
                                         <br>
-                                        Bienvenue sur Deliverbag
+                                        {{trans('confirmation_email.welcome')}}
                                         <br>
                                         <br>
                                     </td>
@@ -143,7 +143,7 @@
                                             <table style="margin:0 auto;" cellspacing="0" cellpadding="0" class="force-width-80">
                                                 <tr>
                                                     <td style="vertical-align:top; color:#187272; font-weight:bold;">
-                                                        Confirmer votre adresse mail
+                                                        {{trans('confirmation_email.conf')}}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -159,8 +159,8 @@
                                                     <td style="color:#187272;">
                                                         <br>
                                                         <br>
-                                                        Votre compte deliverbag a bien été créé, pour compléter votre inscription, veuillez vous rendre <a href="{{url('/confirmEmail?email=' . $customer->user->email . '&token=' . $token)}}">ici</a>
-                                                        pour valider votre adresse mail.
+                                                        {{trans('confirmation_email.votre')}}<a href="{{url('/confirmEmail?email=' . $customer->user->email . '&token=' . $token)}}">{{trans('confirmation_email.ici')}}</a>
+                                                        {{trans('confirmation_email.pour')}}
                                                         <br>
                                                         <br>
                                                     </td>
@@ -180,7 +180,7 @@
                                                     <td style="color:#187272;">
                                                         <br>
                                                         <br>
-                                                        L'équipe DeliverBag.
+                                                        {{trans('confirmation_email.deliverbag')}}
                                                         <br>
                                                         <br>
                                                     </td>
