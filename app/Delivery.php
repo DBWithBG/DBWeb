@@ -140,7 +140,11 @@ class Delivery extends Model
         if(!strpos($priceLine->postal_codes, $start_position->postal_code) && !strpos($priceLine->postal_codes, $end_position->postal_code)) {
             $remuneration_deliver = round($priceLine->price_per_bag*$nb_bags,2);
         }else {
-            $remuneration_deliver = round($priceLine->price_hors_postal*$nb_bags,2);
+            $diff = $nb_bags - 3;
+            $remuneration_deliver = round($priceLine->price_hors_postal,2);
+            if($diff > 0) {
+                $remuneration_deliver += round($priceLine->price_hors_postal_supp*$diff,2);
+            }
         }
         //if($retour) $total = round($remuneration_driver + $remuneration_deliver + $priceLine->to_add_retour, 2);
         if($retour) {
