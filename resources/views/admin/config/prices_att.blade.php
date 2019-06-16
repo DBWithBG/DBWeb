@@ -64,7 +64,7 @@
                                         <label class="col-sm-5 col-form-label">Codes postaux correspondant au prix:</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <textarea required name="postal_codes" class="form-control" style="height: 100px">{{$price->postal_codes}}</textarea>
+                                                <textarea required name="postal_codes" class="form-control" style="height: 200px!important;">{{$price->postal_codes}}</textarea>
                                             </div>
                                         </div>
                                     </div>
