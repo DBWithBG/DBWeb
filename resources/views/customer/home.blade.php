@@ -402,6 +402,7 @@
             //var bdx_metropole = {33130, 33370 ,33110,33170,33700,33185,33530,33127,33400,33810,33290,33150,33520,33160,33310,33440,33270,33140,33560,33600,33320,33800,33100,33000,33200,33300};
             var res = place.address_components;
             var found = false;
+            console.log(place);
             for(i=0; i< res.length; i++) {
                 if(res[i].types.includes("administrative_area_level_2")) {
                     for (var k = 0; k < departments.length; k++) {

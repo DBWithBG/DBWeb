@@ -37,7 +37,7 @@
                                   method="post" class="form-horizontal">
                                 <div class="card-header card-header-primary card-header-icon">
                                     <div class="card-text">
-                                        <h4 class="card-title">Ajouter un prix (ancienne manière)</h4>
+                                        <h4 class="card-title">Ajouter un prix site web</h4>
                                     </div>
 
                                 </div>
@@ -57,6 +57,15 @@
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <input required type="number" step="0.01" name="price_ret_per_bag" value="{{$price->price_ret_per_bag}}" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Départements correspondant au prix:</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <textarea required name="postal_code" value="{{$price->price_ret_per_bag}}" class="form-control">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
