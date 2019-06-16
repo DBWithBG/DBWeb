@@ -124,7 +124,16 @@
             }
             $request = $request->toArray();
 
+
             $delivery = Delivery::find($request['delivery_id']);
+            $delivery->startPosition->address = $request['start_position']['address'];
+            $delivery->startPosition->postal_code = $request['start_position']['postal_code'];
+            $delivery->endPosition->address = $request['end_position']['address'];
+            $delivery->endPosition->postal_code = $request['end_position']['postal_code'];
+            $delivery->startPosition->save();
+            $delivery->endPosition->save();
+
+            $end_position = Position::create($request['end_position']);
 
                 // EN 05/22/2019 3:32 AM
             $delivery->end_date = Carbon::createFromFormat(App::isLocale('en') ?'m/d/Y H:i A' : 'd/m/Y H:i', $request['datetimeend']);
