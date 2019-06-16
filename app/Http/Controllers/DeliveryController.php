@@ -151,7 +151,7 @@
             }
 
 
-            $prices = Delivery::computePrice($request['bagages'], null, null, $delivery->distance, $start_date, $retour);
+            $prices = Delivery::computePrice($request['bagages'], $delivery->startPosition, $delivery->endPosition, $delivery->distance, $start_date, $retour);
             $delivery->price = $prices['total'];
             $delivery->remuneration_driver = $prices['remuneration_driver'];
             $delivery->remuneration_deliver = $prices['remuneration_deliver'];
