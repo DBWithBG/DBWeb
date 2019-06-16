@@ -583,13 +583,16 @@
 
                             lat: place_depart.geometry.location.lat(),
                             lng: place_depart.geometry.location.lng(),
-                            address: $('#adresse_input_depart').val()
+                            address: $('#adresse_input_depart').val(),
+                            postal_code: place_depart.address_components.find(comp => comp.types[0] === "postal_code")
                         };
                         end_position = {
                             lat: place_arrivee.geometry.location.lat(),
                             lng: place_arrivee.geometry.location.lng(),
-                            address: $('#adresse_input_arrivee').val()
+                            address: $('#adresse_input_arrivee').val(),
+                            postal_code: place_arrivee.address_components.find(comp => comp.types[0] === "postal_code")
                         };
+                        console.log(start_position, end_position)
 
 
                         $.ajax({
