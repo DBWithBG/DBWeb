@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="À Bordeaux et en région Aquitaine, faites confiance à notre équipe de professionnels Deliverbag pour assurer la livraison de vos bagages, qu’importe l’endroit et l’heure. Un luxe abordable grâce à notre service innovant."/>
+    <meta name="description" content="Deliverbag est une start-up spécialisée dans la livraison, la consigne et le portage de bagages.
+Notre objectif est de faciliter le déplacement de tous les voyageurs en offrant liberté, confort, et sérénité."/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
