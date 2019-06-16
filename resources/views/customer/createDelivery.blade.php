@@ -58,6 +58,8 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <input type="hidden" id="start_postal" name="start_position[postal_code]" value="{{$delivery->startPosition->postal_code}}">
+                                                <input type="hidden" id="end_postal" name="end_position[postal_code]" value="{{$delivery->endPosition->postal_code}}">
                                                 <div class="row row-margin">
                                                     <div class="col-md-12">
                                                         <label for="email" class="field-label" ><strong>{{trans('createDelivery.datepc')}}</strong></label>
@@ -386,6 +388,7 @@
                         if (verifyDepartment(this.getPlace())) {
                             pos_depart_ok = true;
                             place_depart = this.getPlace();
+                            $('#start_postal').val(place_depart.address_components.find(comp => comp.types[0] === "postal_code").long_name)
                         } else {
                             printErrorDepartments(true);
                             $('#adresse_input_depart').val('');
@@ -398,6 +401,7 @@
                     if (verifyDepartment(this.getPlace())) {
                         pos_arrivee_ok = true;
                         place_arrivee = this.getPlace();
+                        $('#end_postal').val(place_arrivee.address_components.find(comp => comp.types[0] === "postal_code").long_name)
                     } else {
                         printErrorDepartments(false);
                         $('#adresse_input_arrivee').val('');
