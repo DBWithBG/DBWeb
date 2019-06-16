@@ -61,11 +61,20 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-sm-5 col-form-label">Départements correspondant au prix:</label>
+                                        <label class="col-sm-5 col-form-label">Codes postaux correspondant au prix:</label>
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <textarea required name="postal_code" value="{{$price->price_ret_per_bag}}" class="form-control">
+                                                <textarea required name="postal_codes" class="form-control">
+                                                    {{$price->postal_codes}}
                                                 </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-5 col-form-label">Prix hors zone code postaux</label>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input required type="number" step="0.01" name="price_hors_postal" value="{{$price->price_hors_postal}}" class="form-control">
                                             </div>
                                         </div>
                                     </div>

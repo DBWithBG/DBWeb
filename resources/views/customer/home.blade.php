@@ -402,7 +402,6 @@
             //var bdx_metropole = {33130, 33370 ,33110,33170,33700,33185,33530,33127,33400,33810,33290,33150,33520,33160,33310,33440,33270,33140,33560,33600,33320,33800,33100,33000,33200,33300};
             var res = place.address_components;
             var found = false;
-            console.log(place);
             for(i=0; i< res.length; i++) {
                 if(res[i].types.includes("administrative_area_level_2")) {
                     for (var k = 0; k < departments.length; k++) {
@@ -584,15 +583,14 @@
                             lat: place_depart.geometry.location.lat(),
                             lng: place_depart.geometry.location.lng(),
                             address: $('#adresse_input_depart').val(),
-                            postal_code: place_depart.address_components.find(comp => comp.types[0] === "postal_code")
+                            postal_code: place_depart.address_components.find(comp => comp.types[0] === "postal_code").long_name
                         };
                         end_position = {
                             lat: place_arrivee.geometry.location.lat(),
                             lng: place_arrivee.geometry.location.lng(),
                             address: $('#adresse_input_arrivee').val(),
-                            postal_code: place_arrivee.address_components.find(comp => comp.types[0] === "postal_code")
+                            postal_code: place_arrivee.address_components.find(comp => comp.types[0] === "postal_code").long_name
                         };
-                        console.log(start_position, end_position)
 
 
                         $.ajax({
