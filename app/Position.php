@@ -15,7 +15,7 @@ class Position extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'lat', 'lng', 'type', 'created_at', 'updated_at'
+        'name', 'address', 'lat', 'lng', 'type', 'created_at', 'updated_at', 'postal_code'
     ];
 
     public function deliveryStart()
