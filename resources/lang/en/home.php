@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'vosbags' => 'Your bags',
+    'vosbags' => 'Your luggages',
     'mission' => 'Our mission',
-    'pc' => 'Place of takeover',
-    'lv' => 'Place of delivery',
-    'nbBags' => 'Number of bags',
+    'pc' => 'Pick up location',
+    'lv' => 'Delivery location',
+    'nbBags' => 'Number of luggages',
     'valider' => 'Validate',
     'bagssaisie' => 'Please enter the number of your bags',
     'conf' => 'Confirm the takeover ?',
