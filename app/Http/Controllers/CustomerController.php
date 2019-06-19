@@ -20,6 +20,12 @@ use Validator;
 
 class CustomerController extends Controller
 {
+
+
+    public function createAccesPro(Request $request) {
+        dd($request);
+    }
+
     //Accueil pour les customers
     public function home(){
         if(Auth::check() && Auth::user()->admin){

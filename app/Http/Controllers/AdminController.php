@@ -32,9 +32,6 @@ class AdminController extends Controller
         $this->middleware('admin')->except(['login']);
     }
 
-    public function createAccesPro(Request $request) {
-        dd($request);
-    }
 
 
     /**
