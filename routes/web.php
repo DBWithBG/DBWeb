@@ -144,7 +144,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 /*************************** FRONT CUSTOMER **************************************/
 
 Route::post('/pro/create', 'CustomerController@createAccesPro');
-Route::get('/user/:id/validate', 'AdminController@validateAccesPro');
+Route::get('/user/{id}/validate', 'AdminController@validateAccesPro');
 //Route::get('/home', 'CustomerController@home');
 
 
