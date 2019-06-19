@@ -119,7 +119,10 @@
         //Enregistrement d'une demande 2eme étape (saisie des bagages en plus)
         public function postBagsWithDelivery(Request $request){
             if(! Auth::user()->is_confirmed){
-                Session::flash('success', 'Veuillez cliquer sur le lien envoyé par email pour continuer');
+                if(Auth::user()->is_pro)
+                    Session::flash('success', 'Veuillez attendre la validation de votre compte par l\'équipe de deliverbag avant de continuer');
+                else
+                    Session::flash('success', 'Veuillez cliquer sur le lien envoyé par email pour continuer');
                 return redirect()->back()->withInput($request->toArray());
             }
             $request = $request->toArray();
