@@ -49,7 +49,7 @@
                                         <thead class="text-center">
                                         <tr>
                                             <th>Prénom - Nom</th>
-                                            <th>Date d'anniversaire</th>
+                                            <th>Professionel</th>
                                             <th>Téléphone</th>
                                             <th>Nombre de courses</th>
                                             <th>Inscrit le</th>
@@ -63,7 +63,14 @@
                                             <tr class="text-center customer-{{$customer->id}}" >
                                                 <td><a href="{{url('/backoffice/customer/'. $customer->id )}}">{{ $customer->surname .' - ' . $customer->name}}</a>
                                                 </td>
-                                                <td>{{ $customer->birth_date }}</td>
+                                                <td>
+                                                    @if($customer->user->is_pro)
+                                                        siret: {{$customer->user->pro_siret}}<br>
+                                                        référent: {{$customer->user->pro_referent}}<br>
+                                                        adresse: {{$customer->user->pro_adresse}}
+
+                                                        @endif
+                                                </td>
                                                 <td>{{$customer->phone}}</td>
                                                 <td>{{sizeof($customer->deliveries)}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($customer->created_at)->format('d/m/Y') }}</td>
