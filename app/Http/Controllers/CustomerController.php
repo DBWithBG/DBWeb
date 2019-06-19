@@ -27,7 +27,7 @@ class CustomerController extends Controller
         $request = $request->toArray();
 
         $user = User::create([
-            'name' => $request['raison'],
+            'name' => $request['raison_sociale'],
             'surname' => $request['raison_sociale'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
