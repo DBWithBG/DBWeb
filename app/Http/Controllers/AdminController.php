@@ -14,6 +14,7 @@ use App\Justificatif;
 use App\Partner;
 use App\Price;
 use App\TypeBag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -30,6 +31,14 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('admin')->except(['login']);
+    }
+
+    public function validateAccesPro($id) {
+        $user = User::find($id);
+        $user->is_confirmed = true;
+        $user->save();
+        Session::flash('message', 'User '.$user->name. 'validé');
+        return redirect()->back();
     }
 
 
