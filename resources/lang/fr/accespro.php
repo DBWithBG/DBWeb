@@ -15,4 +15,12 @@ return [
     'email' => 'E-mail',
     'tel' => 'Tél',
 
+    'raison_sociale' => 'Raison sociale',
+    'telephone' => 'Téléphone',
+    'siret' => 'Siret',
+    'raison_sociale' => 'Contact référent',
+    'email' => 'Email',
+    'password' => 'Mot de passe'
+
+
 ];

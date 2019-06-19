@@ -94,7 +94,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" id="siret"
-                                                                          name="siret"
+                                                                          name="siret" class="gui-input"
                                                                           placeholder="{{trans('accespro.siret')}}">
                                                                 <span class="field-icon"><i class="fa fa-comments"></i></span>
                                                             </label>
@@ -104,7 +104,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input required type="text" id="referent"
-                                                                          name="referent"
+                                                                          name="referent" class="gui-input"
                                                                           placeholder="{{trans('accespro.referent')}}">
                                                                 <span class="field-icon"><i class="fa fa-comments"></i></span>
                                                             </label>
@@ -114,7 +114,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input required type="email" id="email"
-                                                                          name="email"
+                                                                          name="email" class="gui-input"
                                                                           placeholder="{{trans('accespro.email')}}">
                                                                 <span class="field-icon"><i class="fa fa-comments"></i></span>
                                                             </label>
@@ -124,7 +124,7 @@
                                                              class="section">
                                                             <label class="field prepend-icon">
                                                                 <input id="password" required type="password"
-                                                                       name="password"
+                                                                       name="password" class="gui-input"
                                                                        placeholder="{{trans('accespro.password')}}">
                                                                 <span class="field-icon"><i class="fa fa-password"></i></span>
                                                             </label>
