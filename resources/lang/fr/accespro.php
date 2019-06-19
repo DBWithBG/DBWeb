@@ -4,8 +4,7 @@ return [
     'accueil' => 'Accueil',
     'contact' => 'Contact',
     'demande' => 'Demander un accès professionnel',
-    'question' => 'Pour toute question, n\'hésitez pas à nous contacter via ce formulaire. Nous vous
-                                    répondrons dans les plus brefs délais.',
+    'question' => 'Vous pouvez ici faire une demande d\'accs en temps que professionel, cela nécessitera une validation de la part de Deliverbag avant utilisation de votre compte',
     'nom' => 'Nom',
     'prenom' => 'Prénom',
     'aemail' => 'Adresse email',
@@ -19,7 +18,6 @@ return [
     'telephone' => 'Téléphone',
     'siret' => 'Siret',
     'referent' => 'Contact référent',
-    'email' => 'Email',
     'password' => 'Mot de passe'
 
 
