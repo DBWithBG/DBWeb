@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AuthorizedDepartment;
 use App\Bag;
+use App\Customer;
 use App\Delivery;
 use App\Dispute;
 use App\Rating;
@@ -23,7 +24,31 @@ class CustomerController extends Controller
 
 
     public function createAccesPro(Request $request) {
-        dd($request);
+        $request = $request->toArray();
+
+        $user = User::create([
+            'name' => $request['raison'],
+            'surname' => $request['raison_sociale'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'admin' => false,
+            'is_confirmed' => false,
+            'is_pro' => true,
+            'pro_telephone' => $request['telephone'],
+            'pro_siret' => $request['siret'],
+            'pro_adresse' => $request['adresse'],
+            'pro_referent' => $request['referent'],
+        ]);
+
+        $customer = Customer::create([
+            'user_id' => $user->id,
+            'surname' => $user->surname,
+            'phone' => $user->pro_telephone,
+            'is_pro' => true
+        ]);
+        Session::flash('message', 'inscription réussie');
+
+        return redirect('/');
     }
 
     //Accueil pour les customers
