@@ -25,8 +25,13 @@
                         @endif
 
                     </h4>
+                    @if(!$delivery->customer->is_pro)
                     <h3 style="margin-left: 30%">{{trans('paiement.total')}}: {{$delivery->price}} €</h3>
                     <button type="submit" class="btn btn-primary btn-success" style="margin-left: 43%; margin-top: 50px">{{trans('paiement.paiement')}}</button><br><br>
+                    @else
+                        <h3>Saisie des informations client</h3>
+                        <button type="submit" class="btn btn-primary btn-success" style="margin-left: 43%; margin-top: 50px">Validation sans paiement</button><br><br>
+                        @endif
                     <hr>
                 </div>
                 {{csrf_field()}}
