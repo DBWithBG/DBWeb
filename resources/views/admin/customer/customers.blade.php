@@ -76,7 +76,9 @@
                                                 <td>{{ \Carbon\Carbon::parse($customer->created_at)->format('d/m/Y') }}</td>
 
                                                 <td class="text-right">
-
+                                                    @if($customer->user->is_pro)
+                                                        <a href="{{url('user/'.$customer->user->id.'/validate')}}">Valider le compte</a>
+                                                        @endif
                                                     <button data-idCustomer="{{$customer->id}}"
                                                             class="delete btn btn-link btn-danger btn-just-icon remove"><i
                                                                 class="material-icons">close</i></button>
