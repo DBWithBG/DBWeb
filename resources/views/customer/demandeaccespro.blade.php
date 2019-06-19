@@ -12,7 +12,7 @@
                     <div class="col-md-6">
                         <ol class="breadcrumb">
                             <li><a href="{{url('/')}}">{{trans('accespro.accueil')}}</a></li>
-                            <li class="current"><a href="{{url('/contact')}}">{{trans('accespro.contact')}}</a></li>
+                            <li class="current"><a href="{{url('/accespro')}}">Accès professionnel</a></li>
                         </ol>
                     </div>
                 </div>

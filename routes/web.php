@@ -143,7 +143,7 @@ Route::get('driver/confirmEmail', 'DriverController@confirmEmail');
 
 /*************************** FRONT CUSTOMER **************************************/
 
-
+Route::post('/pro/create', )
 //Route::get('/home', 'CustomerController@home');
 
 
