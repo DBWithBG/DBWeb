@@ -46,6 +46,8 @@ class CustomerController extends Controller
             'phone' => $user->pro_telephone,
             'is_pro' => true
         ]);
+
+        Auth::guard()->login($user);
         Session::flash('message', 'inscription réussie');
 
         return redirect('/');
