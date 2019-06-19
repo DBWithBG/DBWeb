@@ -153,7 +153,7 @@ Route::get('/aide', function() { return view('customer.aide');});
 Route::get('/mentionslegales', function() { return view('customer.mentionslegales');});
 Route::get('/confiance', function() { return view('customer.confiance');});
 Route::get('/securite', function() { return view('customer.securite');});
-Route::get('/accespro', function() { return view('customer.demandeaccesspro');});
+Route::get('/accespro', function() { return view('customer.demandeaccespro');});
 Route::get('/tgc', 'CustomerController@tgc'); // tgc = Termes générales et conditions
 
 Route::get('/contact', 'CustomerController@contact');
