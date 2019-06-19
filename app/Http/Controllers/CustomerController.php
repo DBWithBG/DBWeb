@@ -28,7 +28,6 @@ class CustomerController extends Controller
 
         $user = User::create([
             'name' => $request['raison_sociale'],
-            'surname' => $request['raison_sociale'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
             'admin' => false,
@@ -42,7 +41,7 @@ class CustomerController extends Controller
 
         $customer = Customer::create([
             'user_id' => $user->id,
-            'surname' => $user->surname,
+            'surname' => $user->name,
             'phone' => $user->pro_telephone,
             'is_pro' => true
         ]);
