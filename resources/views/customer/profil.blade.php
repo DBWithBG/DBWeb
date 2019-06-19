@@ -29,8 +29,12 @@
                         <span class="alert-closebtn"
                               onclick="this.parentElement.style.display='none';">&times;</span>
                 <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></strong>
+                @if(\Illuminate\Support\Facades\Auth::user()->is_pro)
+                    Veuillez attendre que Deliverbag accepte vore inscription.
+                    @else
                 &nbsp; {{trans('profil.veuillez')}}<a class="text-white"
                                                                      href="{{url('/resendConfirmationEmail')}}"><strong>{{trans('profil.click')}}</strong></a>.
+                    @endif
             </div>
         </div>
     </div>

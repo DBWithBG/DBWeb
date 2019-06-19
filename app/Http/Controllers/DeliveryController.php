@@ -120,7 +120,7 @@
         public function postBagsWithDelivery(Request $request){
             if(! Auth::user()->is_confirmed){
                 if(Auth::user()->is_pro)
-                    Session::flash('success', 'Veuillez attendre la validation de votre compte par l\'équipe de deliverbag avant de continuer');
+                    Session::flash('success', 'Veuillez attendre la validation de votre compte par Deliverbag avant de continuer');
                 else
                     Session::flash('success', 'Veuillez cliquer sur le lien envoyé par email pour continuer');
                 return redirect()->back()->withInput($request->toArray());
