@@ -75,7 +75,7 @@
                                                                        id="adresse" class="gui-input"
                                                                        placeholder="{{trans('accespro.adresse')}}">
                                                                 <span class="field-icon"><i
-                                                                            class="fa fa-user"></i></span>
+                                                                            class="fa fa-location-arrow"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
 
@@ -85,7 +85,7 @@
                                                                 <input required type="text" name="telephone"
                                                                        id="telephone" class="gui-input"
                                                                        placeholder="{{trans('accespro.telephone')}}">
-                                                                <span class="field-icon"><i class="fa fa-envelope"></i></span>
+                                                                <span class="field-icon"><i class="fa fa-"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
 
@@ -96,7 +96,7 @@
                                                                 <input required type="text" id="siret"
                                                                           name="siret" class="gui-input"
                                                                           placeholder="{{trans('accespro.siret')}}">
-                                                                <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                                                <span class="field-icon"><i class="fa fa-user"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
 
@@ -106,7 +106,7 @@
                                                                 <input required type="text" id="referent"
                                                                           name="referent" class="gui-input"
                                                                           placeholder="{{trans('accespro.referent')}}">
-                                                                <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                                                <span class="field-icon"><i class="fa fa-user"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
 
@@ -116,7 +116,7 @@
                                                                 <input required type="email" id="email"
                                                                           name="email" class="gui-input"
                                                                           placeholder="{{trans('accespro.email')}}">
-                                                                <span class="field-icon"><i class="fa fa-comments"></i></span>
+                                                                <span class="field-icon"><i class="fa fa-envelope"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
 
