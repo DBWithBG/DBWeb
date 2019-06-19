@@ -18,7 +18,7 @@ return [
     'raison_sociale' => 'Raison sociale',
     'telephone' => 'Téléphone',
     'siret' => 'Siret',
-    'raison_sociale' => 'Contact référent',
+    'referent' => 'Contact référent',
     'email' => 'Email',
     'password' => 'Mot de passe'
 

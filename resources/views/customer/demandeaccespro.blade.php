@@ -55,7 +55,7 @@
                                         <div class="smart-wrap">
                                             <div class="smart-forms smart-container transparent wrap-full">
                                                 <div class="form-body no-padd">
-                                                    <form method="post" action="{{url('/contact')}}" id="smart-form">
+                                                    <form method="post" action="{{url('/pro/create')}}" id="smart-form">
 
                                                         {{csrf_field()}}
                                                         <div style="padding-bottom: 0px !important; padding-top: 0px !important;"
@@ -85,7 +85,7 @@
                                                                 <input required type="text" name="telephone"
                                                                        id="telephone" class="gui-input"
                                                                        placeholder="{{trans('accespro.telephone')}}">
-                                                                <span class="field-icon"><i class="fa fa-"></i></span>
+                                                                <span class="field-icon"><i class="fa fa-phone"></i></span>
                                                             </label>
                                                         </div><!-- end section -->
 
