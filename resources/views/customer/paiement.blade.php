@@ -5,6 +5,10 @@
         <div class="containter">
         <div class="col-md-12">
             <div class="text-box white padding-4">
+                <div class="smartforms-modal-body">
+                    <div class="smart-wrap">
+                        <div class="smart-forms smart-container transparent wrap-full">
+                            <div class="form-body no-padd">
             @if(!$delivery->customer->is_pro)
             <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
                 @endif
@@ -90,12 +94,7 @@
                                 <button type="submit" class="btn btn-primary btn-success">Validation la course</button><br><br>
                                 {{csrf_field()}}
                             </form>
-                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         @endif
                     <hr>
                 </div>
@@ -104,6 +103,12 @@
                 {{csrf_field()}}
             </form>
                 @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </div>
         </div>
