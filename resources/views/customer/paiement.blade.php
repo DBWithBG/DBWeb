@@ -31,7 +31,54 @@
                     @else
                         <div class="text-center">
                         <h3>Saisie des informations client</h3>
-                        <button type="submit" class="btn btn-primary btn-success">Validation sans paiement</button><br><br>
+                            <form method="post" action="{{url("savebags/delivery")}}" id="account">
+                                <div class="row row-margin">
+                                    <div class="col-md-12">
+                                        <label for="email" class="field-label" ><strong>Nom du client</strong></label>
+                                        <label class="field prepend-icon">
+                                            <input required type="text"  class="gui-input" id="input_nb_bags" name="customer_name" placeholder="Nom"/>
+                                            <span class="field-icon"><i class="fa fa-user" style="color : black"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row row-margin">
+                                    <div class="col-md-12">
+                                        <label for="email" class="field-label" ><strong>Prénom du client</strong></label>
+                                        <label class="field prepend-icon">
+                                            <input required type="text"  class="gui-input"  name="customer_surname" placeholder="Prénom"/>
+                                            <span class="field-icon"><i class="fa fa-user" style="color : black"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row row-margin">
+                                    <div class="col-md-12">
+                                        <label for="email" class="field-label" ><strong>Email du client</strong></label>
+                                        <label class="field prepend-icon">
+                                            <input required type="text"  class="gui-input"  name="customer_email" placeholder="Email"/>
+                                            <span class="field-icon"><i class="fa fa-envelope" style="color : black"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row row-margin">
+                                    <div class="col-md-12">
+                                        <label for="email" class="field-label" ><strong>Téléphone du client</strong></label>
+                                        <label class="field prepend-icon">
+                                            <input required type="text"  class="gui-input"  name="customer_phone" placeholder="Téléphone"/>
+                                            <span class="field-icon"><i class="fa fa-phone" style="color : black"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row row-margin">
+                                    <div class="col-md-12">
+                                        <label for="email" class="field-label" ><strong>Commentaire</strong></label>
+                                        <label class="field prepend-icon">
+                                            <textarea type="text"  class="gui-input"  name="customer_commentaire" placeholder="Commentaire relatif à la course"></textarea>
+                                            <span class="field-icon"><i class="fa fa-comment" style="color : black"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-success">Validation la course</button><br><br>
+                            </form>
                         </div>
                         @endif
                     <hr>
