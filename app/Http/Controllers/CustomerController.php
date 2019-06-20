@@ -52,6 +52,23 @@ class CustomerController extends Controller
         return redirect('/');
     }
 
+    public function proSaveDelivery(Request $request) {
+        $request = $request->toArray();
+
+        $delivery = Delivery::find($request['delivery_id']);
+
+        $delivery->pro_cust_name = $request['cust_name'];
+        $delivery->pro_cust_surname = $request['cust_surname'];
+        $delivery->pro_cust_email = $request['cust_email'];
+        $delivery->pro_cust_tel = $request['cust_tel'];
+        $delivery->is_pro = true;
+        $delivery->save();
+
+        Session::flash('message', 'Commande n°'.$delivery->id.' validée');
+        return redirect('/');
+
+    }
+
     //Accueil pour les customers
     public function home(){
         if(Auth::check() && Auth::user()->admin){

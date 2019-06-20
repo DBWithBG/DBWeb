@@ -21,7 +21,8 @@ class Delivery extends Model
     protected $fillable = [
         'name', 'start_date','surname', 'comment', 'price', 'created_at', 'updated_at', 'start_position_id', 'remuneration_driver', 'remuneration_deliver', 'nb_bags',
 
-        'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance', 'no_train', 'no_flight', 'time_consigne', 'end_date', 'promo_code_id'
+        'end_position_id', 'customer_id', 'status', 'estimated_time', 'distance', 'no_train', 'no_flight', 'time_consigne', 'end_date', 'promo_code_id',
+        'pro_cust_name', 'pro_cust_surname', 'pro_cust_email', 'pro_cust_tel', 'is_pro'
     ];
 
     protected $hidden = [
