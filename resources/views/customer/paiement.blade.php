@@ -2,7 +2,6 @@
 
 @section('content')
     <section class="section sec-padding">
-        <div class="containter">
         <div class="col-md-12">
             <div class="text-box white padding-4">
                 <div class="smartforms-modal-body">
@@ -38,11 +37,6 @@
                 </div>
                     @else
                         <div class="col-md-12">
-                            <div class="text-box white padding-4">
-                                <div class="smartforms-modal-body">
-                                    <div class="smart-wrap">
-                                        <div class="smart-forms smart-container transparent wrap-full">
-                                            <div class="form-body no-padd">
                         <h3>Saisie des informations client</h3>
                             <form method="post" action="{{url("savebags/delivery")}}" id="account">
                                 <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
