@@ -4,6 +4,7 @@
     <section class="section sec-padding">
         <div class="containter">
         <div class="col-md-12">
+            <div class="text-box white padding-4">
             @if(!$delivery->customer->is_pro)
             <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
                 @endif
@@ -30,6 +31,7 @@
                     @if(!$delivery->customer->is_pro)
                     <h3 style="margin-left: 30%">{{trans('paiement.total')}}: {{$delivery->price}} €</h3>
                     <button type="submit" class="btn btn-primary btn-success" style="margin-top: 50px">{{trans('paiement.paiement')}}</button><br><br>
+                </div>
                     @else
                         <div class="col-md-12">
                             <div class="text-box white padding-4">
