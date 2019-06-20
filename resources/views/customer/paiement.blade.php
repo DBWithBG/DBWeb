@@ -76,16 +76,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row row-margin">
-                                    <div class="col-md-12">
-                                        <label for="email" class="field-label" ><strong>Commentaire</strong></label>
-                                        <label class="field prepend-icon">
-                                            <textarea type="text"  class="gui-input"  name="customer_commentaire" placeholder="Commentaire relatif à la course"></textarea>
-                                            <span class="field-icon"><i class="fa fa-comment" style="color : black"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-success" style="margin-top: 10px">Validation la course</button><br><br>
+                                <button type="submit" class="btn btn-primary btn-success" style="margin-top: 10px">Valider la course</button><br><br>
                                 {{csrf_field()}}
                             </form>
 

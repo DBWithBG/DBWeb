@@ -66,7 +66,10 @@
                                         @foreach($deliveries as $delivery)
                                             <tr class="text-center delivery-{{$delivery->id}}">
 
-                                                <td>{{ $delivery->comment }}</td>
+                                                <td>
+                                                    {{ $delivery->comment }}
+
+                                                </td>
                                                 <td>{{$delivery->price}} € </td>
                                                 <td>
                                                     @if($delivery->nb_bags == 0)
