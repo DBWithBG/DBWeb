@@ -57,10 +57,10 @@ class CustomerController extends Controller
 
         $delivery = Delivery::find($request['delivery_id']);
 
-        $delivery->pro_cust_name = $request['cust_name'];
-        $delivery->pro_cust_surname = $request['cust_surname'];
-        $delivery->pro_cust_email = $request['cust_email'];
-        $delivery->pro_cust_tel = $request['cust_tel'];
+        $delivery->pro_cust_name = $request['customer_name'];
+        $delivery->pro_cust_surname = $request['customer_surname'];
+        $delivery->pro_cust_email = $request['customer_email'];
+        $delivery->pro_cust_tel = $request['customer_tel'];
         $delivery->is_pro = true;
         $delivery->save();
 
