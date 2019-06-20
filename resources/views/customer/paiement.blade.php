@@ -10,8 +10,8 @@
                 <div class="form-body">
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
-                    <h1 style="margin-left: 32%">{{trans('paiement.recap')}}</h1><br>
-                    <h4 style="margin-left: 30%">
+                    <h1>{{trans('paiement.recap')}}</h1><br>
+                    <h4>
                         {{trans('paiement.lp')}}: <strong>{{$delivery->startPosition->address}}</strong><br>
                         {{trans('paiement.datepc')}}: <strong>{{\Carbon\Carbon::parse($delivery->start_date)->format(App::isLocale('en') ?'m/d/Y H:i A' : 'd/m/Y H:i')}}</strong><br>
                         {{trans('paiement.ll')}}: <strong>{{$delivery->endPosition->address}}</strong><br>
@@ -29,7 +29,7 @@
                     </h4>
                     @if(!$delivery->customer->is_pro)
                     <h3 style="margin-left: 30%">{{trans('paiement.total')}}: {{$delivery->price}} €</h3>
-                    <button type="submit" class="btn btn-primary btn-success" style="margin-left: 43%; margin-top: 50px">{{trans('paiement.paiement')}}</button><br><br>
+                    <button type="submit" class="btn btn-primary btn-success" style="margin-top: 50px">{{trans('paiement.paiement')}}</button><br><br>
                     @else
                         <div class="col-md-12">
                             <div class="text-box white padding-4">
