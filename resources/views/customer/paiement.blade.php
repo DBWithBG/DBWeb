@@ -38,7 +38,7 @@
                     @else
                         <div class="col-md-12">
                         <h3>Saisie des informations client</h3>
-                            <form method="post" action="{{url("savebags/delivery")}}" id="account">
+                            <form method="post" action="{{url("pro/saveDelivery")}}" id="account">
                                 <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
                                 <div class="row row-margin">
                                     <div class="col-md-12">
@@ -85,7 +85,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-success">Validation la course</button><br><br>
+                                <button type="submit" class="btn btn-primary btn-success" style="margin-top: 10px">Validation la course</button><br><br>
                                 {{csrf_field()}}
                             </form>
 
