@@ -60,7 +60,7 @@ class CustomerController extends Controller
         $delivery->pro_cust_name = $request['customer_name'];
         $delivery->pro_cust_surname = $request['customer_surname'];
         $delivery->pro_cust_email = $request['customer_email'];
-        $delivery->pro_cust_tel = $request['customer_tel'];
+        $delivery->pro_cust_tel = $request['customer_phone'];
         $delivery->is_pro = true;
         $delivery->save();
 
