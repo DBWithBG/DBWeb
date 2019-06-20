@@ -4,7 +4,9 @@
     <section class="section sec-padding">
         <div class="containter">
         <div class="col-md-12">
+            @if(!$delivery->customer->is_pro)
             <form method="post" action="{{"/delivery/paiement"}}" id="paiement">
+                @endif
                 <div class="form-body">
                     <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
 
@@ -29,9 +31,15 @@
                     <h3 style="margin-left: 30%">{{trans('paiement.total')}}: {{$delivery->price}} €</h3>
                     <button type="submit" class="btn btn-primary btn-success" style="margin-left: 43%; margin-top: 50px">{{trans('paiement.paiement')}}</button><br><br>
                     @else
-                        <div class="text-center">
+                        <div class="col-md-12">
+                            <div class="text-box white padding-4">
+                                <div class="smartforms-modal-body">
+                                    <div class="smart-wrap">
+                                        <div class="smart-forms smart-container transparent wrap-full">
+                                            <div class="form-body no-padd">
                         <h3>Saisie des informations client</h3>
                             <form method="post" action="{{url("savebags/delivery")}}" id="account">
+                                <input type="hidden" value="{{$delivery->id}}" name="delivery_id">
                                 <div class="row row-margin">
                                     <div class="col-md-12">
                                         <label for="email" class="field-label" ><strong>Nom du client</strong></label>
@@ -78,13 +86,23 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-success">Validation la course</button><br><br>
+                                {{csrf_field()}}
                             </form>
+                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @endif
                     <hr>
                 </div>
+                @if(!$delivery->customer->is_pro)
+
                 {{csrf_field()}}
             </form>
+                @endif
+
         </div>
         </div>
 
