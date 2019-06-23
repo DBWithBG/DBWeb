@@ -68,7 +68,7 @@ class CustomerController extends Controller
         $delivery->save();
 
         Session::flash('message', 'Commande n°'.$delivery->id.' validée');
-        MailController::demande_delivery_pro($delivery->customer()->user(), $delivery);
+        MailController::demande_delivery_pro($delivery->customer->user, $delivery);
         return redirect('/');
 
     }
