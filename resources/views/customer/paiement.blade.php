@@ -79,8 +79,8 @@
                                 <div class="row row-margin">
                                     <div class="col-md-12">
                                         <label for="email" class="field-label" ><strong>Langue</strong></label>
-                                            <input required type="radio"  class="gui-input"  name="customer_lang" value="fr"/>
-                                            <input required type="radio"  class="gui-input"  name="customer_lang" value="en"/>
+                                            <input required type="radio"    name="customer_lang" value="fr"/>
+                                            <input required type="radio"   name="customer_lang" value="en"/>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-success" style="margin-top: 10px">Valider la course</button><br><br>
