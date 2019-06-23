@@ -79,11 +79,8 @@
                                 <div class="row row-margin">
                                     <div class="col-md-12">
                                         <label for="email" class="field-label" ><strong>Langue</strong></label>
-                                        <label class="field prepend-icon">
                                             <input required type="radio"  class="gui-input"  name="customer_lang" value="fr"/>
                                             <input required type="radio"  class="gui-input"  name="customer_lang" value="en"/>
-                                            <span class="field-icon"><i class="fa fa-phone" style="color : black"></i></span>
-                                        </label>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-success" style="margin-top: 10px">Valider la course</button><br><br>
