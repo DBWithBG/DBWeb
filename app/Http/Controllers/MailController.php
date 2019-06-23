@@ -173,25 +173,6 @@ class MailController
             'body' => json_encode($body)
         ]);
 
-        $body = [
-            'FromEmail' =>
-                Config::get('constants.SENDER_EMAIL'),
-
-            'to' => "bordeaux@deliverbag.com",
-            'Subject' => "Nouvelle demande de prise en charge pro",
-            "html-part" => "<h3>Le partenaire " . $user->name . " vient d'effectuer une nouvelle demande de prise en charge</h3><br />
-                    Vous pouvez aller la consulter sur l'admin <a href='https://deliverbag.fr/backoffice/deliveries/upComing'>ic</a>
-"
-        ];
-
-        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
-            'Content-type' => 'application/json',
-
-        ],
-            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
-
-            'body' => json_encode($body)
-        ]);
 
         $body = [
             'FromEmail' =>
