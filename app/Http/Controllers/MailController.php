@@ -178,9 +178,30 @@ class MailController
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
 
+            'to' => "bordeaux@deliverbag.com",
+            'Subject' => "Nouvelle demande de prise en charge pro",
+            "html-part" => "<h3>Le partenaire " . $user->name . " vient d'effectuer une nouvelle demande de prise en charge</h3><br />
+                    Vous pouvez aller la consulter sur l'admin <a href='https://deliverbag.fr/backoffice/deliveries/upComing'>ici</a>
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+
+
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
             'to' => $delivery->pro_cust_email,
             'Subject' => "Confirmation prise en charge bagages",
-            "html-part" => "<h3>Bonjour " . $delivery->pro_surname . "</h3><br />
+            "html-part" => "<h3>Bonjour " . $delivery->pro_cust_surname . "</h3><br />
                     Nous avons pris en compte votre demande de prise en charge de bagages. Deliverbag s'occupe de tout<br>
                     Merci de votre confiance.
 "
