@@ -178,7 +178,7 @@ class MailController
             'FromEmail' =>
                 Config::get('constants.SENDER_EMAIL'),
 
-            'to' => $user->email,
+            'to' => $delivery->pro_cust_email,
             'Subject' => "Confirmation prise en charge bagages",
             "html-part" => "<h3>Bonjour " . $delivery->pro_surname . "</h3><br />
                     Nous avons pris en compte votre demande de prise en charge de bagages. Deliverbag s'occupe de tout<br>
