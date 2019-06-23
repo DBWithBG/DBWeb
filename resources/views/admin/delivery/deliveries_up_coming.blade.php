@@ -49,6 +49,7 @@
                                         <thead class="text-center">
                                         <tr>
                                             <th>Commentaire</th>
+                                            <th>Partenaire</th>
                                             <th>Prix</th>
                                             <th>Bagages</th>
                                             <th>Départ</th>

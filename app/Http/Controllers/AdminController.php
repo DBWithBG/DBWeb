@@ -38,6 +38,7 @@ class AdminController extends Controller
         $user->is_confirmed = true;
         $user->save();
         Session::flash('message', 'User '.$user->name. 'validé');
+        MailController::send_demande_acceptee($user);
         return redirect()->back();
     }
 

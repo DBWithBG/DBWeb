@@ -64,6 +64,157 @@ class MailController
             "Nous allons nous occuper de vos bagages");
     }
 
+    public static function confirm_demande_acces_pro($user) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => $user->email,
+            'Subject' => "Demande d'accès professionnel",
+            "html-part" => "<h3>Bonjour " . $user->name . "</h3><br />
+                    Votre demande a bien été prise en compte, nous allons la traiter dans les plus brefs délais. Vous serez notifié par email dès que votre compte sera accepté.
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => "bordeaux@deliverbag.com",
+            'Subject' => "Demande d'accès professionnel",
+            "html-part" => "<h3>Une demande d'accès professionnel a été fait pour " . $user->name . "</h3><br />
+                    Vous pouvez aller accepter la demande depuis l'admin en cliquant <a href='https://deliverbag.fr/backoffice/customers'>ici </a>
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+    }
+
+    public static function send_demande_acceptee($user) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => $user->email,
+            'Subject' => "Demande d'accès professionnel acceptée",
+            "html-part" => "<h3>Bonjour " . $user->name . "</h3><br />
+                    Votre demande d'accès professionnel a été acceptée, vous pouvez dès a présent vous connecter <a href='https://deliverbag.fr/connexion'>ici</a> pour effectuer vos demandes.
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+
+
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => "bordeaux@deliverbag.com",
+            'Subject' => "Demande d'accès professionnel acceptée",
+            "html-part" => "<h3>Vous avez accepté la demande d'accès professionnel pour " . $user->name . "</h3><br />"
+
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+    }
+
+    public static function demande_delivery_pro($user, $delivery) {
+        $client = new Client();
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => $user->email,
+            'Subject' => "Confirmation prise en charge bagages",
+            "html-part" => "<h3>Bonjour " . $user->name . "</h3><br />
+                    Nous avons pris en compte votre demande de prise en charge de bagages pour le client .". $delivery->pro_name." ". $delivery->pro_surname . "<br>
+                    Merci de votre confiance.
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => "bordeaux@deliverbag.com",
+            'Subject' => "Nouvelle demande de prise en charge pro",
+            "html-part" => "<h3>Le partenaire " . $user->name . " vient d'effectuer une nouvelle demande de prise en charge</h3><br />
+                    Vous pouvez aller la consulter sur l'admin <a href='https://deliverbag.fr/backoffice/deliveries/upComing'>ic</a>
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+
+        $body = [
+            'FromEmail' =>
+                Config::get('constants.SENDER_EMAIL'),
+
+            'to' => $user->email,
+            'Subject' => "Confirmation prise en charge bagages",
+            "html-part" => "<h3>Bonjour " . $delivery->pro_surname . "</h3><br />
+                    Nous avons pris en compte votre demande de prise en charge de bagages. Deliverbag s'occupe de tout<br>
+                    Merci de votre confiance.
+"
+        ];
+
+        $result = $client->post('https://api.mailjet.com/v3/send', ['headers' => [
+            'Content-type' => 'application/json',
+
+        ],
+            'auth' => [Config::get('constants.PUB_MAILJET'), Config::get('constants.SEC_MAILJET')],
+
+            'body' => json_encode($body)
+        ]);
+    }
+
     //Envoi un email à tous les driver qui ont des comptes valides et sont prêts à livrer
     public static function send_email_all_drivers($subject, $html){
         $drivers = Driver::where('deleted', '0')->where('is_op', '1')->get();

@@ -47,6 +47,8 @@ class CustomerController extends Controller
         ]);
 
         Auth::guard()->login($user);
+
+        MailController::confirm_demande_acces_pro($user);
         Session::flash('message', 'inscription réussie');
 
         return redirect('/');
@@ -65,6 +67,7 @@ class CustomerController extends Controller
         $delivery->save();
 
         Session::flash('message', 'Commande n°'.$delivery->id.' validée');
+        MailController::demande_delivery_pro($delivery->customer()->user(), $delivery);
         return redirect('/');
 
     }
