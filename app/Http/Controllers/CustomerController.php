@@ -64,6 +64,7 @@ class CustomerController extends Controller
         $delivery->pro_cust_email = $request['customer_email'];
         $delivery->pro_cust_tel = $request['customer_phone'];
         $delivery->pro_cust_lang = $request['customer_lang'];
+        $delivery->status = Config::get('constants.EN_ATTENTE_DE_PRISE_EN_CHARGE');
         $delivery->is_pro = true;
         $delivery->save();
 

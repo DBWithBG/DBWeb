@@ -71,6 +71,7 @@
                                                     {{ $delivery->comment }}
 
                                                 </td>
+                                                <td>Commande du partenaire {{$delivery->customer->user->surname}}</td>
                                                 <td>{{$delivery->price}} € </td>
                                                 <td>
                                                     @if($delivery->nb_bags == 0)
@@ -100,7 +101,13 @@
                                                 <td>{{$delivery->distance}} km ({{$delivery->estimated_time}}min)</td>
                                                 <td>{{ \Carbon\Carbon::parse($delivery->created_at)->format('d/m/Y') }}</td>
                                                 <td>
-                                                    <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
+                                                    @if($delivery->is_pro)
+                                                        {{$delivery->pro_cust_name}} {{$delivery->pro_cust_surname}} ({{$delivery->pro_cust_lang}})<br>
+                                                        {{$delivery->pro_cust_email}} {{$delivery->pro_cust_tel}}
+                                                    @else
+                                                        <a href="{{url('/backoffice/customer/'. $delivery->customer->id )}}">{{ $delivery->customer->surname .'-' . $delivery->customer->name}}</a>
+
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     @if(empty($delivery->takeOverDelivery))
