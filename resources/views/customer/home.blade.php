@@ -293,7 +293,6 @@
         function call_sncf() {
             var val = $('#input_train').val();
             var dateVoyage = $('#input_train_date').val();
-            console.log(dateVoyage);
             //  since=20170407T120000&until=20170407T120100
             if (dateVoyage != '') {
                 dateVoyage = (dateVoyage.split('-').join('')) + "T000000";
@@ -402,11 +401,9 @@
             //var bdx_metropole = {33130, 33370 ,33110,33170,33700,33185,33530,33127,33400,33810,33290,33150,33520,33160,33310,33440,33270,33140,33560,33600,33320,33800,33100,33000,33200,33300};
             var res = place.address_components;
             var found = false;
-            console.log(res)
             for(i=0; i< res.length; i++) {
                 if(res[i].types.includes("administrative_area_level_2")) {
                     for (var k = 0; k < departments.length; k++) {
-                        console.log('>>>>>>', res[i])
                         if (res[i].long_name.toUpperCase() == departments[k].name.toUpperCase()) {
                             found = true;//On a trouvé une correspondance
                             break;
@@ -559,11 +556,9 @@
                 });
 
                 $('.js_valid_deliver').on('click', function () {
-                    console.log("Val is " + $('#input_nb_bags').val());
 
                     var nb_bags = parseInt($('#input_nb_bags').val());
 
-                    console.log("Nb bags is " + nb_bags);
 
 
                     if (!(nb_bags > 0)) {
