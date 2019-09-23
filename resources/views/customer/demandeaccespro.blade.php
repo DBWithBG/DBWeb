@@ -158,7 +158,7 @@
                                     <br/>
                                     <p>{{trans('accespro.tel')}} : + 33 (0)5.57.87.01.11</p>
                                     <p>827 705 476 R.C.S Bordeaux &nbsp;</p>
-                                    <p>{{trans('accespro.email')}}: bordeaux@deliverbag.fr</p>
+                                    <p>{{trans('accespro.email')}}: bordeaux@deliverbag.com</p>
                                 </div>
                             </div>
                             <!--end item-->

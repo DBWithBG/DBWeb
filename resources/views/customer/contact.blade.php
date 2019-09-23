@@ -130,7 +130,7 @@
                                     <br/>
                                     <p>T&eacute;l : + 33 (0)5.57.87.01.11</p>
                                     <p>827 705 476 R.C.S Bordeaux &nbsp;</p>
-                                    <p>E-mail: bordeaux@deliverbag.fr</p>
+                                    <p>E-mail: bordeaux@deliverbag.com</p>
                                 </div>
                             </div>
                             <!--end item-->
